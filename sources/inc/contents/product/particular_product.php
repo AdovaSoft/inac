@@ -20,7 +20,6 @@ if (isset($id)) {
     $info = $qur->get_particular_product_overview($id, $date1, $date2);
     $n = count($info);
     if ($n > 0) {
-
         $qun = 0;
         $cos = 0;
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=particular_product&&date1=" . $date1 . "&&date2=" . $date2 . "&&id=" . $id . "' class='button' target='_blank'><b> Print </b></a><br/>";
@@ -61,12 +60,12 @@ if (isset($id)) {
             echo "</td>";
 
             echo "<td>";
-            echo sprintf("%.2f", $i[3]);
+            echo money($i[3]);
 
             echo "</td>";
 
             echo "<td>";
-            echo sprintf("%.2f", $i[2] * $i[3]);
+            echo money($i[2] * $i[3]);
             $cos += $i[2] * $i[3];
             echo "</td>";
             echo "</tr>";
@@ -79,7 +78,7 @@ if (isset($id)) {
         echo $qun;
         echo "</b></td>";
         echo "<td> </td>";
-        echo "<td><b>" . $cos . "</b></td>";
+        echo "<td><b>" . money($cos) . "</b></td>";
         echo "</tr>";
         echo "</table>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=particular_product&&date1=" . $date1 . "&&date2=" . $date2 . "&&id=" . $id . "' class='button' target='_blank'><b> Print </b></a>";

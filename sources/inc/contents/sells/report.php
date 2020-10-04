@@ -81,7 +81,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "</tr>";
     echo "<tr>";
     echo "<th colspan='3'>";
-    echo "Net charges:";
+    echo "Net Charges:";
     echo "</th>";
     echo "<th class='blue'>";
     echo $net = $charges_total - $sell_det[0][2];
@@ -102,11 +102,11 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "</table>";
     echo "</div>";
     echo "<b class='blue'><big>Net charges : ";
-    echo $net;
+    echo money($net);
     echo "</big></b>";
     echo "</div><br/>";
 }
-echo "<h1>Grand Total : " . $grand_total . "</h1>";
+echo "<h1>Grand Total : " . money($grand_total) . "</h1>";
 echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(" . $i . ")' class='rightflotingnoborder'>";
 echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
 

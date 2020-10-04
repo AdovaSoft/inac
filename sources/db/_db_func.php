@@ -14,4 +14,16 @@ include "./sources/class/inserter.php";
  */
 include "./sources/class/indquery.php";
 
-//clean value for display empty
+/**
+ * this function convert number to money format
+ * input 1000000 to 1,000,000.00
+ * @param int $number
+ * @return int|string
+ */
+function money($number = 0)
+{
+    if (is_numeric($number))
+        return number_format($number, 2, ".", ",");
+    else
+        return $number;
+}

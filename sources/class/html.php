@@ -248,7 +248,7 @@ class html
         $ymore = date('Y') + 10;
 
         $this->select_digit($n . '_d', 1, 31, $d, 1);
-        $this->select_digit($n . '_m', 1, 12, $m, 1);
+        $this->select_digit($n . '_m', 1, 12, $m, 1, true);
         $this->select_digit($n . '_y', $yless, $ymore, $y, 1);
     }
 
@@ -259,14 +259,20 @@ class html
      * @param $sel
      * @param $int
      */
-    public function select_digit($name, $from, $to, $sel, $int)
+    public function select_digit($name, $from, $to, $sel = null, $int = 1, $is_month = false)
     {
+        $months = array(
+            1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April',
+            5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',
+            9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December');
+
         echo "<select name = '" . $name . "' > ";
-        for ($i = $from; $i <= $to; $i = $i + $int) {
-            if ($sel == $i)
-                echo "<option selected>" . $i . "</option>";
-            else
-                echo "<option >" . $i . "</option>";
+        for ($i = $from; $i <= $to; $i += $int) {
+            echo "<option value='" . $i . "'";
+            if ($sel == $i) echo " selected";
+            echo ">";
+            echo ($is_month == true) ? $months[$i] : $i;
+            echo "</option>";
         }
         echo "</select>";
     }

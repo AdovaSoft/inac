@@ -23,7 +23,7 @@ if ($n > 0) {
     echo "Number";
     echo "</td>";
     echo "<td>";
-    echo "Unite name";
+    echo "Unit";
     echo "</td>";
     echo "<td>";
     echo "Rate";
