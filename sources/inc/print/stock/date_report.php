@@ -36,7 +36,7 @@ if ($n > 0) {
     echo "</td>";
 
     echo "<td>";
-    echo "Total Price (TK)";
+    echo "Total Price";
     echo "</td>";
 
     echo "<td>";
@@ -63,7 +63,7 @@ if ($n > 0) {
             echo "<td>";
             echo $i[2];
             if ($i[5] == 0 || $i[5] == 1)
-                $tti_p = $tti_p + $i[2];
+                $tti_p += $i[2];
 
             echo "</td>";
             echo "<td>";
@@ -84,7 +84,7 @@ if ($n > 0) {
             echo "<td>";
             echo(-$i[2]);
             if ($i[5] == 0 || $i[5] == 1)
-                $tto_p = $tto_o + (-$i[2]);
+                $tto_p = $tto + (-$i[2]);
             echo "</td>";
         }
 
@@ -120,7 +120,7 @@ if ($n > 0) {
     echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table>";
     echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-} else {
+}
+else {
     echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
 }
-?>

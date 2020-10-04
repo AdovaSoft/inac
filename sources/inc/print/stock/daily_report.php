@@ -36,7 +36,7 @@ if ($n > 0) {
     echo "</td>";
 
     echo "<td>";
-    echo "Total Price (TK)";
+    echo "Total Price";
     echo "</td>";
 
     echo "<td>";
@@ -121,6 +121,6 @@ if ($n > 0) {
     echo "</table>";
     echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
-    echo "<br/><h2 class='blue'>No input or output in $date date</h2>";
+    echo "<br/><h2 class='blue'>No input or output in " . $inp->date_convert($date) . " date</h2>";
 }
 ?>
