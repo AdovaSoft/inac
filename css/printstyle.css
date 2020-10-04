@@ -1,0 +1,65 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    border-style: none;
+    border-width: 0px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6, form {
+    display: block;
+}
+
+a img {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    border-width: 0px;
+    border-style: none;
+    vertical-align: middle;
+}
+
+table.roundangled20 {
+    margin: 10px;
+}
+
+table.rb {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+table.centeraligned tr td {
+    text-align: center;
+}
+
+table.leftaligned tr td {
+    text-align: left;
+}
+
+table.roundangled20 tr td,
+table.roundangled20 tr th,
+table.rb tr td,
+table.rb tr th,
+.embossed {
+    padding: 1px;
+    margin: 1px;
+    text-align: center;
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#banner {
+    font-size: 40px;
+}

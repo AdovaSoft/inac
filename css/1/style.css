@@ -1,0 +1,144 @@
+body {
+    background-color: #427799;
+    background-image: url('contentbg.jpg');
+    background-repeat: repeat;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #224466;
+}
+
+/*---------------TOPMENU--------------------*/
+#topmenu {
+    background-color: #447799;
+    background-image: url('menubg.jpg');
+    background-position: top;
+    border-color: #447799;
+}
+
+#topmenu ul li a {
+    color: #ffffff;
+    border-color: #447799;
+}
+
+#topmenu a:hover {
+    background-image: url('menubg.jpg');
+    background-position: bottom;
+}
+
+#topmenu ul li ul li a {
+    background-color: #4A92C2;
+    background-repeat: repeat-x;
+}
+
+/*------------TIME-DATE-DAY-----------------*/
+
+#ttd {
+    color: #88ddff;
+}
+
+/*---------------CONTENT--------------------*/
+#content a {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#content a:hover {
+    color: #44ee88;
+}
+
+#content table.rb {
+    border-color: #447799;
+}
+
+#content table.roundangled20 tr td,
+#content table.rb tr td,
+#content .embossed {
+    border-color: #447799;
+    background-color: #4A92C2;
+    background-image: url('menubg.jpg');
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+#content table.roundangled20 tr th,
+#content table.rb tr th {
+    border-color: #3377aa;
+    background-color: #447799;
+    background-image: url('menubg.jpg');
+    background-position: top;
+    background-repeat: repeat-x;
+}
+
+#content #bigmenu a,
+#content a.bigbutton {
+    color: #ffffff;
+    border-color: #447799;
+    background-color: #4A92C2;
+    background-image: url('menubg.jpg');
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+#content #bigmenu a:hover,
+#content a:hover.bigbutton,
+#content a:hover.button {
+    background-color: #447799;
+    background-position: top;
+}
+
+#content a.button {
+    color: #ffffff;
+    border-color: #447799;
+    background-color: #4A92C2;
+    background-image: url('menubg.jpg');
+    background-position: bottom;
+    background-repeat: repeat-x;
+    width: 80%;
+}
+
+#content input.searchword {
+    color: #000000;
+    border-color: #447799;
+    background-color: #ffffff;
+}
+
+/*---------------ENDING--------------------*/
+#ending {
+    background-color: #4A92C2;
+    border-color: #4A92C2;
+    background-image: url('menubg.jpg');
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+#ending a {
+    color: #eeeeff;
+}
+
+#topmenu a:hover,
+#content #bigmenu a:hover,
+#content a:hover.bigbutton, #content a:hover.button,
+#ending a:hover {
+    color: #88eeff;
+}
+
+/*----------MESSAGE-COLORS------------------*/
+
+.red {
+    color: #aa3333;
+}
+
+.green {
+    color: #005522;
+}
+
+.blue {
+    color: #0000aa;
+}
+
+.faintred {
+    color: #ffaa99;
+}
+
+.faintgreen {
+    color: #99ffaa;
+}

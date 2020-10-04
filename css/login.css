@@ -1,0 +1,43 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+a {
+    color: #4488ee;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #44ee88;
+}
+
+#loginform {
+    padding: 20px;
+    margin: auto;
+    width: 500px;
+    text-align: center;
+    border-style: outset;
+    border-width: 3px;
+    border-color: #222222;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    background-color: #000000;
+    background-color: #323232;
+    background-image: url('loginformbg.jpg');
+    background-position: top;
+    background-repeat: repeat-x;
+}
+
+.red {
+    color: #bb0000;
+}
+
+.green {
+    color: #44BB66;
+}
+
+.blue {
+    color: #4488ee;
+}

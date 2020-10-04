@@ -1,0 +1,12 @@
+#Server error
+ServerSignature Off
+#ServerTokens Prod
+
+
+#Server Environment
+<IfModule mod_env.c>
+SetEnv HOST localhost
+SetEnv USER root
+SetEnv PASS
+SetEnv DBASE websqflt_nas
+</IfModule>
