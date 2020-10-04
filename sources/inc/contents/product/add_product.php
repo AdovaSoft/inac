@@ -12,7 +12,7 @@ if (isset($_POST['ab'])) {
         $flag = $query->addProduct($_POST['n'], $_POST['mt'], $_POST['pt'], $price);
 
         if ($flag) {
-            echo "<h3 class='green'>New Product Added Successfuly</h3>";
+            echo "<h3 class='green'>New Product Added Successfully</h3>";
         } else {
             echo "<h3 class='red'>Failed to Add New Product</h3>";
             unset($_POST['ab']);
@@ -20,7 +20,7 @@ if (isset($_POST['ab'])) {
 
 
     } else {
-        echo "<h3 class='blue'>Please give product name, mesurment type and product type.</h3>";
+        echo "<h3 class='blue'>Please give product name, measurement type and product type.</h3>";
     }
 }
 

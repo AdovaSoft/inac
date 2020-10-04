@@ -8,7 +8,7 @@ if (isset($_POST['ab'])) {
     if ($flag) {
         $flag = $qur->addParty($_POST['n'], $_POST['p1'], $_POST['p2'], $_POST['a'], $_POST['t']);
         if ($flag) {
-            echo "<h3 class='green'>Party Added successfuly</h3>";
+            echo "<h3 class='green'>Party Added successfully</h3>";
         } else {
             echo "<h3 class='red'>failed</h3>";
             unset($_POST['ab']);
