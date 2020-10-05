@@ -86,7 +86,6 @@ if (isset($id)) {
         echo "<td><b>" . money($cos) . "</b></td>";
         echo "</tr>";*/
         echo "</table>";
-        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=particular_product&&date1=" . $date1 . "&&date2=" . $date2 . "&&id=" . $id . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h3 class='blue'>There is nothing to show about this item between these dates</h3>";
     }

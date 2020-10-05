@@ -81,6 +81,5 @@ for ($i = 0; $i < count($res); $i++) {
 echo "</tbody>";
 echo "<tfoot><tr><th>Total</th><th>" . $in_total . "</th><th>" . $out_total . "</th><td class='blue' colspan='2'><b>Balance: " . ($in_total - $out_total) . "</b></td></tr></tfoot>";
 echo "</table>";
-echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=accounts&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
 ?>
 

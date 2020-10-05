@@ -99,6 +99,5 @@ foreach ($all_info as $a) {
 }
 echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr>";
 echo "</table>";
-echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=party&&sub=all_party' class='button' target='_blank'><b> Print </b></a>";
 
 ?>
