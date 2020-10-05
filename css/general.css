@@ -300,10 +300,10 @@ a img {
 }
 
 input[type=submit] {
-    margin-top: 15px;
+/*    margin-top: 15px;*/
     margin-right: 7px;
     margin-left: 7px;
-    padding: 10px 15px;
+    padding: 5px 15px;
     font-weight: bold;
     border-radius: 3px;
     letter-spacing: 2px;

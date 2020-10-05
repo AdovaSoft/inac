@@ -33,3 +33,24 @@ function db(&$variable)
     else
         return '-';
 }
+
+/**
+ * money format converter function
+ * thousand separator and fixed
+ * 2 decimal point
+ * @param $number
+ * @return string
+ */
+function money($number)
+{
+    if (isset($number)) {
+        if (is_numeric($number)) {
+            return number_format($number, '2', '.', ',');
+        } else {
+            return '0.00';
+        }
+
+    } else {
+        return '-';
+    }
+}
