@@ -3,8 +3,10 @@
 <?php
 $query = sprintf("SELECT idstaff,name,post,sallary,status FROM staff ORDER by name;");
 $info = $qur->get_custom_select_query($query, 5);
-echo "<table align='center' class='rb'>";
-echo "<tr><td>Name</td><td>Post</td><td>Sallary</td><td>Satus</td></tr>";
+echo "<table align='center' class='rb table'>";
+
+echo "<thead><tr><td>Name</td><td>Post</td><td>Sallary</td><td>Satus</td></tr></thead>";
+echo "<tbody>";
 foreach ($info as $i) {
     echo "<tr>";
     echo "<td>";
@@ -33,5 +35,6 @@ foreach ($info as $i) {
     echo "</td>";
     echo "</tr>";
 }
+echo "</tbody>";
 echo "</table>";
 ?>

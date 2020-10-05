@@ -22,7 +22,7 @@ if (isset($_POST['ab'])) {
     if ($flag) {
         echo "<h3 class='green'>All Attendance Update Successfull</h3>";
     } else {
-        echo "<h3 class='red'>All Attendance Update failed</h3>";
+        echo "<br><h2 class='red'>All Attendance Update failed</h2>";
         unset($_POST['ab']);
     }
 }
