@@ -21,101 +21,52 @@ if (isset($_POST['searchword'])) {
     if ($s == null) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
+        $purchase_results = $qur->search_pur($s);
 
-        $res1 = $qur->search_sell($s);
+        $n = count($purchase_results);
 
-        $n = count($res1);
         if ($n > 0) {
-            echo "<h3>Sells Results</h3><br/>";
-            echo "<table align='center' class='rb table'>";
+            echo "<h3>Purchase Results</h3><br/>";
+            echo "<table  align='center' class='rb table'>";
             echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Voucher No";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Party";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
-            echo "<td>";
-            echo "Actions";
-            echo "</td>";
+            echo "</th>";
+            echo "<th>";
+            echo "Action";
+            echo "</th>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
+
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo $res1[$i][0];
+                echo $purchase_results[$i][1];
                 echo "</td>";
 
                 echo "<td>";
-                echo $res1[$i][1];
+                echo $purchase_results[$i][2];
                 echo "</td>";
 
                 echo "<td>";
-                echo $inp->date_convert($res1[$i][2]);
+                echo $inp->date_convert($purchase_results[$i][3]);
                 echo "</td>";
-                echo "<td>";
-                echo "<form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='sell_id' value='" . $res1[$i][0] . "'/><input type='submit' name='delete_sell' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'><input type='hidden' name='v' value='" . $res1[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form> ";
-                echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $res1[$i][0] . "'/><input type='submit' name='print' value='Print'/></form>";
+
+                echo "<td colspan='4'>";
+                echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='pur_id' value='" . $purchase_results[$i][0] . "'/><input type='submit' name='delete_purchase' value='Delete'/></form> ";
+                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $purchase_results[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form>";
                 echo "</td>";
                 echo "</tr>";
             }
             echo "</tbody>";
-            echo "</table><br/>";
-            /*create a link using res1[i][1] to Sales Return 'selles_ret' page*/
-
-        } else {
-            echo "<h3 class='blue'>No sells records found</h3><br/>";
-        }
-
-
-        $res2 = $qur->search_pur($s);
-
-        $n = count($res2);
-
-        if ($n > 0) {
-            echo "<h3>Purchase Results</h3><br/>";
-            echo "<table  align='center' class='rb'>";
-            echo "<tr>";
-            echo "<td>";
-            echo "Voucher No";
-            echo "</td>";
-            echo "<td>";
-            echo "Party";
-            echo "</td>";
-            echo "<td>";
-            echo "Date";
-            echo "</td>";
-            echo "<td>";
-            echo "Action";
-            echo "</td>";
-            echo "</tr>";
-
-            for ($i = 0; $i < $n; $i++) {
-                echo "<tr>";
-                echo "<td>";
-                echo $res2[$i][1];
-                echo "</td>";
-
-                echo "<td>";
-                echo $res2[$i][2];
-                echo "</td>";
-
-                echo "<td>";
-                echo $inp->date_convert($res2[$i][3]);
-                echo "</td>";
-
-                echo "<td colspan='4'>";
-                echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='pur_id' value='" . $res2[$i][0] . "'/><input type='submit' name='delete_purchase' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $res2[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form>";
-                echo "</td>";
-                echo "</tr>";
-            }
             echo "</table><br/>";
         } else {
             echo "<h3 class='blue'>No purchase records found.</h3><br/>";
