@@ -26,6 +26,14 @@ function d(...$var)
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
   <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
+
+  <!-- JavaScript -->
+  <script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
+  <script src='./js/hidecheck.js'></script>
+  <script src='./js/timedateday.js'></script>
+  <script src='./js/slideupdown.js'></script>
+<!-- dataTables -->
+<script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
 </head>
 <body onLoad="startTime();">
 <div id="topmenu">
@@ -60,12 +68,7 @@ function d(...$var)
       ?>
   </div>
 </center>
-<script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
-<script src='./js/hidecheck.js'></script>
-<script src='./js/timedateday.js'></script>
-<script src='./js/slideupdown.js'></script>
-<!-- dataTables -->
-<script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function () {
         $('body').find('.rb').DataTable({
