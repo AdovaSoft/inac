@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @param $userid
+ * @param $userpass
+ * @return array|int|null
+ */
 function login_check($userid, $userpass)
 {
     $con = mysqli_connect($_SERVER['HOST'], $_SERVER['USER'], $_SERVER['PASS'], $_SERVER['DBASE']);

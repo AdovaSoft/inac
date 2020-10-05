@@ -19,4 +19,6 @@
 </center>
 </body>
 <?php
-die();
+//don't render more html
+exit(0);
+?>

@@ -61,7 +61,7 @@ if ($n > 0) {
             $cos += $temp;
             echo money($temp);
         } else
-          echo '-';
+            echo '-';
 
         echo "</td>";
         echo "</tr>";

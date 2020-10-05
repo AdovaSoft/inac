@@ -20,7 +20,7 @@ if (isset($_POST['searchword'])) {
     if ($s == null) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
-        $sell_results= $qur->search_sell($s);
+        $sell_results = $qur->search_sell($s);
         if (count($sell_results) > 0) {
             echo "<h3>Sells Results</h3><br/>";
             echo "<table align='center' class='rb table'>";

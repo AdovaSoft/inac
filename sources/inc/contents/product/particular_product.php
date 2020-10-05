@@ -58,7 +58,7 @@ if (isset($id)) {
             echo "</td>";
 
             echo "<td>";
-            echo isset($i[2])? $i[2] : '-';
+            echo isset($i[2]) ? $i[2] : '-';
             $qun += $i[2];
             echo "</td>";
 

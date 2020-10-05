@@ -1,28 +1,11 @@
 <?php
-session_start();
-date_default_timezone_set('Asia/Dhaka');
-$company = file_get_contents("companyname.txt");
-
-//USER TYPE CONSTANTS
-defined('STAFF') || define('STAFF', 0);
-defined('ADMIN') || define('ADMIN', 1);
-defined('USER') || define('USER', 2);
-
-//Debug Function
-function d(...$var)
-{
-    echo "<pre>";
-    var_dump(...$var);
-    echo "</pre>";
-}
-
+include("./sources/inc/system.php");
+include("./sources/inc/security.php");
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
   <title><?php echo $company; ?></title>
-    <?php
-    include("sources/inc/security.php");
-    ?>
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
   <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
@@ -32,8 +15,8 @@ function d(...$var)
   <script src='./js/hidecheck.js'></script>
   <script src='./js/timedateday.js'></script>
   <script src='./js/slideupdown.js'></script>
-<!-- dataTables -->
-<script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+  <!-- dataTables -->
+  <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
 </head>
 <body onLoad="startTime();">
 <div id="topmenu">
@@ -45,8 +28,7 @@ function d(...$var)
   <div id="date">
       <?php echo date("D, d M Y"); ?>
   </div>
-  <div id="digclock">
-  </div>
+  <div id="digclock"></div>
 </div>
 <center>
   <div id="content">
@@ -68,7 +50,6 @@ function d(...$var)
       ?>
   </div>
 </center>
-
 <script>
     $(document).ready(function () {
         $('body').find('.table').DataTable({

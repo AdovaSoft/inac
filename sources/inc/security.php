@@ -7,7 +7,9 @@ if (isset($_GET['e'])) {
     $pass = $_SESSION["user" . $encptid . "pass"];
     $username = $_SESSION["user" . $encptid . "username"];
     include("sources/db/login_db_fn.php");
+
     $checkingdata = login_check_session($username, $pass);
+
     if ($checkingdata != 0) {
         $csschoice = $checkingdata[0];
         $idstaff = $_SESSION["user" . $encptid . "idstaff"];
@@ -25,8 +27,10 @@ if (isset($_GET['e'])) {
     if ($checkingdata != 0) {
         $idstaff = $checkingdata[0];
         $pass = $checkingdata[1];
+
         $usertype = $checkingdata[2];
         $csschoice = $checkingdata[3];
+
         $username = $_POST['username'];
 
         $encptid = md5($idstaff);
@@ -37,17 +41,20 @@ if (isset($_GET['e'])) {
         $_SESSION["user" . $encptid . "username"] = $username;
 
         include("sources/db/_db_func.php");
-        $inp = new html();
+        /*$inp = new html();
         $qur = new indquery();
+        */
+        header("Location: index.php?e=" . $encptid);
     } else {
         $loginmessage = "<h2 class='red'>Wrong ID or Password.</h2>";
         include("sources/inc/loginform.php");
     }
-} elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
+}
+elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
     $loginmessage = "<h2 class='red'>Please fill all fields.</h2>";
     include("sources/inc/loginform.php");
 } elseif (isset($_GET['logout'])) {
-    $loginmessage = "<h2 class='green'>Loged out successfully.</h2>";
+    $loginmessage = "<h2 class='green'>Logged out successfully.</h2>";
     include("sources/inc/loginform.php");
 } else {
     $loginmessage = "<h2 class='blue'>Please login.</h2>";

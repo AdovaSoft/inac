@@ -41,8 +41,8 @@ if (count($info) > 0) {
     echo "</th>";
 
     echo "</tr>";
-echo "</thead>";
-echo "<tbody>";
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($info as $rawmaterial) {
         echo "<tr>";
         echo "<th>";
@@ -80,17 +80,17 @@ echo "<tbody>";
         echo "</tr>";
     }
     echo "</tbody>";
-/*
-    echo "<tr>";
-    echo "<th colspan = '6' >";
-    echo "Grand Total : ";
-    echo "</th>";
+    /*
+        echo "<tr>";
+        echo "<th colspan = '6' >";
+        echo "Grand Total : ";
+        echo "</th>";
 
-    echo "<td >";
-    echo $cost;
-    echo "</td>";
-    echo "</tr>";
-*/
+        echo "<td >";
+        echo $cost;
+        echo "</td>";
+        echo "</tr>";
+    */
     echo "</table><br/>";
     echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=raw' class='button' target='_blank'><b> Print </b></a>";
 } else {

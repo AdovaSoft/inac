@@ -137,7 +137,7 @@ if ($inp->value_pgd('s') != null) {
             echo "<td>";
             echo sprintf("%.2f", $s[6] * ($s[2] + $s[3] + ($s[5]) / $s[7]) / $inp->print_month_days($s[0], $s[1]));
             echo "</td>";
-            
+
             if ($usertype == ADMIN) {
                 echo "<td>";
                 echo "<br/><form method='POST'>";
@@ -161,7 +161,7 @@ if ($inp->value_pgd('s') != null) {
         $d = date('Y-m-d');
         $y = $d[0] . $d[1] . $d[2] . $d[3];
         $m = $d[5] . $d[6];
-        $inp->select_month('r_m', $m,true);
+        $inp->select_month('r_m', $m, true);
         echo " of ";
         $inp->select_digit('r_y', 2011, 2021, $y, 1);
         echo "<table align='center' class='centeraligned'>";
