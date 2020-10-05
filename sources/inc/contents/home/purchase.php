@@ -1,5 +1,5 @@
-<form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=sp" method="POST" class="embossed">
-  <h2>Sell and Purchase Search</h2>
+<form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=purchase" method="POST" class="embossed">
+  <h2>Purchase Search</h2>
   <br/>Enter voucher number<br/>
   <br/>
   <input type="text" name="searchword" class="searchword"
@@ -9,18 +9,13 @@
 </form>
 <?php
 
-
-if (isset($_POST['delete_sell'])) {
-    include("sources/inc/contents/sells/delete.php");
-}
-
 if (isset($_POST['delete_purchase'])) {
     include("sources/inc/contents/purchase/delete.php");
 }
 
 if (isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
-    echo "<br/><h3>Sell and Purchase Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
+    echo "<br/><h3>Purchase Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
     $s = ($_POST['searchword'] != null ? $_POST['searchword'] : $_GET['searchword']);
     if ($s == null) {
@@ -36,7 +31,7 @@ if (isset($_POST['searchword'])) {
             echo "<thead>";
             echo "<tr>";
             echo "<td>";
-            echo "Vouchar No";
+            echo "Voucher No";
             echo "</td>";
             echo "<td>";
             echo "Party";
@@ -88,7 +83,7 @@ if (isset($_POST['searchword'])) {
             echo "<table  align='center' class='rb'>";
             echo "<tr>";
             echo "<td>";
-            echo "Vouchar No";
+            echo "Voucher No";
             echo "</td>";
             echo "<td>";
             echo "Party";
