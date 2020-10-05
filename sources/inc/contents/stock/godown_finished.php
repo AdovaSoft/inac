@@ -7,7 +7,8 @@ echo "<br/>Click on the names to view Particular Sales Report of last month.<br/
 $info = $qur->get_custom_select_query($query, 5);
 $cost = 0;
 if (count($info) > 0) {
-    echo "<table class='rb'>";
+    echo "<table class='rb table'>";
+    echo "<thead>";
     echo "<tr>";
     echo "<th>";
     echo "Name";
@@ -31,7 +32,9 @@ if (count($info) > 0) {
     echo "</th>";
 
     echo "</tr>";
+    echo "<thead>";
 
+    echo "<tbody>";
     foreach ($info as $ar) {
         echo "<tr>";
         echo "<th>";
@@ -49,18 +52,19 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $ar[3];
+        echo money($ar[3]);
         echo "</td>";
 
 
         echo "<td>";
-        echo sprintf("%.2f", $ar[3] * $ar[1]);
+        echo money( $ar[3] * $ar[1]);
         $cost += $ar[3] * $ar[1];
         echo "</td>";
         echo "</tr>";
     }
+    echo "</tbody>";
 
-    echo "<tr>";
+    /*echo "<tr>";
     echo "<th colspan = '4' >";
     echo "Grand Total : ";
     echo "</th>";
@@ -68,7 +72,7 @@ if (count($info) > 0) {
     echo "<td >";
     echo $cost;
     echo "</td>";
-    echo "</tr>";
+    echo "</tr>";*/
 
     echo "</table><br/>";
     echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=godown_finished' class='button' target='_blank'><b> Print </b></a>";
