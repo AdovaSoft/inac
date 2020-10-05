@@ -30,7 +30,7 @@ if ($inp->value_pgd('s') != null) {
     $bon_query = sprintf("SELECT id,date,month,year,ammount*-1 FROM (SELECT * FROM staff_bonus WHERE idstaff = %d) as staff LEFT JOIN transaction USING(id);", $inp->value_pgd('s'));
     $rep_query = sprintf("SELECT rep_month, rep_year, attended, rep_leave, absent, overtime, sallary, hour FROM staff_report s WHERE idstaff = %d ORDER BY rep_year, rep_month;", $inp->value_pgd('s'));
 
-    if (($_POST['delete'] == "Delete") && ($usertype == ADMIN)) {
+    if (isset($_POST['delete']) && $_POST['delete'] == "Delete" && $usertype == ADMIN) {
         $delete = $qur->delete_attendense($_POST['s'], $_POST['m'], $_POST['y']);
         if ($delete)
             echo "<br/><h3 class='green'>Attendence entry Deleted</h3>";
@@ -215,10 +215,9 @@ if ($inp->value_pgd('s') != null) {
         echo "<table align='center' class='rb'>";
         echo "<tr><td>Paying date</td><td>Sallary of</td><td>Ammount</td></tr>";
         $n = count($staf_sal);
-        $amnt = 0;
-        $samnt;
+        $salary_amount = 0;
         for ($i = 0; $i < $n; $i++) {
-            $samnt += $staf_sal[$i][4];
+            $salary_amount += $staf_sal[$i][4];
             echo "<tr>";
             echo "<td>";
             echo $inp->date_convert($staf_sal[$i][1]);
@@ -234,7 +233,7 @@ if ($inp->value_pgd('s') != null) {
 
             echo "</tr>";
         }
-        echo "<tr><td colspan = 3>Total : $samnt</td></tr>";
+        echo "<tr><td colspan = 3>Total : $salary_amount</td></tr>";
         echo "</table>";
     }
 
@@ -281,11 +280,11 @@ if ($inp->value_pgd('s') != null) {
         $inp->select_month('m', isset($_POST['m']) ? $_POST['m'] : Date('m'));
         $inp->select_digit('y', 2000, 2050, isset($_POST['y']) ? $_POST['y'] : Date('Y'), 1);
 
-        echo "<br/><br/>Ammount :<br/>";
+        echo "<br/><br/>Amount :<br/>";
         echo "<input type='text' name='amnt'/>";
         echo "<select name='tt'>";
-        echo "<option >  </option> ";
-        echo "<option value = '1'> Sallary </option> ";
+        echo "<option>  Select a Option</option> ";
+        echo "<option value = '1'> Salary </option> ";
         echo "<option value = '2'> Bonus </option> ";
         echo "</select>";
         echo "<input type = 'hidden' name = 'cmnt'  value = 'Paying to " . strtoupper($staf_det[0][0]) . " (" . $staf_det[0][1] . ")' />";

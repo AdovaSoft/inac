@@ -1377,10 +1377,10 @@ class indquery extends query
         //i3[0][1]total sell
         $i3 = $this->get_custom_select_query($query3, 2);
 
-        $total_transcation = intval($i1[0][0]);
+        $total_transaction = isset($i1[0][0]) ? $i1[0][0] : 0;
         $total_purchase = isset($i2[0][1]) ? $i2[0][1] : 0;
         $total_sell = isset($i3[0][1]) ? $i3[0][1] : 0;
-        return $total_transcation + $total_purchase - $total_sell;
+        return $total_transaction + $total_purchase - $total_sell;
     }
 
     public function update_party($id, $name, $p1, $p2, $adrs, $type)
