@@ -28,7 +28,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "</a>";
     echo "<br/>";
     echo "<div id='sud" . $i . "'>";
-    echo "<table class='rb table' align='center'>";
+    echo "<table class='rb' align='center'>";
     echo "<tr>";
     echo "<th>";
     echo "Product";
