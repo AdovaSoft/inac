@@ -1,15 +1,10 @@
 var visible;
-
 var totalElements;
-
-var i;
-
 var speed = 1000;
-
 var autospeed = 5000;
 
 function hideAllButZero(total) {
-    for (i = 1; i < total; i++) {
+    for (var i = 1; i < total; i++) {
         workon = "div#" + "sud" + i;
         $(workon).hide(speed);
     }
@@ -20,7 +15,7 @@ function hideAllButZero(total) {
 }
 
 function showit(num) {
-    if (visible != num) {
+    if (visible !== num) {
         showtable = "div#" + "sud" + num;
         $(showtable).show(speed);
         hidetable = "div#" + "sud" + visible;
@@ -36,7 +31,7 @@ function showit(num) {
 }
 
 function showAll() {
-    for (i = 0; i < totalElements; i++) {
+    for (var i = 0; i < totalElements; i++) {
         workon = "div#" + "sud" + i;
         $(workon).show(speed);
     }
@@ -46,7 +41,7 @@ function showAll() {
 }
 
 function hideAll() {
-    for (i = 0; i < totalElements; i++) {
+    for (var i = 0; i < totalElements; i++) {
         workon = "div#" + "sud" + i;
         $(workon).hide(speed);
     }

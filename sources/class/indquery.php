@@ -1366,7 +1366,7 @@ class indquery extends query
         }
         echo "</div>";
         echo "</div>";
-        echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(4)' class='rightflotingnoborder'>";
+        echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(4);' class='rightflotingnoborder'>";
     }
 
     public function party_adv_due($id)

@@ -23,12 +23,9 @@ function d(...$var)
     <?php
     include("sources/inc/security.php");
     ?>
-  <link rel="stylesheet" type="text/css" href="css/general.css">
-  <link rel="stylesheet" type="text/css" href="css/<?php echo $csschoice; ?>/style.css">
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type='text/javascript' src='js/hidecheck.js'></script>
-  <script type='text/javascript' src='js/timedateday.js'></script>
-  <script type='text/javascript' src='js/slideupdown.js'></script>
+  <link rel="stylesheet" type="text/css" href="./vendors/datatables.css">
+  <link rel="stylesheet" type="text/css" href="./css/general.css">
+  <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
 </head>
 <body onLoad="startTime();">
 <div id="topmenu">
@@ -63,5 +60,21 @@ function d(...$var)
       ?>
   </div>
 </center>
+<script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
+<script src='./js/hidecheck.js'></script>
+<script src='./js/timedateday.js'></script>
+<script src='./js/slideupdown.js'></script>
+<!-- dataTables -->
+<script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('body').find('.rb').DataTable({
+            "dom": 'rt<"bottom"p>',
+            "lengthMenu": false,
+            "ordering": false,
+            "info": false
+        });
+    });
+</script>
 </body>
 </html>
