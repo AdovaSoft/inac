@@ -17,8 +17,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
         echo "You cant search on empty string";
     } else {
         $con = new indquery();
-        $res = $con->search_party($s);
-        $n = count($res);
+        $part_results = $con->search_party($s);
+        $n = count($part_results);
 
         if ($n > 0) {
             echo "<table align='center' class='rb table'>";
@@ -39,20 +39,20 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $res[$i][0] . "'>";
-                echo $res[$i][1];
+                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo isset($part_results[$i][1]) ? $part_results[$i][1] : '-';
                 echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $res[$i][0] . "'>";
-                echo $res[$i][2];
+                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo isset($part_results[$i][2]) ? $part_results[$i][2] : '-';
                 echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $res[$i][0] . "'>";
-                echo $res[$i][3];
+                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo isset($part_results[$i][3]) ? $part_results[$i][3] : '-';
                 echo "</a>";
                 echo "</td>";
                 echo "</tr>";
