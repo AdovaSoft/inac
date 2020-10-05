@@ -8,7 +8,8 @@ if ($n > 0) {
     $qun = 0;
     $cos = 0;
     echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=raw_material&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br/>";
-    echo "<table align='center' class='rb'>";
+    echo "<table align='center' class='rb table'>";
+    echo "<thead>";
     echo "<tr>";
     echo "<td>";
     echo "Date";
@@ -32,6 +33,8 @@ if ($n > 0) {
     echo "Total";
     echo "</td>";
     echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($info as $item) {
         echo "<tr>";
         echo "<td>";
@@ -64,6 +67,8 @@ if ($n > 0) {
         echo "</tr>";
 
     }
+    echo "</tbody>";
+    /*
     echo "<tr>";
     echo "<td colspan ='3'>";
     echo "Total ";
@@ -74,7 +79,7 @@ if ($n > 0) {
     echo "<td></td>";
     echo "<td></td>";
     echo "<td><b>" . money($cos) . "</b></td>";
-    echo "</tr>";
+    echo "</tr>";*/
     echo "</table>";
     echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=raw_material&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
 } else {

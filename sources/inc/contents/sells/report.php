@@ -47,7 +47,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     for ($j = 0; $j < $n; $j++) {
         echo "<tr>";
         echo "<td>";
-        echo $sell_pro[$j][3];
+        echo isset($sell_pro[$j][3]) ? $sell_pro[$j][3] : '-';
         echo "</td>";
         echo "<td>";
         echo $sell_pro[$j][1];
@@ -55,7 +55,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo $sell_pro[$j][4];
         echo "</td>";
         echo "<td>";
-        echo $sell_pro[$j][2];
+        echo money($sell_pro[$j][2]);
         echo "</td>";
         echo "<td>";
         echo money($sell_pro[$j][1] * $sell_pro[$j][2]);
@@ -68,7 +68,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "Total Charges:";
     echo "</th>";
     echo "<th class='blue'>";
-    echo $charges_total;
+    echo money($charges_total);
     echo "</th>";
     echo "</tr>";
     echo "<tr>";
@@ -76,7 +76,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "Discount:";
     echo "</th>";
     echo "<th class='blue'>";
-    echo $sell_det[0][2];
+    echo money($sell_det[0][2]);
     echo "</th>";
     echo "</tr>";
     echo "<tr>";
@@ -84,7 +84,8 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "Net Charges:";
     echo "</th>";
     echo "<th class='blue'>";
-    echo $net = $charges_total - $sell_det[0][2];
+    $net = $charges_total - $sell_det[0][2];
+    echo money($net);
     $grand_total = $grand_total + $net;
     echo "</th>";
     echo "</tr>";

@@ -188,6 +188,7 @@ a img {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     margin: 0px;
+    width: 80%;
     vertical-align: middle;
 }
 
@@ -335,4 +336,8 @@ input{
 
 table.dataTable tbody tr {
     background-color: transparent;
+}
+
+.table {
+    width: 100% !important;
 }
