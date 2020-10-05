@@ -23,7 +23,7 @@ function d(...$var)
     <?php
     include("sources/inc/security.php");
     ?>
-  <link rel="stylesheet" type="text/css" href="./vendors/datatables.css">
+  <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
   <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
 </head>
@@ -33,14 +33,14 @@ function d(...$var)
     include("sources/inc/topmenu.php");
     ?>
 </div>
-<center>
-  <div id="ttd">
-    <div id="date">
-        <?php echo date("D, d M Y"); ?>
-    </div>
-    <div id="digclock">
-    </div>
+<div id="ttd">
+  <div id="date">
+      <?php echo date("D, d M Y"); ?>
   </div>
+  <div id="digclock">
+  </div>
+</div>
+<center>
   <div id="content">
     <img src="images/blank1by1.gif" class="leftpillar" alt=""/>
     <img src="images/blank1by1.gif" class="rightpillar" alt=""/>
@@ -71,7 +71,7 @@ function d(...$var)
         $('body').find('.rb').DataTable({
             "dom": 'rt<"bottom"p>',
             "lengthMenu": false,
-            "ordering": false,
+            "ordering": true,
             "info": false
         });
     });
