@@ -31,10 +31,19 @@
     </td>
   </tr>
   <tr>
-    <td colspan="2">
-      <h2>Sell and Purchase Search</h2>
+    <td>
+      <h2>Sell Search</h2>
       <br/>Enter voucher number<br/>
-      <form action="index.php?e=<?php echo $encptid ?>&page=home&sub=sp" method="POST">
+      <form action="index.php?e=<?php echo $encptid ?>&page=home&sub=sell" method="POST">
+        <input type="text" name="searchword" class="searchword"/>
+        <br/>
+        <br/><input type="submit" name="submit" value="Search"/>
+      </form>
+    </td>
+    <td>
+      <h2>Purchase Search</h2>
+      <br/>Enter voucher number<br/>
+      <form action="index.php?e=<?php echo $encptid ?>&page=home&sub=purchase" method="POST">
         <input type="text" name="searchword" class="searchword"/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>

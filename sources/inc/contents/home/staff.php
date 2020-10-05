@@ -55,7 +55,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
 
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
-                echo $res[$i][3];
+                echo money($res[$i][3]);
                 echo "</a>";
                 echo "</td>";
 

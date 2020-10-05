@@ -5,7 +5,8 @@
       <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=party">Party Search</a></li>
       <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=product">Product Search</a></li>
       <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=staff">Staff Search</a></li>
-      <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=sp">Sell-Purchase Search</a></li>
+      <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=sell">Sell Search</a></li>
+      <li><a href="index.php?e=<?php echo $encptid ?>&&page=home&&sub=purchase">Purchase Search</a></li>
     </ul>
   </li>
   <li><a href="index.php?e=<?php echo $encptid ?>&&page=sells">Sells</a>
