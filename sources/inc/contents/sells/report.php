@@ -22,13 +22,13 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<a class='button' onclick='showit(" . $i . ")'>";
     echo "Voucher : " . $vou;
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Was sold to : ";
-    echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
+    echo "<b class='blue'>" . isset($sell_det[0][0]) ? $sell_det[0][0] : '-' . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
     echo "<b class='blue'>" . $inp->date_convert($sell_det[0][1]) . "</b>";
     echo "</a>";
     echo "<br/>";
     echo "<div id='sud" . $i . "'>";
-    echo "<table class='rb' align='center'>";
+    echo "<table class='rb table' align='center'>";
     echo "<tr>";
     echo "<th>";
     echo "Product";
@@ -58,7 +58,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo $sell_pro[$j][2];
         echo "</td>";
         echo "<td>";
-        echo $sell_pro[$j][1] * $sell_pro[$j][2];
+        echo money($sell_pro[$j][1] * $sell_pro[$j][2]);
         $charges_total = $charges_total + $sell_pro[$j][1] * $sell_pro[$j][2];
         echo "</td>";
         echo "</tr>";
