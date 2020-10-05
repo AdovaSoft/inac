@@ -21,7 +21,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
         $n = count($res);
 
         if ($n > 0) {
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
             echo "<th>";
             echo "Name";
@@ -36,7 +37,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "Post";
             echo "</th>";
             echo "</tr>";
-
+            echo "</thead>";
+            echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
@@ -68,8 +70,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
                 echo "</td>";
                 echo "</tr>";
             }
-
-
+            echo "</tbody>";
             echo "</table>";
 
         } else {

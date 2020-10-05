@@ -18,7 +18,7 @@ if (isset($id)) {
     $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'));
     echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
     echo "</form></div>";
-    if ($_POST['all_show']) {
+    if (isset($_POST['all_show'])) {
         echo "<form method = 'POST' class='embossed'><b>Showing All time report</b>&nbsp;&nbsp;&nbsp;&nbsp;";
         echo "<input type='hidden' name='id' value='" . $id . "'>";
         echo "<input type = 'submit' name = 'datewise' value = 'Back to Monthly Report'/>";
