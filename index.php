@@ -71,7 +71,7 @@ function d(...$var)
 
 <script>
     $(document).ready(function () {
-        $('body').find('.rb').DataTable({
+        $('body').find('.table').DataTable({
             "dom": 'rt<"bottom"p>',
             "lengthMenu": false,
             "ordering": true,

@@ -21,7 +21,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
         $n = count($res);
 
         if ($n > 0) {
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
             echo "<th>";
             echo "Product";
@@ -33,7 +34,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "Unit";
             echo "</th>";
             echo "</tr>";
-
+            echo "</thead>";
+            echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td><a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $res[$i][0] . "'>";
@@ -51,7 +53,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
                 echo "</tr>";
             }
 
-
+            echo "</tbody>";
             echo "</table>";
 
             /*create a link using res[i][0] to show 'par_pro_ov' that was using post method to show make necessary changes page*/

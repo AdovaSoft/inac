@@ -32,7 +32,8 @@ if (isset($_POST['searchword'])) {
         $n = count($res1);
         if ($n > 0) {
             echo "<h3>Sells Results</h3><br/>";
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
             echo "<td>";
             echo "Vouchar No";
@@ -47,7 +48,8 @@ if (isset($_POST['searchword'])) {
             echo "Actions";
             echo "</td>";
             echo "</tr>";
-
+            echo "</thead>";
+            echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
@@ -68,6 +70,7 @@ if (isset($_POST['searchword'])) {
                 echo "</td>";
                 echo "</tr>";
             }
+            echo "</tbody>";
             echo "</table><br/>";
             /*create a link using res1[i][1] to Sales Return 'selles_ret' page*/
 
