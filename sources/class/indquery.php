@@ -446,6 +446,7 @@ class indquery extends query
                 }
             }
         }
+
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
@@ -468,23 +469,16 @@ class indquery extends query
             mysqli_query($this->dtb_con, 'ROLLBACK');
             return false;
         }
-
-        return true;
-
-
     }
 
-    public function printAttendece()
+    public function print_attendance()
     {
         $query = sprintf("SELECT idstaff,name,post FROM staff WHERE status = 1 ORDER BY post ;");
-
-        // $info got the neccesarry inforamtion about staff;
-
+        // $info got the necessary information about staff;
         $info = $this->get_custom_select_query($query, 3);
-
         // furtern customization is upto you
+        echo "<br/>Attendance For : ";
 
-        echo "<br/>Attendence For : ";
         $html = new html();
         $d = date('Y-m-d');
         $y = $d[0] . $d[1] . $d[2] . $d[3];
@@ -1094,7 +1088,7 @@ class indquery extends query
 
         $pro_type = $this->get_custom_select_query($query, 2);
 
-        if(count($pro_type) > 0) {
+        if (count($pro_type) > 0) {
 
             if ($pro_type[0][1] == 1) {
                 echo "<h2 class='blue'>" . strtoupper($pro_type[0][0]) . " Sells Report</h2>";
@@ -1382,16 +1376,18 @@ class indquery extends query
         $i2 = $this->get_custom_select_query($query2, 2);
         //i3[0][1]total sell
         $i3 = $this->get_custom_select_query($query3, 2);
-        var_dump($i1, $i2, $i3);
 
-        return $i1[0][0] + $i2[0][1] - $i3[0][1];
+        $total_transcation = intval($i1[0][0]);
+        $total_purchase = isset($i2[0][1]) ? $i2[0][1] : 0;
+        $total_sell = isset($i3[0][1]) ? $i3[0][1] : 0;
+        return $total_transcation + $total_purchase - $total_sell;
     }
 
     public function update_party($id, $name, $p1, $p2, $adrs, $type)
     {
         $flag = $this->update_column('party', array('name'), array($name), array('s'), 'idparty', '=', $id);
         if ($flag) {
-            $flag = mysqli_query($this->dtb_con, "DELETE FROM party_phone WHERE idparty = $id");
+            $flag = mysqli_query($this->dtb_con, "DELETE FROM party_phone WHERE idparty = $id;");
         }
 
         if ($flag && $p1 != null) {
@@ -1420,7 +1416,6 @@ class indquery extends query
 
     public function add_salary_pay($date, $emp, $m, $y, $sal, $cmnt = 'Sallary')
     {
-        var_dump($am);
         $id = $this->get_last_id('transaction', 'id');
 
         $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY type ORDER BY type;");

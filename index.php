@@ -68,7 +68,7 @@ function d(...$var)
 <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('body').find('.rb').DataTable({
+        $('body').find('.table').DataTable({
             "dom": 'rt<"bottom"p>',
             "lengthMenu": false,
             "ordering": true,

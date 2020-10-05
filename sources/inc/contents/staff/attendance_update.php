@@ -27,7 +27,7 @@ if (isset($_POST['ab'])) {
     }
 }
 echo "<br/><form method = 'POST' class='embossed'>";
-$qur->printAttendece();
+$qur->print_attendance();
 $inp->input_submit('ab', 'Save');
 echo "</form>";
 ?>
