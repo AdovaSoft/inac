@@ -70,16 +70,17 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $product[4];
+        echo money($product[4]);
         echo "</td>";
 
 
         echo "<td>";
-        echo sprintf("%.2f", ($product[1] + $product[2]) * $product[4]);
+        echo money(($product[1] + $product[2]) * $product[4]);
         $cost += ($product[1] + $product[2]) * $product[4];
         echo "</td>";
         echo "</tr>";
     }
+    echo "</tbody>";
     /*
         echo "<tr>";
         echo "<th colspan = '6' >";
