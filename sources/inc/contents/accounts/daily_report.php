@@ -13,7 +13,8 @@ $in_total = 0;
 $out_total = 0;
 echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=accounts&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
 
-echo "<br/><table align='center' class='rb'>";
+echo "<br/><table align='center' class='rb table'>";
+echo "<thead>";
 echo "<tr>";
 echo "<th>";
 echo "Date";
@@ -36,8 +37,10 @@ if ($usertype == ADMIN) {
     echo "</th>";
 }
 echo "</tr>";
+echo "</thead>";
 $p = 0;
 $r = 0;
+echo "<tbody>";
 for ($i = 0; $i < count($res); $i++) {
     echo "<tr>";
     echo "<td>";
@@ -75,7 +78,8 @@ for ($i = 0; $i < count($res); $i++) {
     }
     echo "</tr>";
 }
-echo "<tr><th>Total</th><th>" . $in_total . "</th><th>" . $out_total . "</th><td class='blue' colspan='2'><b>Balance: " . ($in_total - $out_total) . "</b></td></tr>";
+echo "</tbody>";
+echo "<tfoot><tr><th>Total</th><th>" . $in_total . "</th><th>" . $out_total . "</th><td class='blue' colspan='2'><b>Balance: " . ($in_total - $out_total) . "</b></td></tr></tfoot>";
 echo "</table>";
 echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=accounts&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
 ?>

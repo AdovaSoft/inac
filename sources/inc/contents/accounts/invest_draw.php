@@ -24,7 +24,7 @@ echo "<br/><form method = 'POST' class='embossed'>";
 echo "Date : ";
 $inp->input_date('date', date('Y-m-d'));
 echo "<br/><br/>";
-$inp->input_text('Ammount', 'a', null);
+$inp->input_number('Amount', 'a', null);
 echo "<br/>Transaction type :  ";
 
 $inp->input_radio('Investment', 'tt', 1, 0);

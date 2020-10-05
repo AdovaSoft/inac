@@ -12,6 +12,7 @@
 include("sources/inc/usercheck.php");
 if (isset($_POST['ab'])) {
     $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
+    
     if (isset($_POST['s']) && $_POST['s'] != null && isset($_POST['amnt']) && $_POST['amnt'] > 0 && isset($_POST['tt']) && $_POST['tt'] > 0) {
         $flag = true;
         if ($_POST['tt'] == 2) {
@@ -53,7 +54,7 @@ $inp->select_month('m', isset($_POST['m']) ? $_POST['m'] : Date('m'));
 $inp->select_digit('y', 2001, 2031, isset($_POST['y']) ? $_POST['y'] : Date('Y'), 1);
 
 echo "<br/><br/>Amount :<br/>";
-$inp->input_text(null, 'amnt' . $i, isset($_POST['amnt']) ? $_POST['amnt'] : null);
+$inp->input_number(null, 'amnt' . $i=null, isset($_POST['amnt']) ? $_POST['amnt'] : null);
 
 echo "<br/>Payment Type : ";
 echo "<select name='tt' id='tran_type' onchange='writeit()' >";

@@ -93,13 +93,16 @@ if ($inp->value_pgd('s') != null) {
     } else {
         echo "<br/><h3 class='blue'>Attendence and Earned Salary report</h3>";
         echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendenceand Earned Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb'>";
+        echo "<table align='center' class='rb table'>";
+        echo "<thead>";
         echo "<tr>";
-        echo "<td>Month</td><td>Attended</td><td>Leave</td><td>Absent</td><td>Overtime</td><td>Salary</td><td>Duty<br/>Hours</td><td>Earned Salary</td>";
+        echo "<th>Month</th><th>Attended</th><th>Leave</th><th>Absent</th><th>Overtime</th><th>Salary</th><th>Duty<br/>Hours</th><th>Earned Salary</th>";
         if ($usertype == ADMIN) {
-            echo "<td>Action</td>";
+            echo "<th>Action</th>";
         }
         echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
         foreach ($staf_rep as $s) {
             echo "<tr>";
 
@@ -134,10 +137,7 @@ if ($inp->value_pgd('s') != null) {
             echo "<td>";
             echo sprintf("%.2f", $s[6] * ($s[2] + $s[3] + ($s[5]) / $s[7]) / $inp->print_month_days($s[0], $s[1]));
             echo "</td>";
-            /*
-
-                        */
-
+            
             if ($usertype == ADMIN) {
                 echo "<td>";
                 echo "<br/><form method='POST'>";
@@ -151,6 +151,7 @@ if ($inp->value_pgd('s') != null) {
 
             echo "</tr>";
         }
+        echo "</tbody>";
         echo "</table>";
     }
 
@@ -160,7 +161,7 @@ if ($inp->value_pgd('s') != null) {
         $d = date('Y-m-d');
         $y = $d[0] . $d[1] . $d[2] . $d[3];
         $m = $d[5] . $d[6];
-        $inp->select_month('r_m', $m);
+        $inp->select_month('r_m', $m,true);
         echo " of ";
         $inp->select_digit('r_y', 2011, 2021, $y, 1);
         echo "<table align='center' class='centeraligned'>";
@@ -212,10 +213,13 @@ if ($inp->value_pgd('s') != null) {
     } else {
         echo "<br/><br/><h3 class='blue'>Sallary report</h3>";
         echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb'>";
-        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Ammount</td></tr>";
+        echo "<table align='center' class='rb table'>";
+        echo "<thead>";
+        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Amount</td></tr>";
+        echo "</thead>";
         $n = count($staf_sal);
         $salary_amount = 0;
+        echo "<tbody>";
         for ($i = 0; $i < $n; $i++) {
             $salary_amount += $staf_sal[$i][4];
             echo "<tr>";
@@ -233,7 +237,10 @@ if ($inp->value_pgd('s') != null) {
 
             echo "</tr>";
         }
+        echo "</tbody>";
+        echo "<tfoot>";
         echo "<tr><td colspan = 3>Total : $salary_amount</td></tr>";
+        echo "</tfoot>";
         echo "</table>";
     }
 
@@ -243,7 +250,7 @@ if ($inp->value_pgd('s') != null) {
         echo "<br/><br/><h3 class='blue'>Bonus report</h3>";
         echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=bonus&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Bonus Report</b></a><br/>";
         echo "<table align='center' class='rb'>";
-        echo "<tr><td>Paying date</td><td>Bonus of</td><td>Ammount</td></tr>";
+        echo "<tr><td>Paying date</td><td>Bonus of</td><td>Amount</td></tr>";
         $bon_total = 0;
         $n = count($staf_bon);
         for ($i = 0; $i < $n; $i++) {
@@ -280,13 +287,16 @@ if ($inp->value_pgd('s') != null) {
         $inp->select_month('m', isset($_POST['m']) ? $_POST['m'] : Date('m'));
         $inp->select_digit('y', 2000, 2050, isset($_POST['y']) ? $_POST['y'] : Date('Y'), 1);
 
-        echo "<br/><br/>Amount :<br/>";
-        echo "<input type='text' name='amnt'/>";
+        echo "<br/><br/>Amount : ";
+        echo "<input type='number' name='amnt'/><br>";
+
+        echo "<br/>Payment Type : ";
         echo "<select name='tt'>";
-        echo "<option>  Select a Option</option> ";
+        echo "<option>Select a Option</option> ";
         echo "<option value = '1'> Salary </option> ";
         echo "<option value = '2'> Bonus </option> ";
         echo "</select>";
+
         echo "<input type = 'hidden' name = 'cmnt'  value = 'Paying to " . strtoupper($staf_det[0][0]) . " (" . $staf_det[0][1] . ")' />";
         echo "<br/>";
         $inp->input_submit('save_sal', 'Save');

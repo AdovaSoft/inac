@@ -3,6 +3,7 @@
 <?php
 include("sources/inc/usercheck.php");
 $flag = true;
+
 if (isset($_POST['ab'])) {
     if (isset($_POST['party']) && isset($_POST['p_t'])
         && isset($_POST['p_m']) && $_POST['amnt'] > 0) {
