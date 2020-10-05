@@ -1382,9 +1382,9 @@ class indquery extends query
         $i2 = $this->get_custom_select_query($query2, 2);
         //i3[0][1]total sell
         $i3 = $this->get_custom_select_query($query3, 2);
-        var_dump($i1, $i2, $i3);
+        //var_dump($i1, $i2, $i3);
 
-        return $i1[0][0] + $i2[0][1] - $i3[0][1];
+        //return $i1[0][0] + $i2[0][1] - $i3[0][1];
     }
 
     public function update_party($id, $name, $p1, $p2, $adrs, $type)
