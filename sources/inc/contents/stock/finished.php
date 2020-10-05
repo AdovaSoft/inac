@@ -8,7 +8,8 @@ $cost = 0;
 echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 if (count($info) > 0) {
-    echo "<br/><table class='rb'>";
+    echo "<br/><table class='rb table'>";
+    echo "<thead>";
     echo "<tr>";
     echo "<th>";
     echo "Name";
@@ -42,6 +43,8 @@ if (count($info) > 0) {
 
     echo "</tr>";
 
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($info as $finished) {
         echo "<tr>";
         echo "<th>";
@@ -68,17 +71,18 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $finished[4];
+        echo money($finished[4]);
         echo "</td>";
 
 
         echo "<td>";
-        echo sprintf("%.2f", ($finished[1] + $finished[2]) * $finished[4]);
+        echo money( ($finished[1] + $finished[2]) * $finished[4]);
         $cost += ($finished[1] + $finished[2]) * $finished[4];
         echo "</td>";
         echo "</tr>";
     }
-
+echo "</tbody>";
+    /*
     echo "<tr>";
     echo "<th colspan = '6' >";
     echo "Grand Total : ";
@@ -88,7 +92,7 @@ if (count($info) > 0) {
     echo $cost;
     echo "</td>";
     echo "</tr>";
-
+*/
     echo "</table><br/>";
     echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 } else {

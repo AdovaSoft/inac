@@ -9,7 +9,8 @@ echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=facto
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 
 if (count($info) > 0) {
-    echo "<table class='rb'>";
+    echo "<table class='rb table'>";
+    echo "<thead>";
     echo "<tr>";
     echo "<th>";
     echo "Name";
@@ -31,9 +32,10 @@ if (count($info) > 0) {
     echo "<th>";
     echo "Total";
     echo "</th>";
-
     echo "</tr>";
+    echo "</thead>";
 
+    echo "<tbody>";
     foreach ($info as $ar) {
         echo "<tr>";
         echo "<th>";
@@ -51,18 +53,19 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $ar[3];
+        echo money($ar[3]);
         echo "</td>";
 
 
         echo "<td>";
-        echo sprintf("%.2f", $ar[3] * $ar[1]);
+        echo money($ar[3] * $ar[1]);
         $cost += $ar[3] * $ar[1];
         echo "</td>";
         echo "</tr>";
     }
+    echo "</tbody>";
 
-    echo "<tr>";
+    /*echo "<tr>";
     echo "<th colspan = '4' >";
     echo "Grand Total : ";
     echo "</th>";
@@ -71,6 +74,7 @@ if (count($info) > 0) {
     echo $cost;
     echo "</td>";
     echo "</tr>";
+    */
 
     echo "</table><br/>";
     echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=factory_raw' class='button' target='_blank'><b> Print </b></a>";
