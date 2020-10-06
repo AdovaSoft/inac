@@ -49,8 +49,7 @@ if (isset($_GET['e'])) {
         $loginmessage = "<h2 class='red'>Wrong ID or Password.</h2>";
         include("sources/inc/loginform.php");
     }
-}
-elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
+} elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
     $loginmessage = "<h2 class='red'>Please fill all fields.</h2>";
     include("sources/inc/loginform.php");
 } elseif (isset($_GET['logout'])) {

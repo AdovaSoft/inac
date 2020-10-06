@@ -50,7 +50,7 @@ if (isset($_POST['st']) && $_POST['st'] != null) {
     echo "<br/><h2>Edit " . $info[0][0] . "</h2>";
     echo "<br/><form method = 'POST' class='embossed'>";
     echo "Joining Date : ";
-    $inp->input_date('jd', $info[0][3],true);
+    $inp->input_date('jd', $info[0][3], true);
     echo "<br/><br/>";
     if (isset($_POST['n']))
         $inp->input_text('Name : ', 'n', $_POST['n']);

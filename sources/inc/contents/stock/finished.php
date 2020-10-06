@@ -84,17 +84,17 @@ if (count($info) > 0) {
         echo "</tr>";
     }
     echo "</tbody>";
-/*
-    echo "<tr>";
-    echo "<th colspan = '6' >";
-    echo "Grand Total : ";
-    echo "</th>";
+    /*
+        echo "<tr>";
+        echo "<th colspan = '6' >";
+        echo "Grand Total : ";
+        echo "</th>";
 
-    echo "<td >";
-    echo $cost;
-    echo "</td>";
-    echo "</tr>";
-*/
+        echo "<td >";
+        echo $cost;
+        echo "</td>";
+        echo "</tr>";
+    */
     echo "</table><br/>";
 } else {
     echo "<br/><h3>No raw materials is in stock</h3>";

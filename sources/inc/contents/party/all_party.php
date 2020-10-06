@@ -55,7 +55,7 @@ echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
 foreach ($all_info as $a) {
-  d($a[0]);
+    d($a[0]);
     echo "<tr>";
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";

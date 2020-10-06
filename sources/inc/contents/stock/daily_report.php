@@ -23,7 +23,7 @@ if (isset($_GET['e']) && $_GET['e'] == 1) {
         $product_trac = null;
         $unit_trac = null;
         $price_trac = null;
-  $tto_p = $tto_o = 0;
+        $tto_p = $tto_o = 0;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
 

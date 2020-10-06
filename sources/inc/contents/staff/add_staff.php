@@ -36,7 +36,7 @@ echo "<br/>Joining Date : ";
 $date = $inp->get_post_date('jd');
 if (!$date)
     $date = date("Y-d-m");
-$inp->input_date('jd', $date,true);
+$inp->input_date('jd', $date, true);
 echo "<br/><br/>";
 if (isset($_POST['n']))
     $inp->input_text('Name : ', 'n', $_POST['n']);

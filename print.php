@@ -1,5 +1,5 @@
 <?php
-include ("./sources/inc/system.php");
+include("./sources/inc/system.php");
 include("sources/inc/security_o.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
