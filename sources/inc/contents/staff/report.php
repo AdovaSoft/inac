@@ -84,9 +84,9 @@ if ($inp->value_pgd('s') != null) {
     $staf_rep = $qur->get_custom_select_query($rep_query, 8);
 
     echo "<br/><h2 class='blue'>" . strtoupper($staf_det[0][0]) . "</h2>";
-    echo "<br/>Post : " . $staf_det[0][1];
-    echo "<br/>Sallary : " . $staf_det[0][2];
-    echo "<br/>Duty Hours : " . $staf_det[0][4];
+    echo "<br/>Post : " . esc( $staf_det[0][1] );
+    echo "<br/>Sallary : " . money( $staf_det[0][2] );
+    echo "<br/>Duty Hours : " . esc( $staf_det[0][4] );
     echo "<br/>Joining date : " . $inp->date_convert($staf_det[0][3]);
     if (count($staf_rep) <= 0) {
         echo "<br/><h3 class='blue'>No attendece record stored yet</h3>";
@@ -232,14 +232,14 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             echo "<td>";
-            echo $staf_sal[$i][4];
+            echo money($staf_sal[$i][4]);
             echo "</td>";
 
             echo "</tr>";
         }
         echo "</tbody>";
         echo "<tfoot>";
-        echo "<tr><td colspan = 3>Total : $salary_amount</td></tr>";
+        echo "<tr><td colspan = 3>Total : ". money($salary_amount) . "</td></tr>";
         echo "</tfoot>";
         echo "</table>";
     }
