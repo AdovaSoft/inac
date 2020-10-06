@@ -1,4 +1,4 @@
-<h1>Change Staff Status</h1>
+<h1 class="blue">Change Staff Status</h1>
 <br/>
 <?php
 include("sources/inc/usercheck.php");
@@ -14,8 +14,9 @@ if (true) {
 
 
     $info = $qur->get_custom_select_query($query, 4);
-    echo "<table align='center' class='rb'>";
-    echo "<tr><td>Name</td><td>Post</td><td>Satus</td><td>Change</td></tr>";
+    echo "<table align='center' class='rb table'>";
+    echo "<thead><tr><td>Name</td><td>Post</td><td>Satus</td><td>Change</td></tr></thead>";
+    echo "<tbody>";
     foreach ($info as $i) {
         echo "<tr>";
         echo "<form method = 'POST' >";
@@ -39,6 +40,7 @@ if (true) {
         echo "</form>";
         echo "</tr>";
     }
+    echo "</tbody>";
     echo "</table>";
 
 }
