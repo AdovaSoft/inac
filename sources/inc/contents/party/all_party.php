@@ -12,7 +12,6 @@ $n = count($party);
 for ($i = 0; $i < $n; $i++) {
     
     if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
-        d("if statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -21,7 +20,6 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
         $i++;
     } else {
-        d("else statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -71,8 +69,8 @@ foreach ($all_info as $a) {
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo $a[3];
-    if ($a[4]) {
+    echo money($a[3]);
+    if (isset($a[4])) {
         echo ", <br/>";
         echo $a[4];
     }
@@ -95,7 +93,7 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
-        echo $a[5];
+        echo money($a[5]);
         $advance_total = $advance_total + $a[5];
     } else {
         echo "-";
