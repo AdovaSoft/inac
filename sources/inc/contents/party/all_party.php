@@ -12,7 +12,7 @@ $n = count($party);
 for ($i = 0; $i < $n; $i++) {
     
     if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
-        d("if statement found = ".$i."<br>");
+        // d("if statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -21,7 +21,7 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
         $i++;
     } else {
-        d("else statement found = ".$i."<br>");
+        // d("else statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -59,22 +59,22 @@ foreach ($all_info as $a) {
     echo "<tr>";
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo $a[1];
+    echo esc($a[1]);
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo $a[2];
+    echo esc($a[2]);
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo $a[3];
+    echo esc($a[3]);
     if ($a[4]) {
         echo ", <br/>";
-        echo $a[4];
+        echo esc($a[4]);
     }
     echo "</a>";
     echo "</td>";
@@ -83,7 +83,7 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] < 0) {
-        echo(-$a[5]);
+        echo(esc(-$a[5]));
         $due_total = $due_total + (-$a[5]);
     } else {
         echo "-";
@@ -95,7 +95,7 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
-        echo $a[5];
+        echo esc($a[5]);
         $advance_total = $advance_total + $a[5];
     } else {
         echo "-";
