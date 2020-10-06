@@ -52,7 +52,7 @@ if ($n > 0) {
         echo isset($finished[4]) ? $finished[4] : '-';
         echo "</td>";
         echo "<td>";
-        echo isset($finished[5]) ? $finished[5] : '-';
+        echo isset($finished[5]) ? money($finished[5]) : '-';
         echo "</td>";
 
         echo "</tr>";

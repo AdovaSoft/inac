@@ -5,7 +5,7 @@ $query = sprintf("SELECT name, stock, factory_stock,unite, price, idproduct FROM
 
 $info = $qur->get_custom_select_query($query, 6);
 $cost = 0;
-echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
+
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 if (count($info) > 0) {
     echo "<br/><table class='rb table'>";
@@ -76,7 +76,8 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($finished[1] + $finished[2]) * $finished[4]);
+        $all = $finished[1] + $finished[2] * $finished[4];
+        echo money($all);
         $cost += ($finished[1] + $finished[2]) * $finished[4];
         echo "</td>";
         echo "</tr>";
