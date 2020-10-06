@@ -3,8 +3,10 @@
 <?php
 
 include("sources/inc/single_date.php");
-if (isset($_GET['group']) && $_GET['group'] == 1) {
-    $group = $_GET['group'];
+//d($_GET);
+if (isset($_GET['e']) && $_GET['e'] == 1) {
+
+    $group = $_GET['e'];
     $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);

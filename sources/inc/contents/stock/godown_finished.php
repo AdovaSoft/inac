@@ -76,6 +76,7 @@ if (count($info) > 0) {
     echo "</tr>";*/
 
     echo "</table><br/>";
+    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=godown_finished' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "No raw mattarials is in stock";
 }

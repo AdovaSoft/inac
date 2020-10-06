@@ -84,7 +84,7 @@ if (count($info) > 0) {
         echo "</tr>";
     }
     echo "</tbody>";
-    /*
+/*
     echo "<tr>";
     echo "<th colspan = '6' >";
     echo "Grand Total : ";
