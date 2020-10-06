@@ -5,7 +5,7 @@ $query = sprintf("SELECT name, stock, factory_stock,unite, price, idproduct FROM
 
 $info = $qur->get_custom_select_query($query, 6);
 $cost = 0;
-
+echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 if (count($info) > 0) {
     echo "<br/><table class='rb table'>";
@@ -77,15 +77,8 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-<<<<<<< .merge_file_a06028
-        $total = ($finished[1] + $finished[2]) * $finished[4];
-        echo money($total);
-        $cost += $total;
-=======
-        $all = $finished[1] + $finished[2] * $finished[4];
-        echo money($all);
+        echo money(($finished[1] + $finished[2]) * $finished[4]);
         $cost += ($finished[1] + $finished[2]) * $finished[4];
->>>>>>> .merge_file_a09000
         echo "</td>";
         echo "</tr>";
     }
@@ -102,6 +95,7 @@ if (count($info) > 0) {
     echo "</tr>";
 */
     echo "</table><br/>";
+    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3>No raw materials is in stock</h3>";
 }
