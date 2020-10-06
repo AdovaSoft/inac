@@ -15,41 +15,44 @@ echo "<a id=''  href='print.php?e=" . $encptid . "&page=accounts&&sub=report&&da
 $in_total = 0;
 $out_total = 0;
 echo "<br/><table align='center' class='rb table'>";
-echo "<thead>";
-echo "<tr>";
-echo "<th>";
-echo "Date";
-echo "</th>";
+    echo "<thead>";
+        echo "<tr>";
 
-echo "<th>";
-echo "Investment / Revenue";
-echo "</th>";
+        echo "<th>";
+        echo "Date";
+        echo "</th>";
 
-echo "<th>";
-echo "Drawings / Expences";
-echo "</th>";
+        echo "<th>";
+        echo "Investment / Revenue";
+        echo "</th>";
 
-echo "<th width='100px'>";
-echo "Comments";
-echo "</th>";
-if ($usertype == ADMIN) {
-    echo "<th>";
-    echo "Delete Buttons";
-    echo "</th>";
-}
-echo "</tr>";
-echo "</thead>";
+        echo "<th>";
+        echo "Drawings / Expences";
+        echo "</th>";
+
+        echo "<th width='100px'>";
+        echo "Comments";
+        echo "</th>";
+        if ($usertype == ADMIN) {
+            echo "<th>";
+            echo "Delete Buttons";
+            echo "</th>";
+        }
+        echo "</tr>";
+    echo "</thead>";
 $p = 0;
 $r = 0;
 echo "<tbody>";
 for ($i = 0; $i < count($res); $i++) {
     echo "<tr>";
+
     echo "<td>";
     echo $inp->date_convert($res[$i][1]);
     echo "</td>";
+
     if ($res[$i][3] > 0) {
         echo "<td>";
-        echo($res[$i][3]);
+        echo money($res[$i][3]);
         $in_total = $in_total + $res[$i][3];
         echo "</td>";
         echo "<td>";
@@ -61,7 +64,8 @@ for ($i = 0; $i < count($res); $i++) {
         echo "-";
         echo "</td>";
         echo "<td>";
-        echo($res[$i][3] * (-1));
+        $res[$i][3] *= (-1);
+        echo money($res[$i][3]);
         $out_total = $out_total + ($res[$i][3] * (-1));
         echo "</td>";
 
@@ -80,10 +84,11 @@ for ($i = 0; $i < count($res); $i++) {
     echo "</tr>";
 }
 echo "</tbody>";
-echo "<tfoot><tr><th>Total</th><th>" . $in_total . "</th>
-<th>" . $out_total . "</th>
-<td class='blue' colspan='2'>
-<b>Balance: " . ($in_total - $out_total) . "</b></td></tr></tfoot>";
+echo "<tfoot><tr><th>Total</th><th>" . money($in_total) . "</th>
+<th>" . money($out_total) . "</th>
+<td class='blue' colspan='2'>";
+    $in_total -= $out_total;
+echo "<b>Balance: " . money($in_total) . "</b></td></tr></tfoot>";
 echo "</table><br/>";
 
 
