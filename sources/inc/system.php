@@ -25,10 +25,10 @@ function d(...$var)
  * @param $variable
  * @return string
  */
-function db(&$variable)
+function esc(&$variable)
 {
     if (isset($variable))
-        return $variable;
+        return htmlentities($variable);
 
     else
         return '-';
@@ -41,7 +41,7 @@ function db(&$variable)
  * @param $number
  * @return string
  */
-function money($number)
+function money(&$number)
 {
     if (isset($number)) {
         if (is_numeric($number)) {
