@@ -55,7 +55,6 @@ if (count($info) > 0) {
         echo $rawmaterial[1];
         echo "</td>";
 
-
         echo "<td>";
         echo $rawmaterial[2];
         echo "</td>";
