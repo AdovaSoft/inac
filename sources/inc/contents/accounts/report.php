@@ -91,4 +91,4 @@ echo "<tfoot><tr><th>Total</th><th>" . money($in_total) . "</th>
 echo "<b>Balance: " . money($in_total) . "</b></td></tr></tfoot>";
 echo "</table><br/>";
 
-
+?>
