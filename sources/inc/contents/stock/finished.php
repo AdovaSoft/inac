@@ -49,25 +49,26 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $finished[5] . "'>";
-        echo $finished[0];
+        echo esc($finished[0]);
         echo "</a>";
         echo "</th>";
 
         echo "<td>";
-        echo $finished[1];
+        echo esc($finished[1]);
         echo "</td>";
 
 
         echo "<td>";
-        echo $finished[2];
+        echo esc($finished[2]);
         echo "</td>";
 
         echo "<td>";
-        echo $finished[1] + $finished[2];
+        $sum = $finished[1] + $finished[2] + "999999999";
+        echo esc($sum);
         echo "</td>";
 
         echo "<td>";
-        echo $finished[3];
+        echo esc($finished[3]);
         echo "</td>";
 
         echo "<td>";
@@ -76,8 +77,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($finished[1] + $finished[2]) * $finished[4]);
-        $cost += ($finished[1] + $finished[2]) * $finished[4];
+        $total = ($finished[1] + $finished[2]) * $finished[4];
+        echo money($total);
+        $cost += $total;
         echo "</td>";
         echo "</tr>";
     }
@@ -94,7 +96,6 @@ if (count($info) > 0) {
     echo "</tr>";
 */
     echo "</table><br/>";
-    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3>No raw mattarials is in stock</h3>";
 }
