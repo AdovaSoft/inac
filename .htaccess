@@ -10,3 +10,5 @@ SetEnv USER root
 SetEnv PASS
 SetEnv DBASE websqflt_nas
 </IfModule>
+        #$all_due[$i] = $qur->party_adv_due($party[$i][0]);
+        #echo  "<td>" . esc($party[$i][0]) . "</td>";

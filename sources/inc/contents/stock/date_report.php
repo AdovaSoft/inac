@@ -18,6 +18,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<br/><h2>Grouped Productwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_product = $info[0][1];
+        $product_trac = null;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
                 if ($i[1] != $first_product) {
@@ -211,7 +212,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . $inp->date_convert($date1) . " and " . $inp->date_convert($date2) . "</h2>";
     }
-} elseif (isset($_GET['group']) && $_GET['group'] == 2) {
+}
+elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
@@ -225,8 +227,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<br/><h2>Grouped Unitwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_unit = $info[0][3];
+        $unit_trac = 0;
         foreach ($info as $stock) {
-
             if ($unit_trac != $stock[3]) {
                 if ($stock[3] != $first_unit) {
                     echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
