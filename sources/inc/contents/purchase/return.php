@@ -24,7 +24,7 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'Save') {
     for ($i = 0; $i < $_POST['num']; $i++) {
 
         if ($_POST['pr_pc_' . $i] < $_POST['pc_' . $i] || $_POST['co_' . $i] <= 0) {
-            echo "<br/><h2 class='red'>You cant add more product now and cant set any price to zero or negetive</h2>";
+            echo "<br/><h2 class='red'>You cant add more product now and cant set any price to zero or negative</h2>";
             $flag = false;
             break;
 
@@ -43,7 +43,7 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'Save') {
         $flag = $qur->purchaseReturn($id, $pro, $d, $cost);
 
     if ($flag) {
-        echo "<br/><h2 class='green'> Purchase Return Successfull</h2>";
+        echo "<br/><h2 class='green'> Purchase Return Successfully</h2>";
     } else {
         echo "<br/><h2 class='red'> Purchase Return Failed</h2>";
     }

@@ -23,7 +23,7 @@ if (isset($_POST['ab'])) {
         }
 
         if ($flag) {
-            echo "<h3 class='green'>Salary Update Successfull</h3>";
+            echo "<h3 class='green'>Salary Update Successfully</h3>";
         } else {
             echo "<h3 class='red'>Salary Update failed</h3>";
         }

@@ -33,9 +33,9 @@ if ($inp->value_pgd('s') != null) {
     if (isset($_POST['delete']) && $_POST['delete'] == "Delete" && $usertype == ADMIN) {
         $delete = $qur->delete_attendense($_POST['s'], $_POST['m'], $_POST['y']);
         if ($delete)
-            echo "<br/><h3 class='green'>Attendence entry Deleted</h3>";
+            echo "<br/><h3 class='green'>Attendance entry Deleted</h3>";
         else
-            echo "<br/><h3 class='red'>Could not delete attendence entry</h3>";
+            echo "<br/><h3 class='red'>Could not delete attendance entry</h3>";
     }
 
     if (isset($_POST['at_update']) && ($usertype == ADMIN)) {
@@ -68,7 +68,7 @@ if ($inp->value_pgd('s') != null) {
                 $flag = $qur->add_salary_pay($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt'] . ' as Salary');
             }
             if ($flag) {
-                echo "<br/><h3 class='green'>Salary Update Successfull</h3>";
+                echo "<br/><h3 class='green'>Salary Update Successfully</h3>";
             } else {
                 echo "<br/><h3 class='red'>Salary Update failed</h3>";
             }
@@ -89,10 +89,10 @@ if ($inp->value_pgd('s') != null) {
     echo "<br/>Duty Hours : " . esc($staff_det[0][4]);
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
     if (count($staf_rep) <= 0) {
-        echo "<br/><h3 class='blue'>No attendece record stored yet</h3>";
+        echo "<br/><h3 class='blue'>No attendance record stored yet</h3>";
     } else {
-        echo "<br/><h3 class='blue'>Attendence and Earned Salary report</h3>";
-        echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendenceand Earned Salary Report</b></a><br/>";
+        echo "<br/><h3 class='blue'>Attendance and Earned Salary report</h3>";
+        echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
         echo "<table align='center' class='rb table'>";
         echo "<thead>";
         echo "<tr>";
@@ -157,7 +157,7 @@ if ($inp->value_pgd('s') != null) {
 
     if ($usertype == ADMIN) {
         echo "<br/><form class='embossed' method='POST'>";
-        echo "Attendence For : ";
+        echo "Attendance For : ";
         $d = date('Y-m-d');
         $y = $d[0] . $d[1] . $d[2] . $d[3];
         $m = $d[5] . $d[6];

@@ -17,7 +17,7 @@
   <a href="index.php?e=<?php echo $encptid ?>&&page=stock&&sub=date_report_factory">Date wise Factory Report</a>
     <?php if ($usertype == ADMIN) echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a>" ?>
     <?php if ($usertype == ADMIN) echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a>" ?>
-    <?php if ($usertype == ADMIN) echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factroy Stock</a>" ?>
+    <?php if ($usertype == ADMIN) echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a>" ?>
     <?php if ($usertype == ADMIN) echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a>" ?>
 </div>
 

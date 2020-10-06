@@ -15,7 +15,7 @@ if ($inp->value_pgd('s')) {
         echo "<h3 class='blue'>Sallary report</h3>";
 
         echo "<table align='center' class='rb'>";
-        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Ammount</td></tr>";
+        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Amount</td></tr>";
         $n = count($staf_sal);
         $amnt = 0;
         $samnt = NULL;

@@ -3,7 +3,7 @@
 <?php
 include("sources/inc/usercheck.php");
 echo "<form method = 'POST' class='embossed'>";
-echo "Vouchar no : <input type='text' name='v' value='" . $inp->value_pgd('v') . "'>";
+echo "Voucher no : <input type='text' name='v' value='" . $inp->value_pgd('v') . "'>";
 echo "&nbsp;&nbsp;&nbsp;<input type='submit' name='ab' value='Edit'>";
 echo "</form>";
 
@@ -42,7 +42,7 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'save') {
         $flag = $qur->sells_return($id, $pro, $d, $cost);
 
     if ($flag) {
-        echo "<br/><h2 class='green'>Sales Return Successfull</h2>";
+        echo "<br/><h2 class='green'>Sales Return Successfully</h2>";
     } else {
         echo "<br/><h2 class='red'>Sales Return Failed</h2>";
     }

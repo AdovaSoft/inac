@@ -27,7 +27,7 @@ if (isset($_POST['ab'])) {
         }
 
         if ($flag) {
-            $flag = $qur->newSelles($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['t']);
+            $flag = $qur->new_sells($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['t']);
             if ($flag) {
                 if ($flag == (-2)) {
                     $extra_string = "&say=6";

@@ -17,7 +17,7 @@ if (isset($_POST['ab'])) {
             echo "<h3 class='red'>Transaction failed</h3>";
         }
     } else {
-        echo "<h3 class='blue'>Ammount, Trasaction type and medium</h3>";
+        echo "<h3 class='blue'>Amounts, Transaction type and medium</h3>";
     }
 }
 echo "<br/><form method = 'POST' class='embossed'>";

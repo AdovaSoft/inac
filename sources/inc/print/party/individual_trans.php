@@ -22,7 +22,7 @@ if (count($tran) > 0) {
     echo "</td>";
 
     echo "<td>";
-    echo " Recived from " . $name[0][0];
+    echo " Received from " . $name[0][0];
     echo "</td>";
     echo "<td>";
     echo "Comments";
