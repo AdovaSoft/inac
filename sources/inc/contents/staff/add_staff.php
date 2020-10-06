@@ -36,7 +36,7 @@ echo "<br/>Joining Date : ";
 $date = $inp->get_post_date('jd');
 if (!$date)
     $date = date("Y-d-m");
-$inp->input_date('jd', $date);
+$inp->input_date('jd', $date,true);
 echo "<br/><br/>";
 if (isset($_POST['n']))
     $inp->input_text('Name : ', 'n', $_POST['n']);
@@ -51,9 +51,9 @@ else {
 }
 echo "<br/>";
 if (isset($_POST['s']))
-    $inp->input_text('Sallary : ', 's', $_POST['s']);
+    $inp->input_text('Salary : ', 's', $_POST['s']);
 else {
-    $inp->input_text('Sallary : ', 's', null);
+    $inp->input_text('Salary : ', 's', null);
 }
 echo "<br/>";
 echo "Duty Hours : ";

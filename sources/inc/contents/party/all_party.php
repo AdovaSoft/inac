@@ -2,14 +2,17 @@
 <?php
 echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=party&&sub=all_party' class='button' target='_blank'><b> Print </b></a><br/>";
 $query = sprintf("SELECT idparty,name,adress,phone FROM party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
+
 $party = $qur->get_custom_select_query($query, 4);
 $all_info = null;
 $due_total = 0;
 $advance_total = 0;
-
+//d($party);
 $n = count($party);
 for ($i = 0; $i < $n; $i++) {
+    
     if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
+        d("if statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -18,6 +21,7 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
         $i++;
     } else {
+        d("else statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -26,7 +30,8 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
     }
 }
-echo "<table align='center' class='rb'>";
+echo "<table align='center' class='rb table'>";
+echo "<thead>";
 echo "<tr>";
 echo "<th>";
 echo "Name";
@@ -48,6 +53,8 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+echo "</thead>";
+echo "<tbody>";
 foreach ($all_info as $a) {
     echo "<tr>";
     echo "<td>";
@@ -97,7 +104,9 @@ foreach ($all_info as $a) {
     echo "</td>";
     echo "</tr>";
 }
-echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr>";
+echo "</tbody>";
+echo "<tfoot>";
+echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr></tfoot>";
 echo "</table>";
 
 ?>
