@@ -61,7 +61,7 @@ if ($n > 0) {
             $cos += $temp;
             echo money($temp);
         } else
-          echo '-';
+            echo '-';
 
         echo "</td>";
         echo "</tr>";
@@ -81,7 +81,6 @@ if ($n > 0) {
     echo "<td><b>" . money($cos) . "</b></td>";
     echo "</tr>";*/
     echo "</table>";
-    echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=raw_material&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3 class='blue'>There is nothing to show about this item between these dates</h3>";
 }

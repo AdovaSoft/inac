@@ -120,7 +120,6 @@ if ($n > 0) {
     echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table>";
     echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-}
-else {
+} else {
     echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
 }

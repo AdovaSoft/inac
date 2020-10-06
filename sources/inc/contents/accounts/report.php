@@ -85,6 +85,5 @@ echo "<tfoot><tr><th>Total</th><th>" . $in_total . "</th>
 <td class='blue' colspan='2'>
 <b>Balance: " . ($in_total - $out_total) . "</b></td></tr></tfoot>";
 echo "</table><br/>";
-echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=accounts&&sub=report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
 
 

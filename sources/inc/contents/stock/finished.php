@@ -76,12 +76,12 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money( ($finished[1] + $finished[2]) * $finished[4]);
+        echo money(($finished[1] + $finished[2]) * $finished[4]);
         $cost += ($finished[1] + $finished[2]) * $finished[4];
         echo "</td>";
         echo "</tr>";
     }
-echo "</tbody>";
+    echo "</tbody>";
     /*
     echo "<tr>";
     echo "<th colspan = '6' >";

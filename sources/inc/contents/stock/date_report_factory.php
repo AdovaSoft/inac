@@ -4,7 +4,8 @@
 
 include("sources/inc/double_date.php");
 
-if ($_GET['group'] == 1) {
+if (isset($_GET['group']) == 1) {
+    $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -26,7 +27,8 @@ if ($_GET['group'] == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
+                echo "<thead>";
                 echo "<tr>";
                 echo "<td>";
                 echo "Date";
@@ -53,6 +55,8 @@ if ($_GET['group'] == 1) {
                 echo "Remark";
                 echo "</td>";
                 echo "</tr>";
+                echo "</thead>";
+
                 echo "<tr>";
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
@@ -210,7 +214,8 @@ if ($_GET['group'] == 1) {
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
-} elseif ($_GET['group'] == 2) {
+} elseif (isset($_GET['group']) == 2) {
+    $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -421,6 +426,7 @@ if ($_GET['group'] == 1) {
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti = $tto = 0;
+    $tti_p = $tto_o = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Productwise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unitwise </b></a>";
@@ -481,7 +487,7 @@ if ($_GET['group'] == 1) {
                 echo "<td>";
                 echo $i[2];
                 if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
+                    $tti_p += $i[2];
 
                 echo "</td>";
                 echo "<td>";
