@@ -26,8 +26,8 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
     }
 }
-echo "<table align='center' class='rb'>";
-echo "<tr>";
+echo "<table align='center' class='rb table'>";
+echo "<thead><tr>";
 echo "<th>";
 echo "Name";
 echo "</th>";
@@ -48,6 +48,8 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+echo "</thead>";
+echo "</tbody>";
 foreach ($all_info as $a) {
     echo "<tr>";
     echo "<td>";
@@ -64,7 +66,7 @@ foreach ($all_info as $a) {
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo $a[3];
+    echo money($a[3]);
     if ($a[4]) {
         echo ", <br/>";
         echo $a[4];
@@ -76,7 +78,8 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] < 0) {
-        echo(-$a[5]);
+        $a[5] = -$a[5];
+        echo money($a[5]);
         $due_total = $due_total + (-$a[5]);
     } else {
         echo "-";
@@ -88,7 +91,7 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
-        echo $a[5];
+        echo money($a[5]);
         $advance_total = $advance_total + $a[5];
     } else {
         echo "-";
@@ -97,7 +100,9 @@ foreach ($all_info as $a) {
     echo "</td>";
     echo "</tr>";
 }
-echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr>";
+echo "</tbody>";
+
+echo "<tfoot><tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr></tfoot>";
 echo "</table>";
 
 ?>
