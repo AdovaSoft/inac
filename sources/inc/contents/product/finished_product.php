@@ -52,11 +52,7 @@ if ($n > 0) {
         echo isset($finished[4]) ? $finished[4] : '-';
         echo "</td>";
         echo "<td>";
-<<<<<<< .merge_file_a09788
-        echo money($finished[5]);
-=======
         echo isset($finished[5]) ? money($finished[5]) : '-';
->>>>>>> .merge_file_a09264
         echo "</td>";
 
         echo "</tr>";

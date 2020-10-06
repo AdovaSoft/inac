@@ -63,7 +63,7 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        $sum = $finished[1] + $finished[2] + "999999999";
+        $sum = $finished[1] + $finished[2];
         echo esc($sum);
         echo "</td>";
 
@@ -77,8 +77,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($finished[1] + $finished[2]) * $finished[4]);
-        $cost += ($finished[1] + $finished[2]) * $finished[4];
+        $total = ($finished[1] + $finished[2]) * $finished[4];
+        echo money($total);
+        $cost += $total;
         echo "</td>";
         echo "</tr>";
     }
@@ -95,7 +96,6 @@ if (count($info) > 0) {
     echo "</tr>";
 */
     echo "</table><br/>";
-    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=finished' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3>No raw materials is in stock</h3>";
 }
