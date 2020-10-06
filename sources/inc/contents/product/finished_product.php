@@ -39,20 +39,20 @@ if ($n > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo isset($finished[1]) ? $finished[1] : '-';
+        echo esc($finished[1]);
         echo "</td>";
 
         echo "<td>";
-        echo isset($finished[2]) ? $finished[2] : '-';
+        echo esc($finished[2]);
         echo "</td>";
         echo "<td>";
-        echo isset($finished[3]) ? $finished[3] : '-';
+        echo esc($finished[3]);
         echo "</td>";
         echo "<td>";
         echo isset($finished[4]) ? $finished[4] : '-';
         echo "</td>";
         echo "<td>";
-        echo isset($finished[5]) ? $finished[5] : '-';
+        echo isset($finished[5]) ? money($finished[5]) : '-';
         echo "</td>";
 
         echo "</tr>";

@@ -47,33 +47,33 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $rawmaterial[5] . "'>";
-        echo $rawmaterial[0];
+        echo esc($rawmaterial[0]);
         echo "</a>";
         echo "</th>";
 
         echo "<td>";
-        echo $rawmaterial[1];
+        echo esc($rawmaterial[1]);
         echo "</td>";
 
         echo "<td>";
-        echo $rawmaterial[2];
+        echo esc($rawmaterial[2]);
         echo "</td>";
 
         echo "<td>";
-        echo $rawmaterial[1] + $rawmaterial[2];
+        $tol = $rawmaterial[1] + $rawmaterial[2];
+        echo esc($tol);
         echo "</td>";
 
         echo "<td>";
-        echo $rawmaterial[3];
+        echo esc($rawmaterial[3]);
         echo "</td>";
 
         echo "<td>";
         echo money($rawmaterial[4]);
         echo "</td>";
 
-
         echo "<td>";
-            $rawMaterialPrice = ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
+        $rawMaterialPrice = ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
         echo money($rawMaterialPrice);
         $cost += $rawMaterialPrice;
         echo "</td>";
@@ -92,7 +92,6 @@ if (count($info) > 0) {
         echo "</tr>";
     */
     echo "</table><br/>";
-    echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=raw' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3>No raw mattarials is in stock</h3>";
 }
