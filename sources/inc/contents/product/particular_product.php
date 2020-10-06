@@ -50,26 +50,27 @@ if (isset($id)) {
         foreach ($info as $i) {
             echo "<tr>";
             echo "<td>";
-            echo isset($i[0]) ? $inp->date_convert($i[0]) : '-';
+            echo $inp->date_convert($i[0]);
             echo "</td>";
 
             echo "<td>";
-            echo isset($i[1]) ? $i[1] : '-';
+            echo esc($i[1]);
             echo "</td>";
 
             echo "<td>";
-            echo isset($i[2]) ? $i[2] : '-';
-            $qun += $i[2];
+            echo esc($i[2]);
+            $qun += esc_num($i[2]);
             echo "</td>";
 
             echo "<td>";
-            echo isset($i[3]) ? money($i[3]) : '-';
+            echo money($i[3]);
 
             echo "</td>";
 
             echo "<td>";
-            echo money($i[2] * $i[3]);
-            $cos += $i[2] * $i[3];
+            $mul = $i[2] * $i[3];
+            echo money($mul);
+            $cos += $mul;
             echo "</td>";
             echo "</tr>";
         }

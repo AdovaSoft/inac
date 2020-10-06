@@ -26,6 +26,6 @@ if (isset($_GET['say']) && $_GET['say'] == 1) {
     $custom_message = "<h4 class='blue'>Please provide sells information and click sell.</h4>";
 }
 echo $custom_message;
-$qur->printNewSelles($encptid);
+$qur->print_new_sales($encptid);
 ?>
 

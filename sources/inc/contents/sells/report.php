@@ -47,19 +47,20 @@ for ($i = 0; $i < count($idinfo); $i++) {
     for ($j = 0; $j < $n; $j++) {
         echo "<tr>";
         echo "<td>";
-        echo isset($sell_pro[$j][3]) ? $sell_pro[$j][3] : '-';
+        echo esc($sell_pro[$j][3]);
         echo "</td>";
         echo "<td>";
-        echo $sell_pro[$j][1];
+        echo esc($sell_pro[$j][1]);
         echo "  ";
-        echo $sell_pro[$j][4];
+        echo esc($sell_pro[$j][4]);
         echo "</td>";
         echo "<td>";
         echo money($sell_pro[$j][2]);
         echo "</td>";
         echo "<td>";
-        echo money($sell_pro[$j][1] * $sell_pro[$j][2]);
-        $charges_total = $charges_total + $sell_pro[$j][1] * $sell_pro[$j][2];
+        $mul = $sell_pro[$j][1] * $sell_pro[$j][2];
+        echo money($mul);
+        $charges_total = $charges_total + $mul;
         echo "</td>";
         echo "</tr>";
     }

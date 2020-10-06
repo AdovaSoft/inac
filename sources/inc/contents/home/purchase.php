@@ -49,11 +49,11 @@ if (isset($_POST['searchword'])) {
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo $purchase_results[$i][1];
+                echo esc($purchase_results[$i][1]);
                 echo "</td>";
 
                 echo "<td>";
-                echo $purchase_results[$i][2];
+                echo esc($purchase_results[$i][2]);
                 echo "</td>";
 
                 echo "<td>";

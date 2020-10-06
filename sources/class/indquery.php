@@ -6,13 +6,12 @@ include "query.php";
  */
 class indquery extends query
 {
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function printNewSelles($encptid)
+    public function print_new_sales($encptid)
     {
         $inp = new html();
         $query = sprintf("SELECT idparty,name FROM (SELECT * FROM party_type WHERE type=1 OR type=2) as sel LEFT JOIN party USING(idparty) ORDER BY name");
@@ -130,11 +129,11 @@ class indquery extends query
                         $flag = mysqli_query($this->dtb_con, $query);
                         if (!$flag) {
                             mysqli_query($this->dtb_con, 'ROLLBACK');
-                            return (-1);
+                            return -1;
                         }
                     } else {
                         mysqli_query($this->dtb_con, 'ROLLBACK');
-                        return (-2);
+                        return -2;
                     }
                 } else {
                     break;
@@ -537,7 +536,10 @@ class indquery extends query
         echo "<input type = 'hidden' name = 'num' value = '" . count($info) . "' />";
     }
 
-    public function printSallary()
+    /**
+     *
+     */
+    public function print_salary()
     {
 
         $query = sprintf("SELECT idstaff,name,post,sallary FROM staff WHERE status = 1");
@@ -580,22 +582,24 @@ class indquery extends query
         $i = 0;
         foreach ($info as $staff) {
             echo "<tr>";
-            echo "<td><input type = 'checkbox' name = 'staff_" . $i . "' value = '" . $staff[0] . "' /></td>";
+            echo "<td>
+<input type = 'checkbox' name = 'staff_" . $i . "' value = '" . $staff[0] . "' />
+</td>";
 
-            echo "<td >" . $staff[2] . '</td>';
+            echo "<td >" . esc($staff[2]) . '</td>';
             if ($m < $staff[4]) {
-                echo "<td ><font color = 'red' > " . $staff[1] . ' </font> </td> ';
+                echo "<td ><font color = 'red' > " . esc($staff[1]) . ' </font> </td> ';
             } else {
-                echo "<td >" . $staff[1] . '</td>';
+                echo "<td >" . esc($staff[1]) . '</td>';
             }
             echo '<td>';
-            echo $staff[3];
+            echo esc($staff[3]);
             echo '</td>';
 
             echo "<td align = 'center' >";
             echo $html->print_month($staff[4]) . '-' . $staff[5];
             echo "<br/>";
-            echo $staff[6];
+            echo esc($staff[6]);
             echo '</td>';
 
             echo '<td>';
@@ -611,11 +615,23 @@ class indquery extends query
             echo "</tr>";
             $i++;
         }
+
         echo "</table>";
         echo "<input type = 'hidden' name = 'num' value = '" . count($info) . "' />";
 
     }
 
+    /**
+     * @param $mon
+     * @param $yer
+     * @param $emp
+     * @param $at
+     * @param $lv
+     * @param $ab
+     * @param $ov
+     * @param $j
+     * @return bool
+     */
     public function insert_attendance($mon, $yer, $emp, $at, $lv, $ab, $ov, $j)
     {
         $flag = true;
@@ -661,9 +677,15 @@ class indquery extends query
         }
     }
 
+    /**
+     * @param $name
+     * @param $mes_tpe
+     * @param $pro_type
+     * @param $price
+     * @return bool
+     */
     public function addProduct($name, $mes_tpe, $pro_type, $price)
     {
-
         $id = $this->get_last_id("product", "idproduct");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $flag = $this->insert_query('product', array('idproduct', 'name'), array($id, $name), array('d', 's'));
@@ -797,7 +819,7 @@ class indquery extends query
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo $sell_pro[$i][3];
+                echo esc($sell_pro[$i][3]);
                 $inp->input_hidden('pr_' . $i, $sell_pro[$i][0]);
                 echo "</td>";
 
@@ -855,8 +877,6 @@ class indquery extends query
         $flag = $this->update_column('selles_discount', array('discount'), array($d), array('d'), 'idselles', '=', $id);
 
         if (count($pro) > 0) {
-
-
             foreach ($pro as $p) {
                 if ($flag) {
                     if (0 == $p[2] || $p[2] == null) {
@@ -937,7 +957,7 @@ class indquery extends query
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo $sell_pro[$i][3];
+                echo esc($sell_pro[$i][3]);
                 $inp->input_hidden('pr_' . $i, $sell_pro[$i][0]);
                 echo "</td>";
 
@@ -1249,7 +1269,7 @@ class indquery extends query
                 }
 
                 echo "<td>";
-                echo $s[2];
+                echo esc($s[2]);
                 echo "</td>";
                 echo "</tr>";
             }

@@ -29,9 +29,21 @@ function esc(&$variable)
 {
     if (isset($variable))
         return htmlentities($variable);
-
     else
         return '-';
+}
+
+/**
+ * print (0.0) if variable is not set
+ * @param $variable
+ * @return float
+ */
+function esc_num(&$variable)
+{
+    if (isset($variable))
+        return floatval($variable);
+    else
+        return 0.00;
 }
 
 /**
@@ -43,14 +55,8 @@ function esc(&$variable)
  */
 function money(&$number)
 {
-    if (isset($number)) {
-        if (is_numeric($number)) {
-            return number_format($number, '2', '.', ',');
-        } else {
-            return '0.00';
-        }
-
-    } else {
-        return '-';
-    }
+    if (isset($number) && is_numeric($number))
+        return number_format($number, '2', '.', ',');
+    else
+        return 0.00;
 }

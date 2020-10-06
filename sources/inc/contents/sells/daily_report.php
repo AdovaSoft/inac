@@ -58,8 +58,9 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo money($sell_pro[$j][2]);
         echo "</td>";
         echo "<td>";
-        echo money($sell_pro[$j][1] * $sell_pro[$j][2]);
-        $charges_total = $charges_total + $sell_pro[$j][1] * $sell_pro[$j][2];
+        $mul = $sell_pro[$j][1] * $sell_pro[$j][2];
+        echo money($mul);
+        $charges_total = $charges_total + $mul;
         echo "</td>";
         echo "</tr>";
     }

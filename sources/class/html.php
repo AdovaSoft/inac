@@ -135,29 +135,29 @@ class html
                 echo "<option value = '" . $i . "' >";
             }
             if ($i == '01') {
-                echo "Jan </option>";
+                echo "January </option>";
             } else if ($i == '02') {
-                echo "Feb </option>";
+                echo "February </option>";
             } else if ($i == '03') {
-                echo "Mar </option>";
+                echo "March </option>";
             } else if ($i == '04') {
-                echo "Apr </option>";
+                echo "April </option>";
             } else if ($i == '05') {
                 echo "May </option>";
             } else if ($i == '06') {
-                echo "Jun </option>";
+                echo "June </option>";
             } else if ($i == '07') {
-                echo "Jul </option>";
+                echo "July </option>";
             } else if ($i == '08') {
-                echo "Aug </option>";
+                echo "August </option>";
             } else if ($i == '09') {
-                echo "Sep </option>";
+                echo "September </option>";
             } else if ($i == 10) {
-                echo "Oct </option>";
+                echo "October </option>";
             } else if ($i == 11) {
-                echo "Nov </option>";
+                echo "November </option>";
             } else if ($i == 12) {
-                echo "Dec </option>";
+                echo "December </option>";
             }
         }
         echo "</select>";
@@ -201,6 +201,7 @@ class html
         if (isset($_POST['a']) && $_POST[$a] != null) {
             return true;
         }
+
         if (isset($label))
             echo $label . " is missing <br/>";
         return false;
@@ -284,9 +285,9 @@ class html
     public function date_convert($date)
     {
         if ($date == "0000-00-00" || (!$date))
-            return "";
-        elseif ($date == date("Y-m-d"))
-            return "Today";
+            return "-";
+/*        elseif ($date == date("Y-m-d"))
+            return "Today";*/
         else
             return $newDate = date("d M Y (D)", strtotime($date));
     }
