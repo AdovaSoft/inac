@@ -10,7 +10,7 @@ $advance_total = 0;
 //d($party);
 $n = count($party);
 for ($i = 0; $i < $n; $i++) {
-    
+
     if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
         // d("if statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
@@ -79,11 +79,10 @@ foreach ($all_info as $a) {
     echo "</a>";
     echo "</td>";
 
-
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] < 0) {
-        echo(esc(-$a[5]));
+        echo money($a[5]);
         $due_total = $due_total + (-$a[5]);
     } else {
         echo "-";
@@ -91,11 +90,10 @@ foreach ($all_info as $a) {
     echo "</a>";
     echo "</td>";
 
-
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
-        echo esc($a[5]);
+        echo money($a[5]);
         $advance_total = $advance_total + $a[5];
     } else {
         echo "-";
@@ -106,7 +104,7 @@ foreach ($all_info as $a) {
 }
 echo "</tbody>";
 echo "<tfoot>";
-echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr></tfoot>";
+echo "<tr><th colspan='3'>Total</th><th>" . money($due_total) . "</th><th>" . money($advance_total) . "</th></tr></tfoot>";
 echo "</table>";
 
 ?>
