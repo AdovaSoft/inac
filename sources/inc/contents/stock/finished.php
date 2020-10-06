@@ -76,8 +76,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($finished[1] + $finished[2]) * $finished[4]);
-        $cost += ($finished[1] + $finished[2]) * $finished[4];
+        $finishedTotal = ($finished[1] + $finished[2]) * $finished[4];
+        echo money($finishedTotal);
+        $cost += $finishedTotal;
         echo "</td>";
         echo "</tr>";
     }
