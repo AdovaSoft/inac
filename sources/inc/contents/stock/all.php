@@ -75,7 +75,8 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($product[1] + $product[2]) * $product[4]);
+        $total = (($product[1] + $product[2]) * $product[4]);
+        echo money($total);
         $cost += ($product[1] + $product[2]) * $product[4];
         echo "</td>";
         echo "</tr>";
