@@ -2,7 +2,7 @@
 <?php
 include("sources/inc/usercheck.php");
 if ($inp->value_pgd('say') == 1) {
-    $custom_message = "<br/><h3 class='green'>Stock Update Successfull</h3>";
+    $custom_message = "<br/><h3 class='green'>Stock Update Successfully</h3>";
 } elseif ($inp->value_pgd('say') == 2) {
     $custom_message = "<br/><h3 class='red'>Stock Update failed</h3>";
 } elseif ($inp->value_pgd('say') == 3) {

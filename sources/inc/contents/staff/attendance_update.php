@@ -20,7 +20,7 @@ if (isset($_POST['ab'])) {
 
     $flag = $qur->insert_attendance($mon, $yer, $emp, $at, $lv, $ab, $ov, $j);
     if ($flag) {
-        echo "<h3 class='green'>All Attendance Update Successfull</h3>";
+        echo "<h3 class='green'>All Attendance Update Successfully</h3>";
     } else {
         echo "<br><h2 class='red'>All Attendance Update failed</h2>";
         unset($_POST['ab']);

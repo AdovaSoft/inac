@@ -9,18 +9,18 @@ if (isset($_POST['ab'])) {
         $flag = $qur->insert_query('user', array('idstaff', 'pass', 'type', 'css'), array($_POST['s'], MD5($_POST['p']), 0, 8), array('d', 's', 'd', 'd'));
 
         if ($flag) {
-            $custommessage = "<h3 class='green'>User Successfully Added</h3><br/>";
+            $custom_message = "<h3 class='green'>User Successfully Added</h3><br/>";
             $qur->execute_query('COMMIT');
         } else {
             $qur->execute_query('ROLLBACK');
-            $custommessage = "<h3 class='red'>Failed to Add</h3><br/>";
+            $custom_message = "<h3 class='red'>Failed to Add</h3><br/>";
         }
     }
 } else {
-    $custommessage = "<h3 class='blue'>Please Select a staff to add as user</h3><br/>";
+    $custom_message = "<h3 class='blue'>Please Select a staff to add as user</h3><br/>";
 }
 echo "<form method = 'POST' class='embossed'>";
-echo $custommessage;
+echo $custom_message;
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 $res = $qur->get_cond_row('staff', array('idstaff', 'name', 'post'), 'status', '=', 1);
 echo "<select name = 's' >";

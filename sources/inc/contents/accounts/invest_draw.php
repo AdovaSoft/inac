@@ -12,7 +12,7 @@ if (isset($_POST['ab'])) {
         $flag = $query->addNewTran($date, $_POST['a'], $_POST['tt'], $_POST['tf'], $_POST['c']);
 
         if ($flag) {
-            echo "<h3 class='green'>Transaction successfull</h3>";
+            echo "<h3 class='green'>Transaction successfully</h3>";
         } else {
             echo "<h3 class='red'>Transaction failed</h3>";
         }

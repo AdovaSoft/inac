@@ -78,16 +78,16 @@ if ($inp->value_pgd('s') != null) {
     }
 
 
-    $staf_det = $qur->get_custom_select_query($det_query, 5);
+    $$staff_det = $qur->get_custom_select_query($det_query, 5);
     $staf_sal = $qur->get_custom_select_query($sal_query, 5);
     $staf_bon = $qur->get_custom_select_query($bon_query, 5);
     $staf_rep = $qur->get_custom_select_query($rep_query, 8);
 
-    echo "<br/><h2 class='blue'>" . strtoupper($staf_det[0][0]) . "</h2>";
-    echo "<br/>Post : " . esc( $staf_det[0][1] );
-    echo "<br/>Sallary : " . money( $staf_det[0][2] );
-    echo "<br/>Duty Hours : " . esc( $staf_det[0][4] );
-    echo "<br/>Joining date : " . $inp->date_convert($staf_det[0][3]);
+    echo "<br/><h2 class='blue'>" . strtoupper($$staff_det[0][0]) . "</h2>";
+    echo "<br/>Post : " . esc( $$staff_det[0][1] );
+    echo "<br/>Sallary : " . money( $staff_det[0][2] );
+    echo "<br/>Duty Hours : " . esc( $staff_det[0][4] );
+    echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
     if (count($staf_rep) <= 0) {
         echo "<br/><h3 class='blue'>No attendece record stored yet</h3>";
     } else {
@@ -297,7 +297,7 @@ if ($inp->value_pgd('s') != null) {
         echo "<option value = '2'> Bonus </option> ";
         echo "</select>";
 
-        echo "<input type = 'hidden' name = 'cmnt'  value = 'Paying to " . strtoupper($staf_det[0][0]) . " (" . $staf_det[0][1] . ")' />";
+        echo "<input type = 'hidden' name = 'cmnt'  value = 'Paying to " . strtoupper($staff_det[0][0]) . " (" . $staff_det[0][1] . ")' />";
         echo "<br/>";
         $inp->input_submit('save_sal', 'Save');
         echo "</form>";

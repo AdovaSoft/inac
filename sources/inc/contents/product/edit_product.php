@@ -10,7 +10,7 @@ if (isset($_POST['ab2'])) {
         $flag = $qur->editProduct($_POST['id'], $_POST['n'], $_POST['mt'], $_POST['pt'], $price);
 
         if ($flag) {
-            echo "<h3 class='green'>Edit Product successfull</h3><br/>";
+            echo "<h3 class='green'>Edit Product successfully</h3><br/>";
         } else {
             echo "<h3 class='red'>Edit Product failed</h3><br/>";
         }

@@ -14,13 +14,13 @@ if (isset($_POST['ab'])) {
         }
 
         if ($_POST['d'] >= $cost && $_POST['d'] != 0) {
-            $extrastring = "&say=5";
+            $extra_string = "&say=5";
             $flag = false;
         } elseif ($j == 0) {
-            $extrastring = "&say=4";
+            $extra_string = "&say=4";
             $flag = false;
         } elseif ($_POST['t'] < 0) {
-            $extrastring = "&say=8";
+            $extra_string = "&say=8";
             $flag = false;
         } else {
             $flag = true;
@@ -30,32 +30,32 @@ if (isset($_POST['ab'])) {
             $flag = $qur->newSelles($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['t']);
             if ($flag) {
                 if ($flag == (-2)) {
-                    $extrastring = "&say=6";
+                    $extra_string = "&say=6";
                 } elseif ($flag == (-1)) {
-                    $extrastring = "&say=7";
+                    $extra_string = "&say=7";
                 } else {
-                    $extrastring = "&say=1&idselles=" . $flag . "&cost=" . $cost;
+                    $extra_string = "&say=1&idselles=" . $flag . "&cost=" . $cost;
                 }
             } else {
-                $extrastring = "&say=2";
+                $extra_string = "&say=2";
             }
         }
     } else {
-        $extrastring = "&say=3";
+        $extra_string = "&say=3";
     }
 }
 
-$extrastring .= $inp->extra_string('ab');
-$extrastring .= $inp->extra_string('d');
-$extrastring .= $inp->extra_string('num');
-$extrastring .= $inp->extra_string('pt');
-$extrastring .= $inp->extra_string('sd_d');
-$extrastring .= $inp->extra_string('sd_m');
-$extrastring .= $inp->extra_string('sd_y');
-$extrastring .= $inp->extra_string('t');
+$extra_string .= $inp->extra_string('ab');
+$extra_string .= $inp->extra_string('d');
+$extra_string .= $inp->extra_string('num');
+$extra_string .= $inp->extra_string('pt');
+$extra_string .= $inp->extra_string('sd_d');
+$extra_string .= $inp->extra_string('sd_m');
+$extra_string .= $inp->extra_string('sd_y');
+$extra_string .= $inp->extra_string('t');
 $n = $_POST['num'];
 for ($i = 0; $i < $n; $i++) {
-    $extrastring .= $inp->extra_string('pr_' . $i);
-    $extrastring .= $inp->extra_string('pc_' . $i);
-    $extrastring .= $inp->extra_string('co_' . $i);
+    $extra_string .= $inp->extra_string('pr_' . $i);
+    $extra_string .= $inp->extra_string('pc_' . $i);
+    $extra_string .= $inp->extra_string('co_' . $i);
 }

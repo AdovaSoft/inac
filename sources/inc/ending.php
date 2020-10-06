@@ -8,4 +8,4 @@
 <?php
 echo "<a href='logout.php?e=" . $encptid . "'>Logout</a>";
 ?>
-<br/><small>Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></small>
+<br/><small>Developed by <a href="http://adovasoft.com/" target="_blank">AdovaSoft</a></small>

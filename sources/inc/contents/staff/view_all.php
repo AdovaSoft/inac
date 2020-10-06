@@ -5,7 +5,7 @@ $query = sprintf("SELECT idstaff,name,post,sallary,status FROM staff ORDER by na
 $info = $qur->get_custom_select_query($query, 5);
 echo "<table align='center' class='rb table'>";
 
-echo "<thead><tr><td>Name</td><td>Post</td><td>Sallary</td><td>Satus</td></tr></thead>";
+echo "<thead><tr><th>Name</th><th>Post</th><th>Sallary</th><th>Status</th></tr></thead>";
 echo "<tbody>";
 foreach ($info as $i) {
     echo "<tr>";

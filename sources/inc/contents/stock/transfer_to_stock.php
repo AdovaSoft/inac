@@ -31,7 +31,7 @@ foreach ($info as $i) {
     echo "<option value ='" . $i[0] . "'>" . $i[1] . "</option>";
 }
 echo "</select>";
-echo "<br/><br/>Transfar : <input type = 'text' name = 'n' value = ''/> ";
+echo "<br/><br/>Transfers : <input type = 'text' name = 'n' value = ''/> ";
 
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfar' />";
 echo "</form>";

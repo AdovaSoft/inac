@@ -1,4 +1,4 @@
-<h1>Datewise Stock Report</h1>
+<h1>Date wise Stock Report</h1>
 <?php
 include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
@@ -7,14 +7,17 @@ $n = count($info);
 $tti_p = $tto_p = 0;
 $tti = $tto = 0;
 if ($n > 0) {
-    echo "<h2>Grouped Productwise</h2>";
+    echo "<h2>Grouped Product wise</h2>";
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
         if ($product_trac != $i[1]) {
 
             if ($i[1] != $first_product) {
-                echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                echo "<tr>
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
                 echo "</table><br/>";
                 $tti_p = $tto_p = 0;
                 $tti = $tto = 0;
@@ -32,7 +35,7 @@ if ($n > 0) {
             echo "Price (TK)";
             echo "</td>";
             echo "<td>";
-            echo "Incomming";
+            echo "Incoming";
             echo "</td>";
             echo "<td>";
             echo "Outgoing";

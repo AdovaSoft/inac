@@ -1,3 +1,4 @@
+<?php $loginmessage = isset($loginmessage) ? $loginmessage : ''; ?>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>

@@ -93,6 +93,6 @@ if (count($info) > 0) {
     */
     echo "</table><br/>";
 } else {
-    echo "<br/><h3>No raw mattarials is in stock</h3>";
+    echo "<br/><h3>No raw materials is in stock</h3>";
 }
 ?>

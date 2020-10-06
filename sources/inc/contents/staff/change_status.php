@@ -15,7 +15,7 @@ if (true) {
 
     $info = $qur->get_custom_select_query($query, 4);
     echo "<table align='center' class='rb table'>";
-    echo "<thead><tr><td>Name</td><td>Post</td><td>Satus</td><td>Change</td></tr></thead>";
+    echo "<thead><tr><td>Name</td><td>Post</td><td>Status</td><td>Change</td></tr></thead>";
     echo "<tbody>";
     foreach ($info as $i) {
         echo "<tr>";

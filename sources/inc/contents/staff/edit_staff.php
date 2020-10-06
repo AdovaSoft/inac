@@ -14,7 +14,7 @@ if (isset($_POST['ab1'])) {
     }
     if ($flag) {
         $qur->execute_query('COMMIT');
-        echo "<h3 class='green'>Successfull</h3><br/>";
+        echo "<h3 class='green'>Successful</h3><br/>";
     } else {
         $qur->execute_query('ROLLBACK');
         echo "<h3 class='green'>Failed</h3><br/>";
