@@ -74,8 +74,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money(($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4]);
-        $cost += ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
+            $rawMaterialPrice = ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
+        echo money($rawMaterialPrice);
+        $cost += $rawMaterialPrice;
         echo "</td>";
         echo "</tr>";
     }
