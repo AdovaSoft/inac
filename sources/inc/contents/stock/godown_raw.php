@@ -39,16 +39,16 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $ar[4] . "'>";
-        echo $ar[0];
+        echo esc($ar[0]);
         echo "</a>";
         echo "</th>";
 
         echo "<td>";
-        echo $ar[1];
+        echo esc($ar[1]);
         echo "</td>";
 
         echo "<td>";
-        echo $ar[2];
+        echo esc($ar[2]);
         echo "</td>";
 
         echo "<td>";
@@ -57,8 +57,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money($ar[3] * $ar[1]);
-        $cost += $ar[3] * $ar[1];
+        $total = $ar[3] * $ar[1];
+        echo money($total);
+        $cost += $total;
         echo "</td>";
         echo "</tr>";
     }
@@ -76,7 +77,6 @@ if (count($info) > 0) {
     echo "</tr>";
     */
     echo "</table><br/>";
-    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=godown_raw' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "No raw mattarials is in stock";
 }
