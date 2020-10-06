@@ -1,4 +1,5 @@
 function printpage() {
-    window.print();
+   /* window.print();
     window.close();
+    */
 }

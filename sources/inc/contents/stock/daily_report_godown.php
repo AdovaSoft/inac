@@ -3,7 +3,8 @@
 <?php
 
 include("sources/inc/single_date.php");
-if ($_GET['group'] == 1) {
+if (isset($_GET['group']) && $_GET['group'] == 1) {
+  $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -210,7 +211,8 @@ if ($_GET['group'] == 1) {
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
-} elseif ($_GET['group'] == 2) {
+} elseif (isset($_GET['group']) && $_GET['group'] == 2) {
+  $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -223,6 +225,7 @@ if ($_GET['group'] == 1) {
         echo "<br/><h2>Grouped Unitwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_unit = $info[0][3];
+        $unit_trac = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {

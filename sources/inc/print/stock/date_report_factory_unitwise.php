@@ -9,6 +9,7 @@ $tti = $tto = 0;
 if ($n > 0) {
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_unit = $info[0][3];
+    $unit_trac = 0;
     foreach ($info as $i) {
         if ($unit_trac != $i[3]) {
             if ($i[3] != $first_unit) {

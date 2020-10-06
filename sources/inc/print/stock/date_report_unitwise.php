@@ -6,9 +6,13 @@ $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
 $tti_p = $tto_p = 0;
 $tti = $tto = 0;
+$tto_o = 0;
+$price_trac = 0;
+
 if ($n > 0) {
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_unit = $info[0][3];
+    $unit_trac = 0;
     foreach ($info as $i) {
         if ($unit_trac != $i[3]) {
             if ($i[3] != $first_unit) {

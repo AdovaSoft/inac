@@ -40,7 +40,7 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $ar[4] . "'>";
-        echo $ar[0];
+        echo esc($ar[0]);
         echo "</a>";
         echo "</th>";
 
@@ -49,7 +49,7 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $ar[2];
+        echo esc($ar[2]);
         echo "</td>";
 
         echo "<td>";
@@ -58,8 +58,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money($ar[3] * $ar[1]);
-        $cost += $ar[3] * $ar[1];
+        $mul = $ar[3] * $ar[1];
+        echo money($mul);
+        $cost += $mul;
         echo "</td>";
         echo "</tr>";
     }

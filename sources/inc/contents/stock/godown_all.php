@@ -57,8 +57,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        echo money($ar[3] * $ar[1]);
-        $cost += $ar[3] * $ar[1];
+        $mul = $ar[3] * $ar[1];
+        echo money($mul);
+        $cost += $mul;
         echo "</td>";
         echo "</tr>";
     }
@@ -75,7 +76,6 @@ if (count($info) > 0) {
     echo "</tr>";
 */
     echo "</table><br/>";
-    echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=godown_all' class='button' target='_blank'><b> Print </b></a>";
 } else {
     echo "<br/><h3>No raw mattarials is in stock</h3>";
 }

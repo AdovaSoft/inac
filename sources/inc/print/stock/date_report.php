@@ -6,6 +6,7 @@ $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM p
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
 $tti = $tto = 0;
+$tti_p = 0;
 if ($n > 0) {
     echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
     echo "<br/><table align='center' class='rb'>";
