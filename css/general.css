@@ -189,7 +189,7 @@ a img {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     margin: 0px;
-    width: 80%;
+    min-width: 80%;
     vertical-align: middle;
 }
 

@@ -1232,9 +1232,9 @@ class indquery extends query
         echo "<div  id='sud0'>";
         if (count($tran) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a  id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
             echo "<table align='center' class='rb'>";
             echo "<tr>";
@@ -1516,9 +1516,9 @@ class indquery extends query
 
     }
 
-    public function purchase_delete($pur_id)
+    public function purchase_delete($purchase_id)
     {
-        $query = sprintf("SELECT idproduct,stock-unite FROM (SELECT idproduct, unite FROM purchase_details p WHERE idpurchase = %d) as pur LEFT JOIN stock USING(idproduct);", $pur_id);
+        $query = sprintf("SELECT idproduct,stock-unite FROM (SELECT idproduct, unite FROM purchase_details p WHERE idpurchase = %d) as pur LEFT JOIN stock USING(idproduct);", $purchase_id);
         $info = $this->get_custom_select_query($query, 2);
         $n = count($info);
         mysqli_query($this->dtb_con, 'START TRANSACTION');
@@ -1528,7 +1528,7 @@ class indquery extends query
                 $flag = $this->update_column("stock", array('stock'), array($info[$i][1]), array('d'), 'idproduct', '=', $info[$i][0]);
             }
         }
-        $query = sprintf("DELETE FROM purchase WHERE idpurchase = %d", $pur_id);
+        $query = sprintf("DELETE FROM purchase WHERE idpurchase = %d", $purchase_id);
         $flag = mysqli_query($this->dtb_con, $query);
         if ($flag) {
             mysqli_query($this->dtb_con, 'COMMIT');
@@ -1540,7 +1540,7 @@ class indquery extends query
 
     public function selles_delete($sel_id)
     {
-        $query = sprintf("SELECT idproduct,stock+unite FROM (SELECT idproduct, unite FROM selles_details p WHERE idselles = %d) as sel LEFT JOIN stock USING(idproduct);", $pur_id);
+        $query = sprintf("SELECT idproduct,stock+unite FROM (SELECT idproduct, unite FROM selles_details p WHERE idselles = %d) as sel LEFT JOIN stock USING(idproduct);", $sel_id);
         $info = $this->get_custom_select_query($query, 2);
         $n = count($info);
         mysqli_query($this->dtb_con, 'START TRANSACTION');
