@@ -1,5 +1,5 @@
 <?php
-$id = $_GET[id];
+$id = $_GET['id'];
 include("sources/inc/print/double_date.php");
 if ($date1 && $date2) {
     $query3 = sprintf("SELECT date, ammount, comment FROM (SELECT id FROM party_payment WHERE idparty = %d) as payment LEFT JOIN transaction USING (id) LEFT JOIN transaction_comment USING(id) WHERE date BETWEEN '%s' AND '%s';", $id, $date1, $date2);

@@ -1234,23 +1234,26 @@ class indquery extends query
             } else {
                 echo "<a  id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo " Paid to " . $name;
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo " Recived from " . $name;
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Comments";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($tran as $s) {
                 echo "<tr>";
                 echo "<td>";
@@ -1258,10 +1261,11 @@ class indquery extends query
                 echo "</td>";
                 if ($s[1] > 0) {
                     echo "<td align = 'center' ></td>";
-                    echo "<td align = 'right' >" . sprintf("%.2f", $s[1]) . "</td>";
+                    echo "<td align = 'right' >" . money($s[1]) . "</td>";
                     $recived += $s[1];
                 } else {
-                    echo "<td align = 'right' >" . sprintf("%.2f", -$s[1]) . "</td>";
+                    $neg = ($s[1]) * -1;
+                    echo "<td align = 'right' >" . money($neg) . "</td>";
                     echo "<td align = 'center' ></td>";
                     $paid += $s[1];
                 }
@@ -1271,7 +1275,12 @@ class indquery extends query
                 echo "</td>";
                 echo "</tr>";
             }
-            echo "<tr><td>Total </td> <td><b>" . sprintf("%.2f", -$paid) . "</b></td><td><b>" . sprintf("%.2f", $recived) . "</b  ></td><td> - </td></tr>";
+            echo "</tbody>";
+            $total_paid = ($paid) * -1;
+            echo "<tr><td>Total </td> 
+<td><b>" . money( $total_paid) . "</b></td>
+<td><b>" . money( $recived) . "</b  ></td>
+<td> - </td></tr>";
             echo "</table>";
 
         } else {
