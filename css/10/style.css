@@ -142,3 +142,7 @@ body {
 .faintgreen {
     color: #449966;
 }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #ffffff !important;
+}

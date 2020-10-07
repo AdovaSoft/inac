@@ -1,6 +1,5 @@
 <?php
-session_start();
-date_default_timezone_set('Asia/Dhaka');
+include ("./sources/inc/system.php");
 include("./sources/inc/security_o.php");
 $editor = isset($_POST['editor']) ? $_POST['editor'] : 'settings/theme';
 $return_link = isset($_POST['returnlink']) ? $_POST['returnlink'] : 'index.php?e=' . $encptid;
