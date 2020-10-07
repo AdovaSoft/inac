@@ -2,6 +2,7 @@
 <br/>
 <?php
 $query = sprintf("SELECT name, factory_stock, unite, price, idproduct FROM (SELECT idproduct,idunite FROM product_details WHERE purchase = 1 ) as product LEFT JOIN product USING (idproduct) LEFT JOIN stock USING(idproduct) LEFT JOIN mesurment_unite USING(idunite)  LEFT JOIN price USING(idproduct);");
+echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=factory_raw' class='button' target='_blank'><b> Print </b></a>";
 $qur = new indquery();
 $info = $qur->get_custom_select_query($query, 5);
 $cost = 0;
