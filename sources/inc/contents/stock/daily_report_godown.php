@@ -17,6 +17,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<br/><h2>Grouped Product wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_product = $info[0][1];
+        $product_trac = 0;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
 
@@ -207,7 +208,6 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
@@ -222,10 +222,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
-        echo "<br/><h2>Grouped Unitwise</h2><br/>";
+        echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_unit = $info[0][3];
         $unit_trac = 0;
+        $product_trac = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
@@ -415,11 +416,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
-} else {
+}
+else {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -464,7 +465,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "Remark";
         echo "</td>";
         echo "</tr>";
-
+$tti_p = 0;
         foreach ($info as $i) {
             echo "<tr>";
 
@@ -484,7 +485,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "<td>";
                 echo $i[2];
                 if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
+                    $tti_p += $i[2];
 
                 echo "</td>";
                 echo "<td>";
@@ -546,7 +547,6 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
