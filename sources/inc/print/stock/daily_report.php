@@ -59,7 +59,7 @@ if ($n > 0) {
         echo "<td>";
         echo $i[4];
         echo "</td>";
-
+        $tti_p = 0;
         if ($i[2] > 0) {
             echo "<td>";
             echo $i[2];

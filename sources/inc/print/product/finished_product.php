@@ -5,7 +5,7 @@ $info = $qur->get_finished_product_overview($date1, $date2);
 $n = count($info);
 if ($n > 0) {
     $qun = 0;
-    $cos = 0;
+    $totalRate = 0;
     echo "<table align='center' class='rb'>";
     echo "<tr>";
     echo "<td>";
@@ -42,26 +42,27 @@ if ($n > 0) {
         echo "</td>";
         echo "<td>";
         echo $i[3];
+        $qun += $i[3];
         echo "</td>";
         echo "<td>";
         echo $i[4];
         echo "</td>";
         echo "<td>";
-        echo $i[5];
+        echo money($i[5]);
+        $totalRate += $i[5];
         echo "</td>";
 
         echo "</tr>";
     }
     echo "<tr>";
-    echo "<td colspan = 2>";
+    echo "<td colspan = 3>";
     echo "Total ";
     echo "</td>";
     echo "<td ><b>";
     echo $qun;
     echo "</b></td>";
     echo "<td> </td>";
-    echo "<td><b>" . $cos . "</b></td>";
-    echo "<td> </td>";
+    echo "<td><b>" . $totalRate . "</b></td>";
     echo "</tr>";
     echo "</table>";
 }
