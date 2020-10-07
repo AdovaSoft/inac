@@ -26,7 +26,8 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
     }
 }
-echo "<table align='center' class='rb'>";
+echo "<table align='center' class='rb table'>";
+echo "<thead>";
 echo "<tr>";
 echo "<th>";
 echo "Name";
@@ -48,6 +49,8 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+echo "</thead>";
+echo "<tbody>";
 foreach ($all_info as $a) {
     echo "<tr>";
     echo "<td>";
@@ -97,6 +100,7 @@ foreach ($all_info as $a) {
     echo "</td>";
     echo "</tr>";
 }
+echo "</tbody>";
 echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr>";
 echo "</table>";
 ?>

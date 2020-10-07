@@ -337,7 +337,7 @@ class indquery extends query
         }
     }
 
-    public function addParty($name, $p1, $p2, $address, $type)
+    public function addParty($name = '', $p1 = '', $p2 = '', $address = 'N/A', $type = 1)
     {
         $id = $this->get_last_id("party", "idparty");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
