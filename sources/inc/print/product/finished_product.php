@@ -62,7 +62,7 @@ if ($n > 0) {
     echo $qun;
     echo "</b></td>";
     echo "<td> </td>";
-    echo "<td><b>" . $totalRate . "</b></td>";
+    echo "<td><b>" . money($totalRate) . "</b></td>";
     echo "</tr>";
     echo "</table>";
 }
