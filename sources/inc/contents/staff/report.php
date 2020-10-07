@@ -78,13 +78,13 @@ if ($inp->value_pgd('s') != null) {
     }
 
 
-    $$staff_det = $qur->get_custom_select_query($det_query, 5);
+    $staff_det = $qur->get_custom_select_query($det_query, 5);
     $staf_sal = $qur->get_custom_select_query($sal_query, 5);
     $staf_bon = $qur->get_custom_select_query($bon_query, 5);
     $staf_rep = $qur->get_custom_select_query($rep_query, 8);
 
-    echo "<br/><h2 class='blue'>" . strtoupper($$staff_det[0][0]) . "</h2>";
-    echo "<br/>Post : " . esc($$staff_det[0][1]);
+    echo "<br/><h2 class='blue'>" . strtoupper($staff_det[0][0]) . "</h2>";
+    echo "<br/>Post : " . esc($staff_det[0][1]);
     echo "<br/>Sallary : " . money($staff_det[0][2]);
     echo "<br/>Duty Hours : " . esc($staff_det[0][4]);
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
@@ -93,10 +93,17 @@ if ($inp->value_pgd('s') != null) {
     } else {
         echo "<br/><h3 class='blue'>Attendance and Earned Salary report</h3>";
         echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb table'>";
+        echo "<table align='center' class='rb'>";
         echo "<thead>";
         echo "<tr>";
-        echo "<th>Month</th><th>Attended</th><th>Leave</th><th>Absent</th><th>Overtime</th><th>Salary</th><th>Duty<br/>Hours</th><th>Earned Salary</th>";
+        echo "<th>Month</th>
+<th>Attended</th>
+<th>Leave</th>
+<th>Absent</th>
+<th>Overtime</th>
+<th>Salary</th
+><th>Duty<br/>Hours</th>
+<th>Earned Salary</th>";
         if ($usertype == ADMIN) {
             echo "<th>Action</th>";
         }
@@ -135,7 +142,8 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             echo "<td>";
-            echo sprintf("%.2f", $s[6] * ($s[2] + $s[3] + ($s[5]) / $s[7]) / $inp->print_month_days($s[0], $s[1]));
+            $salary_amount = $s[6] * ($s[2] + $s[3] + ($s[5]) / $s[7]) / $inp->print_month_days($s[0], $s[1]);
+            echo money($salary_amount);
             echo "</td>";
 
             if ($usertype == ADMIN) {
@@ -211,11 +219,11 @@ if ($inp->value_pgd('s') != null) {
     if (count($staf_sal) <= 0) {
         echo "<br/><h3 class='blue'>No sallary record stored yet</h3>";
     } else {
-        echo "<br/><br/><h3 class='blue'>Sallary report</h3>";
+        echo "<br/><br/><h3 class='blue'>Salary report</h3>";
         echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb table'>";
+        echo "<table align='center' class='rb'>";
         echo "<thead>";
-        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Amount</td></tr>";
+        echo "<tr><td>Paying date</td><td>Salary of</td><td>Amount</td></tr>";
         echo "</thead>";
         $n = count($staf_sal);
         $salary_amount = 0;
