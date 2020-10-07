@@ -473,7 +473,7 @@ class indquery extends query
         $query = sprintf("SELECT idstaff,name,post FROM staff WHERE status = 1 ORDER BY post ;");
         // $info got the necessary information about staff;
         $info = $this->get_custom_select_query($query, 3);
-        // furtern customization is upto you
+        // further customization is upto you
         echo "<br/>Attendance For : ";
 
         $html = new html();
