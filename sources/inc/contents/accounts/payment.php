@@ -1,13 +1,13 @@
 <h2>Payment</h2>
 <br/>
 <?php
-include("sources/inc/usercheck.php");
+include("./sources/inc/usercheck.php");
 $flag = true;
 
 if (isset($_POST['ab'])) {
     if (isset($_POST['party']) && isset($_POST['p_t'])
         && isset($_POST['p_m']) && $_POST['amnt'] > 0) {
-        if ($_POST['p_m'] == 1) {
+        if (isset($_POST['p_m']) && $_POST['p_m'] == 1) {
             if ($_POST['c_bn'] != "" && $_POST['c_br'] != "" && $_POST['c_ac'] != "") {
                 $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
                 $bank[0] = null;
@@ -34,7 +34,6 @@ if (isset($_POST['ab'])) {
                 $qur->printPayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
             }
         }
-    } else {
-        $qur->printPayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
     }
-}
+} else
+    $qur->printPayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
