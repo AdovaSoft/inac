@@ -287,7 +287,6 @@ class indquery extends query
             if ($flag) {
                 $flag = $this->insert_query('purchase_details', array('idpurchase', 'idproduct', 'unite', 'rate'), array($id, $info[0], $info[1], $info[2]), array('d', 'd', 'd', 'f'));
                 if ($flag) {
-
                     $query = sprintf("UPDATE stock SET stock = stock + %d WHERE idproduct = %d", $info[1], $info[0]);
                     $flag = mysqli_query($this->dtb_con, $query);
                     if (!$flag) {
@@ -342,22 +341,21 @@ class indquery extends query
         $id = $this->get_last_id("party", "idparty");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $flag = $this->insert_query('party', array('idparty', 'name'), array($id, $name), array('d', 's'));
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('party_adress', array('idparty', 'adress'), array($id, $address), array('d', 's'));
         }
-        if ($flag) {
-            if ($flag && $p1 != "") {
+        if ($flag == 1) {
+            if ($p1 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p1), array('d', 's'));
             }
-            if ($flag && $p2 != "") {
+            if ($p2 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p2), array('d', 's'));
             }
-
-            if ($flag) {
-                $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
-            }
         }
-        if ($flag) {
+        if ($flag == 1) {
+                $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
+        }
+        if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
