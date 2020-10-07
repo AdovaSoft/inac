@@ -4,7 +4,7 @@ include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
-$tti_p = $tto_p = 0;
+$tti_p = $tto_p =  $product_trac = 0;
 $tti = $tto = 0;
 if ($n > 0) {
     echo "<h2>Grouped Product wise</h2>";
@@ -191,7 +191,6 @@ if ($n > 0) {
     }
     echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table><br/>";
-    echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
     echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
 }

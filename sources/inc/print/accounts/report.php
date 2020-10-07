@@ -40,8 +40,9 @@ for ($i = 0; $i < count($res); $i++) {
 
     if ($res[$i][3] > 0) {
         echo "<td>";
-        echo($res[$i][3]);
-        $in_total = $in_total + $res[$i][3];
+        $total = $res[$i][3];
+        echo money($total);
+        $in_total += $res[$i][3];
         echo "</td>";
         echo "<td>";
         echo "-";
@@ -52,7 +53,8 @@ for ($i = 0; $i < count($res); $i++) {
         echo "-";
         echo "</td>";
         echo "<td>";
-        echo($res[$i][3] * (-1));
+        $total = $res[$i][3] * (-1);
+        echo money($total);
         $out_total = $out_total + ($res[$i][3] * (-1));
         echo "</td>";
 
@@ -65,8 +67,8 @@ for ($i = 0; $i < count($res); $i++) {
     echo "</td>";
     echo "</tr>";
 }
-
-echo "<tr><th>Total</th><th>" . $in_total . "</th><th>" . $out_total . "</th><td>Balance : " . ($in_total - $out_total) . "</td></tr>";
+$total = $in_total - $out_total;
+echo "<tr><th>Total</th><th>" . money($in_total) . "</th><th>" . money($out_total) . "</th><td>Balance : " . money($total) . "</td></tr>";
 
 echo "</table>";
 ?>
