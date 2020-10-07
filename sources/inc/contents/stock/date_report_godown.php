@@ -212,7 +212,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
 }
-elseif ($_GET['group'] == 2) {
+elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='0' OR type='2') ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $info = $qur->get_custom_select_query($query, 6);
@@ -220,9 +220,9 @@ elseif ($_GET['group'] == 2) {
     $tti_p = $tto_p = 0;
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
-        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . date('Y-m-d') . "' class='button'><b> Show Just Date wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" .date('Y-m-d') . "' class='button'><b> Group Product wise </b></a>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . date('Y-m-d') . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_unit = $info[0][3];
@@ -425,11 +425,14 @@ elseif ($_GET['group'] == 2) {
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
     }
-} else {
+}
+//Date wise
+else {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='0' OR type='2') ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti = $tto = 0;
+    $tti_p = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
@@ -490,7 +493,7 @@ elseif ($_GET['group'] == 2) {
                 echo "<td>";
                 echo $i[2];
                 if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
+                    $tti_p += $i[2];
 
                 echo "</td>";
                 echo "<td>";

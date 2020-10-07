@@ -1,14 +1,13 @@
 <?php
+$date2 = date("Y-m-d");
+$date1 = date('Y-m-d', strtotime('-30 day', strtotime($date2)));
+
 if ($inp->get_post_date('date1') && $inp->get_post_date('date2')) {
     $date1 = $inp->get_post_date('date1');
     $date2 = $inp->get_post_date('date2');
 } elseif ($inp->value_pgd('date1') && $inp->value_pgd('date2')) {
     $date1 = $inp->value_pgd('date1');
     $date2 = $inp->value_pgd('date2');
-} else {
-    $date2 = date("Y-m-d");
-    $date1 = strtotime('-30 day', strtotime($date2));
-    $date1 = date('Y-m-d', $date1);
 }
 
 echo "<form method='post' class='embossed'>";

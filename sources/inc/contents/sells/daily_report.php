@@ -9,6 +9,7 @@ include("sources/inc/single_date.php");
 $query = sprintf("SELECT idselles FROM selles WHERE date = '%s' ORDER BY idselles DESC", $date);
 $idinfo = $qur->get_custom_select_query($query, 1);
 $grand_total = 0;
+echo "<br/>";
 echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
 for ($i = 0; $i < count($idinfo); $i++) {
     $vou = $idinfo[$i][0];

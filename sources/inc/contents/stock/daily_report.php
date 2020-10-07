@@ -27,14 +27,19 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             if ($product_trac != $i[1]) {
 
                 if ($i[1] != $first_product) {
-                    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                    echo "<tr>
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+</tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
                 }
 
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/>
+<table align='center' class='rb'>";
                 echo "<tr>";
                 echo "<td>";
                 echo "Date";
@@ -61,6 +66,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "Remark";
                 echo "</td>";
                 echo "</tr>";
+                // head
+
                 echo "<tr>";
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
@@ -69,11 +76,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money ($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
-                    echo $i[2];
+                    echo money($i[2]);
                     if ($i[5] == 0 || $i[5] == 1)
                         $tti_p = $tti_p + $i[2];
 
@@ -90,7 +97,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
-                        echo $i[2];
+                        echo money($i[2]);
                     }
                     echo "</td>";
                     echo "<td>";
@@ -142,11 +149,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
-                    echo $i[2];
+                    echo money($i[2]);
                     if ($i[5] == 0 || $i[5] == 1)
                         $tti_p = $tti_p + $i[2];
 
@@ -155,7 +162,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
-                        echo $i[2];
+                        echo money($i[2]);
                     }
                     echo "</td>";
                 } else {
@@ -163,11 +170,12 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
-                        echo $i[2];
+                        echo money($i[2]);
                     }
                     echo "</td>";
                     echo "<td>";
-                    echo(-$i[2]);
+                    $mmm = (-$i[2]);
+                    echo money($mmm);
                     if ($i[5] == 0 || $i[5] == 1)
                         $tto_p = $tto_o + (-$i[2]);
                     echo "</td>";
@@ -180,15 +188,18 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
-                } else {
+                        echo "<th class='blue'>" . money($ss) . "</th>";
+                }
+                else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $neg = -$ss;
+                        echo "<th class='red'>" . money($neg) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -215,7 +226,6 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
         echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-        echo "<br/><a  id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
@@ -283,7 +293,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
@@ -357,7 +367,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
@@ -491,7 +501,7 @@ else {
             echo "</td>";
 
             echo "<td>";
-            echo $i[4];
+            echo money($i[4]);
             echo "</td>";
 
             if ($i[2] > 0) {
@@ -561,8 +571,6 @@ else {
 
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
-        //echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-        echo "<br/><a  id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
