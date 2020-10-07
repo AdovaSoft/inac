@@ -719,7 +719,7 @@ class indquery extends query
      * @param $type
      * @param $cost
      */
-    public function printPayment($id, $type, $cost)
+    public function printPayment($id = NULL, $type = NULL , $cost = 0.0)
     {
         $comment = null;
         $inp = new html();
