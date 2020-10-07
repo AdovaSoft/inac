@@ -118,7 +118,8 @@ if ($n > 0) {
 
         echo "</tr>";
     }
-    echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($tti + $tto) . " TK</th></tr>";
+    $total = $tti + $tto;
+    echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
     echo "</table>";
     echo "<br/>";
 } else {

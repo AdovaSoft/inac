@@ -42,12 +42,13 @@ if ($n > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo sprintf("%.2f", $i[3]);
+        echo money($i[3]);
 
         echo "</td>";
 
         echo "<td>";
-        echo sprintf("%.2f", $i[2] * $i[3]);
+        $total = $i[2] * $i[3];
+        echo money($total);
         $cos += $i[2] * $i[3];
         echo "</td>";
         echo "</tr>";
