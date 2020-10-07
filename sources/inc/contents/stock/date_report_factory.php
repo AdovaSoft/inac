@@ -431,127 +431,138 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $n = count($info);
     $tti = $tto = 0;
     $tti_p = $tto_p = 0;
+    $tto_o = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
-        echo "<br/><table align='center' class='rb'>";
-        echo "<tr>";
-        echo "<td>";
-        echo "Date";
-        echo "</td>";
+        echo "<br/><table align='center' class='rb table'>";
+        echo "<thead>";
 
-        echo "<td>";
-        echo "Product";
-        echo "</td>";
+            echo "<tr>";
+            
+                echo "<td>";
+                echo "Date";
+                echo "</td>";
 
-        echo "<td>";
-        echo "Price (TK)";
-        echo "</td>";
+                echo "<td>";
+                echo "Product";
+                echo "</td>";
+
+                echo "<td>";
+                echo "Price (TK)";
+                echo "</td>";
 
 
-        echo "<td>";
-        echo "Incoming";
-        echo "</td>";
+                echo "<td>";
+                echo "Incoming";
+                echo "</td>";
 
-        echo "<td>";
-        echo "Outgoing";
-        echo "</td>";
+                echo "<td>";
+                echo "Outgoing";
+                echo "</td>";
 
-        echo "<td>";
-        echo "Unit";
-        echo "</td>";
+                echo "<td>";
+                echo "Unit";
+                echo "</td>";
 
-        echo "<td>";
-        echo "Total Price (TK)";
-        echo "</td>";
+                echo "<td>";
+                echo "Total Price (TK)";
+                echo "</td>";
 
-        echo "<td>";
-        echo "Remark";
-        echo "</td>";
-        echo "</tr>";
-
+                echo "<td>";
+                echo "Remark";
+                echo "</td>";
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
         foreach ($info as $i) {
             echo "<tr>";
 
-            echo "<td>";
-            echo $inp->date_convert($i[0]);
-            echo "</td>";
-
-            echo "<td>";
-            echo $i[1];
-            echo "</td>";
-
-            echo "<td>";
-            echo $i[4];
-            echo "</td>";
-
-            if ($i[2] > 0) {
                 echo "<td>";
-                echo $i[2];
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p += $i[2];
-
+                echo $inp->date_convert($i[0]);
                 echo "</td>";
+
                 echo "<td>";
-                if ($i[5] == 0 || $i[5] == 1) {
-                    echo "-";
-                } else {
+                echo $i[1];
+                echo "</td>";
+
+                echo "<td>";
+                echo $i[4];
+                echo "</td>";
+
+                if ($i[2] > 0) {
+                    echo "<td>";
                     echo $i[2];
+                    if ($i[5] == 0 || $i[5] == 1)
+                        $tti_p += $i[2];
+
+                    echo "</td>";
+                    echo "<td>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        echo "-";
+                    } else {
+                        echo $i[2];
+                    }
+                    echo "</td>";
+                } else {
+                    echo "<td>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        echo "-";
+                    } else {
+                        echo $i[2];
+                    }
+                    echo "</td>";
+                    echo "<td>";
+                    echo(-$i[2]);
+                    if ($i[5] == 0 || $i[5] == 1)
+                        $tto_o += (-$i[2]);
+                    echo "</td>";
+                }
+
+                echo "<td>";
+                echo $i[3];
+                echo "</td>";
+                $ss = $i[2] * $i[4];
+                if ($ss > 0) {
+                    $tti += $ss;
+                    if ($i[5] == 0 || $i[5] == 1)
+                        echo "<th class='green'>" . money($ss) . "</th>";
+                    else
+                        echo "<th class='blue'>" . money($ss) . "</th>";
+                } else {
+                    $tto += $ss;
+                    if ($i[5] == 0 || $i[5] == 1){
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
+                    else
+                        echo "<th class='blue'>" . money($ss) . "</th>";
+                }
+                echo "<td>";
+
+                if ($i[5] == 0) {
+                    echo "Godown";
+                }
+                if ($i[5] == 1) {
+                    echo "Factory";
+                }
+                if ($i[5] == 2) {
+                    echo "Factory to godown";
+                }
+                if ($i[5] == 3) {
+                    echo "Godown to factory";
                 }
                 echo "</td>";
-            } else {
-                echo "<td>";
-                if ($i[5] == 0 || $i[5] == 1) {
-                    echo "-";
-                } else {
-                    echo $i[2];
-                }
-                echo "</td>";
-                echo "<td>";
-                echo(-$i[2]);
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tto_o += (-$i[2]);
-                echo "</td>";
-            }
-
-            echo "<td>";
-            echo $i[3];
-            echo "</td>";
-            $ss = $i[2] * $i[4];
-            if ($ss > 0) {
-                $tti += $ss;
-                if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
-                else
-                    echo "<th class='blue'>" . $ss . "</th>";
-            } else {
-                $tto += $ss;
-                if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
-                else
-                    echo "<th class='blue'>" . $ss . "</th>";
-            }
-            echo "<td>";
-
-            if ($i[5] == 0) {
-                echo "Godown";
-            }
-            if ($i[5] == 1) {
-                echo "Factory";
-            }
-            if ($i[5] == 2) {
-                echo "Factory to godown";
-            }
-            if ($i[5] == 3) {
-                echo "Godown to factory";
-            }
-            echo "</td>";
 
             echo "</tr>";
         }
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        echo "</tbody>";
+        echo "<tfoot>";
+            $ttio = $tti + $tto;
+            echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($ttio) . " TK</th></tr>";
+        echo "</tfoot>";
         echo "</table>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
