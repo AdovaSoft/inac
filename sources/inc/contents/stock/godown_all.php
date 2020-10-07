@@ -39,16 +39,16 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $ar[4] . "'>";
-        echo $ar[0];
+        echo esc($ar[0]);
         echo "</a>";
         echo "</th>";
 
         echo "<td>";
-        echo $ar[1];
+        echo esc($ar[1]);
         echo "</td>";
 
         echo "<td>";
-        echo $ar[2];
+        echo esc($ar[2]);
         echo "</td>";
 
         echo "<td>";
@@ -77,7 +77,7 @@ if (count($info) > 0) {
 */
     echo "</table><br/>";
 } else {
-    echo "<br/><h3>No raw mattarials is in stock</h3>";
+    echo "<br/><h3>No raw materials is in stock</h3>";
 }
 
 

@@ -38,36 +38,36 @@
   <li><a href="index.php?e=<?= $encptid ?>&&page=stock">Stock</a>
     <ul>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=all">All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=raw">All Raw Matarials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=raw">All Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=finished">All Finished Product</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_all">Godown All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Matarials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_finished">Godown Finished</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_all">Factory All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Matarials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_finished">Factory Finished</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report">Daily Stock</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report">Datewise Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report">Date wise Report</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_godown">Daily Godown Stock</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Datewise Godown</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Date wise Godown</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_factory">Daily Factory Stock</a>
       </li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_factory">Datewise Factory Report</a>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_factory">Date wise Factory Report</a>
       </li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Tansfer to Factory</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Tansfer to Godown</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factroy Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>" ?>
         <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>" ?>
     </ul>
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&&page=godown">Godown</a>
     <ul>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_godown">Daily Godown Stock</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Datewise Godown</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Date wise Godown</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_all">Godown All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Matarials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_finished">Godown Finished</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Tansfer to Godown</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
         <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>" ?>
     </ul>
   </li>
@@ -75,13 +75,13 @@
     <ul>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_factory">Daily Factory Stock</a>
       </li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_factory">Datewise Factory Report</a>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_factory">Date wise Factory Report</a>
       </li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_all">Factory All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Matarials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_finished">Factory Finished</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Tansfer to Factory</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factroy Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>" ?>
     </ul>
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&&page=accounts">Accounts</a>

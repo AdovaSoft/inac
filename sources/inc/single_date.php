@@ -11,5 +11,5 @@ echo "Select date &nbsp;&nbsp;&nbsp;";
 $inp->input_date('date', $date);
 echo "&nbsp;&nbsp;&nbsp;<input type='submit' name='view' value='View'>";
 echo "</form>";
-echo "<br/><h2>Report of <b class='blue'>" . $inp->date_convert($date) . "</b></h2><br/>";
+//echo "<br/><h2>Report of <b class='blue'>" . $inp->date_convert($date) . "</b></h2><br/>";
 ?>

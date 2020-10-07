@@ -1,4 +1,4 @@
-<h1>Datewise Godown Stock Report</h1>
+<h1>Date wise Godown Stock Report</h1>
 <?php
 include("sources/inc/print/double_date.php");
 
@@ -24,7 +24,7 @@ if ($n > 0) {
 
 
     echo "<td>";
-    echo "Incomming";
+    echo "Incoming";
     echo "</td>";
 
     echo "<td>";

@@ -3,19 +3,19 @@ session_start();
 date_default_timezone_set('Asia/Dhaka');
 include("./sources/inc/security_o.php");
 $editor = isset($_POST['editor']) ? $_POST['editor'] : 'settings/theme';
-$returnlink = isset($_POST['returnlink']) ? $_POST['returnlink'] : 'index.php?e=' . $encptid;
-if ($editor && $returnlink) {
+$return_link = isset($_POST['returnlink']) ? $_POST['returnlink'] : 'index.php?e=' . $encptid;
+if ($editor && $return_link) {
     $path = "./sources/inc/editor/" . $editor . ".php";
     if (file_exists($path)) {
         var_dump(file_exists($path));
         include "$path";
         if (isset($_POST['more_input']) && isset($_POST['num'])) {
             $more = $_POST['num'] + 1;
-            $extrastring = $extrastring . "&&num=" . $more . "&&say=input_added";
+            $extra_string .= "&&num=" . $more . "&&say=input_added";
         }
-        header("Location:" . $returnlink . $extrastring);
+        header("Location:" . $return_link . $extra_string);
     } else {
-        header("Location:" . $returnlink);
+        header("Location:" . $return_link);
     }
 } else {
     header("Location:index.php?e=' . $encptid");

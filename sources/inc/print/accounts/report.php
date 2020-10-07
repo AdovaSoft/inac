@@ -22,7 +22,7 @@ echo "Investment / Revenue";
 echo "</th>";
 
 echo "<th>";
-echo "Drawings / Expences";
+echo "Drawings / Expenses";
 echo "</th>";
 
 echo "<th width='200px'>";

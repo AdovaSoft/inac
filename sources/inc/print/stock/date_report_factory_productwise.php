@@ -1,4 +1,4 @@
-<h1>Datewise Factory Stock Report</h1>
+<h1>Date wise Factory Stock Report</h1>
 <?php
 include("sources/inc/print/double_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date1, $date2);
@@ -30,7 +30,7 @@ if ($n > 0) {
             echo "Price (TK)";
             echo "</td>";
             echo "<td>";
-            echo "Incomming";
+            echo "Incoming";
             echo "</td>";
             echo "<td>";
             echo "Outgoing";

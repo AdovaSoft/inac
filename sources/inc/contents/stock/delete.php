@@ -44,7 +44,7 @@ if ($n > 0) {
     echo "</td>";
 
     echo "<td>";
-    echo "Incomming";
+    echo "Incoming";
     echo "</td>";
 
     echo "<td>";

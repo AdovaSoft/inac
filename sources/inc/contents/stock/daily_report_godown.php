@@ -11,10 +11,10 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $tti_p = $tto_p = 0;
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button'><b> Show Just Datewise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unitwise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
-        echo "<br/><h2>Grouped Productwise</h2><br/>";
+        echo "<br/><h2>Grouped Product wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_product = $info[0][1];
         foreach ($info as $i) {
@@ -39,7 +39,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "Price (TK)";
                 echo "</td>";
                 echo "<td>";
-                echo "Incomming";
+                echo "Incoming";
                 echo "</td>";
                 echo "<td>";
                 echo "Outgoing";
@@ -219,8 +219,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $tti_p = $tto_p = 0;
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button'><b> Show Just Datewise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Productwise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><h2>Grouped Unitwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
@@ -247,7 +247,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "Price (TK)";
                 echo "</td>";
                 echo "<td>";
-                echo "Incomming";
+                echo "Incoming";
                 echo "</td>";
                 echo "<td>";
                 echo "Outgoing";
@@ -425,8 +425,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $n = count($info);
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Productwise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unitwise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><table align='center' class='rb'>";
@@ -445,7 +445,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
 
 
         echo "<td>";
-        echo "Incomming";
+        echo "Incoming";
         echo "</td>";
 
         echo "<td>";

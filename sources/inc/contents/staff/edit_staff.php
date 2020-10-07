@@ -14,7 +14,7 @@ if (isset($_POST['ab1'])) {
     }
     if ($flag) {
         $qur->execute_query('COMMIT');
-        echo "<h3 class='green'>Successfull</h3><br/>";
+        echo "<h3 class='green'>Successful</h3><br/>";
     } else {
         $qur->execute_query('ROLLBACK');
         echo "<h3 class='green'>Failed</h3><br/>";
@@ -50,7 +50,7 @@ if (isset($_POST['st']) && $_POST['st'] != null) {
     echo "<br/><h2>Edit " . $info[0][0] . "</h2>";
     echo "<br/><form method = 'POST' class='embossed'>";
     echo "Joining Date : ";
-    $inp->input_date('jd', $info[0][3],true);
+    $inp->input_date('jd', $info[0][3], true);
     echo "<br/><br/>";
     if (isset($_POST['n']))
         $inp->input_text('Name : ', 'n', $_POST['n']);

@@ -112,7 +112,7 @@ class indquery extends query
         echo "</form>";
     }
 
-    public function newSelles($party, $date, $sel_info, $dis, $t)
+    public function new_sells($party, $date, $sel_info, $dis, $t)
     {
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $id = $this->get_last_id('selles', 'idselles');
@@ -655,7 +655,7 @@ class indquery extends query
             foreach ($fault as $f) {
                 echo " " . $f . ", ";
             }
-            echo "<br/>because Attendence + Leave + Absent is not equal to " . $inp->print_month_days($mon, $yer) . "</h4>";
+            echo "<br/>because Attendance + Leave + Absent is not equal to " . $inp->print_month_days($mon, $yer) . "</h4>";
             return false;
         } else {
             mysqli_query($this->dtb_con, 'START TRANSACTION');
@@ -730,7 +730,7 @@ class indquery extends query
         echo "<br/>";
         echo "<br/>";
         if ($type == null) {
-            $inp->input_radio('Giveing to ', 'p_t', -1, 0);
+            $inp->input_radio('Giving to ', 'p_t', -1, 0);
             echo "&nbsp&nbsp;&nbsp&nbsp;";
             $inp->input_radio('Receiving from ', 'p_t', 1, 0);
         } else {
@@ -738,8 +738,8 @@ class indquery extends query
                 echo "Receiving from <input type='hidden' name='p_t' value='1' >";
                 $comment = "Receiving from ";
             } else {
-                echo "Giveing to <input type='hidden' name='p_t' value='-1' >";
-                $comment = "Giveing to ";
+                echo "Giving to <input type='hidden' name='p_t' value='-1' >";
+                $comment = "Giving to ";
             }
         }
 

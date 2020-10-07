@@ -1,4 +1,4 @@
-<h1>Datewise Stock Report</h1>
+<h1>Date wise Stock Report</h1>
 <?php
 include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
@@ -7,7 +7,7 @@ $n = count($info);
 $tti_p = $tto_p = 0;
 $tti = $tto = 0;
 if ($n > 0) {
-    echo "<h2>Grouped Productwise</h2>";
+    echo "<h2>Grouped Product wise</h2>";
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
@@ -32,7 +32,7 @@ if ($n > 0) {
             echo "Price (TK)";
             echo "</td>";
             echo "<td>";
-            echo "Incomming";
+            echo "Incoming";
             echo "</td>";
             echo "<td>";
             echo "Outgoing";

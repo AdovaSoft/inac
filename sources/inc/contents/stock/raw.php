@@ -55,7 +55,6 @@ if (count($info) > 0) {
         echo esc($rawmaterial[1]);
         echo "</td>";
 
-
         echo "<td>";
         echo esc($rawmaterial[2]);
         echo "</td>";
@@ -73,11 +72,10 @@ if (count($info) > 0) {
         echo money($rawmaterial[4]);
         echo "</td>";
 
-
         echo "<td>";
-        $total = ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
-        echo money($total);
-        $cost += $total;
+        $rawMaterialPrice = ($rawmaterial[1] + $rawmaterial[2]) * $rawmaterial[4];
+        echo money($rawMaterialPrice);
+        $cost += $rawMaterialPrice;
         echo "</td>";
         echo "</tr>";
     }
@@ -95,6 +93,6 @@ if (count($info) > 0) {
     */
     echo "</table><br/>";
 } else {
-    echo "<br/><h3>No raw mattarials is in stock</h3>";
+    echo "<br/><h3>No raw materials is in stock</h3>";
 }
 ?>

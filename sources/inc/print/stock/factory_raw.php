@@ -60,7 +60,8 @@ if (count($info) > 0) {
 
         echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
-        echo sprintf("%.2f", $ar[3] * $ar[1]);
+        $total = $ar[3] * $ar[1];
+        echo money($total);
         $cost += $ar[3] * $ar[1];
         echo "</a>";
         echo "</td>";
@@ -68,7 +69,7 @@ if (count($info) > 0) {
     }
 
     echo "<tr>";
-    echo "<th colspan = '4' >";
+    echo "<th colspan = '4'>";
     echo "Grand Total : ";
     echo "</th>";
 
@@ -79,7 +80,7 @@ if (count($info) > 0) {
 
     echo "</table>";
 } else {
-    echo "No raw mattarials is in stock";
+    echo "No raw materials is in stock";
 }
 
 ?>

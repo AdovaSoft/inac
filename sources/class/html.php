@@ -286,8 +286,8 @@ class html
     {
         if ($date == "0000-00-00" || (!$date))
             return "-";
-/*        elseif ($date == date("Y-m-d"))
-            return "Today";*/
+        /*        elseif ($date == date("Y-m-d"))
+                    return "Today";*/
         else
             return $newDate = date("d M Y (D)", strtotime($date));
     }

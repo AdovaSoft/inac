@@ -15,31 +15,31 @@ echo "<a id=''  href='print.php?e=" . $encptid . "&page=accounts&&sub=report&&da
 $in_total = 0;
 $out_total = 0;
 echo "<br/><table align='center' class='rb table'>";
-    echo "<thead>";
-        echo "<tr>";
+echo "<thead>";
+echo "<tr>";
 
-        echo "<th>";
-        echo "Date";
-        echo "</th>";
+echo "<th>";
+echo "Date";
+echo "</th>";
 
-        echo "<th>";
-        echo "Investment / Revenue";
-        echo "</th>";
+echo "<th>";
+echo "Investment / Revenue";
+echo "</th>";
 
-        echo "<th>";
-        echo "Drawings / Expences";
-        echo "</th>";
+echo "<th>";
+echo "Drawings / Expenses";
+echo "</th>";
 
-        echo "<th width='100px'>";
-        echo "Comments";
-        echo "</th>";
-        if ($usertype == ADMIN) {
-            echo "<th>";
-            echo "Delete Buttons";
-            echo "</th>";
-        }
-        echo "</tr>";
-    echo "</thead>";
+echo "<th width='100px'>";
+echo "Comments";
+echo "</th>";
+if ($usertype == ADMIN) {
+    echo "<th>";
+    echo "Delete Buttons";
+    echo "</th>";
+}
+echo "</tr>";
+echo "</thead>";
 $p = 0;
 $r = 0;
 echo "<tbody>";
@@ -87,7 +87,7 @@ echo "</tbody>";
 echo "<tfoot><tr><th>Total</th><th>" . money($in_total) . "</th>
 <th>" . money($out_total) . "</th>
 <td class='blue' colspan='2'>";
-    $in_total -= $out_total;
+$in_total -= $out_total;
 echo "<b>Balance: " . money($in_total) . "</b></td></tr></tfoot>";
 echo "</table><br/>";
 

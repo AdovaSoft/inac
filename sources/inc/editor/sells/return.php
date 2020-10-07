@@ -6,7 +6,7 @@ if ($inp->value_pgd('ab') == 'Edit') {
     $pro = array();
     for ($i = 0; $i < $_POST['num']; $i++) {
         if ($_POST['pr_pc_' . $i] < $_POST['pc_' . $i] || $_POST['co_' . $i] <= 0) {
-            $extrastring = "&&say=5";
+            $extra_string = "&&say=5";
             $flag = false;
             break;
         } else {
@@ -21,11 +21,11 @@ if ($inp->value_pgd('ab') == 'Edit') {
     if ($flag)
         $sell_edited = $qur->sells_return($id, $pro, $d, $cost);
     if ($sell_edited) {
-        $extrastring = "&&say=" . $sell_edited;
+        $extra_string = "&&say=" . $sell_edited;
     }
 
 }
-$extrastring = $extrastring . $inp->extra_string('ab');
-$extrastring = $extrastring . $inp->extra_string('v');
-$extrastring = $extrastring . "&&v_submit=Find Another";
+$extra_string .= $inp->extra_string('ab');
+$extra_string .= $inp->extra_string('v');
+$extra_string .= "&&v_submit=Find Another";
 ?>

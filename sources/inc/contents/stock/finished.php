@@ -77,24 +77,24 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        $total = ($finished[1] + $finished[2]) * $finished[4];
-        echo money($total);
-        $cost += $total;
+        $finishedTotal = ($finished[1] + $finished[2]) * $finished[4];
+        echo money($finishedTotal);
+        $cost += $finishedTotal;
         echo "</td>";
         echo "</tr>";
     }
     echo "</tbody>";
     /*
-    echo "<tr>";
-    echo "<th colspan = '6' >";
-    echo "Grand Total : ";
-    echo "</th>";
+        echo "<tr>";
+        echo "<th colspan = '6' >";
+        echo "Grand Total : ";
+        echo "</th>";
 
-    echo "<td >";
-    echo $cost;
-    echo "</td>";
-    echo "</tr>";
-*/
+        echo "<td >";
+        echo $cost;
+        echo "</td>";
+        echo "</tr>";
+    */
     echo "</table><br/>";
 } else {
     echo "<br/><h3>No raw materials is in stock</h3>";

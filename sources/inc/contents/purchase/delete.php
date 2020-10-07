@@ -7,6 +7,6 @@ if (isset($_POST['pur_id']) && ($usertype == ADMIN)) {
         echo "<br/><h3 class='red'>Failed to Delete Purchase</h3><br/>";
     }
 } else {
-    echo "<h2 class='red'>You are not permited to Delete.</h2><br/>";
+    echo "<h2 class='red'>You are not permitted to Delete.</h2><br/>";
 }
 ?>

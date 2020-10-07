@@ -31,7 +31,7 @@ if ($n > 0) {
             echo "Price (TK)";
             echo "</td>";
             echo "<td>";
-            echo "Incomming";
+            echo "Incoming";
             echo "</td>";
             echo "<td>";
             echo "Outgoing";

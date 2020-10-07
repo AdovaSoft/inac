@@ -5,7 +5,7 @@ $query = sprintf("SELECT name, factory_stock, unite, price, idproduct FROM (SELE
 $qur = new indquery();
 $info = $qur->get_custom_select_query($query, 5);
 $cost = 0;
-echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=factory_raw' class='button' target='_blank'><b> Print </b></a>";
+
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 
 if (count($info) > 0) {
@@ -79,7 +79,7 @@ if (count($info) > 0) {
 
     echo "</table><br/>";
 } else {
-    echo "No raw mattarials is in stock";
+    echo "No raw materials is in stock";
 }
 
 ?>
