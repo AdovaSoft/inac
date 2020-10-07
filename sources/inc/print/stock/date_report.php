@@ -57,7 +57,7 @@ if ($n > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $i[4];
+        echo money($i[4]);
         echo "</td>";
 
         if ($i[2] > 0) {
@@ -95,10 +95,11 @@ if ($n > 0) {
         $ss = $i[2] * $i[4];
         if ($ss > 0) {
             $tti += $ss;
-            echo "<th class='green'>" . $ss . "</th>";
+            echo "<th class='green'>" . money($ss) . "</th>";
         } else {
             $tto += $ss;
-            echo "<th class='red'>" . (-$ss) . "</th>";
+            $ss *= (-1);
+            echo "<th class='red'>" . money($ss) . "</th>";
         }
         echo "<td>";
 

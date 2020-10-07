@@ -61,7 +61,7 @@ if ($n > 0) {
     echo $qun;
     echo "</b></td>";
     echo "<td> </td>";
-    echo "<td><b>" . $cos . "</b></td>";
+    echo "<td><b>" . money($cos) . "</b></td>";
     echo "</tr>";
     echo "</table>";
 }
