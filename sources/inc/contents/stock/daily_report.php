@@ -248,7 +248,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         $product_trac = null;
         $unit_trac = null;
         $price_trac = null;
-
+$tto_o = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
@@ -448,7 +448,7 @@ else {
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti_p = $tti = $tto = 0;
-
+    $tto_o = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
