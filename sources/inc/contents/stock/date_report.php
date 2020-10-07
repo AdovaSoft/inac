@@ -69,7 +69,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
@@ -106,15 +106,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -319,15 +321,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -528,16 +532,18 @@ else {
             $ss = $stock[2] * $stock[4];
             if ($ss > 0) {
                 $tti += $ss;
-                if ($stock[5] == 0 || $stock[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
+                if ($i[5] == 0 || $i[5] == 1)
+                    echo "<th class='green'>" . money($ss) . "</th>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<th class='blue'>" . money($ss) . "</th>";
             } else {
                 $tto += $ss;
-                if ($stock[5] == 0 || $stock[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
+                if ($i[5] == 0 || $i[5] == 1) {
+                    $ss = -$ss;
+                    echo "<th class='red'>" . money($ss) . "</th>";
+                }
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<th class='blue'>" . money($ss) . "</th>";
             }
             echo "<td>";
 
@@ -557,9 +563,11 @@ else {
 
             echo "</tr>";
         }
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+        $tto = -$tto;
+        $total = $tti + $tto;
+        echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th>
 </tr>";
         echo "</table>";
     } else {

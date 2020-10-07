@@ -4,7 +4,7 @@ include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date);
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
-$tti_p = $tto_p = 0;
+$tti_p = $tto_p = $unit_trac = 0;
 $tti = $tto = 0;
 if ($n > 0) {
     echo "<h2>Grouped Unitwise</h2>";
@@ -58,7 +58,7 @@ if ($n > 0) {
             echo "</td>";
             if ($i[2] > 0) {
                 echo "<td>";
-                echo $i[2];
+                echo money($i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
                     $tti_p = $tti_p + $i[2];
 
@@ -67,7 +67,7 @@ if ($n > 0) {
                 if ($i[5] == 0 || $i[5] == 1) {
                     echo "-";
                 } else {
-                    echo $i[2];
+                    echo money($i[2]);
                 }
                 echo "</td>";
             } else {
@@ -91,10 +91,11 @@ if ($n > 0) {
             $ss = $i[2] * $i[4];
             if ($ss > 0) {
                 $tti += $ss;
-                echo "<th class='green'>" . $ss . "</th>";
+                echo "<th class='green'>" . money($ss) . "</th>";
             } else {
                 $tto += $ss;
-                echo "<th class='red'>" . (-$ss) . "</th>";
+                $ss *= (-1);
+                echo "<th class='red'>" . money($ss) . "</th>";
             }
             echo "<td>";
 
@@ -159,10 +160,11 @@ if ($n > 0) {
             $ss = $i[2] * $i[4];
             if ($ss > 0) {
                 $tti += $ss;
-                echo "<th class='green'>" . $ss . "</th>";
+                echo "<th class='green'>" . money($ss) . "</th>";
             } else {
                 $tto += $ss;
-                echo "<th class='red'>" . (-$ss) . "</th>";
+                $ss *= (-1);
+                echo "<th class='red'>" . money($ss) . "</th>";
             }
             echo "<td>";
             if ($i[5] == 0) {
@@ -185,7 +187,9 @@ if ($n > 0) {
         $price_trac = $i[4];
         $unit_trac = $i[3];
     }
-    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    $tto *= (-1);
+    $total = $tti + $tto;
+    echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
     echo "</table>'";
 } else {
     echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";

@@ -69,9 +69,9 @@ if (count($info) > 0) {
 
 
         echo "<td>";
-        $arTotal = ($ar[1] + $ar[2]) * $ar[4];
-        echo money($arTotal);
-        $cost += $arTotal;
+        $total = ($ar[1] + $ar[2]) * $ar[4];
+        echo money($total);
+        $cost += ($ar[1] + $ar[2]) * $ar[4];
         echo "</td>";
         echo "</tr>";
     }

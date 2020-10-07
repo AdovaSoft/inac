@@ -53,7 +53,7 @@ if (count($info) > 0) {
 
         echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
-        echo $ar[3];
+        echo money($ar[3]);
         echo "</a>";
         echo "</td>";
 
@@ -74,7 +74,7 @@ if (count($info) > 0) {
     echo "</th>";
 
     echo "<td >";
-    echo $cost;
+    echo money($cost);
     echo "</td>";
     echo "</tr>";
 
