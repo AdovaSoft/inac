@@ -9,6 +9,7 @@ include("sources/inc/single_date.php");
 $query = sprintf("SELECT idselles FROM selles WHERE date = '%s' ORDER BY idselles DESC", $date);
 $idinfo = $qur->get_custom_select_query($query, 1);
 $grand_total = 0;
+echo "<br/>";
 echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
 for ($i = 0; $i < count($idinfo); $i++) {
     $vou = $idinfo[$i][0];
@@ -96,7 +97,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo "<form method='POST'><input type='hidden' name='sell_id' value='" . $vou . "'/><input type='submit' name='delete' value='Delete'/></form> ";
         echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'><input type='hidden' name='v' value='" . $vou . "'/><input type='submit' name='ab' value='Edit'/></form> ";
     }
-    echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Bill'/></form> ";
+    echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Bill'/></form> ";
     echo "<form method='POST' action='recept_print.php?e=" . $encptid . "' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print on Pad'/></form> ";
     echo "</td>";
     echo "</tr>";

@@ -31,10 +31,10 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "Post";
             echo "</th>";
             echo "<th>";
-            echo "Sallary";
+            echo "Salary";
             echo "</th>";
             echo "<th>";
-            echo "Post";
+            echo "Status";
             echo "</th>";
             echo "</tr>";
             echo "</thead>";
@@ -62,9 +62,9 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
                 if ($res[$i][4]) {
-                    echo "active";
+                    echo "<span class='green'>active</span>";
                 } else {
-                    echo "inactive";
+                    echo "<span class='red'>inactive</span>";
                 }
                 echo "</a>";
                 echo "</td>";

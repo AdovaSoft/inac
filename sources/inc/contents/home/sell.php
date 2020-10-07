@@ -57,7 +57,7 @@ if (isset($_POST['searchword'])) {
                 echo "<td>";
                 echo "<form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='sell_id' value='" . $sell_results[$i][0] . "'/><input type='submit' name='delete_sell' value='Delete'/></form> ";
                 echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'><input type='hidden' name='v' value='" . $sell_results[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form> ";
-                echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $sell_results[$i][0] . "'/><input type='submit' name='print' value='Print'/></form>";
+                echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $sell_results[$i][0] . "'/><input type='submit' name='print' value='Print'/></form>";
                 echo "</td>";
                 echo "</tr>";
             }

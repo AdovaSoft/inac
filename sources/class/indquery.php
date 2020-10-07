@@ -936,7 +936,7 @@ class indquery extends query
             echo "<br/>Was purchased from : ";
             echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
             echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
-            echo "<b class='blue'>" . $sell_det[0][1] . "</b>";
+            echo "<b class='blue'>" . convert_date($sell_det[0][1]) . "</b>";
             echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voucher : ";
             echo "<b class='blue'>" . $vou . "</b><br/><br/>";
             echo "</td>";
@@ -964,11 +964,11 @@ class indquery extends query
                 echo "<td>";
 
                 if (isset($_POST['pc_' . $i])) {
-                    $inp->input_text(null, 'pc_' . $i, $_POST['pc_' . $i]);
+                    $inp->input_number(null, 'pc_' . $i, $_POST['pc_' . $i]);
                     $inp->input_hidden('pr_pc_' . $i, $_POST['pr_pc_' . $i]);
 
                 } else {
-                    $inp->input_text(null, 'pc_' . $i, $sell_pro[$i][1]);
+                    $inp->input_number(null, 'pc_' . $i, $sell_pro[$i][1]);
                     $inp->input_hidden('pr_pc_' . $i, $sell_pro[$i][1]);
 
                 }
@@ -978,18 +978,18 @@ class indquery extends query
 
                 echo "<td>";
                 if (isset($_POST['co_' . $i]))
-                    $inp->input_text(null, 'co_' . $i, $_POST['co_' . $i]);
+                    $inp->input_number(null, 'co_' . $i, $_POST['co_' . $i]);
                 else
-                    $inp->input_text(null, 'co_' . $i, $sell_pro[$i][2]);
+                    $inp->input_number(null, 'co_' . $i, $sell_pro[$i][2]);
                 echo "</td>";
                 echo "</tr>";
             }
             echo "<tr>";
             echo "<td colspan = '3'><br/>";
             if (isset($_POST['d']))
-                $inp->input_text('Discount', 'd', $_POST['d']);
+                $inp->input_number('Discount', 'd', $_POST['d']);
             else
-                $inp->input_text('Discount', 'd', $sell_det[0][2]);
+                $inp->input_number('Discount', 'd', $sell_det[0][2]);
             echo "</td>";
             echo "</tr>";
             echo "<tr>";

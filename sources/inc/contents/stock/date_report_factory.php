@@ -4,7 +4,7 @@
 
 include("sources/inc/double_date.php");
 
-if (isset($_GET['group']) == 1) {
+if (isset($_GET['group']) && $_GET['group'] == 1) {
     $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
@@ -18,6 +18,7 @@ if (isset($_GET['group']) == 1) {
         echo "<br/><h2>Grouped Product wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_product = $info[0][1];
+        $product_trac = 0;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
                 if ($i[1] != $first_product) {
@@ -27,7 +28,7 @@ if (isset($_GET['group']) == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/><table align='center' class='rb table'>";
+                echo "<br/><table align='center' class='rb'>";
                 echo "<thead>";
                 echo "<tr>";
                 echo "<td>";
@@ -209,8 +210,6 @@ if (isset($_GET['group']) == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_factory_productwise&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
@@ -228,6 +227,7 @@ if (isset($_GET['group']) == 1) {
         echo "<br/><h2>Grouped Unitwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_unit = $info[0][3];
+        $unit_trac = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
@@ -416,8 +416,6 @@ if (isset($_GET['group']) == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_factory_unitwise&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
@@ -426,7 +424,7 @@ if (isset($_GET['group']) == 1) {
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti = $tto = 0;
-    $tti_p = $tto_o = 0;
+    $tti_p = $tto_p = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
@@ -508,7 +506,7 @@ if (isset($_GET['group']) == 1) {
                 echo "<td>";
                 echo(-$i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
-                    $tto_p = $tto_o + (-$i[2]);
+                    $tto_o += (-$i[2]);
                 echo "</td>";
             }
 
@@ -549,8 +547,6 @@ if (isset($_GET['group']) == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
