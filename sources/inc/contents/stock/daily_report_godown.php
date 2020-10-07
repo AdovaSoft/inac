@@ -232,7 +232,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         $product_trac = null;
         $unit_trac = null;
         $price_trac = null;
-
+$tto_o = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
@@ -432,6 +432,7 @@ else {
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti = $tto = 0;
+    $tti_p = $tto_o= 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
@@ -472,7 +473,7 @@ else {
         echo "Remark";
         echo "</td>";
         echo "</tr>";
-$tti_p = 0;
+
         foreach ($info as $i) {
             echo "<tr>";
 
@@ -527,7 +528,8 @@ $tti_p = 0;
                     echo "<th class='green'>" . $ss . "</th>";
                 else
                     echo "<th class='blue'>" . $ss . "</th>";
-            } else {
+            }
+            else {
                 $tto += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
                     echo "<th class='red'>" . (-$ss) . "</th>";

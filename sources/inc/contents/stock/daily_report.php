@@ -225,7 +225,6 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-        echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
     }
@@ -248,7 +247,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         $product_trac = null;
         $unit_trac = null;
         $price_trac = null;
-
+$tto_o = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
@@ -448,7 +447,7 @@ else {
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
     $tti_p = $tti = $tto = 0;
-
+    $tto_o = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
