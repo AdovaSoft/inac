@@ -7,11 +7,9 @@ $party = $qur->get_custom_select_query($query, 4);
 $all_info = null;
 $due_total = 0;
 $advance_total = 0;
-//d($party);
 $n = count($party);
 for ($i = 0; $i < $n; $i++) {
     if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
-        // d("if statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -20,7 +18,6 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
         $i++;
     } else {
-        // d("else statement found = ".$i."<br>");
         $all_info[$i][0] = $party[$i][0];
         $all_info[$i][1] = $party[$i][1];
         $all_info[$i][2] = $party[$i][2];
@@ -55,7 +52,6 @@ echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
 foreach ($all_info as $a) {
-    d($a[0]);
     echo "<tr>";
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";

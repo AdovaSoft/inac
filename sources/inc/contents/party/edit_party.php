@@ -75,12 +75,12 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         echo "<br/>";
         if (isset($_POST['p1']))
             $inp->input_text('Phone 1 : ', 'p1', $_POST['p1']);
-        else
+        elseif (isset($party[0][2]))
             $inp->input_text('Phone 1 : ', 'p1', $party[0][2]);
         echo "<br/>";
         if (isset($_POST['p2']))
             $inp->input_text('Phone 2 : ', 'p2', $_POST['p2']);
-        else
+        elseif (isset($party[1][2]))
             $inp->input_text('Phone 2 : ', 'p2', $party[1][2]);
         echo "<br/>";
         if (isset($_POST['a']))
