@@ -9,7 +9,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
-    $tti_p = $tto_p = 0;
+    $tti_p = $tto_p = $tto_o = 0;
     $tti = $tto = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Show Just Date wise </b></a>";
@@ -66,7 +66,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo $i[1];
                 echo "</td>";
                 echo "<td>";
-                echo $i[4];
+                echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
                     echo "<td>";
@@ -103,15 +103,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -218,7 +220,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
-    $tti_p = $tto_p = 0;
+    $tti_p = $tto_p = $tto_o = 0;
     $tti = $tto = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . date('Y-m-d') . "' class='button'><b> Show Just Date wise </b></a>";
@@ -314,15 +316,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -429,7 +433,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
-    $tti = $tto = 0;
+    $tti = $tto = $tto_o = 0;
     $tti_p = $tto_p = 0;
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_factory&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
@@ -523,15 +527,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
+                    echo "<th class='green'>" . money($ss) . "</th>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<th class='blue'>" . money($ss) . "</th>";
             } else {
                 $tto += $ss;
-                if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
+                if ($i[5] == 0 || $i[5] == 1) {
+                    $ss = -$ss;
+                    echo "<th class='red'>" . money($ss) . "</th>";
+                }
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<th class='blue'>" . money($ss) . "</th>";
             }
             echo "<td>";
 
@@ -551,7 +557,9 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
 
             echo "</tr>";
         }
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        $tto *= (-1);
+        $total = $tti + $tto;
+        echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
