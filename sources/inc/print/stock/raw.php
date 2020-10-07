@@ -64,13 +64,14 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $ar[4];
+        echo money($ar[4]);
         echo "</td>";
 
 
         echo "<td>";
-        echo sprintf("%.2f", ($ar[1] + $ar[2]) * $ar[4]);
-        $cost += ($ar[1] + $ar[2]) * $ar[4];
+        $arTotal = ($ar[1] + $ar[2]) * $ar[4];
+        echo money($arTotal);
+        $cost += $arTotal;
         echo "</td>";
         echo "</tr>";
     }
@@ -81,7 +82,7 @@ if (count($info) > 0) {
     echo "</th>";
 
     echo "<td >";
-    echo $cost;
+    echo money($cost);
     echo "</td>";
     echo "</tr>";
 
