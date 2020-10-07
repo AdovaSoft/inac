@@ -35,5 +35,10 @@ if (isset($_POST['ab'])) {
             }
         }
     }
-} else
-    $qur->printPayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
+} else {
+    $payment_id = (isset($_GET['pt'])) ? $_GET['pt'] : NULL;
+    $payment_type = (isset($_GET['pay_type'])) ? $_GET['pay_type'] : NULL;
+    $payment_amount = (isset($_GET['cost'])) ? $_GET['cost'] : 0;
+
+    $qur->printPayment($payment_id, $payment_type, $payment_amount);
+}

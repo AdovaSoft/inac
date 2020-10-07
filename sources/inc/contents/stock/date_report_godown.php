@@ -21,7 +21,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
                 if ($i[1] != $first_product) {
-                    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
@@ -243,42 +243,57 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 }
                 echo "<h3>" . $stock[3] . "</h3>";
                 echo "<br/><table align='center' class='rb'>";
+
+                    echo "<tr>";
+
+                        echo "<td>";
+                        echo "Date";
+                        echo "</td>";
+
+                        echo "<td>";
+                        echo "Product";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Price (TK)";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Incoming";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Outgoing";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Unit";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Total Price (TK)";
+                        echo "</td>";
+                        
+                        echo "<td>";
+                        echo "Remark";
+                        echo "</td>";
+                    
+                    echo "</tr>";
+                
                 echo "<tr>";
-                echo "<td>";
-                echo "Date";
-                echo "</td>";
-                echo "<td>";
-                echo "Product";
-                echo "</td>";
-                echo "<td>";
-                echo "Price (TK)";
-                echo "</td>";
-                echo "<td>";
-                echo "Incoming";
-                echo "</td>";
-                echo "<td>";
-                echo "Outgoing";
-                echo "</td>";
-                echo "<td>";
-                echo "Unit";
-                echo "</td>";
-                echo "<td>";
-                echo "Total Price (TK)";
-                echo "</td>";
-                echo "<td>";
-                echo "Remark";
-                echo "</td>";
-                echo "</tr>";
-                echo "<tr>";
+
                 echo "<td>";
                 echo $inp->date_convert($stock[0]);
                 echo "</td>";
+               
                 echo "<td>";
                 echo $stock[1];
                 echo "</td>";
+                
                 echo "<td>";
                 echo $stock[4];
                 echo "</td>";
+                
                 if ($stock[2] > 0) {
                     echo "<td>";
                     echo $stock[2];
@@ -286,14 +301,17 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                         $tti_p = $tti_p + $stock[2];
 
                     echo "</td>";
+                
                     echo "<td>";
                     if ($stock[5] == 0 || $stock[5] == 1) {
                         echo "-";
                     } else {
                         echo $stock[2];
                     }
+                    
                     echo "</td>";
                 } else {
+                    
                     echo "<td>";
                     if ($stock[5] == 0 || $stock[5] == 1) {
                         echo "-";
@@ -301,6 +319,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                         echo $stock[2];
                     }
                     echo "</td>";
+                    
                     echo "<td>";
                     echo(-$stock[2]);
                     if ($stock[5] == 0 || $stock[5] == 1)
@@ -311,19 +330,22 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "<td>";
                 echo $stock[3];
                 echo "</td>";
+                
                 $ss = $stock[2] * $stock[4];
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($stock[5] == 0 || $stock[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
-                    if ($stock[5] == 0 || $stock[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($stock[5] == 0 || $stock[5] == 1){
+                        $ss = -$ss;
+                        echo "<th class='red'>" . money($ss) . "</th>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
