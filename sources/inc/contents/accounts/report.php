@@ -10,7 +10,7 @@ $con = new indquery();
 $query = sprintf("SELECT * FROM (SELECT * FROM transaction WHERE DATE BETWEEN '%s' AND '%s') as tran LEFT JOIN transaction_comment USING(id) ORDER BY DATE DESC;", $date1, $date2);
 $res = $con->get_custom_select_query($query, 5);
 
-echo "<a id=''  href='print.php?e=" . $encptid . "&page=accounts&&sub=report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
+echo "<a id='printBox'  href='print.php?e=" . $encptid . "&page=accounts&&sub=report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
 
 $in_total = 0;
 $out_total = 0;

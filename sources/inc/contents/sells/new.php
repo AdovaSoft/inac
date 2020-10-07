@@ -4,7 +4,7 @@
 if (isset($_GET['say']) && $_GET['say'] == 1) {
     $custom_message = "<h2 class='green'>Sells recorded successfully.</h2>
 	                              <br/><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment&&pt=" . $_GET['pt'] . "&&pay_type=1&&cost=" . ($_GET['cost'] - $_GET['d']) . "' class='button'>Receive Payment</a>
-								  <br/><form method='POST' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $_GET['idselles'] . "'/><input type='submit' name='print' value='Print'/></form> 
+								  <br/><form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $_GET['idselles'] . "'/><input type='submit' name='print' value='Print'/></form> 
 								  <form method='POST' action='recept_print.php?e=" . $encptid . "' target='_blank'><input type='hidden' name='vou' value='" . $_GET['idselles'] . "'/><input type='submit' name='print' value='Print on Pad'/></form>";
 } elseif (isset($_GET['say']) && $_GET['say'] == 2) {
     $custom_message = "<h3 class='red'>Could not record sells.</h3>";
