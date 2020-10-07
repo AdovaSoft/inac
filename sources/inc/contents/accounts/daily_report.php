@@ -5,7 +5,7 @@
 include("sources/inc/contents/accounts/delete.php");
 include("sources/inc/single_date.php");
 $ob = $qur->getPrevBalance($date);
-echo "<h4>Opening Balance of " . $inp->date_convert($date) . " " . $ob . " Taka</h4>";
+echo "<br><h4>Opening Balance of " . $inp->date_convert($date) . " " . $ob . " Taka</h4>";
 $con = new indquery();
 $query = sprintf("SELECT * FROM (SELECT * FROM transaction WHERE date='%s') as tran LEFT JOIN transaction_comment USING(id) ORDER BY date DESC;", $date);
 $res = $con->get_custom_select_query($query, 5);
