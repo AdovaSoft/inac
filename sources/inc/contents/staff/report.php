@@ -92,7 +92,7 @@ if ($inp->value_pgd('s') != null) {
         echo "<br/><h3 class='blue'>No attendance record stored yet</h3>";
     } else {
         echo "<br/><h3 class='blue'>Attendance and Earned Salary report</h3>";
-        echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
         echo "<table align='center' class='rb'>";
         echo "<thead>";
         echo "<tr>";
@@ -220,7 +220,7 @@ if ($inp->value_pgd('s') != null) {
         echo "<br/><h3 class='blue'>No sallary record stored yet</h3>";
     } else {
         echo "<br/><br/><h3 class='blue'>Salary report</h3>";
-        echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
         echo "<table align='center' class='rb'>";
         echo "<thead>";
         echo "<tr><td>Paying date</td><td>Salary of</td><td>Amount</td></tr>";
@@ -256,7 +256,7 @@ if ($inp->value_pgd('s') != null) {
         echo "<br/><h3 class='blue'>No bonus record stored yet</h3>";
     } else {
         echo "<br/><br/><h3 class='blue'>Bonus report</h3>";
-        echo "<br/><a href='print.php?e=" . $encptid . "&page=staff&&sub=bonus&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Bonus Report</b></a><br/>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=bonus&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Bonus Report</b></a><br/>";
         echo "<table align='center' class='rb'>";
         echo "<tr><td>Paying date</td><td>Bonus of</td><td>Amount</td></tr>";
         $bon_total = 0;
