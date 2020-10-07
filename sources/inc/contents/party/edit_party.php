@@ -74,22 +74,19 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         echo "<br/>";
         echo "<br/>";
         if (isset($_POST['p1']))
-            $inp->input_text('Phone 1 : ', 'p1', $_POST['p1']);
+            $inp->input_text('Phone 1 : ', 'p1', esc($_POST['p1']));
         else
-            $inp->input_text('Phone 1 : ', 'p1', $party[0][2]);
+            $inp->input_text('Phone 1 : ', 'p1', esc($party[0][2]));
         echo "<br/>";
         if (isset($_POST['p2']))
-            $inp->input_text('Phone 2 : ', 'p2', $_POST['p2']);
-        else{
-            //d($party);
-            $inp->input_text('Phone 2 : ', 'p2', $party[1][2]);
-        }
-            
+            $inp->input_text('Phone 2 : ', 'p2', esc($_POST['p2']));
+        else
+            $inp->input_text('Phone 2 : ', 'p2', esc($party[1][2]));
         echo "<br/>";
         if (isset($_POST['a']))
-            $inp->input_text('Address : ', 'a', $_POST['a']);
+            $inp->input_text('Address : ', 'a', esc($_POST['a']));
         else
-            $inp->input_text('Address : ', 'a', $party[0][3]);
+            $inp->input_text('Address : ', 'a', esc($party[0][3]));
         $inp->input_submit('ab1', 'Change');
         echo "</form>";
     }

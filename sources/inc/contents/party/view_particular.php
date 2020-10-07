@@ -14,7 +14,7 @@ if (isset($id)) {
         echo "<small class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</small></h1><br/>";
     }
 
-    echo "<a class='button' onclick='showit(3)'>Select another party</a>";
+    echo "<a class='button' id='printBox' onclick='showit(3)' style='padding-top: 20px; padding-bottom: 20px;'>Select another party</a>";
     echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
     echo "<h4 class='blue'>Select Party</h4><br/>";
     echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
