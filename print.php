@@ -19,6 +19,6 @@ include("sources/inc/security_o.php");
     include("sources/inc/content.php");
     ?>
 </center>
-<?php echo "<b>Printed on : " . date("d M Y (D) h:i:s A") . "</b><br/>"; ?>
+<?php echo "<b style='display:block; bottom: 0; margin-top: 2rem;'>Printed on : " . date("d M Y (D) h:i:s A") . "</b>"; ?>
 </body>
 </html>
