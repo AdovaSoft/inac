@@ -63,7 +63,7 @@ if ($inp->value_pgd('s') != null) {
         if (isset($_POST['s']) && $_POST['s'] != null && isset($_POST['amnt']) && $_POST['amnt'] > 0 && isset($_POST['tt']) && $_POST['tt'] > 0) {
             $flag = true;
             if ($_POST['tt'] == 2) {
-                $flag = $qur->addBonusPay($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt'] . ' as Bonus');
+                $flag = $qur->add_bonus_payment($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt'] . ' as Bonus');
             } elseif ($_POST['tt'] == 1) {
                 $flag = $qur->add_salary_pay($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt'] . ' as Salary');
             }
@@ -90,10 +90,12 @@ if ($inp->value_pgd('s') != null) {
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
     if (count($staf_rep) <= 0) {
         echo "<br/><h3 class='blue'>No attendance record stored yet</h3>";
-    } else {
+    }
+    //Attendance and Earned Salary report
+    else {
         echo "<br/><h3 class='blue'>Attendance and Earned Salary report</h3>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb'>";
+        echo "<table align='center' class='rb table'>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>Month</th>
@@ -118,11 +120,11 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             echo "<td>";
-            echo $s[2];
+            echo esc($s[2]);
             echo "</td>";
 
             echo "<td>";
-            echo $s[3];
+            echo esc($s[3]);
             echo "</td>";
 
             echo "<td>";
@@ -134,7 +136,7 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             echo "<td>";
-            echo $s[6];
+            echo money($s[6]);
             echo "</td>";
 
             echo "<td>";
@@ -218,12 +220,14 @@ if ($inp->value_pgd('s') != null) {
 
     if (count($staf_sal) <= 0) {
         echo "<br/><h3 class='blue'>No sallary record stored yet</h3>";
-    } else {
+    }
+    //Salary report
+    else {
         echo "<br/><br/><h3 class='blue'>Salary report</h3>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
-        echo "<table align='center' class='rb'>";
+        echo "<table align='center' class='rb table'>";
         echo "<thead>";
-        echo "<tr><td>Paying date</td><td>Salary of</td><td>Amount</td></tr>";
+        echo "<tr><th>Paying date</th><th>Salary of</th><th>Amount</th></tr>";
         echo "</thead>";
         $n = count($staf_sal);
         $salary_amount = 0;
@@ -257,10 +261,11 @@ if ($inp->value_pgd('s') != null) {
     } else {
         echo "<br/><br/><h3 class='blue'>Bonus report</h3>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=bonus&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Bonus Report</b></a><br/>";
-        echo "<table align='center' class='rb'>";
-        echo "<tr><td>Paying date</td><td>Bonus of</td><td>Amount</td></tr>";
+        echo "<table align='center' class='rb table'>";
+        echo "<thead><tr><th>Paying date</th><th>Bonus of</th><th>Amount</th></tr></thead>";
         $bon_total = 0;
         $n = count($staf_bon);
+        echo "<tbody>";
         for ($i = 0; $i < $n; $i++) {
 
             echo "<tr>";
@@ -273,14 +278,15 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             echo "<td>";
-            echo $staf_bon[$i][4];
+            echo money($staf_bon[$i][4]);
             $bon_total = $bon_total + $staf_bon[$i][4];
             echo "</td>";
 
             echo "</tr>";
 
         }
-        echo "<tr><td colspan = 3>Total : $bon_total</td></tr>";
+        echo "</tbody>";
+        echo "<tr><td colspan = 3>Total : " . money($bon_total) . "  </td></tr>";
         echo "</table>";
     }
 

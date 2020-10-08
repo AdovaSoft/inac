@@ -194,7 +194,7 @@ if ($n > 0) {
     echo "</table><br/>";
     echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
-    echo "<br/><h2 class='blue'>No input or output between $date and $date</h2>";
+    echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
 }
 
 ?>

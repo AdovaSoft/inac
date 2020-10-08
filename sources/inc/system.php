@@ -63,7 +63,7 @@ function money(&$number){
 function convert_date($date) {
     $dates = explode('-', $date);
     if (checkdate($dates[1], $dates[2], $dates[0])) {
-        return date('D d, M Y',strtotime($date));
+        return date("d M Y (D)", strtotime($date));
     } else {
         return 'Invalid Date';
     }

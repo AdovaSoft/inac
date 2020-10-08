@@ -353,7 +353,7 @@ class indquery extends query
             }
         }
         if ($flag == 1) {
-                $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
+            $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
         }
         if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
@@ -717,7 +717,7 @@ class indquery extends query
      * @param $type
      * @param $cost
      */
-    public function printPayment($id = NULL, $type = NULL , $cost = 0.0)
+    public function printPayment($id = NULL, $type = NULL, $cost = 0.0)
     {
         $comment = null;
         $inp = new html();
@@ -1205,7 +1205,7 @@ class indquery extends query
         return $flag;
     }
 
-    public function printPartyFinOverview($id, $encptid, $name, $date1 = null, $date2 = null)
+    public function print_party_overview($id, $encptid, $name, $date1 = null, $date2 = null)
     {
         $inp = new html();
         if ($date1 && $date2) {
@@ -1242,11 +1242,11 @@ class indquery extends query
             echo "</th>";
 
             echo "<th>";
-            echo " Paid to " . $name;
+            echo " Paid";
             echo "</th>";
 
             echo "<th>";
-            echo " Recived from " . $name;
+            echo " Recived";
             echo "</th>";
             echo "<th>";
             echo "Comments";
@@ -1278,8 +1278,8 @@ class indquery extends query
             echo "</tbody>";
             $total_paid = ($paid) * -1;
             echo "<tr><td>Total </td> 
-<td><b>" . money( $total_paid) . "</b></td>
-<td><b>" . money( $recived) . "</b  ></td>
+<td><b>" . money($total_paid) . "</b></td>
+<td><b>" . money($recived) . "</b  ></td>
 <td> - </td></tr>";
             echo "</table>";
 
@@ -1303,30 +1303,35 @@ class indquery extends query
         echo "<div  id='sud1'>";
         if (count($sell) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
             echo "<br/><table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Bill";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+
+            echo "<th>";
             echo "Discount";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($sell as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money( $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money($s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
                 $bill_t += $s[1];
                 $bill_d += $s[2];
                 echo "</tr>";
             }
-            echo "<tr><td>Sum </td> <td>" . money($bill_t) . "</td><td>" . money( $bill_d) . "</td></tr>";
+            echo "</tbody>";
+            echo "<tr><td>Total : </td> <td>" . money($bill_t) . "</td><td>" . money($bill_d) . "</td></tr>";
             $gdtotal = $bill_t - $bill_d;
             echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($gdtotal) . "</b></td></td></tr>";
             $total += $gdtotal;
@@ -1350,33 +1355,38 @@ class indquery extends query
         echo "<div  id='sud2'>";
         if (count($pur) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
             echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Bill";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Discount";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($pur as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . sprintf("%.2f", $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money($s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
                 $r_bill_t += $s[1];
                 $r_bill_d += $s[2];
                 echo "</tr>";
             }
-            echo "<tr><td>Sum </td> <td>" . sprintf("%.2f", $r_bill_t) . "</td><td>" . sprintf("%.2f", $r_bill_d) . "</td></tr>";
-            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . sprintf("%.2f", $r_bill_t - $r_bill_d) . "</b></td></td></tr>";
+            echo "</tbody>";
+            echo "<tr><td>Total : </td> <td>" . money($r_bill_t) . "</td><td>" . money($r_bill_d) . "</td></tr>";
+            $total = $r_bill_t - $r_bill_d;
+            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($total) . "</b></td></td></tr>";
             echo "</table>";
         } else {
             if ($date1 && $date2) {
@@ -1478,13 +1488,12 @@ class indquery extends query
         }
     }
 
-    public function addBonusPay($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
+    public function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
     {
 
         $cols = array('id', 'idstaff', 'month', 'year');
 
         $flag = true;
-
 
         $id = $this->get_last_id('transaction', 'id');
 
@@ -1495,8 +1504,8 @@ class indquery extends query
         $cash = $balance[0][0];
 
 
-        if ($cash < $sal) {
-            echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
+        if ($cash < $bon) {
+            echo "You dont have enough money (" . money($am) . ") in cash. You have " . money($cash) . "<br/>";
             return false;
         }
         $am = -$bon;
@@ -1516,7 +1525,7 @@ class indquery extends query
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
-            echo 'something is wrong check your given data or contact with <a> unique webers </a>';
+            echo 'something is wrong check your given data or contact with <a> unique wavers </a>';
             mysqli_query($this->dtb_con, 'ROLLBACK');
             return false;
         }

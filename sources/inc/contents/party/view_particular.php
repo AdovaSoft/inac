@@ -7,9 +7,10 @@ if (isset($id)) {
     $total = $qur->party_adv_due($id);
 
     if ($total < 0) {
-        echo "<small class='faintred'>Due of " . $name[0][0] . " : " . (-$total) . " taka</small></h1><br/>";
+        $neg = -$total;
+        echo "<small class='faintred'>Due of " . $name[0][0] . " : " . money($neg) . " taka</small></h1><br/>";
     } elseif ($total > 0) {
-        echo "<small class='faintred'>Outstanding of " . $name[0][0] . " : " . ($total) . " taka</small></h1><br/>";
+        echo "<small class='faintred'>Outstanding of " . $name[0][0] . " : " . money($total) . " taka</small></h1><br/>";
     } else {
         echo "<small class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</small></h1><br/>";
     }
@@ -26,14 +27,14 @@ if (isset($id)) {
         echo "<input type='hidden' name='id' value='" . $id . "'>";
         echo "<input type = 'submit' name = 'datewise' value = 'Back to Monthly Report'/>";
         echo "</form>";
-        $qur->printPartyFinOverview($id, $encptid, $name[0][0]);
+        $qur->print_party_overview($id, $encptid, $name[0][0]);
     } else {
         include("sources/inc/double_date_id.php");
         echo "<form method = 'POST' class='embossed'>";
         echo "<input type='hidden' name='id' value='" . $id . "'>";
         echo "<input type = 'submit' name = 'all_show' value = 'Show all time report'/>";
         echo "</form>";
-        $qur->printPartyFinOverview($id, $encptid, $name[0][0], $date1, $date2);
+        $qur->print_party_overview($id, $encptid, $name[0][0], $date1, $date2);
     }
     /*
     if ($total < 0) {

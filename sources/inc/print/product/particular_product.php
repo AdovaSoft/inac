@@ -10,21 +10,21 @@ if ($n > 0) {
     echo "<h3>Current Stock : " . $qur->current_stock($id) . "</h3>";
     echo "<br/><table align='center' class='rb'>";
     echo "<tr>";
-    echo "<td>";
+    echo "<th>";
     echo "Date";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Party";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Quantity";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Price";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Total";
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
     foreach ($info as $i) {
         echo "<tr>";
@@ -33,11 +33,11 @@ if ($n > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $i[1];
+        echo esc($i[1]);
         echo "</td>";
 
         echo "<td>";
-        echo $i[2];
+        echo esc($i[2]);
         $qun += $i[2];
         echo "</td>";
 

@@ -19,11 +19,11 @@ if (count($tran) > 0) {
     echo "</th>";
 
     echo "<th>";
-    echo " Paid to " . esc($name[0][0]);
+    echo " Paid";
     echo "</th>";
 
     echo "<th>";
-    echo " Received from " . esc($name[0][0]);
+    echo " Received";
     echo "</th>";
     echo "<th>";
     echo "Comments";
