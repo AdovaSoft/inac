@@ -31,12 +31,13 @@ if ($inp->value_pgd('s')) {
             echo "</td>";
 
             echo "<td>";
-            echo $staf_sal[$i][4];
+            $amount = $staf_sal[$i][4];
+            echo money($amount);
             echo "</td>";
 
             echo "</tr>";
         }
-        echo "<tr><td colspan = 3>Total : $samnt</td></tr>";
+        echo "<tr><td colspan = 3>Total : " . money($samnt) . "</td></tr>";
         echo "</table>";
     }
 }
