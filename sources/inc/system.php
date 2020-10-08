@@ -53,8 +53,7 @@ function esc_num(&$variable)
  * @param $number
  * @return string
  */
-function money(&$number)
-{
+function money(&$number){
     if (isset($number) && is_numeric($number))
         return number_format($number, '2', '.', ',');
     else
