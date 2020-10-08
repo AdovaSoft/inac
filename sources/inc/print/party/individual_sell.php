@@ -39,7 +39,7 @@ if (count($sell) > 0) {
     if ($total < 0) {
         echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . (-$total) . " taka</h2><br/>";
     } elseif ($total > 0) {
-        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . ($total) . " taka</h2><br/>";
+        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . money(($total) . " taka</h2><br/>";
     } else {
         echo "<h2 class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</h2><br/>";
     }

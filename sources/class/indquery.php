@@ -1307,7 +1307,7 @@ class indquery extends query
             } else {
                 echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<br/><table align='center' class='rb'>";
+            echo "<br/><table align='center' class='rb table'>";
             echo "<tr>";
             echo "<td>";
             echo "Date";
@@ -1322,14 +1322,15 @@ class indquery extends query
             echo "</tr>";
             foreach ($sell as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . sprintf("%.2f", $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money( $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
                 $bill_t += $s[1];
                 $bill_d += $s[2];
                 echo "</tr>";
             }
-            echo "<tr><td>Sum </td> <td>" . sprintf("%.2f", $bill_t) . "</td><td>" . sprintf("%.2f", $bill_d) . "</td></tr>";
-            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . sprintf("%.2f", $bill_t - $bill_d) . "</b></td></td></tr>";
-            $total += ($bill_t - $bill_d);
+            echo "<tr><td>Sum </td> <td>" . money($bill_t) . "</td><td>" . money( $bill_d) . "</td></tr>";
+            $gdtotal = $bill_t - $bill_d;
+            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($gdtotal) . "</b></td></td></tr>";
+            $total += $gdtotal;
             echo "</table>";
         } else {
             if ($date1 && $date2) {
@@ -1354,7 +1355,7 @@ class indquery extends query
             } else {
                 echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
             echo "<tr>";
             echo "<td>";
             echo "Date";
@@ -1454,7 +1455,7 @@ class indquery extends query
 
 
         if ($cash < $sal) {
-            echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
+            echo "You dont have enough money (" . money($am) . ") in cash. You have " . $cash . "<br/>";
             return false;
         }
         $am = -$sal;
