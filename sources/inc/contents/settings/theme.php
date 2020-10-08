@@ -31,6 +31,7 @@ $csschoice = isset($csschoice) ? $csschoice : null;
     <option value="9">Navy Blue</option>
     <option value="10">Royal Red</option>
     <option value="11">Brown Earth</option>
+    <option value="12">Green Field</option>
   </select>
   <input type="hidden" name="editor" value="settings/theme"/>
   <input type="hidden" name="e" value="<?php echo $encptid; ?>"/>

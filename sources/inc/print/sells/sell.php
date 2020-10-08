@@ -43,10 +43,11 @@ for ($j = 0; $j < $n; $j++) {
     echo $sell_pro[$j][4];
     echo "</td>";
     echo "<td>";
-    echo $sell_pro[$j][2];
+    echo money($sell_pro[$j][2]);
     echo "</td>";
     echo "<td>";
-    echo $sell_pro[$j][1] * $sell_pro[$j][2];
+    $total = $sell_pro[$j][1] * $sell_pro[$j][2];
+    echo money($total);
     $charges_total = $charges_total + $sell_pro[$j][1] * $sell_pro[$j][2];
     echo "</td>";
     echo "</tr>";
