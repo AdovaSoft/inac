@@ -57,12 +57,12 @@ if ($n > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $i[4];
+        echo money($i[4]);
         echo "</td>";
         $tti_p = 0;
         if ($i[2] > 0) {
             echo "<td>";
-            echo $i[2];
+            echo money($i[2]);
             if ($i[5] == 0 || $i[5] == 1)
                 $tti_p = $tti_p + $i[2];
 
@@ -71,7 +71,7 @@ if ($n > 0) {
             if ($i[5] == 0 || $i[5] == 1) {
                 echo "-";
             } else {
-                echo $i[2];
+                echo money($i[2]);
             }
             echo "</td>";
         } else {
@@ -95,10 +95,11 @@ if ($n > 0) {
         $ss = $i[2] * $i[4];
         if ($ss > 0) {
             $tti += $ss;
-            echo "<th class='green'>" . $ss . "</th>";
+            echo "<th class='green'>" . money($ss) . "</th>";
         } else {
             $tto += $ss;
-            echo "<th class='red'>" . (-$ss) . "</th>";
+            $ss *= (-1);
+            echo "<th class='red'>" . money($ss) . "</th>";
         }
         echo "<td>";
 
@@ -118,9 +119,11 @@ if ($n > 0) {
 
         echo "</tr>";
     }
-    echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    $total = $tti + $tto;
+    $tto *= (-1);
+    echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
     echo "</table>";
-    echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
+    
 } else {
     echo "<br/><h2 class='blue'>No input or output in " . $inp->date_convert($date) . " date</h2>";
 }

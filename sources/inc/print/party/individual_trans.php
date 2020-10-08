@@ -52,13 +52,15 @@ if (count($tran) > 0) {
         echo "</td>";
         echo "</tr>";
     }
-    echo "<tr><td>Total </td> <td><b>" . sprintf("%.2f", -$paid) . "</b></td><td><b>" . sprintf("%.2f", $recived) . "</b  ></td><td> - </td></tr>";
+    $paid *= (-1);
+    echo "<tr><td>Total </td> <td><b>" . money($paid) . "</b></td><td><b>" . money($recived) . "</b  ></td><td> - </td></tr>";
     echo "</table>";
     $total = $qur->party_adv_due($id);
     if ($total < 0) {
-        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . (-$total) . " taka</h2><br/>";
+        $total *= (-1);
+        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
     } elseif ($total > 0) {
-        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . ($total) . " taka</h2><br/>";
+        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
     } else {
         echo "<h2 class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</h2><br/>";
     }

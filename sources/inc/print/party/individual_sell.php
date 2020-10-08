@@ -10,6 +10,7 @@ if ($date1 && $date2) {
 $name = $qur->get_cond_row('party', array('name'), 'idparty', '=', $id);
 $sell = $qur->get_custom_select_query($query1, 3);
 $bill_t = $bill_d = $total = 0 ;
+
 if (count($sell) > 0) {
     echo "<h4>Sold to " . $name[0][0] . ": </h4>";
     echo "<table align='center' class='rb'>";
@@ -38,7 +39,8 @@ if (count($sell) > 0) {
     echo "</table>";
     $total = $qur->party_adv_due($id);
     if ($total < 0) {
-        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . (-$total) . " taka</h2><br/>";
+        $total *= (-1);
+        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
     } 
     else if ($total > 0) {
         echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
