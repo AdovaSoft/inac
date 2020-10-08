@@ -29,14 +29,15 @@ if ($inp->value_pgd('s')) {
             echo "</td>";
 
             echo "<td>";
-            echo $staf_bon[$i][4];
+            $amount = $staf_bon[$i][4];
+            echo money($amount);
             $bon_total = $bon_total + $staf_bon[$i][4];
             echo "</td>";
 
             echo "</tr>";
 
         }
-        echo "<tr><td colspan = 3>Total : $bon_total</td></tr>";
+        echo "<tr><td colspan = 3>Total : " . money($bon_total). "</td></tr>";
         echo "</table>";
     }
 }
