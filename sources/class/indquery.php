@@ -1315,18 +1315,22 @@ class indquery extends query
             echo "<td>";
             echo "Bill";
             echo "</td>";
-
             echo "<td>";
             echo "Discount";
             echo "</td>";
             echo "</tr>";
+            
+        if (isset($sell)) {
             foreach ($sell as $s) {
                 echo "<tr>";
                 echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . sprintf("%.2f", $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
-                $bill_t += $s[1];
-                $bill_d += $s[2];
+                
+                $bill_t += esc($s[1]);
+                $bill_d += esc($s[2]);
+                
                 echo "</tr>";
             }
+        }
             echo "<tr><td>Sum </td> <td>" . sprintf("%.2f", $bill_t) . "</td><td>" . sprintf("%.2f", $bill_d) . "</td></tr>";
             echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . sprintf("%.2f", $bill_t - $bill_d) . "</b></td></td></tr>";
             $total += ($bill_t - $bill_d);

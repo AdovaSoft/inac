@@ -18,10 +18,10 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
         $i++;
     } else {
-        $all_info[$i][0] = $party[$i][0];
-        $all_info[$i][1] = $party[$i][1];
-        $all_info[$i][2] = $party[$i][2];
-        $all_info[$i][3] = $party[$i][3];
+        $all_info[$i][0] = esc($party[$i][0]);
+        $all_info[$i][1] = esc($party[$i][1]);
+        $all_info[$i][2] = esc($party[$i][2]);
+        $all_info[$i][3] = esc($party[$i][3]);
         $all_info[$i][4] = null;
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
     }
@@ -80,7 +80,8 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] < 0) {
-        echo(-$a[5]);
+        $due = -$a[5];
+        echo money($due);
         $due_total = $due_total + (-$a[5]);
     } else {
         echo "-";
@@ -92,7 +93,7 @@ foreach ($all_info as $a) {
     echo "<td align = 'center' >";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
-        echo $a[5];
+        echo money($a[5]);
         $advance_total = $advance_total + $a[5];
     } else {
         echo "-";
@@ -102,6 +103,6 @@ foreach ($all_info as $a) {
     echo "</tr>";
 }
 echo "</tbody>";
-echo "<tr><th colspan='3'>Total</th><th>" . $due_total . "</th><th>" . $advance_total . "</th></tr>";
+echo "<tr><th colspan='3'>Total</th><th>" . money($due_total) . "</th><th>" . money($advance_total) . "</th></tr>";
 echo "</table>";
 ?>
