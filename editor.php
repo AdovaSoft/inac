@@ -6,7 +6,6 @@ $return_link = isset($_POST['returnlink']) ? $_POST['returnlink'] : 'index.php?e
 if ($editor && $return_link) {
     $path = "./sources/inc/editor/" . $editor . ".php";
     if (file_exists($path)) {
-        var_dump(file_exists($path));
         include "$path";
         if (isset($_POST['more_input']) && isset($_POST['num'])) {
             $more = $_POST['num'] + 1;

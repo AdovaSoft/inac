@@ -390,10 +390,10 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel)
+    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '')
     {
 
-        echo "<select name = '" . $name . "' >";
+        echo "<select name = '" . $name . "' class='" . $class . "' >";
         echo "<option> </option>";
         $n = count($ar);
         for ($i = 0; $i < $n; $i++) {

@@ -34,21 +34,20 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Product";
-        echo "</td>";
-
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Quantity";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Rate";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Total";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
         $num = $inp->value_pgd('num', 5);
         echo "<input type = 'hidden' name = 'num' value='" . $num . "' />";
@@ -59,11 +58,13 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            echo "<input type='number' step='any' name='pc_" . $i . "' value='" . $inp->value_pgd('pc_' . $i) . "' class='quantity' id='quantity_" . $i . "'/>";
+            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), '', 'quantity_' . $i );
+           // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
             echo "</td>";
 
             echo "<td>";
-            echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate' id='rate_" . $i . "'/>";
+            echo $inp->input_number('', 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i );
+            //echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate'
             echo "</td>";
 
             echo "<td class='total_td' id='total_td_" . $i . "' style='text-align:right;'></td>";
@@ -77,7 +78,9 @@ class indquery extends query
         echo "</tr>";
         echo "<tr>";
         echo "<td colspan='4'>";
+        echo "<center>";
         echo "<br/><input type='submit' name='more_input' value='Add More'>";
+        echo "</center>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
@@ -101,11 +104,29 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
+        echo "<tr>";
+        echo  "<td><br> Driver Name : </td>";
         echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo  "<td><br> Vehicle No : </td>";
+        echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo  "<td><br> Company : </td>";
+        echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo "<td colspan='4'>";
+        echo "<center>";
         echo "<br/><input type='submit' name='ab' value='Sell'/>";
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?page=sells&sub=new&e=" . $encptid . "'/>";
+        echo "</td>";
         echo "</td>";
         echo "</tr>";
         echo "</table>";
