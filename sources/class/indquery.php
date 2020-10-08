@@ -1303,23 +1303,26 @@ class indquery extends query
         echo "<div  id='sud1'>";
         if (count($sell) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
             echo "<br/><table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Bill";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Discount";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($sell as $s) {
                 echo "<tr>";
                 echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money( $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
@@ -1327,6 +1330,7 @@ class indquery extends query
                 $bill_d += $s[2];
                 echo "</tr>";
             }
+            echo "</tbody>";
             echo "<tr><td>Sum </td> <td>" . money($bill_t) . "</td><td>" . money( $bill_d) . "</td></tr>";
             $gdtotal = $bill_t - $bill_d;
             echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($gdtotal) . "</b></td></td></tr>";
