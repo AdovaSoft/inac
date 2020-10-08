@@ -6,7 +6,7 @@ if ($inp->value_pgd('s')) {
     $staf_bon = $qur->get_custom_select_query($bon_query, 5);
     echo "<h2 class='blue'>" . strtoupper($staff_det[0][0]) . "</h2>";
     echo "Post : " . $staff_det[0][1];
-    echo "<br/>Sallary : " . $staff_det[0][2];
+    echo "<br/>Sallary : " . money($staff_det[0][2]);
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
 
     if (count($staf_bon) <= 0) {
