@@ -27,7 +27,11 @@ if (isset($_POST['ab'])) {
         }
 
         if ($flag) {
-            $flag = $qur->new_sells($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['t']);
+            $driver = (isset($_POST['driver'])) ? $_POST['driver'] : NULL;
+            $vehicle = (isset($_POST['vehicle'])) ? $_POST['vehicle'] : NULL;
+            $company = (isset($_POST['company'])) ? $_POST['company'] : NULL;
+
+            $flag = $qur->new_sells($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['t'], $driver, $vehicle, $company);
             if ($flag) {
                 if ($flag == (-2)) {
                     $extra_string = "&say=6";

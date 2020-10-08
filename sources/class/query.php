@@ -159,6 +159,7 @@ class query
     public function insert_query($tab, $cols, $vals, $flags)
     {
         $query = $this->gen_insert_query($tab, $cols, $vals, $flags);
+        d($query);
         if (mysqli_query($this->dtb_con, $query))
             return 1;
         else
@@ -208,7 +209,7 @@ class query
 
         $vals_are = sprintf(" %s ) ", $vals_are);
 
-        return sprintf("INSERT %s %s VALUES %s", $tab, $cols_are, $vals_are);
+        return sprintf("INSERT INTO %s %s VALUES %s", $tab, $cols_are, $vals_are);
     }
 
     /**

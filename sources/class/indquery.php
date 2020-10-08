@@ -112,12 +112,12 @@ class indquery extends query
         echo "</tr>";
         echo  "<td><br> Vehicle No : </td>";
         echo "<td colspan='3'>";
-        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo  $inp->input_text("", 'vehicle', '', 'full-width', 'drivers' ) ;
         echo "</td>";
         echo "</tr>";
         echo  "<td><br> Company : </td>";
         echo "<td colspan='3'>";
-        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo  $inp->input_text("", 'company', '', 'full-width', 'drivers' ) ;
         echo "</td>";
         echo "</tr>";
         echo "<td colspan='4'>";
@@ -133,7 +133,7 @@ class indquery extends query
         echo "</form>";
     }
 
-    public function new_sells($party, $date, $sel_info, $dis, $t)
+    public function new_sells($party, $date, $sel_info, $dis, $t, $driver = NULL, $vehicle = NULL, $company = NULL)
     {
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $id = $this->get_last_id('selles', 'idselles');
@@ -165,6 +165,7 @@ class indquery extends query
         }
         if ($flag) {
             $flag = $this->insert_query('selles_discount', array('idselles', 'discount'), array($id, $dis), array('d', 'd'));
+            $flag = $this->insert_query('chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
         }
         if ($flag) {
             $flag = $this->insert_query('selles_delivery', array('idselles', 'cost'), array($id, $t), array('d', 'd'));
