@@ -1325,13 +1325,13 @@ class indquery extends query
             echo "<tbody>";
             foreach ($sell as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money( $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money( $s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
                 $bill_t += $s[1];
                 $bill_d += $s[2];
                 echo "</tr>";
             }
             echo "</tbody>";
-            echo "<tr><td>Sum </td> <td>" . money($bill_t) . "</td><td>" . money( $bill_d) . "</td></tr>";
+            echo "<tr><td>Total : </td> <td>" . money($bill_t) . "</td><td>" . money( $bill_d) . "</td></tr>";
             $gdtotal = $bill_t - $bill_d;
             echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($gdtotal) . "</b></td></td></tr>";
             $total += $gdtotal;
@@ -1384,7 +1384,7 @@ class indquery extends query
                 echo "</tr>";
             }
             echo "</tbody>";
-            echo "<tr><td>Sum </td> <td>" . money( $r_bill_t) . "</td><td>" . money( $r_bill_d) . "</td></tr>";
+            echo "<tr><td>Total : </td> <td>" . money( $r_bill_t) . "</td><td>" . money( $r_bill_d) . "</td></tr>";
             $total = $r_bill_t - $r_bill_d;
             echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($total) . "</b></td></td></tr>";
             echo "</table>";

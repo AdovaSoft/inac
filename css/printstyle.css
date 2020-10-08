@@ -25,7 +25,6 @@ a img {
     vertical-align: middle;
 }
 
-
 table.roundangled20 {
     margin: 10px;
 }
@@ -35,6 +34,7 @@ table.rb {
     border-width: 2px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+    width: 100%;
 }
 
 table.centeraligned tr td {
