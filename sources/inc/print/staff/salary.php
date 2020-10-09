@@ -6,7 +6,7 @@ if ($inp->value_pgd('s')) {
     $staf_sal = $qur->get_custom_select_query($sal_query, 5);
     echo "<h2 class='blue'>" . strtoupper($staff_det[0][0]) . "</h2>";
     echo "Post : " . $staff_det[0][1];
-    echo "<br/>Sallary : " . $staff_det[0][2];
+    echo "<br/>Sallary : "  . money($staff_det[0][2]);
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
 
     if (count($staf_sal) <= 0) {
@@ -31,12 +31,13 @@ if ($inp->value_pgd('s')) {
             echo "</td>";
 
             echo "<td>";
-            echo $staf_sal[$i][4];
+            $amount = $staf_sal[$i][4];
+            echo money($amount);
             echo "</td>";
 
             echo "</tr>";
         }
-        echo "<tr><td colspan = 3>Total : $samnt</td></tr>";
+        echo "<tr><td colspan = 3>Total : " . money($samnt) . "</td></tr>";
         echo "</table>";
     }
 }

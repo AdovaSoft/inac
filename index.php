@@ -55,8 +55,8 @@ include("./sources/inc/security.php");
         $('body').find('.table').DataTable({
             "dom": 'rt<"bottom"p>',
             "lengthMenu": false,
-            "ordering": true,
-            "info": false
+            "ordering": false,
+            "info": true
         });
     });
 </script>

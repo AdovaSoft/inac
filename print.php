@@ -13,12 +13,12 @@ include("sources/inc/security_o.php");
 <center>
   <h1 id='banner'><?php echo $company; ?></h1>
     <?php
-    echo "<b>Printed on : " . date("d M Y (D)") . "</b><br/>";
     $page = $inp->value_pgd('page');
     $sub = $inp->value_pgd('sub');
     $section = "print";
     include("sources/inc/content.php");
     ?>
 </center>
+<?php echo "<b style='display:block; bottom: 0; margin-top: 2rem;'>Printed on : " . date("d M Y (D) h:i:s A") . "</b>"; ?>
 </body>
 </html>

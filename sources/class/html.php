@@ -40,7 +40,7 @@ class html
      */
     public function input_text($label, $name, $value, $class = null, $id = null)
     {
-        echo $label . " <input type='text' step='any' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /> <br/>";
+        echo $label . " <input type='text' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /> <br/>";
     }
 
     public function input_number($label, $name, $value, $class = null, $id = null)

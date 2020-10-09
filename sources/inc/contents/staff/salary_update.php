@@ -16,7 +16,7 @@ if (isset($_POST['ab'])) {
     if (isset($_POST['s']) && $_POST['s'] != null && isset($_POST['amnt']) && $_POST['amnt'] > 0 && isset($_POST['tt']) && $_POST['tt'] > 0) {
         $flag = true;
         if ($_POST['tt'] == 2) {
-            $flag = $qur->addBonusPay($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt']);
+            $flag = $qur->add_bonus_payment($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt']);
         } elseif ($_POST['tt'] == 1) {
 
             $flag = $qur->add_salary_pay($date, $_POST['s'], $_POST['m'], $_POST['y'], $_POST['amnt'], $_POST['cmnt']);

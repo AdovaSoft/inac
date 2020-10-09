@@ -6,7 +6,7 @@ if ($inp->value_pgd('s')) {
     $staff_det = $qur->get_custom_select_query($det_query, 4);
     echo "<h2 class='blue'>" . strtoupper($staff_det[0][0]) . "</h2>";
     echo "Post : " . $staff_det[0][1];
-    echo "<br/>Sallary : " . $staff_det[0][2];
+    echo "<br/>Salary : " . money($staff_det[0][2]);
     echo "<br/>Joining date : " . $inp->date_convert($staff_det[0][3]);
     if (count($staff_report) <= 0) {
         echo "<h3 class='blue'>No attendance record stored yet</h3>";
@@ -36,11 +36,11 @@ if ($inp->value_pgd('s')) {
             echo "</td>";
 
             echo "<td>";
-            echo money($s[5]);
+            echo $s[5];
             echo "</td>";
 
             echo "<td>";
-            echo esc($s[6]);
+            echo money($s[6]);
             echo "</td>";
 
             echo "<td>";

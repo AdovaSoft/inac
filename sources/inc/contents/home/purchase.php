@@ -39,7 +39,7 @@ if (isset($_POST['searchword'])) {
             echo "<th>";
             echo "Date";
             echo "</th>";
-            echo "<th>";
+            echo "<th width='300'>";
             echo "Action";
             echo "</th>";
             echo "</tr>";
@@ -60,9 +60,9 @@ if (isset($_POST['searchword'])) {
                 echo $inp->date_convert($purchase_results[$i][3]);
                 echo "</td>";
 
-                echo "<td colspan='4'>";
-                echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='pur_id' value='" . $purchase_results[$i][0] . "'/><input type='submit' name='delete_purchase' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $purchase_results[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form>";
+                echo "<td>";
+                echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='pur_id' value='" . $purchase_results[$i][1] . "'/><input type='submit' name='delete_purchase' value='Delete'/></form> ";
+                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $purchase_results[$i][1] . "'/><input type='submit' name='ab' value='Edit'/></form>";
                 echo "</td>";
                 echo "</tr>";
             }

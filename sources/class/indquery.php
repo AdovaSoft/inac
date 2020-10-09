@@ -34,21 +34,20 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Product";
-        echo "</td>";
-
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Quantity";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Rate";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Total";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
         $num = $inp->value_pgd('num', 5);
         echo "<input type = 'hidden' name = 'num' value='" . $num . "' />";
@@ -59,11 +58,13 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            echo "<input type='number' step='any' name='pc_" . $i . "' value='" . $inp->value_pgd('pc_' . $i) . "' class='quantity' id='quantity_" . $i . "'/>";
+            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), '', 'quantity_' . $i );
+           // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
             echo "</td>";
 
             echo "<td>";
-            echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate' id='rate_" . $i . "'/>";
+            echo $inp->input_number('', 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i );
+            //echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate'
             echo "</td>";
 
             echo "<td class='total_td' id='total_td_" . $i . "' style='text-align:right;'></td>";
@@ -77,7 +78,9 @@ class indquery extends query
         echo "</tr>";
         echo "<tr>";
         echo "<td colspan='4'>";
+        echo "<center>";
         echo "<br/><input type='submit' name='more_input' value='Add More'>";
+        echo "</center>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
@@ -101,18 +104,36 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
+        echo "<tr>";
+        echo  "<td><br> Driver Name : </td>";
         echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo  "<td><br> Vehicle No : </td>";
+        echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'vehicle', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo  "<td><br> Company : </td>";
+        echo "<td colspan='3'>";
+        echo  $inp->input_text("", 'company', '', 'full-width', 'drivers' ) ;
+        echo "</td>";
+        echo "</tr>";
+        echo "<td colspan='4'>";
+        echo "<center>";
         echo "<br/><input type='submit' name='ab' value='Sell'/>";
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?page=sells&sub=new&e=" . $encptid . "'/>";
+        echo "</td>";
         echo "</td>";
         echo "</tr>";
         echo "</table>";
         echo "</form>";
     }
 
-    public function new_sells($party, $date, $sel_info, $dis, $t)
+    public function new_sells($party, $date, $sel_info, $dis, $t, $driver = NULL, $vehicle = NULL, $company = NULL)
     {
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $id = $this->get_last_id('selles', 'idselles');
@@ -144,6 +165,7 @@ class indquery extends query
         }
         if ($flag) {
             $flag = $this->insert_query('selles_discount', array('idselles', 'discount'), array($id, $dis), array('d', 'd'));
+            $flag = $this->insert_query('chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
         }
         if ($flag) {
             $flag = $this->insert_query('selles_delivery', array('idselles', 'cost'), array($id, $t), array('d', 'd'));
@@ -287,7 +309,6 @@ class indquery extends query
             if ($flag) {
                 $flag = $this->insert_query('purchase_details', array('idpurchase', 'idproduct', 'unite', 'rate'), array($id, $info[0], $info[1], $info[2]), array('d', 'd', 'd', 'f'));
                 if ($flag) {
-
                     $query = sprintf("UPDATE stock SET stock = stock + %d WHERE idproduct = %d", $info[1], $info[0]);
                     $flag = mysqli_query($this->dtb_con, $query);
                     if (!$flag) {
@@ -337,27 +358,26 @@ class indquery extends query
         }
     }
 
-    public function addParty($name, $p1, $p2, $address, $type)
+    public function addParty($name = '', $p1 = '', $p2 = '', $address = 'N/A', $type = 1)
     {
         $id = $this->get_last_id("party", "idparty");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $flag = $this->insert_query('party', array('idparty', 'name'), array($id, $name), array('d', 's'));
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('party_adress', array('idparty', 'adress'), array($id, $address), array('d', 's'));
         }
-        if ($flag) {
-            if ($flag && $p1 != "") {
+        if ($flag == 1) {
+            if ($p1 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p1), array('d', 's'));
             }
-            if ($flag && $p2 != "") {
+            if ($p2 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p2), array('d', 's'));
             }
-
-            if ($flag) {
-                $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
-            }
         }
-        if ($flag) {
+        if ($flag == 1) {
+            $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
+        }
+        if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
@@ -475,7 +495,7 @@ class indquery extends query
         $query = sprintf("SELECT idstaff,name,post FROM staff WHERE status = 1 ORDER BY post ;");
         // $info got the necessary information about staff;
         $info = $this->get_custom_select_query($query, 3);
-        // furtern customization is upto you
+        // further customization is upto you
         echo "<br/>Attendance For : ";
 
         $html = new html();
@@ -719,7 +739,7 @@ class indquery extends query
      * @param $type
      * @param $cost
      */
-    public function printPayment($id = NULL, $type = NULL , $cost = 0.0)
+    public function printPayment($id = NULL, $type = NULL, $cost = 0.0)
     {
         $comment = null;
         $inp = new html();
@@ -1207,7 +1227,7 @@ class indquery extends query
         return $flag;
     }
 
-    public function printPartyFinOverview($id, $encptid, $name, $date1 = null, $date2 = null)
+    public function print_party_overview($id, $encptid, $name, $date1 = null, $date2 = null)
     {
         $inp = new html();
         if ($date1 && $date2) {
@@ -1236,23 +1256,26 @@ class indquery extends query
             } else {
                 echo "<a  id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_trans&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
-            echo " Paid to " . $name;
-            echo "</td>";
+            echo "<th>";
+            echo " Paid";
+            echo "</th>";
 
-            echo "<td>";
-            echo " Recived from " . $name;
-            echo "</td>";
-            echo "<td>";
+            echo "<th>";
+            echo " Recived";
+            echo "</th>";
+            echo "<th>";
             echo "Comments";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($tran as $s) {
                 echo "<tr>";
                 echo "<td>";
@@ -1260,10 +1283,11 @@ class indquery extends query
                 echo "</td>";
                 if ($s[1] > 0) {
                     echo "<td align = 'center' ></td>";
-                    echo "<td align = 'right' >" . sprintf("%.2f", $s[1]) . "</td>";
+                    echo "<td align = 'right' >" . money($s[1]) . "</td>";
                     $recived += $s[1];
                 } else {
-                    echo "<td align = 'right' >" . sprintf("%.2f", -$s[1]) . "</td>";
+                    $neg = ($s[1]) * -1;
+                    echo "<td align = 'right' >" . money($neg) . "</td>";
                     echo "<td align = 'center' ></td>";
                     $paid += $s[1];
                 }
@@ -1273,7 +1297,12 @@ class indquery extends query
                 echo "</td>";
                 echo "</tr>";
             }
-            echo "<tr><td>Total </td> <td><b>" . sprintf("%.2f", -$paid) . "</b></td><td><b>" . sprintf("%.2f", $recived) . "</b  ></td><td> - </td></tr>";
+            echo "</tbody>";
+            $total_paid = ($paid) * -1;
+            echo "<tr><td>Total </td> 
+<td><b>" . money($total_paid) . "</b></td>
+<td><b>" . money($recived) . "</b  ></td>
+<td> - </td></tr>";
             echo "</table>";
 
         } else {
@@ -1296,33 +1325,38 @@ class indquery extends query
         echo "<div  id='sud1'>";
         if (count($sell) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_sell&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<br/><table align='center' class='rb'>";
+            echo "<br/><table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
-            echo "<td>";
+            echo "</th>";
+            echo "<th>";
             echo "Bill";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Discount";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($sell as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . sprintf("%.2f", $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money($s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
                 $bill_t += $s[1];
                 $bill_d += $s[2];
                 echo "</tr>";
             }
-            echo "<tr><td>Sum </td> <td>" . sprintf("%.2f", $bill_t) . "</td><td>" . sprintf("%.2f", $bill_d) . "</td></tr>";
-            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . sprintf("%.2f", $bill_t - $bill_d) . "</b></td></td></tr>";
-            $total += ($bill_t - $bill_d);
+            echo "</tbody>";
+            echo "<tr><td>Total : </td> <td>" . money($bill_t) . "</td><td>" . money($bill_d) . "</td></tr>";
+            $gdtotal = $bill_t - $bill_d;
+            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($gdtotal) . "</b></td></td></tr>";
+            $total += $gdtotal;
             echo "</table>";
         } else {
             if ($date1 && $date2) {
@@ -1343,33 +1377,38 @@ class indquery extends query
         echo "<div  id='sud2'>";
         if (count($pur) > 0) {
             if ($date1 && $date2) {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b>Print</b></a><br/>";
             } else {
-                echo "<a href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
+                echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=individual_purchase&id=" . $id . "' class='button' target='_blank'><b>Print</b></a><br/>";
             }
-            echo "<table align='center' class='rb'>";
+            echo "<table align='center' class='rb table'>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>";
+            echo "<th>";
             echo "Date";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Bill";
-            echo "</td>";
+            echo "</th>";
 
-            echo "<td>";
+            echo "<th>";
             echo "Discount";
-            echo "</td>";
+            echo "</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
             foreach ($pur as $s) {
                 echo "<tr>";
-                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . sprintf("%.2f", $s[1]) . "</td>" . "<td>" . $s[2] . "</td>";
+                echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money($s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
                 $r_bill_t += $s[1];
                 $r_bill_d += $s[2];
                 echo "</tr>";
             }
-            echo "<tr><td>Sum </td> <td>" . sprintf("%.2f", $r_bill_t) . "</td><td>" . sprintf("%.2f", $r_bill_d) . "</td></tr>";
-            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . sprintf("%.2f", $r_bill_t - $r_bill_d) . "</b></td></td></tr>";
+            echo "</tbody>";
+            echo "<tr><td>Total : </td> <td>" . money($r_bill_t) . "</td><td>" . money($r_bill_d) . "</td></tr>";
+            $total = $r_bill_t - $r_bill_d;
+            echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" . money($total) . "</b></td></td></tr>";
             echo "</table>";
         } else {
             if ($date1 && $date2) {
@@ -1447,7 +1486,7 @@ class indquery extends query
 
 
         if ($cash < $sal) {
-            echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
+            echo "You dont have enough money (" . money($am) . ") in cash. You have " . $cash . "<br/>";
             return false;
         }
         $am = -$sal;
@@ -1471,13 +1510,12 @@ class indquery extends query
         }
     }
 
-    public function addBonusPay($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
+    public function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
     {
 
         $cols = array('id', 'idstaff', 'month', 'year');
 
         $flag = true;
-
 
         $id = $this->get_last_id('transaction', 'id');
 
@@ -1488,8 +1526,8 @@ class indquery extends query
         $cash = $balance[0][0];
 
 
-        if ($cash < $sal) {
-            echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
+        if ($cash < $bon) {
+            echo "You dont have enough money (" . money($am) . ") in cash. You have " . money($cash) . "<br/>";
             return false;
         }
         $am = -$bon;
@@ -1509,7 +1547,7 @@ class indquery extends query
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
-            echo 'something is wrong check your given data or contact with <a> unique webers </a>';
+            echo 'something is wrong check your given data or contact with <a> unique wavers </a>';
             mysqli_query($this->dtb_con, 'ROLLBACK');
             return false;
         }
