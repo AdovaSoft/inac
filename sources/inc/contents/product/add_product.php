@@ -2,7 +2,7 @@
 <br/>
 <?php
 include("sources/inc/usercheck.php");
-if (isset($_POST['ab'])) {
+if (isset($_POST['ab']) ) {
 
     $flag = ($_POST['n'] && $_POST['mt'] && $_POST['pt'] != null && $_POST['prc']);
     if ($flag) {
@@ -10,15 +10,13 @@ if (isset($_POST['ab'])) {
         $price = isset($_POST['prc']) ? $_POST['prc'] : 0;
 
         $flag = $query->addProduct($_POST['n'], $_POST['mt'], $_POST['pt'], $price);
-
+        
         if ($flag) {
             echo "<h3 class='green'>New Product Added Successfully</h3>";
         } else {
             echo "<h3 class='red'>Failed to Add New Product</h3>";
             unset($_POST['ab']);
         }
-
-
     } else {
         echo "<h3 class='blue'>Please give product name, measurement type and product type.</h3>";
     }
