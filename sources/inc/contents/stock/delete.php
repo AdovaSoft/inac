@@ -37,7 +37,7 @@ $info = $qur->get_custom_select_query($query, 3);
 $n = count($info);
 
 if ($n > 0) {
-    echo "<br/><table align='center' class='rb'>";
+    echo "<br/><table align='center' class='rb table'>";
     echo "<tr>";
     echo "<td>";
     echo "Product";

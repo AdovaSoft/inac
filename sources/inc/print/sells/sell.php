@@ -1,4 +1,4 @@
-<h1>Invoice</h1>
+<h2>Invoice</h2>
 <?php
 $vou = $_POST['vou'];
 $query_det = sprintf("SELECT name,date, discount, driver, vehicle, company  

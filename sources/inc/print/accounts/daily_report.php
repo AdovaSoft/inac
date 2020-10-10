@@ -1,4 +1,4 @@
-<h1>Accounts Daily Report</h1>
+<h2>Accounts Daily Report</h2>
 <?php
 
 include("sources/inc/print/single_date.php");

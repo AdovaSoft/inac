@@ -1,4 +1,4 @@
-<h1>All Stock Report</h1>
+<h2>All Stock Report</h2>
 <?php
 $query = sprintf("SELECT name, stock, factory_stock,unite, price, idproduct FROM (SELECT idproduct,idunite FROM product_details) as product LEFT JOIN product USING (idproduct) LEFT JOIN stock USING(idproduct) LEFT JOIN mesurment_unite USING(idunite)  LEFT JOIN price USING(idproduct);");
 
@@ -64,12 +64,12 @@ if (count($info) > 0) {
         echo $ar[3];
         echo "</td>";
 
-        echo "<td>";
+        echo "<td style='text-align: right; padding-right: 16px'>";
         echo money($ar[4]);
         echo "</td>";
 
 
-        echo "<td>";
+        echo "<td style='text-align: right; padding-right: 16px'>";
         $total_price = ($ar[1] + $ar[2]) * $ar[4];
         echo money($total_price);
         $cost += ($ar[1] + $ar[2]) * $ar[4];

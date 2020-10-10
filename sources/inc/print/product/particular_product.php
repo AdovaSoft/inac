@@ -1,4 +1,4 @@
-<h1>Particular Product Overview</h1>
+<h2>Particular Product Overview</h2>
 <?php
 $id = $inp->value_pgd('id');
 include("sources/inc/print/double_date.php");

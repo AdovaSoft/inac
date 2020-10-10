@@ -27,7 +27,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
                 echo "<tr>";
                 echo "<td>";
                 echo "Date";
@@ -242,7 +242,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $stock[3] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
 
                     echo "<tr>";
 
@@ -461,7 +461,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
-        echo "<br/><table align='center' class='rb'>";
+        echo "<br/><table align='center' class='rb table'>";
         echo "<tr>";
         echo "<td>";
         echo "Date";

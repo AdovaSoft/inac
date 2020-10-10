@@ -1,4 +1,4 @@
-<h1>All Party</h1>
+<h2>All Party</h2>
 <?php
 $query = sprintf("SELECT idparty,name,adress,phone FROM party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
 $party = $qur->get_custom_select_query($query, 4);

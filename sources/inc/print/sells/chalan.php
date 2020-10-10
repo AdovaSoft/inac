@@ -1,4 +1,4 @@
-<h1>Delivery Chalan</h1>
+<h2>Delivery Chalan</h2>
 <?php
 $vou = $_POST['vou'];
 $query_det = sprintf("SELECT name,date,discount, driver, vehicle, company  FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 

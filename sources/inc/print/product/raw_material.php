@@ -1,4 +1,4 @@
-<h1>Raw Material Purchase Overview</h1>
+<h2>Raw Material Purchase Overview</h2>
 <?php
 include("sources/inc/print/double_date.php");
 $info = $qur->get_raw_product_overview($date1, $date2);

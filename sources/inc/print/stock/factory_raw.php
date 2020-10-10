@@ -1,4 +1,4 @@
-<h1>Factory Raw Materials Stock Report</h1>
+<h2>Factory Raw Materials Stock Report</h2>
 <?php
 $query = sprintf("SELECT name, factory_stock, unite, price, idproduct FROM (SELECT idproduct,idunite FROM product_details WHERE purchase = 1 ) as product LEFT JOIN product USING (idproduct) LEFT JOIN stock USING(idproduct) LEFT JOIN mesurment_unite USING(idunite)  LEFT JOIN price USING(idproduct);");
 $qur = new indquery();

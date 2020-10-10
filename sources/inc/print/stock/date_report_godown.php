@@ -1,4 +1,4 @@
-<h1>Date wise Godown Stock Report</h1>
+<h2>Date wise Godown Stock Report</h2>
 <?php
 include("sources/inc/print/double_date.php");
 
