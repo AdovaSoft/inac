@@ -1,8 +1,11 @@
 <h1>Invoice</h1>
 <?php
 $vou = $_POST['vou'];
-$query_det = sprintf("SELECT name,date,discount, driver, vehicle, company  FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 
-LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idselles)  LEFT JOIN party USING (idparty);", $vou);
+$query_det = sprintf("SELECT name,date, discount, driver, vehicle, company  
+FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 
+LEFT JOIN selles_discount USING (idselles) 
+    LEFT JOIN selles_chalan USING (idselles)  
+    LEFT JOIN party USING (idparty);", $vou);
 $sell_det = $qur->get_custom_select_query($query_det, 6);
 
 $query_pro = sprintf("SELECT idproduct, s.unite,  rate, name,  mesurment_unite.unite   FROM (SELECT idproduct, unite,

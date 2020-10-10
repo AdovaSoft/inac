@@ -18,11 +18,12 @@ class indquery extends query
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE sell = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
         $products = $this->get_custom_select_query($query, 4);
-        //d($products);
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
         echo "<br/>";
         echo "<form action='editor.php' method = 'POST' class='embossed'>";
+        echo "<fieldset><legend>Selles Information</legend>";
         echo "<table class='centeraligned'>";
+        echo "<thead>";
         echo "<tr>";
         echo "<td colspan='3'>";
         echo "Client: ";
@@ -49,6 +50,7 @@ class indquery extends query
         echo "Total";
         echo "</th>";
         echo "</tr>";
+        echo "</thead>";
         $num = $inp->value_pgd('num', 5);
         echo "<input type = 'hidden' name = 'num' value='" . $num . "' />";
         for ($i = 0; $i < $num; $i++) {
@@ -70,6 +72,7 @@ class indquery extends query
             echo "<td class='total_td' id='total_td_" . $i . "' style='text-align:right;'></td>";
             echo "</tr>";
         }
+        echo "</tbody>";
         echo "<tr>";
         echo "<th colspan='3'>";
         echo "Total :";
@@ -104,6 +107,11 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
+        echo "<tbody>";
+        echo "</table>";
+        echo "</fieldset>";
+        echo "<br/><fieldset><legend>Delivery Information</legend>";
+        echo "<table width='100%'>";
         echo "<tr>";
         echo "<td><br> Driver Name : </td>";
         echo "<td colspan='3'>";
@@ -118,11 +126,6 @@ class indquery extends query
         echo "<td><br> Company : </td>";
         echo "<td colspan='3'>";
         echo $inp->input_text("", 'company', '', 'full-width', 'drivers');
-        echo "</td>";
-        echo "</tr>";
-        echo "<td colspan='4'>";
-        echo "<center>";
-        echo "<br/><input type='submit' name='ab' value='Sell'/>";
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?page=sells&sub=new&e=" . $encptid . "'/>";
@@ -130,6 +133,11 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "</table>";
+        echo "</fieldset>";
+        echo "<div style='width: 100%;'>";
+        $inp->input_submit('ab', 'Sell');
+        echo "</div>";
+
         echo "</form>";
     }
 
@@ -889,12 +897,12 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             echo "</tr>";
             echo "<td><br> Vehicle No : </td>";
             echo "<td>";
-            echo $inp->input_text("", 'vehicle',  $sell_det[0][4], 'full-width', 'drivers');
+            echo $inp->input_text("", 'vehicle', $sell_det[0][4], 'full-width', 'drivers');
             echo "</td>";
             echo "</tr>";
             echo "<td><br> Company : </td>";
             echo "<td>";
-            echo $inp->input_text("", 'company',  $sell_det[0][5], 'full-width', 'drivers');
+            echo $inp->input_text("", 'company', $sell_det[0][5], 'full-width', 'drivers');
             echo "</td>";
             echo "</tr>";
             echo "</table>";

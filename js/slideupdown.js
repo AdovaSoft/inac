@@ -1,7 +1,7 @@
 var visible;
 var totalElements;
-var speed = 1000;
-var autospeed = 5000;
+var speed = 900;
+var autospeed = 3000;
 
 function hideAllButZero(total) {
     for (var i = 1; i < total; i++) {

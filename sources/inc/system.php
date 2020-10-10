@@ -61,7 +61,7 @@ function money(&$number)
     if (isset($number) && is_numeric($number))
         return number_format($number, '2', '.', ',');
     else
-        return 0.00;
+        return '0.00';
 }
 
 function convert_date($date)
