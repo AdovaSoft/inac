@@ -39,7 +39,11 @@ if (isset($_POST['p'])) {
 
         echo "<input type = 'hidden' name = 'id' value = '" . $_POST['p'] . "' />";
 
-        $query = sprintf("SELECT name,idunite,sell,purchase,price FROM (SELECT * FROM product WHERE idproduct = %d) as p LEFT JOIN product_details USING (idproduct)  LEFT JOIN price USING(idproduct) ORDER BY name;", $_POST['p']);
+        $query = sprintf("SELECT name,idunite,sell,purchase,price FROM (SELECT * FROM product WHERE idproduct = %d) 
+        as p LEFT JOIN product_details USING (idproduct)  LEFT JOIN price USING(idproduct) ORDER BY name;
+        ", $_POST['p']);
+
+        
 
         $info = $qur->get_custom_select_query($query, 5);
 
