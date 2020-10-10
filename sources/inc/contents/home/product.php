@@ -1,4 +1,4 @@
-<form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=product" method="POST" class="embossed">
+<form action="index.php?e=<?php echo $encptid ?>&page=home&sub=product" method="POST" class="embossed">
   <h2>Product Search</h2>
   <br/>
   <input type="text" name="searchword" class="searchword"
@@ -38,15 +38,15 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
-                echo "<td><a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $res[$i][0] . "'>";
+                echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
                 echo $res[$i][1];
                 echo "</a></td>";
 
-                echo "<td><a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $res[$i][0] . "'>";
+                echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
                 echo $res[$i][2];
                 echo "</a></td>";
 
-                echo "<td><a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $res[$i][0] . "' >";
+                echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "' >";
                 echo $res[$i][3];
                 echo "</a></td>";
 

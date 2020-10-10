@@ -36,7 +36,7 @@ $csschoice = isset($csschoice) ? $csschoice : null;
   </select>
   <input type="hidden" name="editor" value="settings/theme"/>
   <input type="hidden" name="e" value="<?php echo $encptid; ?>"/>
-  <input type="hidden" name="returnlink" value="index.php?page=settings&&sub=theme&&e=<?php echo $encptid; ?>"/>
+  <input type="hidden" name="returnlink" value="index.php?page=settings&sub=theme&e=<?php echo $encptid; ?>"/>
   <br/>
   <br/><input type="submit" name="change" value="Change"/>
   <br/>

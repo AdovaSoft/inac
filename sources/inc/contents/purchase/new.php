@@ -3,7 +3,7 @@
 <?php
 if (isset($_GET['say'])) {
     if ($_GET['say'] == 1) {
-        $custom_message = "<h2 class='green'>Purchase recorded successfully.</h2><br/><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment&&pt=" . $_GET['pt'] . "&&pay_type=-1&&cost=" . ($_GET['cost'] - $_GET['d']) . "' class='button'>Give Payment</a>";
+        $custom_message = "<h2 class='green'>Purchase recorded successfully.</h2><br/><a href='index.php?e=" . $encptid . "&page=accounts&sub=payment&pt=" . $_GET['pt'] . "&pay_type=-1&cost=" . ($_GET['cost'] - $_GET['d']) . "' class='button'>Give Payment</a>";
     } elseif ($_GET['say'] == 2) {
         $custom_message = "<h3 class='red'>Could not record purchase.</h3>";
     } elseif ($_GET['say'] == 3) {

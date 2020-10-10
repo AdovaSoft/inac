@@ -52,14 +52,14 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         echo money($ar[3]);
         echo "</a>";
         echo "</td>";
 
 
         echo "<td>";
-        echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         $total = $ar[3] * $ar[1];
         echo money($total);
         $cost += $ar[3] * $ar[1];

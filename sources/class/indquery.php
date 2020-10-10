@@ -165,7 +165,7 @@ class indquery extends query
         }
         if ($flag) {
             $flag = $this->insert_query('selles_discount', array('idselles', 'discount'), array($id, $dis), array('d', 'd'));
-            $flag = $this->insert_query('chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
+            $flag = $this->insert_query('selles_chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
         }
         if ($flag) {
             $flag = $this->insert_query('selles_delivery', array('idselles', 'cost'), array($id, $t), array('d', 'd'));

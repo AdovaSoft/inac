@@ -81,6 +81,9 @@ $grand_total += $net;
 echo "</th>";
 echo "</tr>";
 echo "</table>";
+echo "<p style='text-align: left'><b>Driver Name: </b> "  . esc($sell_det[0][3]) . "</p>"; //driver
+echo "<p style='text-align: left'><b>Vehicle No : </b> "  . esc($sell_det[0][4]) . "</p>"; //vehicle
+echo "<p style='text-align: left'><b>Company :  </b> "  . esc($sell_det[0][5]) . "</p>"; //company
 
 
 

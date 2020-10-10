@@ -21,7 +21,7 @@ if (isset($_GET['e'])) {
         $loginmessage = "<h2 class='blue'>Please Login.</h2>";
         include("sources/inc/loginform.php");
     }
-} elseif (isset($username) && isset($userpass) && isset($_POST['submit'])) {
+} elseif (isset($username) & isset($userpass) & isset($_POST['submit'])) {
     include("sources/db/login_db_fn.php");
     $checkingdata = login_check($username, $_POST['userpass']);
     if ($checkingdata != 0) {

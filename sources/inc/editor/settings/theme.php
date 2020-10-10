@@ -8,13 +8,13 @@ if (isset($_POST['change'])) {
         $change = $qur->changecss($idstaff, $_POST['newcss']);
         d($change);
         if ($change) {
-            $extra_string = "&&say=1";
+            $extra_string = "&say=1";
         } else {
-            $extra_string = "&&say=2";
+            $extra_string = "&say=2";
         }
     } else {
-        $extra_string = "&&say=3";
+        $extra_string = "&say=3";
     }
 } else {
-    $extra_string = "&&say=2";
+    $extra_string = "&say=2";
 }

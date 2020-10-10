@@ -94,11 +94,17 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<td colspan='4'>";
     if ($usertype == ADMIN) {
         echo "<form method='POST'><input type='hidden' name='sell_id' value='" . $vou . "'/><input type='submit' name='delete' value='Delete'/></form> ";
-        echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'><input type='hidden' name='v' value='" . $vou . "'/><input type='submit' name='ab' value='Edit'/></form> ";
+        echo "<form method='POST' action='index.php?e=" . $encptid . "&page=sells&sub=return'><input type='hidden' name='v' value='" . $vou . "'/><input type='submit' name='ab' value='Edit'/></form> ";
     }
-    echo "<form id='printBox' method='POST' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'>
-    <input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Bill'/></form> ";
-    echo "<form method='POST' action='recept_print.php?e=" . $encptid . "' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print on Pad'/></form> ";
+    echo "<form id='printBox' method='POST' action='print.php?e=" . $encptid . "&page=sells&sub=sell' target='_blank'>
+    <input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Bill'/>
+    </form> ";
+    echo "<form method='POST' action='recept_print.php?e=" . $encptid . "' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/>
+<input type='submit' name='print' value='Print on Pad'/>
+</form> ";
+    echo "<form id='printBox' method='POST' action='print.php?e=" . $encptid . "&page=sells&sub=chalan' target='_blank'>
+    <input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Chalan'/>
+    </form> ";
     echo "</td>";
     echo "</tr>";
     echo "</table>";

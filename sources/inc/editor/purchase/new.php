@@ -20,13 +20,13 @@ if (isset($_POST['ab'])) {
         }
 
         if ($_POST['d'] >= $cost) {
-            $extra_string = "&&say=5";
+            $extra_string = "&say=5";
             $flag = false;
         } elseif ($j == 0) {
-            $extra_string = "&&say=4";
+            $extra_string = "&say=4";
             $flag = false;
         } elseif ($_POST['t'] < 0) {
-            $extra_string = "&&say=8";
+            $extra_string = "&say=8";
             $flag = false;
         }
 
@@ -41,12 +41,12 @@ if (isset($_POST['ab'])) {
         $flag = $query->newPurchase($_POST['pt'], $inp->get_post_date('sd'), $sel_info, $_POST['d'], $_POST['res'], $_POST['t']);
 
         if ($flag) {
-            $extra_string = "&&say=1&&idselles=" . $flag . "&&cost=" . $cost;
+            $extra_string = "&say=1&idselles=" . $flag . "&cost=" . $cost;
         } else {
-            $extra_string = "&&say=2";
+            $extra_string = "&say=2";
         }
     } elseif (!$extra_string) {
-        $extra_string = "&&say=3";
+        $extra_string = "&say=3";
     } else {
         $extra_string = $extra_string;
     }

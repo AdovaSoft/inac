@@ -41,7 +41,7 @@ if (count($info) > 0) {
     foreach ($info as $ar) {
         echo "<tr>";
         echo "<th>";
-        echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $ar[4] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $ar[4] . "'>";
         echo $ar[0];
         echo "</a>";
         echo "</th>";

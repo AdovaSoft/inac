@@ -4,7 +4,7 @@ if (isset($_POST['ab'])) {
     $flag = (isset($_POST['p']) && $_POST['p'] > 0 && isset($_POST['pr']));
     if ($flag) {
         if ($_POST['s'] < 1) {
-            $extra_string = "&&say=5";
+            $extra_string = "&say=5";
             $flag = false;
         }
     }
@@ -14,7 +14,7 @@ if (isset($_POST['ab'])) {
         //update_stock($id,$date,$st,$cur)
         if ($_POST['pr'] == -1) {
             if ($_POST['s'] > $c_s[0][0]) {
-                $extra_string = "&&say=3";
+                $extra_string = "&say=3";
                 $flag = false;
             } else {
                 $u_s = -$_POST['s'];
@@ -30,13 +30,13 @@ if (isset($_POST['ab'])) {
 
 
         if ($flag) {
-            $extra_string = "&&say=1";
+            $extra_string = "&say=1";
         } else {
-            $extra_string = "&&say=2";
+            $extra_string = "&say=2";
         }
 
     } else {
-        $extra_string = "&&say=4";
+        $extra_string = "&say=4";
     }
 }
 
