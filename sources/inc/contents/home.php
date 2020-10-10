@@ -4,7 +4,7 @@
       <h2>Party Search</h2>
       <br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=party" method="POST">
-        <input type="text" name="searchword" class="searchword"/>
+        <input type="text" name="searchword" class="searchword" required/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>
       </form>
@@ -15,7 +15,7 @@
       <h2>Product Search</h2>
       <br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=product" method="POST">
-        <input type="text" name="searchword" class="searchword"/>
+        <input type="text" name="searchword" class="searchword" required/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>
       </form>
@@ -24,7 +24,7 @@
       <h2>Staff Search</h2>
       <br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=staff" method="POST">
-        <input type="text" name="searchword" class="searchword"/>
+        <input type="text" name="searchword" class="searchword" required/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>
       </form>
@@ -35,7 +35,7 @@
       <h2>Sell Search</h2>
       <br/>Enter voucher number<br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=sell" method="POST">
-        <input type="text" name="searchword" class="searchword"/>
+        <input type="text" name="searchword" class="searchword" required/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>
       </form>
@@ -44,7 +44,7 @@
       <h2>Purchase Search</h2>
       <br/>Enter voucher number<br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=purchase" method="POST">
-        <input type="text" name="searchword" class="searchword"/>
+        <input type="text" name="searchword" class="searchword" required/>
         <br/>
         <br/><input type="submit" name="submit" value="Search"/>
       </form>

@@ -1,7 +1,7 @@
 <h2>Payment</h2>
 <br/>
 <?php
-include("./sources/inc/usercheck.php");
+include "./sources/inc/usercheck.php";
 $flag = true;
 
 if (isset($_POST['ab'])) {
@@ -22,6 +22,14 @@ if (isset($_POST['ab'])) {
             }
         } else {
             $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
+
+            /**
+             * $qur->addTran() Generating a Sql View in Clintside
+             *
+             * string(114) "INSERT INTO transaction     ( id , date , type , ammount )  VALUES     ( 16444 , '2020-10-9' , 0 , 133748565532 ) "
+             * string(97) "INSERT INTO transaction_comment   ( id , comment )  VALUES   ( 16444 , 'Receiving from ABADUL' ) "
+             * string(70) "INSERT INTO party_payment   ( id , idparty )  VALUES   ( 16444 , 64 ) "
+             */
             $flag = $qur->addTran($_POST['party'], $date, $_POST['amnt'], $_POST['p_t'], $_POST['p_m'], $_POST['cmnt'], 1, null);
             if ($flag) {
                 echo "<h2 class='green'>Transaction successful</h2>

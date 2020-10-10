@@ -19,20 +19,20 @@ $(document).ready(function () {
 });
 
 function calculate(multiplier, multiplicand, sliced) {
-    var total = parseFloat(($("#" + multiplicand + multiplier.slice(sliced)).val() * $("#" + multiplier).val()).toFixed(2));
-    $("#total_td" + multiplier.slice(sliced)).html(total);
+    var total = $("#" + multiplicand + multiplier.slice(sliced)).val() * $("#" + multiplier).va();
+    $("#total_td" + multiplier.slice(sliced)).html(parseFloat(total).toFixed(2));
     process_grand_total(0);
 }
 
 function process_grand_total(sum) {
     $(".total_td").each(function () {
-        console.log("fine");
-        sum += parseFloat($(this).html());
+        //console.log("fine");
+        sum += parseFloat($(this).html()).toFixed(2);
     });
     $("#grand_total").html(sum);
     netCharge();
 }
 
 function netCharge() {
-    $("#netcharges").html(parseFloat($("#grand_total").html()) - parseFloat($("#discount").val()));
+    $("#netcharges").html((parseFloat($("#grand_total").html()) - parseFloat($("#discount").val())).toFixed(2));
 }

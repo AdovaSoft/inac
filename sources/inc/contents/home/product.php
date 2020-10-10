@@ -2,7 +2,7 @@
   <h2>Product Search</h2>
   <br/>
   <input type="text" name="searchword" class="searchword"
-         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>"/>
+         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
   <br/>
   <br/><input type="submit" name="submit" value="Search"/>
 </form>
@@ -11,7 +11,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Product Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = ($_POST['searchword'] != null ? $_POST['searchword'] : $_GET['searchword']);
+    $s = (isset($_POST['searchword']) != null ? $_POST['searchword'] : $_GET['searchword']);
     if ($s == null) {
         echo "<br/><h3>You cant search on empty string</h3><br/>";
     } else {
