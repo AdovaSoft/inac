@@ -44,7 +44,7 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'save') {
         $flag = $qur->sells_return($id, $pro, $d, $cost, $driver, $vehicle, $company);
 
     if ($flag) {
-        echo "<br/><h2 class='green'>Sales Return Successfully</h2>";
+        echo "<br/><h2 class='green'>Sales Update Successfully</h2>";
     } else {
         echo "<br/><h2 class='red'>Sales Return Failed</h2>";
     }
