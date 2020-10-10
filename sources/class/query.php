@@ -392,7 +392,7 @@ class query
      */
     public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '')
     {
-
+        d($ar);
         echo "<select name = '" . $name . "' class='" . $class . "' >";
         echo "<option> </option>";
         $n = count($ar);

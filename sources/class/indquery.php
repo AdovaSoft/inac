@@ -17,7 +17,7 @@ class indquery extends query
         $query = sprintf("SELECT idparty,name FROM (SELECT * FROM party_type WHERE type=1 OR type=2) as sel LEFT JOIN party USING(idparty) ORDER BY name");
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE sell = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
-        $pro = $this->get_custom_select_query($query, 3);
+        $products = $this->get_custom_select_query($query, 3);
 
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
         echo "<br/>";
@@ -54,7 +54,7 @@ class indquery extends query
         for ($i = 0; $i < $num; $i++) {
             echo "<tr>";
             echo "<td>";
-            $this->get_dropdown_array($pro, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
+            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
             echo "</td>";
 
             echo "<td>";
@@ -203,10 +203,10 @@ class indquery extends query
         $query = sprintf("SELECT idparty,name FROM (SELECT * FROM party_type WHERE type = 0 OR type=2) as sel LEFT JOIN party USING(idparty) ORDER BY name");
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE purchase = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
-        $pro = $this->get_custom_select_query($query, 3);
+        $products = $this->get_custom_select_query($query, 3);
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
         echo "<br/><form  action='editor.php' method = 'POST' class='embossed'>";
-        echo "<input type = 'hidden' name = 'num' value ='" . count($pro) . "' />";
+        echo "<input type = 'hidden' name = 'num' value ='" . count($products) . "' />";
         echo "<table class='centeraligned'>";
         echo "<tr>";
         echo "<td colspan='3'>";
@@ -241,7 +241,7 @@ class indquery extends query
         for ($i = 0; $i < $num; $i++) {
             echo "<tr>";
             echo "<td>";
-            $this->get_dropdown_array($pro, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
+            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
             echo "</td>";
 
             echo "<td>";
@@ -700,17 +700,17 @@ class indquery extends query
     /**
      * @param $name
      * @param $mes_tpe
-     * @param $pro_type
+     * @param $products_type
      * @param $price
      * @return bool
      */
-    public function addProduct($name, $mes_tpe, $pro_type, $price)
+    public function addProduct($name, $mes_tpe, $products_type, $price)
     {
         $id = $this->get_last_id("product", "idproduct");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $flag = $this->insert_query('product', array('idproduct', 'name'), array($id, $name), array('d', 's'));
         if ($flag) {
-            if ($pro_type == 0) {
+            if ($products_type == 0) {
                 // only selles
                 $flag = $this->insert_query('product_details', array('idproduct', 'idunite', 'sell', 'purchase'), array($id, $mes_tpe, 0, 1), array('d', 'd', 'd', 'd'));
             } else {
@@ -808,7 +808,7 @@ class indquery extends query
         $sell_det = $this->get_custom_select_query($query_det, 3);
         $sell_pro = $this->get_custom_select_query($query_pro, 4);
         //$party = $this->get_custom_select_query('SELECT * FROM party', 2);
-        //$pro = $this->get_custom_select_query('SELECT * FROM product', 2);
+        //$products = $this->get_custom_select_query('SELECT * FROM product', 2);
         if (count($sell_pro) > 0 && count($sell_det) > 0) {
             $n = count($sell_pro);
             $inp->input_hidden('num', $n);
@@ -886,7 +886,7 @@ class indquery extends query
         }
     }
 
-    public function sells_return($id, $pro, $d, $cost)
+    public function sells_return($id, $products, $d, $cost)
     {
         if ($cost <= $d) {
             echo "<br/>Discount cant be equal to cost";
@@ -896,8 +896,8 @@ class indquery extends query
 
         $flag = $this->update_column('selles_discount', array('discount'), array($d), array('d'), 'idselles', '=', $id);
 
-        if (count($pro) > 0) {
-            foreach ($pro as $p) {
+        if (count($products) > 0) {
+            foreach ($products as $p) {
                 if ($flag) {
                     if (0 == $p[2] || $p[2] == null) {
                         $query = sprintf("DELETE FROM selles_details WHERE idselles = %d and idproduct = %d;", $id, $p[0]);
@@ -914,14 +914,14 @@ class indquery extends query
                     }
 
                 } else {
-                    unset($pro);
+                    unset($products);
                     mysqli_query($this->dtb_con, 'ROLLBACK');
                     return $flag;
 
                 }
             }
         }
-        unset($pro);
+        unset($products);
         if ($flag) {
             mysqli_query($this->dtb_con, 'COMMIT');
         } else {
@@ -944,7 +944,7 @@ class indquery extends query
         $sell_det = $this->get_custom_select_query($query_det, 3);
         $sell_pro = $this->get_custom_select_query($query_pro, 4);
         //$party = $this->get_custom_select_query('SELECT * FROM party', 2);
-        //$pro = $this->get_custom_select_query('SELECT * FROM product', 2);
+        //$products = $this->get_custom_select_query('SELECT * FROM product', 2);
 
         if (count($sell_det) > 0 && count($sell_pro) > 0) {
             $n = count($sell_pro);
@@ -1024,7 +1024,7 @@ class indquery extends query
         }
     }
 
-    public function purchaseReturn($id, $pro, $d, $cost)
+    public function purchaseReturn($id, $products, $d, $cost)
     {
         if ($cost <= $d) {
             echo "Discount cant be equal to cost";
@@ -1034,10 +1034,10 @@ class indquery extends query
 
         $flag = $this->update_column('purchase_discount', array('discount'), array($d), array('d'), 'idpurchase', '=', $id);
 
-        if (count($pro) > 0) {
+        if (count($products) > 0) {
 
 
-            foreach ($pro as $p) {
+            foreach ($products as $p) {
                 if ($flag) {
                     if (0 == $p[2] || $p[2] == null) {
                         $query = sprintf("DELETE FROM purchase_details WHERE idpurchase = %d and idproduct = %d;", $id, $p[0]);
@@ -1054,14 +1054,14 @@ class indquery extends query
                     }
 
                 } else {
-                    unset($pro);
+                    unset($products);
                     mysqli_query($this->dtb_con, 'ROLLBACK');
                     return $flag;
 
                 }
             }
         }
-        unset($pro);
+        unset($products);
         if ($flag) {
             mysqli_query($this->dtb_con, 'COMMIT');
         } else {
@@ -1126,15 +1126,15 @@ class indquery extends query
 
         $query = sprintf("SELECT name,sell, purchase FROM (SELECT * FROM product WHERE idproduct = %d) AS pro LEFT JOIN product_details USING(idproduct);", $id);
 
-        $pro_type = $this->get_custom_select_query($query, 2);
+        $products_type = $this->get_custom_select_query($query, 2);
 
-        if (count($pro_type) > 0) {
+        if (count($products_type) > 0) {
 
-            if ($pro_type[0][1] == 1) {
-                echo "<h2 class='blue'>" . strtoupper($pro_type[0][0]) . " Sells Report</h2>";
+            if ($products_type[0][1] == 1) {
+                echo "<h2 class='blue'>" . strtoupper($products_type[0][0]) . " Sells Report</h2>";
                 $query = sprintf("SELECT date, name,unite,rate FROM(SELECT * FROM selles WHERE date BETWEEN '%s' AND '%s') as selles JOIN (SELECT * FROM selles_details WHERE idproduct = %d) as selles_details USING(idselles) LEFT JOIN party USING (idparty) ORDER BY date DESC,idparty;", $date1, $date2, $id);
             } else {
-                echo "<h2 class='blue'>" . strtoupper($pro_type[0][0]) . " Purchase Report</h2>";
+                echo "<h2 class='blue'>" . strtoupper($products_type[0][0]) . " Purchase Report</h2>";
                 $query = sprintf("SELECT date,name,unite,rate FROM(SELECT * FROM purchase WHERE date BETWEEN '%s' AND '%s') as purchase JOIN (SELECT * FROM purchase_details WHERE idproduct = %d) as purchase_details USING(idpurchase) LEFT JOIN party USING (idparty) ORDER BY date DESC,idparty;", $date1, $date2, $id);
             }
         }
