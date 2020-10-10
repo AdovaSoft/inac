@@ -159,7 +159,6 @@ class query
     public function insert_query($tab, $cols, $vals, $flags)
     {
         $query = $this->gen_insert_query($tab, $cols, $vals, $flags);
-        d($query);
         if (mysqli_query($this->dtb_con, $query))
             return 1;
         else

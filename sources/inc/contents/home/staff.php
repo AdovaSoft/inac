@@ -2,7 +2,7 @@
   <h2>Staff Search</h2>
   <br/>
   <input type="text" name="searchword" class="searchword"
-         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>"/>
+         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
   <br/>
   <br/><input type="submit" name="submit" value="Search"/>
 </form>

@@ -3,7 +3,7 @@
   <br/>Enter voucher number<br/>
   <br/>
   <input type="text" name="searchword" class="searchword"
-         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>"/>
+         value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
   <br/>
   <br/><input type="submit" name="submit" value="Search"/>
 </form>
@@ -55,9 +55,15 @@ if (isset($_POST['searchword'])) {
                 echo $inp->date_convert($sell_results[$i][2]);
                 echo "</td>";
                 echo "<td>";
-                echo "<form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/><input type='hidden' name='sell_id' value='" . $sell_results[$i][0] . "'/><input type='submit' name='delete_sell' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'><input type='hidden' name='v' value='" . $sell_results[$i][0] . "'/><input type='submit' name='ab' value='Edit'/></form> ";
-                echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'><input type='hidden' name='vou' value='" . $sell_results[$i][0] . "'/><input type='submit' name='print' value='Print Invoice'/></form>";
+                echo "<form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/>
+                <input type='hidden' name='sell_id' value='" . $sell_results[$i][0] . "'/>
+                <input type='submit' name='delete_sell' value='Delete'/></form> ";
+                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'>
+                <input type='hidden' name='v' value='" . $sell_results[$i][0] . "'/>
+                <input type='submit' name='ab' value='Edit'/></form> ";
+                echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'>
+                <input type='hidden' name='vou' value='" . $sell_results[$i][0] . "'/>
+                <input type='submit' name='print' value='Print Invoice'/></form>";
                 echo "</td>";
                 echo "</tr>";
             }
