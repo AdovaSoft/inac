@@ -11,7 +11,7 @@ include("sources/inc/security_o.php");
 </head>
 <body onLoad="printpage()" style="width: 900px; margin: 0 auto;  font-size: 16pt;">
 <center>
-  <h1 id='banner'><?php echo $company; ?></h1>
+  <h1 id='banner'><?= COMPANY ?></h1>
     <?php
     $page = $inp->value_pgd('page');
     $sub = $inp->value_pgd('sub');

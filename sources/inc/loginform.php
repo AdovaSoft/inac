@@ -4,7 +4,7 @@
   <body>
   <center>
     <br/>
-    <h1><?php echo $company; ?></h1>
+    <h1><?= COMPANY ?></h1>
     <br/>
     <form action="index.php" method="POST" id="loginform">
         <?php echo $loginmessage; ?>

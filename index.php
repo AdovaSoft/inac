@@ -5,7 +5,7 @@ include("./sources/inc/security.php");
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <title><?php echo $company; ?></title>
+  <title><?= COMPANY ?></title>
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
   <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
@@ -35,7 +35,7 @@ include("./sources/inc/security.php");
     <img src="images/blank1by1.gif" class="leftpillar" alt=""/>
     <img src="images/blank1by1.gif" class="rightpillar" alt=""/>
     <br/>
-    <h1 id="banner"><?php echo $company; ?></h1><br/>
+    <h1 id="banner"><?= COMPANY ?></h1><br/>
       <?php
       $page = isset($_GET['page']) ? $_GET['page'] : NULL;
       $sub = isset($_GET['sub']) ? $_GET['sub'] : NULL;

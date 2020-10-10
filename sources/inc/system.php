@@ -1,12 +1,12 @@
 <?php
 session_start();
 date_default_timezone_set('Asia/Dhaka');
-$company = "Agro Fresh";
 
 //USER TYPE CONSTANTS
 defined('STAFF') || define('STAFF', 0);
 defined('ADMIN') || define('ADMIN', 1);
 defined('USER') || define('USER', 2);
+defined('COMPANY') | define('COMPANY', "Agro Fresh", true);
 
 /** Debug Function
  * @param mixed ...$var
@@ -53,14 +53,16 @@ function esc_num(&$variable)
  * @param $number
  * @return string
  */
-function money(&$number){
+function money(&$number)
+{
     if (isset($number) && is_numeric($number))
         return number_format($number, '2', '.', ',');
     else
         return 0.00;
 }
 
-function convert_date($date) {
+function convert_date($date)
+{
     $dates = explode('-', $date);
     if (checkdate($dates[1], $dates[2], $dates[0])) {
         return date("d M Y (D)", strtotime($date));
