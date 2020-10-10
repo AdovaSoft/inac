@@ -20,8 +20,10 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'save') {
     $id = $_POST['v'];
     $cost = 0;
     $pro = array();
+    $driver = (isset($_POST['driver'])) ? $_POST['driver'] : NULL;
+    $vehicle = (isset($_POST['vehicle'])) ? $_POST['vehicle'] : NULL;
+    $company = (isset($_POST['company'])) ? $_POST['company'] : NULL;
     for ($i = 0; $i < $_POST['num']; $i++) {
-
         if ($_POST['pr_pc_' . $i] < $_POST['pc_' . $i] || $_POST['co_' . $i] <= 0) {
             echo "<br/><h2 class='red'>You can't add more product now and can't set any price to zero or negative</h2>";
             $flag = false;
@@ -39,7 +41,7 @@ if (isset($_POST['ab']) && $_POST['ab'] == 'save') {
 
     $d = $_POST['d'];
     if ($flag)
-        $flag = $qur->sells_return($id, $pro, $d, $cost);
+        $flag = $qur->sells_return($id, $pro, $d, $cost, $driver, $vehicle, $company);
 
     if ($flag) {
         echo "<br/><h2 class='green'>Sales Return Successfully</h2>";
