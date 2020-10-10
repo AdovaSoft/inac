@@ -11,7 +11,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Product Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = (isset($_POST['searchword']) != null ? $_POST['searchword'] : $_GET['searchword']);
+    $s = (isset($_POST['searchword']) != null )? $_POST['searchword'] : $_GET['searchword'];
     if ($s == null) {
         echo "<br/><h3>You cant search on empty string</h3><br/>";
     } else {

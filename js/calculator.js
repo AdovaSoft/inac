@@ -25,10 +25,12 @@ function calculate(multiplier, multiplicand, sliced) {
 }
 
 function process_grand_total(sum) {
-    $(".total_td").each(function () {
-        //console.log("fine");
-        sum += parseFloat($(this).html()).toFixed(2);
-    });
+    if (sum != 0) {
+        $(".total_td").each(function () {
+            //console.log("fine");
+            sum += parseFloat($(this).html()).toFixed(2);
+        });
+    }
     $("#grand_total").html(sum);
     netCharge();
 }

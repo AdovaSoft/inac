@@ -30,11 +30,11 @@ echo "<th>";
 echo "Drawings / Expenses";
 echo "</th>";
 
-echo "<th width='100px'>";
+echo "<th  width='400px'>";
 echo "Comments";
 echo "</th>";
 if ($usertype == ADMIN) {
-    echo "<th>";
+    echo "<th width='100px'>";
     echo "Delete Buttons";
     echo "</th>";
 }
