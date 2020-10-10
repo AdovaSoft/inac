@@ -19,7 +19,7 @@ $(document).ready(function () {
 });
 
 function calculate(multiplier, multiplicand, sliced) {
-    var total = $("#" + multiplicand + multiplier.slice(sliced)).val() * $("#" + multiplier).va();
+    var total = $("#" + multiplicand + multiplier.slice(sliced)).val() * $("#" + multiplier).val();
     $("#total_td" + multiplier.slice(sliced)).html(parseFloat(total).toFixed(2));
     process_grand_total(0);
 }

@@ -349,3 +349,9 @@ table.dataTable tbody tr {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.sticky {
+    position: fixed !important;
+    top: 0;
+    width: 100% !important;
+}

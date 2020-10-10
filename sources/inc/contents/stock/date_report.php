@@ -238,7 +238,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         $product_trac = null;
         $unit_trac = null;
         $price_trac = null;
-
+$tto_o = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {

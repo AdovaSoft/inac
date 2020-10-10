@@ -19,7 +19,7 @@ include("./sources/inc/security.php");
   <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
 </head>
 <body onLoad="startTime();">
-<div id="topmenu">
+<div id="topmenu" class="sticky">
     <?php
     include("sources/inc/topmenu.php");
     ?>
