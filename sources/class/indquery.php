@@ -17,8 +17,8 @@ class indquery extends query
         $query = sprintf("SELECT idparty,name FROM (SELECT * FROM party_type WHERE type=1 OR type=2) as sel LEFT JOIN party USING(idparty) ORDER BY name");
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE sell = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
-        $products = $this->get_custom_select_query($query, 3);
-
+        $products = $this->get_custom_select_query($query, 4);
+        //d($products);
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
         echo "<br/>";
         echo "<form action='editor.php' method = 'POST' class='embossed'>";
@@ -54,7 +54,7 @@ class indquery extends query
         for ($i = 0; $i < $num; $i++) {
             echo "<tr>";
             echo "<td>";
-            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
+            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i), '', true);
             echo "</td>";
 
             echo "<td>";

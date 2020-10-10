@@ -241,9 +241,9 @@ class query
     public function get_custom_select_query($query, $n)
     {
         $result = array();
-        $i = 0;
         $res = mysqli_query($this->dtb_con, $query);
         if (mysqli_num_rows($res) > 0) {
+            $i = 0;
             while ($row = mysqli_fetch_array($res)) {
                 for ($j = 0; $j < $n; $j++) {
                     if (isset($row[$j]))
@@ -390,18 +390,28 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '')
+    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '', $is_product = false)
     {
-        d($ar);
+        /**
+         *  Product Query
+         *  [ 0  -> ID,  1 -> Name, 2 -> Unit Name, 3 -> Quantity
+         */
         echo "<select name = '" . $name . "' class='" . $class . "' >";
-        echo "<option> </option>";
+        echo "<option> Select a Option</option>";
         $n = count($ar);
-        for ($i = 0; $i < $n; $i++) {
-            if ($sel == $ar[$i][$ind_sho]) {
-                echo "<option value = '" . $ar[$i][$ind_sho] . "' selected >" . $ar[$i][$ind_val] . "</option>";
-            } else {
-                echo "<option value = '" . $ar[$i][$ind_sho] . "' >" . $ar[$i][$ind_val] . "</option>";
-            }
+        foreach ($ar as $item) {
+           // d($item);
+            echo "<option value = '" . $item[$ind_sho] . "'";
+
+            if ($sel == $item[$ind_sho])
+                echo " selected";
+
+            if ($is_product == true)
+                echo "> " . $item[$ind_val] . " ( " . $item[3] . " " . $item[2] . " )";
+            else
+                echo "> " . $item[$ind_val];
+
+            echo "</option>\n";
         }
         echo "</select>";
     }
