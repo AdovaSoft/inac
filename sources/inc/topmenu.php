@@ -12,7 +12,7 @@
   <li><a href="index.php?e=<?= $encptid ?>&page=sells">Sells</a>
     <ul>
       <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=new">New Sell</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=sells&sub=return'>Sell Return</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=sells&sub=return'>Sell Adjustment</a></li>" ?>
       <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=report">Sell Report</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=daily_report">Daily Sell</a></li>
     </ul>

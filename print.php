@@ -9,7 +9,7 @@ include("sources/inc/security_o.php");
   <link rel="stylesheet" href="css/printstyle.css" type="text/css"/>
   <script type='text/javascript' src='js/print.js'></script>
 </head>
-<body onLoad="printpage()" style="width: 900px; margin: 0 auto;">
+<body onLoad="printpage()" style="width: 900px; margin: 0 auto;  font-size: 16pt;">
 <center>
   <h1 id='banner'><?php echo $company; ?></h1>
     <?php

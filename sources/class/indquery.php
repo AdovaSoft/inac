@@ -810,6 +810,7 @@ class indquery extends query
         //$party = $this->get_custom_select_query('SELECT * FROM party', 2);
         //$products = $this->get_custom_select_query('SELECT * FROM product', 2);
         if (count($sell_pro) > 0 && count($sell_det) > 0) {
+            echo "<fieldset><legend>Selles Information</legend>";
             $n = count($sell_pro);
             $inp->input_hidden('num', $n);
             echo "<table class='centeraligned' align='center'>";
@@ -880,6 +881,10 @@ class indquery extends query
             echo "</td>";
             echo "</tr>";
             echo "</table>";
+            echo "</fieldset>";
+            echo "<fieldset><legend>Delivery Information</legend>";
+            echo "</fieldset>";
+
             echo "</form>";
         } else {
             echo "<h3> Nothing Found. </h3>";

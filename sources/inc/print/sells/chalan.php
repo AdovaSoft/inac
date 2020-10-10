@@ -1,4 +1,4 @@
-<h1>Invoice</h1>
+<h1>Delivery Chalan</h1>
 <?php
 $vou = $_POST['vou'];
 $query_det = sprintf("SELECT name,date,discount, driver, vehicle, company  FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 
@@ -22,68 +22,25 @@ echo "<tr>";
 echo "<th>";
 echo "Product";
 echo "</th>";
-echo "<th>";
+echo "<th width='200'>";
 echo "Quantity";
-echo "</th>";
-echo "<th>";
-echo "Cost";
-echo "</th>";
-echo "<th>";
-echo "Total";
 echo "</th>";
 echo "</tr>";
 $charges_total = 0;
 $grand_total = 0;
 for ($j = 0; $j < $n; $j++) {
     echo "<tr>";
-    echo "<td>";
+    echo "<td style='text-align: left; padding-left: 20px'>";
     echo esc($sell_pro[$j][3]);
     echo "</td>";
-    echo "<td>";
+    echo "<td  style='text-align: right; padding-right: 20px'>";
     echo esc($sell_pro[$j][1]);
     echo "  ";
     echo esc($sell_pro[$j][4]);
     echo "</td>";
-    echo "<td style='text-align: right; padding-right: 20px'>";
-    echo money($sell_pro[$j][2]);
-    echo "</td>";
-    echo "<td style='text-align: right; padding-right: 20px'>";
-    $total = $sell_pro[$j][1] * $sell_pro[$j][2];
-    echo money($total);
-    $charges_total = $charges_total + $sell_pro[$j][1] * $sell_pro[$j][2];
-    echo "</td>";
     echo "</tr>";
 }
-echo "<tr>";
-echo "<th colspan='3'>";
-echo "Total Charges:";
-echo "</th>";
-echo "<th class='blue' style='text-align: right; padding-right: 20px'>";
-echo money($charges_total);
-echo "</th>";
-echo "</tr>";
-echo "<tr>";
-echo "<th colspan='3' >";
-echo "Discount:";
-echo "</th>";
-echo "<th class='blue'  style='text-align: right; padding-right: 20px'>";
-echo money($sell_det[0][2]);
-echo "</th>";
-echo "</tr>";
-echo "<tr>";
-echo "<th colspan='3' >";
-echo "Net charges:";
-echo "</th>";
-echo "<th class='blue' style='text-align: right; padding-right: 20px'>";
-$net = $charges_total - $sell_det[0][2];
-echo money($net);
-$grand_total += $net;
-echo "</th>";
-echo "</tr>";
 echo "</table>";
-echo "<p style='text-align: left'><b>Driver Name: </b> "  . esc($sell_det[0][3]) . "</p>"; //driver
-echo "<p style='text-align: left'><b>Vehicle No : </b> "  . esc($sell_det[0][4]) . "</p>"; //vehicle
-echo "<p style='text-align: left'><b>Company :  </b> "  . esc($sell_det[0][5]) . "</p>"; //company
-
-
-
+echo "<p style='text-align: left;'><b>Driver Name: </b> "  . esc($sell_det[0][3]) . "</p>"; //driver
+echo "<p style='text-align: left; '><b>Vehicle No : </b> "  . esc($sell_det[0][4]) . "</p>"; //vehicle
+echo "<p style='text-align: left; '><b>Company :  </b> "  . esc($sell_det[0][5]) . "</p>"; //company
