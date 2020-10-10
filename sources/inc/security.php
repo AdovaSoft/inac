@@ -4,8 +4,8 @@ $userpass = isset($_POST['userpass']) ? htmlentities($_POST['userpass']) : NULL;
 
 if (isset($_GET['e'])) {
     $encptid = $_GET['e'];
-    $pass = $_SESSION["user" . $encptid . "pass"];
-    $username = $_SESSION["user" . $encptid . "username"];
+    $pass = isset($_SESSION["user" . $encptid . "pass"]) ? $_SESSION["user" . $encptid . "pass"] : null;
+    $username = isset($_SESSION["user" . $encptid . "username"]) ? $_SESSION["user" . $encptid . "username"] : null;
     include("sources/db/login_db_fn.php");
 
     $checkingdata = login_check_session($username, $pass);

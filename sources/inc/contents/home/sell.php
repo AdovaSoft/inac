@@ -16,7 +16,7 @@ if (isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Sell Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = ($_POST['searchword'] != null ? $_POST['searchword'] : $_GET['searchword']);
+    $s = (isset($_POST['searchword']) != null ? $_POST['searchword'] : $_GET['searchword']);
     if ($s == null) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
