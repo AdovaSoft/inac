@@ -26,7 +26,7 @@ include("./sources/inc/system.php");
     ?>
 </head>
 <body onLoad="startTime();">
-<div id="topmenu" class="sticky">
+<div id="topmenu">
     <?php
     include("sources/inc/topmenu.php");
     ?>

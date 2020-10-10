@@ -46,7 +46,7 @@ class indquery extends query
         echo "Rate";
         echo "</th>";
 
-        echo "<th>";
+        echo "<th width='150'>";
         echo "Total";
         echo "</th>";
         echo "</tr>";

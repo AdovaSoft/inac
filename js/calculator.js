@@ -1,21 +1,23 @@
 $(document).ready(function () {
-    $(window).load(function () {
-        $(".rate").each(function () {
-            var rate = $(this).attr("id");
-            $("#total_td" + rate.slice(4)).html($("#quantity" + rate.slice(4)).val() * $(this).val());
-        });
-        process_grand_total(0);
-        netCharge();
+    $(".rate").each(function () {
+        var rate = $(this).attr("id");
+        $("#total_td" + rate.slice(4)).html($("#quantity" + rate.slice(4)).val() * $(this).val());
     });
-    $(".quantity").keyup(function () {
-        calculate($(this).attr("id"), "rate", 8);
-    });
-    $(".rate").keyup(function () {
-        calculate($(this).attr("id"), "quantity", 4);
-    });
-    $("#discount").keyup(function () {
-        netCharge();
-    });
+
+    process_grand_total(0);
+    netCharge();
+});
+
+$(".quantity").keyup(function () {
+    calculate($(this).attr("id"), "rate", 8);
+});
+
+$(".rate").keyup(function () {
+    calculate($(this).attr("id"), "quantity", 4);
+});
+
+$("#discount").keyup(function () {
+    netCharge();
 });
 
 function calculate(multiplier, multiplicand, sliced) {
@@ -27,7 +29,6 @@ function calculate(multiplier, multiplicand, sliced) {
 function process_grand_total(sum) {
     if (sum != 0) {
         $(".total_td").each(function () {
-            //console.log("fine");
             sum += parseFloat($(this).html()).toFixed(2);
         });
     }
