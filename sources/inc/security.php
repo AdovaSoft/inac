@@ -11,7 +11,7 @@ if (isset($_GET['e'])) {
     $checkingdata = login_check_session($username, $pass);
 
     if ($checkingdata != 0) {
-        $csschoice = $checkingdata[0];
+        $_SESSION['theme'] = $checkingdata[0];
         $idstaff = $_SESSION["user" . $encptid . "idstaff"];
         $usertype = $_SESSION["user" . $encptid . "usertype"];
         include("sources/db/_db_func.php");
@@ -29,7 +29,7 @@ if (isset($_GET['e'])) {
         $pass = $checkingdata[1];
 
         $usertype = $checkingdata[2];
-        $csschoice = $checkingdata[3];
+        $_SESSION['theme'] = $checkingdata[3];
 
         $username = $_POST['username'];
 

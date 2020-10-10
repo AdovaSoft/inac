@@ -2,6 +2,9 @@
 session_start();
 date_default_timezone_set('Asia/Dhaka');
 
+//Theme Choice Variable 1 as default
+$_SESSION['theme'] = (isset($_SESSION['theme'])) ? $_SESSION['theme'] : null;
+
 //USER TYPE CONSTANTS
 defined('STAFF') || define('STAFF', 0);
 defined('ADMIN') || define('ADMIN', 1);
