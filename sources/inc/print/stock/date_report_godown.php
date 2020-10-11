@@ -44,6 +44,7 @@ if ($n > 0) {
     echo "</td>";
     echo "</tr>";
 
+    $tto_o = 0;
     foreach ($info as $i) {
         echo "<tr>";
 
