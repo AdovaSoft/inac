@@ -19,9 +19,9 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         $first_product = $info[0][1];
         $product_trac = 0;
+        $tto_o = 0;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
-
                 if ($i[1] != $first_product) {
                     echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
                     echo "</table><br/>";
