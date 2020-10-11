@@ -1,4 +1,4 @@
-<h1>Accounts Report</h1>
+<h2>Accounts Report</h2>
 <?php
 
 include("sources/inc/print/double_date.php");

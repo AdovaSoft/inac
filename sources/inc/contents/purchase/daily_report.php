@@ -8,7 +8,7 @@ include("sources/inc/single_date.php");
 $query = sprintf("SELECT idpurchase FROM purchase WHERE date = '%s' ORDER BY idpurchase DESC", $date);
 $idinfo = $qur->get_custom_select_query($query, 1);
 $grand_total = 0;
-echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
+echo "<br><a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
 for ($i = 0; $i < count($idinfo); $i++) {
     $vou = $idinfo[$i][0];
     $query_recept = sprintf("SELECT recipt FROM purchase_recipt WHERE idpurchase = '%s'", $vou);

@@ -2,67 +2,67 @@
 <ul>
   <li><a href="index.php?e=<?= $encptid ?>">Home</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=party">Party Search</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=product">Product Search</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=staff">Staff Search</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=sell">Sell Search</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=purchase">Purchase Search</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=party">Party Search</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=product">Product Search</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=staff">Staff Search</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=sell">Sell Search</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=purchase">Purchase Search</a></li>
     </ul>
   </li>
-  <li><a href="index.php?e=<?= $encptid ?>&&page=sells">Sells</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=sells">Sells</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=sells&&sub=new">New Sell</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=sells&&sub=return'>Sell Return</a></li>" ?>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=sells&&sub=report">Sell Report</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=sells&&sub=daily_report">Daily Sell</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=new">New Sell</a></li>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=sells&sub=return'>Sell Adjustment</a></li>" ?>
+      <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=report">Sell Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=sells&sub=daily_report">Daily Sell</a></li>
     </ul>
   </li>
-  <li><a href="index.php?e=<?= $encptid ?>&&page=purchase">Purchase</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=purchase">Purchase</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=purchase&&sub=new">New Purchase</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=purchase&&sub=return'>Purchase Return</a></li>" ?>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=purchase&&sub=report">Purchase Report</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=purchase&&sub=daily_report">Daily Purchase</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=purchase&sub=new">New Purchase</a></li>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=purchase&sub=return'>Purchase Return</a></li>" ?>
+      <li><a href="index.php?e=<?= $encptid ?>&page=purchase&sub=report">Purchase Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=purchase&sub=daily_report">Daily Purchase</a></li>
     </ul>
   </li>
-  <li><a href="index.php?e=<?= $encptid ?>&&page=product">Product</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=product">Product</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=product&&sub=particular_product">Product Report</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=product&&sub=raw_material">Raw Material</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=product&&sub=finished_product">Finished Product</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=home&&sub=product">Product Search</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=product&&sub=edit_product'>Edit Product</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=product&&sub=add_product'>Add Product</a></li>" ?>
+      <li><a href="index.php?e=<?= $encptid ?>&page=product&sub=particular_product">Product Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=product&sub=raw_material">Raw Material</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=product&sub=finished_product">Finished Product</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=product">Product Search</a></li>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=product&sub=edit_product'>Edit Product</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=product&sub=add_product'>Add Product</a></li>" ?>
     </ul>
   </li>
-  <li><a href="index.php?e=<?= $encptid ?>&&page=stock">Stock</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=stock">Stock</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=all">All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=raw">All Raw Materials</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=finished">All Finished Product</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_all">Godown All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_finished">Godown Finished</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_all">Factory All Products</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Materials</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_finished">Factory Finished</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report">Daily Stock</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report">Date wise Report</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_godown">Daily Godown Stock</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Date wise Godown</a></li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_factory">Daily Factory Stock</a>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=all">All Products</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=raw">All Raw Materials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=finished">All Finished Product</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=godown_all">Godown All Products</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=godown_raw">Godown Raw Materials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=godown_finished">Godown Finished</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=factory_all">Factory All Products</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=factory_raw">Factory Raw Materials</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=factory_finished">Factory Finished</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=daily_report">Daily Stock</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=date_report">Date wise Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=daily_report_godown">Daily Godown Stock</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=date_report_godown">Date wise Godown</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=daily_report_factory">Daily Factory Stock</a>
       </li>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_factory">Date wise Factory Report</a>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=date_report_factory">Date wise Factory Report</a>
       </li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=stock&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=stock&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=stock&sub=update_fac'>Update Factory Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=stock&sub=update'>Update Godown Stock</a></li>" ?>
     </ul>
   </li>
-  <li><a href="index.php?e=<?= $encptid ?>&&page=godown">Godown</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=godown">Godown</a>
     <ul>
-      <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=daily_report_godown">Daily Godown Stock</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=stock&sub=daily_report_godown">Daily Godown Stock</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=date_report_godown">Date wise Godown</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_all">Godown All Products</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>

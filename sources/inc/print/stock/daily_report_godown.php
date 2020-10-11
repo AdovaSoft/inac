@@ -1,4 +1,4 @@
-<h1>Daily Stock Report</h1>
+<h2>Daily Stock Report</h2>
 <?php
 
 include("sources/inc/print/single_date.php");

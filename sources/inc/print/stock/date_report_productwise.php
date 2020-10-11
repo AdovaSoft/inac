@@ -1,4 +1,4 @@
-<h1>Date wise Stock Report</h1>
+<h2>Date wise Stock Report</h2>
 <?php
 include("sources/inc/print/double_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date1, $date2);

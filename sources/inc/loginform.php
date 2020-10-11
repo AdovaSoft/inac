@@ -2,21 +2,37 @@
   <link rel="stylesheet" type="text/css" href="css/login.css">
   </head>
   <body>
-  <center>
+  <center style="height: 100vh; overflow-y: hidden;">
     <br/>
-    <h1><?php echo $company; ?></h1>
+    <h1><?= COMPANY ?></h1>
     <br/>
-    <form action="index.php" method="POST" id="loginform">
+    <form action="index.php" method="POST" id="loginform" autocomplete="off" spellcheck="false">
         <?php echo $loginmessage; ?>
-      User Name : <input type="text" name="username"/>
-      <br/>
-      <br/>Password &nbsp;&nbsp;: <input type="password" name="userpass"/>
-      <br/>
-      <br/><input type="submit" name="submit" value="Submit"/>
-      <br/>
-      <br/>
+      <table border="0">
+        <tr>
+          <th width="40%">User Name :</th>
+          <td>
+            <input type="text" placeholder="Enter Username"
+                     size="255" class="full-width" minlength="3" maxlength="255"
+            name="username">
+          </td>
+        </tr>
+        <tr style="padding-top: 20px;">
+          <th style="padding-top: 20px;">Password :</th>
+          <td style="padding-top: 20px;">
+            <input type="password" placeholder="Enter Password"
+                   size="255" class="full-width" minlength="3" maxlength="255"
+                   name="userpass">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center; padding-top: 20px">
+            <input type="submit" name="submit" value="Submit"/>
+          </td>
+        </tr>
+      </table>
     </form>
-    <br/><small>Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></small>
+    <br/><p style="font-weight: bold; bottom: 0px; display: inline-block">Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></p>
   </center>
   </body>
 <?php

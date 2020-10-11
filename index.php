@@ -1,14 +1,17 @@
 <?php
+//initialize system file
 include("./sources/inc/system.php");
-include("./sources/inc/security.php");
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <title><?php echo $company; ?></title>
+  <title><?= COMPANY ?></title>
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
-  <link rel="stylesheet" type="text/css" href="./css/<?php echo $csschoice; ?>/style.css">
+
+    <?php if (!is_null($_SESSION['theme'])) : ?>
+      <link rel="stylesheet" type="text/css" href="./css/<?= $_SESSION['theme'] ?>/style.css">
+    <?php endif; ?>
 
   <!-- JavaScript -->
   <script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
@@ -17,6 +20,10 @@ include("./sources/inc/security.php");
   <script src='./js/slideupdown.js'></script>
   <!-- dataTables -->
   <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+    <?php
+    //lunch security or login form
+    include("./sources/inc/security.php");
+    ?>
 </head>
 <body onLoad="startTime();">
 <div id="topmenu">
@@ -35,7 +42,7 @@ include("./sources/inc/security.php");
     <img src="images/blank1by1.gif" class="leftpillar" alt=""/>
     <img src="images/blank1by1.gif" class="rightpillar" alt=""/>
     <br/>
-    <h1 id="banner"><?php echo $company; ?></h1><br/>
+    <h1 id="banner"><?= COMPANY ?></h1><br/>
       <?php
       $page = isset($_GET['page']) ? $_GET['page'] : NULL;
       $sub = isset($_GET['sub']) ? $_GET['sub'] : NULL;

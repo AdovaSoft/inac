@@ -1,4 +1,4 @@
-<h1>Finished Product Sell Overview</h1>
+<h2>Finished Product Sell Overview</h2>
 <?php
 include("sources/inc/print/double_date.php");
 $info = $qur->get_finished_product_overview($date1, $date2);

@@ -1,4 +1,4 @@
-<h1>Factory Raw Materials Stock Report</h1>
+<h2>Factory Raw Materials Stock Report</h2>
 <?php
 $query = sprintf("SELECT name, factory_stock, unite, price, idproduct FROM (SELECT idproduct,idunite FROM product_details WHERE purchase = 1 ) as product LEFT JOIN product USING (idproduct) LEFT JOIN stock USING(idproduct) LEFT JOIN mesurment_unite USING(idunite)  LEFT JOIN price USING(idproduct);");
 $qur = new indquery();
@@ -52,14 +52,14 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         echo money($ar[3]);
         echo "</a>";
         echo "</td>";
 
 
         echo "<td>";
-        echo "<a href='index.php?e=" . $encptid . "&&page=stock&&sub=particular_product&&p=" . $ar[4] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         $total = $ar[3] * $ar[1];
         echo money($total);
         $cost += $ar[3] * $ar[1];

@@ -1,4 +1,4 @@
-<form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=party" method="POST" class="embossed">
+<form action="index.php?e=<?php echo $encptid ?>&page=home&sub=party" method="POST" class="embossed">
   <h2>Party Search</h2>
   <br/>
   <input type="text" name="searchword" class="searchword"
@@ -39,19 +39,19 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $part_results[$i][0] . "'>";
                 echo isset($part_results[$i][1]) ? $part_results[$i][1] : '-';
                 echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $part_results[$i][0] . "'>";
                 echo isset($part_results[$i][2]) ? $part_results[$i][2] : '-';
                 echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
-                echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $part_results[$i][0] . "'>";
+                echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $part_results[$i][0] . "'>";
                 echo isset($part_results[$i][3]) ? $part_results[$i][3] : '-';
                 echo "</a>";
                 echo "</td>";

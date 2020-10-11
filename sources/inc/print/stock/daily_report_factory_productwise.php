@@ -1,4 +1,4 @@
-<h1>Date wise Factory Stock Report</h1>
+<h2>Date wise Factory Stock Report</h2>
 <?php
 include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM  product_input WHERE date = '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);

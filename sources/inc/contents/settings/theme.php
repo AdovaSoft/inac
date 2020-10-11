@@ -11,15 +11,20 @@ if (isset($_GET['say'])) {
 } else {
     $custom_message = "<h3 class='blue'>Please Select a theme.</h3>";
 }
-$csschoice = isset($csschoice) ? $csschoice : null;
 ?>
 <h2>Theme Settings</h2>
 <br/>
 <form action="editor.php" method="POST" class="embossed">
   <img src="images/blank1by1.gif" class="customwidth" alt="" width="350px"/>
-  <br/><?php echo $custom_message; ?>
-  <br/><select name="newcss">
-    <option value="<?php echo $csschoice; ?>">Current theme</option>
+  <br/>
+    <?php
+    echo $custom_message;
+    if (isset($_GET['say']) && $_GET['say'] == 1) {
+        //echo '<br/><input type="button"  onclick="location.reload();" name="something" value="Refresh Page" />';
+    } ?>
+
+  <br/><select name="newcss" class="full-width">
+    <option value="<?= $_SESSION['theme'] ?>">Current theme</option>
     <option value="1">Blue Sky</option>
     <option value="2">Black Steal</option>
     <option value="3">Grey Steal</option>
@@ -36,7 +41,7 @@ $csschoice = isset($csschoice) ? $csschoice : null;
   </select>
   <input type="hidden" name="editor" value="settings/theme"/>
   <input type="hidden" name="e" value="<?php echo $encptid; ?>"/>
-  <input type="hidden" name="returnlink" value="index.php?page=settings&&sub=theme&&e=<?php echo $encptid; ?>"/>
+  <input type="hidden" name="returnlink" value="index.php?page=settings&sub=theme&e=<?php echo $encptid; ?>"/>
   <br/>
   <br/><input type="submit" name="change" value="Change"/>
   <br/>

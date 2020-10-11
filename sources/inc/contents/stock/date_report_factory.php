@@ -28,7 +28,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
                 echo "<thead>";
                 echo "<tr>";
                 echo "<td>";
@@ -243,7 +243,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[3] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
                 echo "<tr>";
                 echo "<td>";
                 echo "Date";

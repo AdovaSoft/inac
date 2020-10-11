@@ -1,6 +1,6 @@
 <h1>All Clients</h1>
 <?php
-echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=party&&sub=clients' class='button' target='_blank'><b> Print </b></a><br/>";
+echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=party&sub=clients' class='button' target='_blank'><b> Print </b></a><br/>";
 $query = sprintf("SELECT idparty,name,adress,phone FROM (SELECT party.idparty,name FROM party JOIN party_type USING(idparty) WHERE type =1 OR type=2) as party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
 $party = $qur->get_custom_select_query($query, 4);
 $all_info = null;
@@ -53,19 +53,19 @@ echo "</tbody>";
 foreach ($all_info as $a) {
     echo "<tr>";
     echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
     echo $a[1];
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
     echo $a[2];
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
     echo money($a[3]);
     if ($a[4]) {
         echo ", <br/>";
@@ -76,7 +76,7 @@ foreach ($all_info as $a) {
 
 
     echo "<td align = 'center' >";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
     if ($a[5] < 0) {
         $a[5] = -$a[5];
         echo money($a[5]);
@@ -89,7 +89,7 @@ foreach ($all_info as $a) {
 
 
     echo "<td align = 'center' >";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
     if ($a[5] > 0) {
         echo money($a[5]);
         $advance_total = $advance_total + $a[5];

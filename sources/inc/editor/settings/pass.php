@@ -7,16 +7,16 @@ if ($_POST['change'] && $_POST['oldpass1'] && $_POST['oldpass2'] && $_POST['newp
             $change = $qur->changepass($idstaff, md5($_POST['newpass1']));
             if ($change) {
                 $_SESSION["user" . $encptid . "pass"] = md5($_POST['newpass1']);
-                $extra_string = "&&say=1";
+                $extra_string = "&say=1";
             } else {
-                $extra_string = "&&say=2";
+                $extra_string = "&say=2";
             }
         } else {
-            $extra_string = "&&say=3";
+            $extra_string = "&say=3";
         }
     } else {
-        $extra_string = "&&say=4";
+        $extra_string = "&say=4";
     }
 } else {
-    $extra_string = "&&say=5";
+    $extra_string = "&say=5";
 }

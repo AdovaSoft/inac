@@ -30,7 +30,7 @@ if (isset($_GET['group']) == 1) {
                 }
                 echo "<h3>" . $i[1] . "</h3>";
                 echo "<br/>
-                <table align='center' class='rb'>";
+                <table align='center' class='rb table'>";
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>";
@@ -248,7 +248,7 @@ if (isset($_GET['group']) == 1) {
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[3] . "</h3>";
-                echo "<br/><table align='center' class='rb'>";
+                echo "<br/><table align='center' class='rb table'>";
                 echo "<tr>";
                 echo "<td>";
                 echo "Date";
@@ -444,7 +444,7 @@ if (isset($_GET['group']) == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
-        echo "<br/><table align='center' class='rb'>";
+        echo "<br/><table align='center' class='rb table'>";
         echo "<tr>";
         echo "<td>";
         echo "Date";

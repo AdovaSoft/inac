@@ -11,7 +11,7 @@ if (isset($_GET['e'])) {
     $checkingdata = login_check_session($username, $pass);
 
     if ($checkingdata != 0) {
-        $csschoice = $checkingdata[0];
+        $_SESSION['theme'] = $checkingdata[0];
         $idstaff = $_SESSION["user" . $encptid . "idstaff"];
         $usertype = $_SESSION["user" . $encptid . "usertype"];
         include("sources/db/_db_func.php");
@@ -21,7 +21,7 @@ if (isset($_GET['e'])) {
         $loginmessage = "<h2 class='blue'>Please Login.</h2>";
         include("sources/inc/loginform.php");
     }
-} elseif (isset($username) && isset($userpass) && isset($_POST['submit'])) {
+} elseif (isset($username) & isset($userpass) & isset($_POST['submit'])) {
     include("sources/db/login_db_fn.php");
     $checkingdata = login_check($username, $_POST['userpass']);
     if ($checkingdata != 0) {
@@ -29,7 +29,7 @@ if (isset($_GET['e'])) {
         $pass = $checkingdata[1];
 
         $usertype = $checkingdata[2];
-        $csschoice = $checkingdata[3];
+        $_SESSION['theme'] = $checkingdata[3];
 
         $username = $_POST['username'];
 

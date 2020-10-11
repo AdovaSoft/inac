@@ -1,4 +1,4 @@
-<h1>Date wise Stock Report</h1>
+<h2>Date wise Stock Report</h2>
 <?php
 include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price, type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY name, date DESC;", $date);
@@ -6,6 +6,7 @@ $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
 $tti_p = $tto_p =  $product_trac = 0;
 $tti = $tto = 0;
+$tto_o = 0;
 if ($n > 0) {
     echo "<h2>Grouped Product wise</h2>";
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";

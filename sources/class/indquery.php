@@ -18,11 +18,12 @@ class indquery extends query
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE sell = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
         $products = $this->get_custom_select_query($query, 4);
-        //d($products);
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
         echo "<br/>";
         echo "<form action='editor.php' method = 'POST' class='embossed'>";
+        echo "<fieldset><legend>Selles Information</legend>";
         echo "<table class='centeraligned'>";
+        echo "<thead>";
         echo "<tr>";
         echo "<td colspan='3'>";
         echo "Client: ";
@@ -45,10 +46,11 @@ class indquery extends query
         echo "Rate";
         echo "</th>";
 
-        echo "<th>";
+        echo "<th width='150'>";
         echo "Total";
         echo "</th>";
         echo "</tr>";
+        echo "</thead>";
         $num = $inp->value_pgd('num', 5);
         echo "<input type = 'hidden' name = 'num' value='" . $num . "' />";
         for ($i = 0; $i < $num; $i++) {
@@ -58,18 +60,19 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), '', 'quantity_' . $i );
-           // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
+            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), '', 'quantity_' . $i);
+            // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
             echo "</td>";
 
             echo "<td>";
-            echo $inp->input_number('', 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i );
+            echo $inp->input_number('', 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i);
             //echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate'
             echo "</td>";
 
             echo "<td class='total_td' id='total_td_" . $i . "' style='text-align:right;'></td>";
             echo "</tr>";
         }
+        echo "</tbody>";
         echo "<tr>";
         echo "<th colspan='3'>";
         echo "Total :";
@@ -104,25 +107,25 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
+        echo "<tbody>";
+        echo "</table>";
+        echo "</fieldset>";
+        echo "<br/><fieldset><legend>Delivery Information</legend>";
+        echo "<table width='100%'>";
         echo "<tr>";
-        echo  "<td><br> Driver Name : </td>";
+        echo "<td><br> Driver Name : </td>";
         echo "<td colspan='3'>";
-        echo  $inp->input_text("", 'driver', '', 'full-width', 'drivers' ) ;
+        echo $inp->input_text("", 'driver', '', 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
-        echo  "<td><br> Vehicle No : </td>";
+        echo "<td><br> Vehicle No : </td>";
         echo "<td colspan='3'>";
-        echo  $inp->input_text("", 'vehicle', '', 'full-width', 'drivers' ) ;
+        echo $inp->input_text("", 'vehicle', '', 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
-        echo  "<td><br> Company : </td>";
+        echo "<td><br> Company : </td>";
         echo "<td colspan='3'>";
-        echo  $inp->input_text("", 'company', '', 'full-width', 'drivers' ) ;
-        echo "</td>";
-        echo "</tr>";
-        echo "<td colspan='4'>";
-        echo "<center>";
-        echo "<br/><input type='submit' name='ab' value='Sell'/>";
+        echo $inp->input_text("", 'company', '', 'full-width', 'drivers');
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?page=sells&sub=new&e=" . $encptid . "'/>";
@@ -130,6 +133,11 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "</table>";
+        echo "</fieldset>";
+        echo "<div style='width: 100%;'>";
+        $inp->input_submit('ab', 'Sell');
+        echo "</div>";
+
         echo "</form>";
     }
 
@@ -165,7 +173,7 @@ class indquery extends query
         }
         if ($flag) {
             $flag = $this->insert_query('selles_discount', array('idselles', 'discount'), array($id, $dis), array('d', 'd'));
-            $flag = $this->insert_query('chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
+            $flag = $this->insert_query('selles_chalan', array('idselles', 'driver', 'vehicle', 'company'), array($id, $driver, $vehicle, $company), array('d', 's', 's', 's'));
         }
         if ($flag) {
             $flag = $this->insert_query('selles_delivery', array('idselles', 'cost'), array($id, $t), array('d', 'd'));
@@ -799,17 +807,19 @@ class indquery extends query
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM selles_details WHERE idselles = %d) as selles LEFT JOIN product USING (idproduct);", $vou);
-        $query_det = sprintf("SELECT name,date,discount FROM (SELECT * FROM selles s WHERE idselles = %d) as sell LEFT JOIN selles_discount USING (idselles) LEFT JOIN party USING (idparty);", $vou);
+        $query_det = sprintf("SELECT name,date,discount, driver,vehicle, company FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 
+LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idselles) LEFT JOIN party USING (idparty);", $vou);
 
         $inp = new html();
 
         $inp->input_hidden('v', $vou);
 
-        $sell_det = $this->get_custom_select_query($query_det, 3);
+        $sell_det = $this->get_custom_select_query($query_det, 6);
         $sell_pro = $this->get_custom_select_query($query_pro, 4);
         //$party = $this->get_custom_select_query('SELECT * FROM party', 2);
         //$products = $this->get_custom_select_query('SELECT * FROM product', 2);
         if (count($sell_pro) > 0 && count($sell_det) > 0) {
+            echo "<fieldset><legend>Selles Information</legend>";
             $n = count($sell_pro);
             $inp->input_hidden('num', $n);
             echo "<table class='centeraligned' align='center'>";
@@ -874,19 +884,39 @@ class indquery extends query
                 $inp->input_number('Discount', 'd', $sell_det[0][2]);
             echo "</td>";
             echo "</tr>";
+            echo "</table>";
+            echo "</fieldset>";
+
+            echo "<br/><fieldset><legend>Delivery Information</legend>";
+            echo "<table width='100%'>";
             echo "<tr>";
-            echo "<td colspan = '3'>";
-            $inp->input_submit('ab', 'save');
+            echo "<td><br> Driver Name : </td>";
+            echo "<td>";
+            echo $inp->input_text("", 'driver', esc($sell_det[0][3]), 'full-width', 'drivers');
+            echo "</td>";
+            echo "</tr>";
+            echo "<td><br> Vehicle No : </td>";
+            echo "<td>";
+            echo $inp->input_text("", 'vehicle', esc($sell_det[0][4]), 'full-width', 'drivers');
+            echo "</td>";
+            echo "</tr>";
+            echo "<td><br> Company : </td>";
+            echo "<td>";
+            echo $inp->input_text("", 'company', esc($sell_det[0][5]), 'full-width', 'drivers');
             echo "</td>";
             echo "</tr>";
             echo "</table>";
+            echo "</fieldset>";
+            echo "<div style='width: 100%;'>";
+            $inp->input_submit('ab', 'save');
+            echo "</div>";
             echo "</form>";
         } else {
             echo "<h3> Nothing Found. </h3>";
         }
     }
 
-    public function sells_return($id, $products, $d, $cost)
+    public function sells_return($id, $products, $d, $cost, $driver = null, $vehicle = null, $company = null)
     {
         if ($cost <= $d) {
             echo "<br/>Discount cant be equal to cost";
@@ -895,7 +925,7 @@ class indquery extends query
         mysqli_query($this->dtb_con, 'START TRANSACTION');
 
         $flag = $this->update_column('selles_discount', array('discount'), array($d), array('d'), 'idselles', '=', $id);
-
+        $flag = $this->update_column('selles_chalan', array('driver', 'vehicle', 'company'), array($driver, $vehicle, $company), array('s', 's', 's'), 'idselles', '=', $id);
         if (count($products) > 0) {
             foreach ($products as $p) {
                 if ($flag) {
