@@ -60,14 +60,18 @@ if (count($tran) > 0) {
             $paid += $s[1];
         }
 
-        echo "<td>";
+        echo "<td class='text-left'>";
         echo esc($s[2]);
         echo "</td>";
 
         echo "</tr>";
     }
     $paid *= (-1);
-    echo "<tr><td>SI</td><td>Total </td> <td><b>" . money($paid) . "</b></td><td><b>" . money($recived) . "</b  ></td><td> - </td></tr>";
+    echo "<tr>";
+    echo "<td colspan='2'>Total </td>";
+    echo "<td class='text-right'><b>" . money($paid) . "</b></td>";
+    echo "<td class='text-right'><b>" . money($recived) . "</b  ></td>";
+    echo "<td> - </td></tr>";
     echo "</table>";
     $total = $qur->party_adv_due($id);
     if ($total < 0) {
