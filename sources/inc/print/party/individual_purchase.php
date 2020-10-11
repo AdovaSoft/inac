@@ -15,6 +15,10 @@ if (count($pur) > 0) {
     echo "<table align='center' class='rb'>";
     echo "<tr>";
     echo "<td>";
+    echo "SI";
+    echo "</td>";
+
+    echo "<td>";
     echo "Date";
     echo "</td>";
 
@@ -26,16 +30,28 @@ if (count($pur) > 0) {
     echo "Discount";
     echo "</td>";
     echo "</tr>";
+    $i = 0;
     foreach ($pur as $s) {
         echo "<tr>";
-        echo "<td>" . $inp->date_convert($s[0]) . "</td>" . "<td >" . money($s[1]) . "</td>" . "<td>" . money($s[2]) . "</td>";
+        echo "<td>" . $i++ . "</td>";
+        echo "<td>" . $inp->date_convert($s[0]) . "</td>";
+        echo "<td class='text-right' >" . money($s[1]) . "</td>"; 
+        echo "<td class='text-right' >" . money($s[2]) . "</td>";
         $r_bill_t += $s[1];
         $r_bill_d += $s[2];
         echo "</tr>";
     }
-    echo "<tr><td>Sum </td> <td>" . money($r_bill_t) . "</td><td>" . money($r_bill_d) . "</td></tr>";
+    echo "<tr>";
+    echo "<td colspan='2'  class='text-right' >Sum </td>";
+    echo "<td  class='text-right' >" . money($r_bill_t) . "</td>";
+    echo "<td  class='text-right' >" . money($r_bill_d) . "</td>";
+    echo "</tr>";
+
     $g_total = $r_bill_t - $r_bill_d;
-    echo "<tr><td> Grand Total  </td> <td colspan = '2' > <b>" .money($g_total) . "</b></td></td></tr>";
+    echo "<tr>";
+    echo "<td colspan='2' class='text-right' > Grand Total  </td>";
+    echo "<td colspan = '2'> <b>" .money($g_total) . "</b></td>";
+    echo "</tr>";
     echo "</table>";
     $total = $qur->party_adv_due($id);
     if ($total < 0) {

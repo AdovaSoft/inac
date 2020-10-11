@@ -68,7 +68,7 @@ if (count($tran) > 0) {
     }
     $paid *= (-1);
     echo "<tr>";
-    echo "<td colspan='2'>Total </td>";
+    echo "<td colspan='2'  class='text-right' >Total </td>";
     echo "<td class='text-right'><b>" . money($paid) . "</b></td>";
     echo "<td class='text-right'><b>" . money($recived) . "</b  ></td>";
     echo "<td> - </td></tr>";

@@ -35,27 +35,27 @@ if (count($sell) > 0) {
     $i = 0;
     foreach ($sell as $s) {
         echo "<tr>";
-        echo "<td>";
-        echo $i++;
-        echo "</td>";
+
+        echo "<td>" . $i++ . "</td>";
         echo "<td>" . $inp->date_convert($s[0]) . "</td>";
         echo "<td class='text-right' >" . money($s[1]) . "</td>";
         echo "<td class='text-right' >" . money($s[2]) . "</td>";
         $bill_t += $s[1];
         $bill_d += $s[2];
+
         echo "</tr>";
     }
     echo "<tr>";
-    echo "<td rowspan='2'>SI</td>";
-    echo "<td>Sum </td>";
+
+    echo "<td colspan='2' class='text-right' >Sum </td>";
     echo "<td class='text-right' >" . money($bill_t) . "</td>";
     echo "<td class='text-right' >" . money($bill_d) . "</td>";
     echo "</tr>";
 
     echo "<tr>";
-    echo "<td> Grand Total  </td>";
+    echo "<td colspan='2' class='text-right' > Grand Total  </td>";
     $total = ($bill_t - $bill_d);
-    echo "<td colspan = '2' class='text-right' > <b>" . money($total)  . "</b></td>";
+    echo "<td colspan = '2' > <b>" . money($total)  . "</b></td>";
     echo "</tr>";
     $total += ($bill_t - $bill_d);
     echo "</table>";
