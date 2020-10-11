@@ -6,48 +6,54 @@ $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM  
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
 $tti = $tto = 0;
-$tto_o = 0;
+$tto_o = $tti_p = 0;
 if ($n > 0) {
     echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
-    echo "<td>";
+
+    echo "<th>SI</th>";
+
+    echo "<th>";
     echo "Date";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Product";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Price (TK)";
-    echo "</td>";
+    echo "</th>";
 
 
-    echo "<td>";
+    echo "<th>";
     echo "Incoming";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Outgoing";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Unit";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Total Price (TK)";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Remark";
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
-
+    
+    $j = 0;
     foreach ($info as $i) {
         echo "<tr>";
 
+        echo "<td>" . $j++ . "</td>";
+        
         echo "<td>";
         echo $inp->date_convert($i[0]);
         echo "</td>";
@@ -118,7 +124,7 @@ if ($n > 0) {
 
         echo "</tr>";
     }
-    echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    echo "<tr><th colspan='4'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table>";
     echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
