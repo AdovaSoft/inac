@@ -4,11 +4,13 @@ include("sources/inc/print/double_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='0' OR type='2') ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
-$tti_p = $tto_p = 0;
-$tti = $tto = 0;
 if ($n > 0) {
     echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_unit = $info[0][3];
+    $tti_p = $tto_p = 0;
+    $tti = $tto = 0;
+    $unit_trac = 0;
+    $tto_o = 0;
     foreach ($info as $i) {
         if ($unit_trac != $i[3]) {
             if ($i[3] != $first_unit) {
