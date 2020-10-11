@@ -574,7 +574,9 @@ else {
             echo "</tr>";
         }
         echo "</tbody>";
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
     } 
     else {
