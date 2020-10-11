@@ -95,25 +95,25 @@ if ($n > 0) {
                 echo "</td>";
             }
             
-            echo "<td class='text-right' >";
             $i[2] = -$i[2];
+            echo "<td class='text-right' >";
             echo money($i[2]);
-            if ($i[5] == 0 || $i[5] == 1)
-                $tto_p = $tto_o  - $i[2];
             echo "</td>";
+            if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o  - $i[2];
         }
 
         echo "<td>";
-        echo $i[3];
+        echo esc($i[3]);
         echo "</td>";
+
         $ss = $i[2] * $i[4];
         if ($ss > 0) {
             $tti += $ss;
-            echo "<th class='green'>" . money($ss) . "</th>";
+            echo "<td class='text-right'>" . money($ss) . "</td>";
         } else {
             $tto += $ss;
             $ss *= (-1);
-            echo "<th class='red'>" . money($ss) . "</th>";
+            echo "<td class='text-right'>" . money($ss) . "</td>";
         }
         echo "<td>";
 
@@ -135,7 +135,11 @@ if ($n > 0) {
     }
     $total = $tti + $tto;
     $tto *= (-1);
-    echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
+    echo "<tr>";
+    echo "<th colspan='4'>Total Incoming : " . money($tti) . " TK</th>";
+    echo "<th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>";
+    echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th>";
+    echo "</tr>";
     echo "</table>";
 } else {
     echo "<br/><h2 class='blue'>No input or output in " . $inp->date_convert($date) . " date</h2>";
