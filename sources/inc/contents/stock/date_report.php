@@ -239,8 +239,8 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $tti_p = $tto_p = 0;
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . date('Y-m-d') . "' class='button'><b> Show Just Date wise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" . date('Y-m-d') . "' class='button'><b> Group Product wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Show Just Date wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
@@ -294,7 +294,7 @@ $tto_o = 0;
                 echo "Remark";
                 echo "</th>";
                 echo "</tr>";
-                echo "</thead>";
+                echo "</thead><tbody>";
                 echo "<tr>";
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
@@ -448,6 +448,7 @@ $tto_o = 0;
             $price_trac = $i[4];
             $unit_trac = $i[3];
         }
+        echo "</tbody>";
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
 <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
 <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";

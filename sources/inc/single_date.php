@@ -1,13 +1,12 @@
 <?php
 $date = date("Y-m-d");
-/*if ($inp->get_post_date('date')) {
-    $date = $inp->get_post_date('date');
-} else*/
 
-if ($inp->value_pgd('date') != NULL) {
+if ($inp->get_post_date('date'))
+    $date = $inp->get_post_date('date');
+
+elseif ($inp->value_pgd('date') != NULL)
     $date = $inp->value_pgd('date');
-}
-//echo $date;
+
 echo "<form method='post' class='embossed'>";
 echo "Select date &nbsp;&nbsp;&nbsp;";
 $inp->input_date('date', $date);

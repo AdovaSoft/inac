@@ -364,5 +364,6 @@ table.dataTable tbody tr {
     top: 0;
     width: 100% !important;
 }
-
-#ending
+.green , .red, .blue {
+    font-weight: bold;
+}
