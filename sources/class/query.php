@@ -397,7 +397,7 @@ class query
          *  [ 0  -> ID,  1 -> Name, 2 -> Unit Name, 3 -> Quantity
          */
         echo "<select name = '" . $name . "' class='" . $class . "' >";
-        echo "<option> Select a Option</option>";
+        echo "<option> Select an option</option>";
         $n = count($ar);
         foreach ($ar as $item) {
            // d($item);

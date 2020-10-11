@@ -30,10 +30,11 @@ function d(...$var)
  */
 function esc(&$variable)
 {
-    if (isset($variable))
-        return htmlentities($variable);
-    else
-        return '-';
+    if (isset($variable)) {
+        if (is_integer($variable)) return intval($variable);
+        elseif (is_numeric($variable)) return floatval($variable);
+        else return htmlentities($variable);
+    } else return '-';
 }
 
 /**

@@ -7,9 +7,9 @@ $product = $qur->get_custom_select_query('SELECT idproduct, name FROM product LE
 echo "<h4 class='blue'>Select Product</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 if (isset($id)) {
-    $qur->get_dropdown_array($product, 0, 1, 'id', $id);
+    $qur->get_dropdown_array($product, 0, 1, 'id', $id, 'full-width');
 } else {
-    $qur->get_dropdown_array($product, 0, 1, 'id', null);
+    $qur->get_dropdown_array($product, 0, 1, 'id', null, 'full-width');
 }
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
 echo "</form><br/>";

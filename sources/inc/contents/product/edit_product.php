@@ -24,9 +24,9 @@ echo "<form method = 'POST'  class='embossed'>";
 echo "<h4 class='blue'>Select Product</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 if (isset($_POST['p']))
-    $qur->get_dropdown_array($pro, 0, 1, 'p', $_POST['p']);
+    $qur->get_dropdown_array($pro, 0, 1, 'p', $_POST['p'], 'full-width');
 else
-    $qur->get_dropdown_array($pro, 0, 1, 'p', null);
+    $qur->get_dropdown_array($pro, 0, 1, 'p', null, 'full-width');
 echo "<br/>";
 $inp->input_submit('ab', 'Edit');
 echo "</form>";
