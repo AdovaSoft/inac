@@ -28,7 +28,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             if ($product_trac != $i[1]) {
 
                 if ($i[1] != $first_product) {
-                    echo "<tr>
+                    echo "</tbody><tr>
 <th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
 <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
 <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
@@ -117,15 +117,15 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<td class='green'>" . $ss . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                        echo "<td class='red'>" . (-$ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 }
                 echo "<td>";
 
@@ -191,16 +191,16 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . money($ss) . "</th>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . money($ss) . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1) {
                         $neg = -$ss;
-                        echo "<th class='red'>" . money($neg) . "</th>";
+                        echo "<td class='red'>" . money($neg) . "</td>";
                     } else
-                        echo "<th class='blue'>" . money($ss) . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -232,7 +232,6 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     }
     echo "</div>";
 }
-
 //Grouped Unitwise
 elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date);
@@ -255,39 +254,44 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
-                    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                    echo "</tbody><tr>
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[3] . "</h3>";
                 echo "<br/><table align='center' class='rb table'>";
+                echo "<thead>";
                 echo "<tr>";
-                echo "<td>";
+                echo "<th>";
                 echo "Date";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Product";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Price (TK)";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Incoming";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Outgoing";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Unit";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Total Price (TK)";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Remark";
-                echo "</td>";
+                echo "</th>";
                 echo "</tr>";
+                echo "</thead><tbody>";
                 echo "<tr>";
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
@@ -334,15 +338,15 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<td class='green'>" . $ss . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                        echo "<td class='red'>" . (-$ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 }
                 echo "<td>";
 
@@ -408,15 +412,15 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<td class='green'>" . $ss . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                        echo "<td class='red'>" . (-$ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . $ss . "</td>";
                 }
                 echo "<td>";
                 if ($i[5] == 0) {
@@ -439,6 +443,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
             $price_trac = $i[4];
             $unit_trac = $i[3];
         }
+        echo "</tbody>";
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
     } else {
@@ -446,7 +451,6 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     }
     echo "</div>";
 }
-
 //Group Date wise
 else {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date);
@@ -462,41 +466,43 @@ else {
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a><br/>";
         echo "<br/><table align='center' class='rb table'>";
+        echo "<thead>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Date";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Product";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Price (TK)";
-        echo "</td>";
+        echo "</th>";
 
 
-        echo "<td>";
+        echo "<th>";
         echo "Incoming";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Outgoing";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Unit";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Total Price (TK)";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Remark";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
-
+        echo "</thead>";
+        echo "<tbody>";
         foreach ($info as $i) {
             echo "<tr>";
             echo "<td>";
@@ -547,15 +553,15 @@ else {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
+                    echo "<td class='green'>" . money($ss) . "</td>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
+                    echo "<td class='red'>" . (-$ss) . "</td>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . money($ss) . "</td>";
             }
             echo "<td>";
 
@@ -575,10 +581,12 @@ else {
 
             echo "</tr>";
         }
-
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        echo "</tbody>";
+        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th>
+<th colspan='3'>Total Outgoing : " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
     } else {
-        echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
+        echo "<br/><h2 class='blue'>No input or output on " . convert_date($date) . "</h2>";
     }
 }

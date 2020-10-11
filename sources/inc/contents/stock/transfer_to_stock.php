@@ -1,4 +1,4 @@
-<h1>Product Transfar to Godown</h1>
+<h1>Product Transfer to Godown</h1>
 <br/>
 <?php
 if (isset($_POST['ab']) && isset($_POST['p']) && isset($_POST['n'])) {
@@ -31,8 +31,8 @@ foreach ($info as $i) {
     echo "<option value ='" . $i[0] . "'>" . $i[1] . "</option>";
 }
 echo "</select>";
-echo "<br/><br/>Transfers : <input type = 'text' name = 'n' value = ''/> ";
+echo "<br/><br/>Product Quantity : <input type = 'text' name = 'n' value = ''/> ";
 
-echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfar' />";
+echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfer' />";
 echo "</form>";
 ?>
