@@ -117,15 +117,17 @@ if (isset($_GET['group']) == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<td class='red'>" . money($ss) . "</td>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -190,15 +192,17 @@ if (isset($_GET['group']) == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<td class='red'>" . money($ss) . "</td>";
+                    }
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -222,7 +226,7 @@ if (isset($_GET['group']) == 1) {
             $price_trac = $i[4];
             $unit_trac = $i[3];
         }
-        echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
     } 
     else {
@@ -543,15 +547,17 @@ else {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
+                    echo "<td class='green'>" . money($ss) . "</td>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
-                if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
+                if ($i[5] == 0 || $i[5] == 1) {
+                    $ss = -$ss;
+                    echo "<td class='red'>" . money($ss) . "</td>";
+                }
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . money($ss) . "</td>";
             }
             echo "<td>";
 
@@ -571,7 +577,7 @@ else {
 
             echo "</tr>";
         }
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
     } 
     else {
