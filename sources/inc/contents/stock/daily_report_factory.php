@@ -457,40 +457,42 @@ else {
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a></br>";
         echo "<br/><table align='center' class='rb table'>";
+        echo "<thead>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Date";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Product";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Price (TK)";
-        echo "</td>";
+        echo "</th>";
 
 
-        echo "<td>";
+        echo "<th>";
         echo "Incoming";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Outgoing";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Unit";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Total Price (TK)";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Remark";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
+        echo "</thead><tbody>";
 
         foreach ($info as $i) {
             echo "<tr>";
@@ -543,15 +545,15 @@ else {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='green'>" . $ss . "</th>";
+                    echo "<td class='green'>" . $ss . "</td>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . $ss . "</td>";
             } else {
                 $tto += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<th class='red'>" . (-$ss) . "</th>";
+                    echo "<td class='red'>" . (-$ss) . "</td>";
                 else
-                    echo "<th class='blue'>" . $ss . "</th>";
+                    echo "<td class='blue'>" . $ss . "</td>";
             }
             echo "<td>";
 
@@ -571,6 +573,7 @@ else {
 
             echo "</tr>";
         }
+        echo "</tbody>";
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
     } 
