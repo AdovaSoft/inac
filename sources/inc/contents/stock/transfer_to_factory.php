@@ -1,4 +1,4 @@
-<h1>Product Transfar to Factory</h1>
+<h1>Product Transfer to Factory</h1>
 <br/>
 <?php
 
@@ -33,7 +33,7 @@ foreach ($info as $i) {
     echo "<option value ='" . $i[0] . "'>" . $i[1] . "</option>";
 }
 echo "</select>";
-echo "<br/><br/>Transfer : <input type = 'text' name = 'n' value = ''/> ";
+echo "<br/><br/>Product Quantity : <input type = 'text' name = 'n' value = ''/> ";
 
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfer' />";
 echo "</form>";
