@@ -4,7 +4,7 @@
     "before_si_gap" : "40px",
     "si_date_gap" : "280px",
     "description_width" : "205px",
-    "quantity_width" : "50px",
+    "quantity_width" : "100px",
     "rate_width" : "50px",
     "taka_width" : "80px"
 }

@@ -1,4 +1,4 @@
-<h1> Sales Return </h1>
+<h1> Sales Adjustment </h1>
 <br/>
 <?php
 include("sources/inc/usercheck.php");

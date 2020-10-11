@@ -1,7 +1,7 @@
 body {
     background-color: #ffffff;
     color: #000000;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 img {
@@ -20,4 +20,34 @@ img.leftmargin {
 img.inline {
     display: inline;
     height: 1px;
+}
+
+table.table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+tr , td, th {
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+th {
+    text-align: center;
+}
+.text-right {
+    text-align: right !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+td:first-of-type {
+    padding-left: 8px;
+    padding-right: 8px;
 }
