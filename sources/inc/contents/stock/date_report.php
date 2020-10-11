@@ -1,4 +1,4 @@
-<h1>Datewise Stock Report</h1>
+<h1>Date wise Stock Report</h1>
 <br/>
 <?php
 include("sources/inc/double_date.php");
@@ -469,7 +469,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
-        echo "<h2 <h2>Grouped Date wise</h2><br/>";
+        echo "<h2>Grouped Date wise</h2><br/>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br>";
         echo "<br/><table align='center' class='rb table'>";
