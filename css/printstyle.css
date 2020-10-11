@@ -80,7 +80,7 @@ th {
 .text-center {
     text-align: center !important;
 }
-td:first-of-type {
+td, th {
     padding-left: 8px;
     padding-right: 8px;
 }
