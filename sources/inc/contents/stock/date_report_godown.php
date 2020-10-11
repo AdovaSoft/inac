@@ -227,8 +227,9 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $tti_p = $tto_p = 0;
     $tti = $tto = 0;
     if ($n > 0) {
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . date('Y-m-d') . "' class='button'><b> Show Just Date wise </b></a>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" .date('Y-m-d') . "' class='button'><b> Group Product wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Show Just Date wise </b></a>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
+
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
@@ -477,7 +478,7 @@ else {
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><table align='center' class='rb table'>";
-        echo "<tdead>";
+        echo "<thead>";
         echo "<tr>";
         echo "<th>";
         echo "Date";
