@@ -233,7 +233,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
-        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown_unitwise&&date=" . date('Y-m-d') . "' class='button' target='_blank'><b> Print </b></a><br/>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown_unitwise&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br/>";
         $first_unit = $info[0][3];
 
         $product_trac = null;

@@ -34,7 +34,7 @@ echo "</th>";
 echo "</tr>";
 $p = 0;
 $r = 0;
-$j = 0;
+$j = 1;
 for ($i = 0; $i < count($res); $i++) {
     echo "<tr>";
 

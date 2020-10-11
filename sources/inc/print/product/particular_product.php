@@ -35,7 +35,7 @@ if ($n > 0) {
     
     echo "</tr>";
 
-    $j = 0;
+    $j = 1;
     foreach ($info as $i) {
         echo "<tr>";
 
