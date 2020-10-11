@@ -14,12 +14,21 @@ if ($inp->value_pgd('s')) {
     } else {
         echo "<h3 class='blue'>Bonus report</h3>";
         echo "<table align='center' class='rb'>";
-        echo "<tr><th>Paying date</th><th>Bonus of</th><th>Amount</th></tr>";
+        echo "<tr>";
+        echo "<th>SI</th>";
+        echo "<th>Paying date</th>";
+        echo "<th>Bonus of</th>";
+        echo "<th>Amount</th>";
+        echo "</tr>";
+
         $bon_total = 0;
         $n = count($staf_bon);
+        $j = 0;
         for ($i = 0; $i < $n; $i++) {
-
             echo "<tr>";
+
+            echo "<td>" . $j++ . "</td>";
+
             echo "<td>";
             echo $inp->date_convert($staf_bon[$i][1]);
             echo "</td>";
@@ -28,16 +37,19 @@ if ($inp->value_pgd('s')) {
             echo $inp->print_month($staf_bon[$i][2]) . ' ' . $staf_bon[$i][3];
             echo "</td>";
 
-            echo "<td>";
             $amount = $staf_bon[$i][4];
+            echo "<td  class='text-right' >";
             echo money($amount);
-            $bon_total = $bon_total + $staf_bon[$i][4];
             echo "</td>";
+            $bon_total = $bon_total + $staf_bon[$i][4];
 
             echo "</tr>";
 
         }
-        echo "<tr><td colspan = 3>Total : " . money($bon_total). "</td></tr>";
+        echo "<tr>";
+        echo "<th colspan='3' class='text-right' >Total :</th>";
+        echo "<th class='text-right' >" . money($bon_total). "</th>";
+        echo "</tr>";
         echo "</table>";
     }
 }
