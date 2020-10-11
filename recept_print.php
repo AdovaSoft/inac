@@ -70,27 +70,26 @@ for ($j = 0; $j < $n; $j++) {
     echo "</tr>";
 }
 echo "<tr>";
-echo "<th colspan='4' align='right'  style=' border: 1px solid black;'>";
+echo "<td colspan='4' class='text-right'>";
 echo "Total Charges";
-echo "</th>";
-echo "<th align='right'  style=' border: 1px solid black;'>";
+echo "</td>";
+echo "<th class='text-right'>";
 echo money($charges_total);
 echo "</th>";
-
 echo "</tr>";
 echo "<tr>";
-echo "<th colspan='4' align='right'  style=' border: 1px solid black;'>";
+echo "<td colspan='4' class='text-right'>";
 echo "Discount";
-echo "</th>";
-echo "<th align='right'>";
+echo "</td>";
+echo "<th class='text-right'>";
 echo money($sell_det[0][2]);
 echo "</th>";
 echo "</tr>";
 echo "<tr>";
-echo "<th colspan='4' align='right'  style=' border: 1px solid black;'>";
+echo "<td colspan='4' class='text-right'>";
 echo "Net Charges";
-echo "</th>";
-echo "<th align='right'  style=' border: 1px solid black;'>";
+echo "</td>";
+echo "<th class='text-right'>";
 $grand_total = $charges_total - $sell_det[0][2];
 echo money($grand_total);
 echo "</th>";
