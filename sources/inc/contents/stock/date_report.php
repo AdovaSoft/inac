@@ -1,7 +1,6 @@
 <h1>Datewise Stock Report</h1>
 <br/>
 <?php
-
 include("sources/inc/double_date.php");
 
 //Grouped Product wise
@@ -256,39 +255,46 @@ $tto_o = 0;
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
-                    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                    echo "</tbody>
+<tr>
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+</tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
                 }
                 echo "<h3>" . $i[3] . "</h3>";
                 echo "<br/><table align='center' class='rb table'>";
+                echo "<thead>";
                 echo "<tr>";
-                echo "<td>";
+                echo "<th>";
                 echo "Date";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Product";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Price (TK)";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Incoming";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Outgoing";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Unit";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Total Price (TK)";
-                echo "</td>";
-                echo "<td>";
+                echo "</th>";
+                echo "<th>";
                 echo "Remark";
-                echo "</td>";
+                echo "</th>";
                 echo "</tr>";
+                echo "</thead>";
                 echo "<tr>";
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
