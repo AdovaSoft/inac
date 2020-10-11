@@ -5,11 +5,12 @@ include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date);
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
-$tti = $tto =  $tti_p = 0;
+$tti = $tto =  $tti_p = $tto_o = 0;
 if ($n > 0) {
     echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
+
     echo "<td>";
     echo "Date";
     echo "</td>";
