@@ -52,6 +52,8 @@ include("./sources/inc/system.php");
       ?>
     <br/>
   </div>
+</center>
+<center>
   <div id="ending">
       <?php
       include("sources/inc/ending.php");

@@ -219,11 +219,21 @@ a img {
     padding: 15px;
     margin: 5px 10px;
     text-align: center;
-    border-style: outset;
-    border-width: 1px;
+    border: 1px outset;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+.table-wrap {
+    display: inline-block;
+    padding: 15px;
+    margin: 5px 10px;
+    text-align: center;
+    border: 1px outset;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    width: 80%;
 }
 
 #content #bigmenu {
@@ -278,7 +288,7 @@ a img {
     font-size: 15px;
     width: 100%;
     height: 60px;
-    padding: 0px;
+    padding: 0px -30px 0px -30px;
     margin: 0px;
     overflow: hidden;
     border-width: 1px 0px 0px 0px;
@@ -299,7 +309,7 @@ a img {
 }
 
 input[type=submit] {
-/*    margin-top: 15px;*/
+    /*    margin-top: 15px;*/
     margin-right: 7px;
     margin-left: 7px;
     padding: 5px 15px;
@@ -354,3 +364,5 @@ table.dataTable tbody tr {
     top: 0;
     width: 100% !important;
 }
+
+#ending
