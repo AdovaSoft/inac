@@ -14,9 +14,10 @@ if (isset($_GET['group']) == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><h2>Grouped Product wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        
+        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a></br>";
         $first_product = $info[0][1];
         $tto_o = 0;
         $product_trac = 0;
@@ -239,9 +240,10 @@ if (isset($_GET['group']) == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button'><b> Show Just Date wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<div class='embossed table-wrap'>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><h2>Grouped Unitwise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        
+        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a></br>";
         $first_unit = $info[0][3];
         $tti_p = 0;
         foreach ($info as $i) {
@@ -451,8 +453,9 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
+        echo "<h2>Grouped Date Wise</h2>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_factory&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a></br>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<tr>";
         echo "<td>";
