@@ -53,7 +53,7 @@ if (count($sell) > 0) {
     echo "</tr>";
 
     echo "<tr>";
-    echo "<td colspan='2' class='text-right' > Grand Total  </td>";
+    echo "<th colspan='2' class='text-right' > Grand Total  </th>";
     $total = ($bill_t - $bill_d);
     echo "<td colspan = '2' > <b>" . money($total)  . "</b></td>";
     echo "</tr>";
