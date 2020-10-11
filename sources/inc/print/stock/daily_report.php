@@ -99,7 +99,7 @@ if ($n > 0) {
             echo "<td class='text-right' >";
             echo money($i[2]);
             echo "</td>";
-            if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o  - $i[2];
+            if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o  + $i[2];
         }
 
         echo "<td>";
