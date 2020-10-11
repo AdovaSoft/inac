@@ -13,6 +13,9 @@ $out_total = 0;
 
 echo "<table align='center' class='rb'>";
 echo "<tr>";
+
+echo "<th>SI</th>";
+
 echo "<th>";
 echo "Date";
 echo "</th>";
@@ -31,45 +34,59 @@ echo "</th>";
 echo "</tr>";
 $p = 0;
 $r = 0;
+$j = 0;
 for ($i = 0; $i < count($res); $i++) {
     echo "<tr>";
+
+    echo "<td>" . $j++ . "</td>";
+
     echo "<td>";
     echo $inp->date_convert($res[$i][1]);
     echo "</td>";
 
 
     if ($res[$i][3] > 0) {
-        echo "<td>";
         $total = $res[$i][3];
+        echo "<td class='text-right'>";
         echo money($total);
-        $in_total += $res[$i][3];
         echo "</td>";
+        $in_total += $res[$i][3];
+
         echo "<td>";
         echo "-";
         echo "</td>";
-
     } else {
         echo "<td>";
         echo "-";
         echo "</td>";
-        echo "<td>";
-        $total = $res[$i][3] * (-1);
-        echo money($total);
-        $out_total = $out_total + ($res[$i][3] * (-1));
-        echo "</td>";
 
+        $total = $res[$i][3] * (-1);
+        echo "<td class='text-right'>";
+        echo money($total);
+        echo "</td>";
+        $out_total = $out_total + ($res[$i][3] * (-1));
     }
-    echo "<td width='100px'>";
-    if (isset($res[$i][4]))
+
+    if (isset($res[$i][4])) {
+        echo "<td width='100px' class='text-left'>";
         echo $res[$i][4];
-    else
+        echo "</td>";
+    } else {
+        echo "<td width='100px'>";
         echo "-";
-    echo "</td>";
+        echo "</td>";
+    }
+
     echo "</tr>";
 }
+
+echo "<tr>";
+echo "<th colspan='2' class='text-right'>Total</th>";
+echo "<th class='text-right'>" . money($in_total) . "</th>";
+echo "<th class='text-right'>" . money($out_total) . "</th>";
 $total = $in_total - $out_total;
-echo "<tr><th>Total</th><th>" . money($in_total) . "</th><th>" . money($out_total) . "</th><td>Balance : " . money($total) . "</td></tr>";
+echo "<th>Balance : " . money($total) . "</th>";
+echo "</tr>";
 
 echo "</table>";
 ?>
-

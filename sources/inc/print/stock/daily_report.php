@@ -11,42 +11,48 @@ if ($n > 0) {
     echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
-    echo "<td>";
+
+    echo "<th>SI</th>";
+
+    echo "<th>";
     echo "Date";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Product";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Price (TK)";
-    echo "</td>";
+    echo "</th>";
 
 
-    echo "<td>";
+    echo "<th>";
     echo "Incoming";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Outgoing";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Unit";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Total Price";
-    echo "</td>";
+    echo "</th>";
 
-    echo "<td>";
+    echo "<th>";
     echo "Remark";
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
 
+    $j = 0;
     foreach ($info as $i) {
         echo "<tr>";
+
+        echo "<td>" . $j++ . "</td>";
 
         echo "<td>";
         echo $inp->date_convert($i[0]);
@@ -56,50 +62,58 @@ if ($n > 0) {
         echo $i[1];
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-right'>";
         echo money($i[4]);
         echo "</td>";
+
         $tti_p = 0;
         if ($i[2] > 0) {
-            echo "<td>";
-            echo money($i[2]);
-            if ($i[5] == 0 || $i[5] == 1)
-                $tti_p = $tti_p + $i[2];
 
+            echo "<td class='text-right'>";
+            echo money($i[2]);
             echo "</td>";
-            echo "<td>";
+            if ($i[5] == 0 || $i[5] == 1) $tti_p = $tti_p + $i[2];
+
             if ($i[5] == 0 || $i[5] == 1) {
+                echo "<td>";
                 echo "-";
+                echo "</td>";
             } else {
+                echo "<td class='text-right'>";
                 echo money($i[2]);
+                echo "</td>";
             }
-            echo "</td>";
         } else {
-            echo "<td>";
+            
             if ($i[5] == 0 || $i[5] == 1) {
+                echo "<td>";
                 echo "-";
+                echo "</td>";
             } else {
-                echo $i[2];
+                echo "<td class='text-right'>";
+                echo money($i[2]);
+                echo "</td>";
             }
+            
+            $i[2] = -$i[2];
+            echo "<td class='text-right' >";
+            echo money($i[2]);
             echo "</td>";
-            echo "<td>";
-            echo(-$i[2]);
-            if ($i[5] == 0 || $i[5] == 1)
-                $tto_p = $tto_o + (-$i[2]);
-            echo "</td>";
+            if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o  + $i[2];
         }
 
         echo "<td>";
-        echo $i[3];
+        echo esc($i[3]);
         echo "</td>";
+
         $ss = $i[2] * $i[4];
         if ($ss > 0) {
             $tti += $ss;
-            echo "<th class='green'>" . money($ss) . "</th>";
+            echo "<td class='text-right'>" . money($ss) . "</td>";
         } else {
             $tto += $ss;
             $ss *= (-1);
-            echo "<th class='red'>" . money($ss) . "</th>";
+            echo "<td class='text-right'>" . money($ss) . "</td>";
         }
         echo "<td>";
 
@@ -121,9 +135,12 @@ if ($n > 0) {
     }
     $total = $tti + $tto;
     $tto *= (-1);
-    echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
+    echo "<tr>";
+    echo "<th colspan='4'>Total Incoming : " . money($tti) . " TK</th>";
+    echo "<th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>";
+    echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th>";
+    echo "</tr>";
     echo "</table>";
-    
 } else {
     echo "<br/><h2 class='blue'>No input or output in " . $inp->date_convert($date) . " date</h2>";
 }

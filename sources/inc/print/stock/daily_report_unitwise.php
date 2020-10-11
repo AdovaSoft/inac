@@ -4,7 +4,7 @@ include("sources/inc/print/single_date.php");
 $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s' ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date);
 $info = $qur->get_custom_select_query($query, 6);
 $n = count($info);
-$tti_p = $tto_p = $unit_trac = 0;
+$tti_p = $tto_p = $tto_o =  $unit_trac = 0;
 $tti = $tto = 0;
 if ($n > 0) {
     echo "<h2>Grouped Unitwise</h2>";
@@ -13,13 +13,18 @@ if ($n > 0) {
     foreach ($info as $i) {
         if ($unit_trac != $i[3]) {
             if ($i[3] != $first_unit) {
-                echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                echo "</tbody><tr>
+                <th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
+                <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+                <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+                </tr>";
                 echo "</table><br/>";
                 $tti_p = $tto_p = 0;
                 $tti = $tto = 0;
             }
             echo "<h3>" . $i[3] . "</h3>";
             echo "<table align='center' class='rb'>";
+            echo "<thead>";
             echo "<tr>";
             echo "<td>";
             echo "Date";
@@ -46,6 +51,9 @@ if ($n > 0) {
             echo "Remark";
             echo "</td>";
             echo "</tr>";
+            echo "</thead>";
+
+            echo "</tbody>";
             echo "<tr>";
             echo "<td>";
             echo $inp->date_convert($i[0]);
@@ -79,7 +87,7 @@ if ($n > 0) {
                 }
                 echo "</td>";
                 echo "<td>";
-                echo(-$i[2]);
+                echo (-$i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
                     $tto_p = $tto_o + (-$i[2]);
                 echo "</td>";
@@ -148,7 +156,7 @@ if ($n > 0) {
                 }
                 echo "</td>";
                 echo "<td>";
-                echo(-$i[2]);
+                echo (-$i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
                     $tto_p = $tto_o + (-$i[2]);
                 echo "</td>";
@@ -192,7 +200,6 @@ if ($n > 0) {
     echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
     echo "</table>'";
 } else {
-    echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
+    echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
 }
 ?>
-	   
