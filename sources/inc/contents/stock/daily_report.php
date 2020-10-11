@@ -579,6 +579,6 @@ else {
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
     } else {
-        echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
+        echo "<br/><h2 class='blue'>No input or output on " . convert_date($date) . "</h2>";
     }
 }
