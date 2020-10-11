@@ -7,6 +7,9 @@ $cost = 0;
 if (count($info) > 0) {
     echo "<table class='rb'>";
     echo "<tr>";
+
+    echo "<th>SI</th>";
+
     echo "<th>";
     echo "Name";
     echo "</th>";
@@ -39,13 +42,16 @@ if (count($info) > 0) {
 
     echo "</tr>";
 
+    $i = 0;
     foreach ($info as $ar) {
         echo "<tr>";
-        echo "<th>";
+
+        echo "<td>" . $i++ . "</td>";
+        echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $ar[4] . "'>";
         echo $ar[0];
         echo "</a>";
-        echo "</th>";
+        echo "</td>";
 
         echo "<td>";
         echo $ar[1];
@@ -82,7 +88,7 @@ if (count($info) > 0) {
     echo "Grand Total : ";
     echo "</th>";
 
-    echo "<td >";
+    echo "<td colspan='2'>";
     echo money($cost);
     echo "</td>";
     echo "</tr>";
