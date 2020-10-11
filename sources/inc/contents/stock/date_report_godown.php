@@ -208,7 +208,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-    } else {
+    }
+    else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
     echo "</div";
@@ -224,6 +225,9 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . date('Y-m-d') . "' class='button'><b> Show Just Date wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" .date('Y-m-d') . "' class='button'><b> Group Product wise </b></a>";
+        echo "<div class='embossed table-wrap'>";
+        echo "<br/><h2>Grouped Unit wise</h2><br/>";
+        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . date('Y-m-d') . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
         echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
@@ -447,9 +451,11 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         }
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table><br/>";
-    } else {
+    } 
+    else {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
     }
+    echo "</div>";
 }
 //Date wise
 else {
@@ -462,8 +468,10 @@ else {
     if ($n > 0) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
-        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
+        echo "<div class='embossed table-wrap'>";
+        echo "<h2>Grouped Date Wise</h2>";
         echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_godown&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<tr>";
         echo "<td>";
@@ -581,9 +589,11 @@ else {
         }
         echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
         echo "</table>";
-    } else {
+    } 
+    else {
         echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
     }
+    echo "</div>";
 }
 
 
