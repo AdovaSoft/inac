@@ -7,6 +7,9 @@ $cost = 0;
 if (count($info) > 0) {
     echo "<table class='rb'>";
     echo "<tr>";
+
+    echo "<th>SI</th>";
+
     echo "<th>";
     echo "Name";
     echo "</th>";
@@ -30,35 +33,38 @@ if (count($info) > 0) {
 
     echo "</tr>";
 
+    $i = 0;
     foreach ($info as $ar) {
         echo "<tr>";
 
-        echo "<th>";
-        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
-        echo $ar[0];
-        echo "</a>";
-        echo "</th>";
+        echo "<td>" . $i++ . "</td>";
 
         echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
-        echo $ar[1];
+        echo esc($ar[0]);
         echo "</a>";
         echo "</td>";
 
         echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
-        echo $ar[2];
+        echo esc($ar[1]);
         echo "</a>";
         echo "</td>";
 
         echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
+        echo esc($ar[2]);
+        echo "</a>";
+        echo "</td>";
+
+        echo "<td class='text-right'>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         echo money($ar[3]);
         echo "</a>";
         echo "</td>";
 
 
-        echo "<td>";
+        echo "<td class='text-right'>";
         echo "<a href='index.php?e=" . $encptid . "&page=stock&sub=particular_product&p=" . $ar[4] . "'>";
         $total = $ar[3] * $ar[1];
         echo money($total);
@@ -69,13 +75,13 @@ if (count($info) > 0) {
     }
 
     echo "<tr>";
-    echo "<th colspan = '4'>";
+    echo "<th colspan = '4' class='text-right'>";
     echo "Grand Total : ";
     echo "</th>";
 
-    echo "<td >";
+    echo "<th colspan='2' >";
     echo money($cost);
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
 
     echo "</table>";
