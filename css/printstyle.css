@@ -37,8 +37,8 @@ table.roundangled20 {
 table.rb {
     border-collapse: collapse;
     border: 1px soild black;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     width: 100%;
 }
 
@@ -55,7 +55,7 @@ table.roundangled20 tr th,
 table.rb tr td,
 table.rb tr th,
 .embossed {
-    padding: 1px;
+    padding: 1px 8px;
     margin: 1px;
     text-align: center;
     border-collapse: collapse;
@@ -79,8 +79,4 @@ th {
 
 .text-center {
     text-align: center !important;
-}
-td, th {
-    padding-left: 8px;
-    padding-right: 8px;
 }

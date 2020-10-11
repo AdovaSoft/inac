@@ -27,6 +27,8 @@ for ($i = 0; $i < $n; $i++) {
 }
 echo "<table align='center' class='rb'>";
 echo "<tr>";
+
+echo '<th>SI</th>';
 echo "<th>";
 echo "Name";
 echo "</th>";
@@ -47,8 +49,12 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+$i = 0;
 foreach ($all_info as $a) {
     echo "<tr>";
+
+    echo "<td>" . $i++ . "</td>";
+
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
     echo $a[1];
@@ -72,32 +78,47 @@ foreach ($all_info as $a) {
     echo "</td>";
 
 
-    echo "<td align = 'center' >";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
     if ($a[5] < 0) {
+        echo "<td class='text-right' >";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         $due = -$a[5];
         echo money($due);
+        echo "</a>";
+        echo "</td>";
         $due_total = $due_total + (-$a[5]);
     } else {
+        echo "<td align = 'center' >";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         echo "-";
+        echo "</a>";
+        echo "</td>";
     }
-    echo "</a>";
-    echo "</td>";
 
 
-    echo "<td align = 'center' >";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
+
+
     if ($a[5] > 0) {
+        echo "<td class='text-right' >";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         echo money($a[5]);
+        echo "</a>";
+        echo "</td>";
+
         $advance_total = $advance_total + $a[5];
     } else {
+        echo "<td align = 'center' >";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         echo "-";
+        echo "</a>";
+        echo "</td>";
     }
-    echo "</a>";
-    echo "</td>";
+
     echo "</tr>";
 }
-echo "<tr><th colspan='3'>Total</th><th>" . money($due_total) . "</th><th>" . money($advance_total) . "</th></tr>";
+echo "<tr><th colspan='4' class='text-right'>Total</th>";
+echo "<th class='text-right'>" . money($advance_total) . "</th>";
+echo "<th class='text-right'>" . money($due_total) . "</th>";
+echo "</tr>";
 echo "</table>";
 
 ?>

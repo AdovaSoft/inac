@@ -15,13 +15,21 @@ if ($inp->value_pgd('s')) {
         echo "<h3 class='blue'>Sallary report</h3>";
 
         echo "<table align='center' class='rb'>";
-        echo "<tr><td>Paying date</td><td>Sallary of</td><td>Amount</td></tr>";
+        echo "<tr>";
+        echo "<th>SI</th>";
+        echo "<th>Paying date</th>";
+        echo "<th>Sallary of</th>";
+        echo "<th>Amount</th>";
+        echo "</tr>";
         $n = count($staf_sal);
         $amnt = 0;
         $samnt = NULL;
+        $j = 0;
         for ($i = 0; $i < $n; $i++) {
             $samnt += $staf_sal[$i][4];
             echo "<tr>";
+
+            echo "<td>" . $j++ . "</td>";
             echo "<td>";
             echo $inp->date_convert($staf_sal[$i][1]);
             echo "</td>";
@@ -30,14 +38,19 @@ if ($inp->value_pgd('s')) {
             echo $inp->print_month($staf_sal[$i][2]) . ' ' . $staf_sal[$i][3];
             echo "</td>";
 
-            echo "<td>";
             $amount = $staf_sal[$i][4];
+            echo "<td class='text-right'>";
             echo money($amount);
             echo "</td>";
 
             echo "</tr>";
         }
-        echo "<tr><td colspan = 3>Total : " . money($samnt) . "</td></tr>";
+
+        echo "<tr>";
+        echo "<th colspan='3' class='text-right'>Total :</th>";
+        echo "<th class='text-right'>" . money($samnt) . "</th>";
+        echo "</tr>";
+
         echo "</table>";
     }
 }

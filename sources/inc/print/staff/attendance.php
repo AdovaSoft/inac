@@ -14,11 +14,22 @@ if ($inp->value_pgd('s')) {
         echo "<h3 class='blue'>Attendance and Earned Salary report</h3>";
         echo "<table align='center' class='rb'>";
         echo "<tr>";
-        echo "<th>Month</th><th>Attended</th><th>Leave</th><th>Absent</th><th>Overtime</th><th>Salary</th><th>Duty<br/>Hours</th><th>Earned Salary</th>";
+
+        echo "<th>SI</th>";
+        echo "<th>Month</th>";
+        echo "<th>Attended</th>";
+        echo "<th>Leave</th>";
+        echo "<th>Absent</th>";
+        echo "<th>Overtime</th>";
+        echo "<th>Salary</th>";
+        echo "<th>Duty<br/>Hours</th>";
+        echo "<th>Earned Salary</th>";
         echo "</tr>";
+        $i = 0;
         foreach ($staff_report as $s) {
             echo "<tr>";
 
+            echo "<td>" . $i++ . "</td>";
             echo "<td>";
             echo $inp->print_month($s[0]) . " " . $s[1];
             echo "</td>";
@@ -36,10 +47,10 @@ if ($inp->value_pgd('s')) {
             echo "</td>";
 
             echo "<td>";
-            echo $s[5];
+            echo esc($s[5]);
             echo "</td>";
 
-            echo "<td>";
+            echo "<td class='text-right' >";
             echo money($s[6]);
             echo "</td>";
 
@@ -47,8 +58,8 @@ if ($inp->value_pgd('s')) {
             echo esc($s[7]);
             echo "</td>";
 
-            echo "<td>";
             $salary = $s[6] * ($s[2] + $s[3] + ($s[5]) / $s[7]) / $inp->print_month_days($s[0], $s[1]);
+            echo "<td class='text-right' >";
             echo money($salary);
             echo "</td>";
 
