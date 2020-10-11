@@ -37,10 +37,12 @@ if ($inp->value_pgd('s')) {
 
             echo "</tr>";
         }
+
         echo "<tr>";
         echo "<th colspan='2' class='text-right'>Total :</th>";
         echo "<th class='text-right'>" . money($samnt) . "</th>";
         echo "</tr>";
+        
         echo "</table>";
     }
 }
