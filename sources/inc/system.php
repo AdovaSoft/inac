@@ -9,7 +9,13 @@ $_SESSION['theme'] = (isset($_SESSION['theme'])) ? $_SESSION['theme'] : null;
 defined('STAFF') || define('STAFF', 0);
 defined('ADMIN') || define('ADMIN', 1);
 defined('USER') || define('USER', 2);
-defined('COMPANY') | define('COMPANY', "Agro Fresh", true);
+
+//App Constants
+defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
+defined('SENDER_EMAIL') || define('COMPANY', "Agro Fresh", true);
+defined('SENDER_NAME') || define('COMPANY', "Agro Fresh", true);
+defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
+
 
 /** Debug Function
  * @param mixed ...$var
