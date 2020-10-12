@@ -100,8 +100,8 @@ for ($i = 0; $i < count($idinfo); $i++) {
     <input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Bill'/>
     </form> ";
     echo "<form method='POST' action='recept_print.php?e=" . $encptid . "' target='_blank'><input type='hidden' name='vou' value='" . $vou . "'/>
-<input type='submit' name='print' value='Print on Pad'/>
-</form> ";
+        <input type='submit' name='print' value='Print on Pad'/>
+        </form> ";
     echo "<form id='printBox' method='POST' action='print.php?e=" . $encptid . "&page=sells&sub=chalan' target='_blank'>
     <input type='hidden' name='vou' value='" . $vou . "'/><input type='submit' name='print' value='Print Chalan'/>
     </form> ";
