@@ -20,7 +20,8 @@ for ($i = 0; $i < count($idinfo); $i++) {
     $n = count($sell_pro);
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $i . ")'>";
-    echo "Voucher : " . $recept[0][0];
+    echo "Voucher : " . $vou;
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . $recept[0][0];
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
