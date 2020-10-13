@@ -58,7 +58,6 @@ body {
     background-position: bottom;
     background-repeat: repeat-x;
 }
-
 #content table.roundangled20 tr th,
 #content table.rb tr th {
     border-color: #228855;
@@ -85,7 +84,9 @@ body {
     background-color: #3C6718;
     background-position: top;
 }
-
+#banner{
+    padding-bottom: 30px;
+}
 #content a.button {
     color: #ffffff;
     border-color: #338855;

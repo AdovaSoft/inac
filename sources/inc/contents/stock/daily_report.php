@@ -16,7 +16,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     echo "<div class='embossed table-wrap'>";
     if ($n > 0) {
         echo "<br/><h2>Grouped Product Wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a><br/>";
 
         $first_product = $info[0][1];
@@ -28,19 +28,20 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             if ($product_trac != $i[1]) {
 
                 if ($i[1] != $first_product) {
+                    $total = $tto + $tti;
+                    $tto = -$tto;
                     echo "</tbody><tr>
-<th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
-</tr>";
+                            <th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
+                            <th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
+                            <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th>
+                        </tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
                 }
 
                 echo "<h3>" . $i[1] . "</h3>";
-                echo "<br/>
-<table align='center' class='rb table'>";
+                echo "<br/><table align='center' class='rb table'>";
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th>";
@@ -95,7 +96,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                         echo $i[2];
                     }
                     echo "</td>";
-                } else {
+                }
+                 else {
                     echo "<td>";
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
@@ -117,15 +119,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . $ss . "</td>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='red'>" . (-$ss) . "</td>";
+                    if ($i[5] == 0 || $i[5] == 1){
+                        $ss = -$ss;
+                        echo "<td class='red'>" . money($ss) . "</td>";
+                    }
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -225,7 +229,9 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             $unit_trac = $i[3];
         }
         echo "</tbody>";
-        echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        $tto = -$tto;
+        $total = $tto + $tti;
+        echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table><br/>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
@@ -244,7 +250,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     if ($n > 0) {
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a><br/>";
         $first_unit = $info[0][3];
         $product_trac = null;
@@ -254,10 +260,12 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         foreach ($info as $i) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
+                    $tto = -$tto;
+                    $total = $tti + $tto;
                     echo "</tbody><tr>
-<th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                    <th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th></tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
                     $tti = $tto = 0;
@@ -448,7 +456,9 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
             $unit_trac = $i[3];
         }
         echo "</tbody>";
-        echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        $tto = -$tto;
+        $total = $tto + $tti;
+        echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table><br/>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
@@ -467,7 +477,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Date wise</h2><br/>";
-        echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        echo "<br/><small>Report according to date " . $inp->date_convert($info[0][0]) . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a><br/>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<thead>";
