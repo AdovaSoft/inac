@@ -1,4 +1,4 @@
-<form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=sell" method="POST" class="embossed">
+<form action="index.php?e=<?php echo $encptid ?>&page=home&sub=sell" method="POST" class="embossed">
   <h2>Sell Search</h2>
   <br/>Enter voucher number<br/>
   <br/>
@@ -16,7 +16,7 @@ if (isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Sell Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = (isset($_POST['searchword']) != null ) ? $_POST['searchword'] : $_GET['searchword'];
+    $s = (isset($_POST['searchword']) != null) ? $_POST['searchword'] : $_GET['searchword'];
     if ($s == null) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
@@ -44,24 +44,30 @@ if (isset($_POST['searchword'])) {
             for ($i = 0; $i < count($sell_results); $i++) {
                 echo "<tr>";
                 echo "<td>";
+                echo "<a href='index.php?e=" . $encptid . "&page=sells&sub=overview&id=" . $sell_results[$i][0] . "'>";
                 echo $sell_results[$i][0];
+                echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
+                echo "<a href='index.php?e=" . $encptid . "&page=sells&sub=overview&id=" . $sell_results[$i][0] . "'>";
                 echo $sell_results[$i][1];
+                echo "</a>";
                 echo "</td>";
 
                 echo "<td>";
+                echo "<a href='index.php?e=" . $encptid . "&page=sells&sub=overview&id=" . $sell_results[$i][0] . "'>";
                 echo $inp->date_convert($sell_results[$i][2]);
+                echo "</a>";
                 echo "</td>";
                 echo "<td>";
                 echo "<form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "'/>
                 <input type='hidden' name='sell_id' value='" . $sell_results[$i][0] . "'/>
                 <input type='submit' name='delete_sell' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=sells&&sub=return'>
+                echo "<form method='POST' action='index.php?e=" . $encptid . "&page=sells&sub=return'>
                 <input type='hidden' name='v' value='" . $sell_results[$i][0] . "'/>
                 <input type='submit' name='ab' value='Edit'/></form> ";
-                echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&&page=sells&&sub=sell' target='_blank'>
+                echo "<form method='POST' id='printBox' action='print.php?e=" . $encptid . "&page=sells&sub=sell' target='_blank'>
                 <input type='hidden' name='vou' value='" . $sell_results[$i][0] . "'/>
                 <input type='submit' name='print' value='Print Invoice'/></form>";
                 echo "</td>";
