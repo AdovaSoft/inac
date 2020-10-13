@@ -10,7 +10,7 @@ $tti_p = $tto_p = 0;
 $tto_o = 0;
 if ($n > 0) {
     echo "<h2>Grouped Product wise</h2>";
-    echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+    echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
         if (isset($product_trac) && $product_trac != $i[1]) {
@@ -192,7 +192,7 @@ if ($n > 0) {
     }
     echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table><br/>";
-    echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
+    // echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
     echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
 }
