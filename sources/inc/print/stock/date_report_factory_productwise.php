@@ -16,9 +16,11 @@ if ($n > 0) {
             if ($i[1] != $first_product) {
                 echo "<tr>";
                 echo "<th>-</th>";
-                echo "<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>";
-                echo "<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>";
-                echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>";
+                echo "<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>";
+                $tto = -$tto;
+                echo "<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>";
+                $total = $tti - $tto;
+                echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th>";
                 echo "</tr>";
                 echo "</table><br/>";
                 $tti_p = $tto_p = 0;
@@ -76,8 +78,8 @@ if ($n > 0) {
             echo $i[1];
             echo "</td>";
             
-            echo "<td>";
-            echo $i[4];
+            echo "<td class='text-right'>";
+            echo money($i[4]);
             echo "</td>";
             
             if ($i[2] > 0) {
@@ -121,13 +123,14 @@ if ($n > 0) {
             $ss = $i[2] * $i[4];
             if ($ss > 0) {
                 $tti += $ss;
-                echo "<th class='green'>" . $ss . "</th>";
+                echo "<td class='text-right'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
-                echo "<th class='red'>" . (-$ss) . "</th>";
+                $ss = -$ss;
+                echo "<td class='text-right'>" . money($ss) . "</td>";
             }
-            echo "<td>";
 
+            echo "<td>";
             if ($i[5] == 0) {
                 echo "Godown";
             }
@@ -141,7 +144,9 @@ if ($n > 0) {
                 echo "Godown to factory";
             }
             echo "</td>";
+
             echo "</tr>";
+
         } else {
             echo "<tr>";
 
@@ -155,17 +160,15 @@ if ($n > 0) {
             echo $i[1];
             echo "</td>";
             
-            echo "<td>";
-            echo $i[4];
+            echo "<td class='text-right'>";
+            echo money($i[4]);
             echo "</td>";
             
             if ($i[2] > 0) {
                 echo "<td>";
                 echo $i[2];
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
-
                 echo "</td>";
+                if ($i[5] == 0 || $i[5] == 1) $tti_p = $tti_p + $i[2];
             
                 echo "<td>";
                 if ($i[5] == 0 || $i[5] == 1) {
@@ -187,22 +190,23 @@ if ($n > 0) {
             
                 echo "<td>";
                 echo (-$i[2]);
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tto_p = $tto_o + (-$i[2]);
                 echo "</td>";
+                if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o + (-$i[2]);
             
             }
 
             echo "<td>";
             echo $i[3];
             echo "</td>";
+            
             $ss = $i[2] * $i[4];
             if ($ss > 0) {
                 $tti += $ss;
-                echo "<th class='green'>" . $ss . "</th>";
+                echo "<td class='text-right'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
-                echo "<th class='red'>" . (-$ss) . "</th>";
+                $ss = -$ss;
+                echo "<td class='text-right'>" . money($ss) . "</td>";
             }
             echo "<td>";
 
@@ -226,9 +230,16 @@ if ($n > 0) {
         $price_trac = $i[4];
         $unit_trac = $i[3];
     }
-    echo "<tr><th>-</th><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    echo "<tr>";
+    echo "<th>-</th>";
+    echo "<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>";
+    $tto = -$tto;
+    echo "<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>";
+    $total = $tti - $tto;
+    echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th>";
+    echo "</tr>";
     echo "</table><br/>";
-    echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
+    // echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
     echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
 }
