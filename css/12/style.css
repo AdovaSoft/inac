@@ -76,6 +76,7 @@ body {
     background-image: url('menubg.jpg');
     background-position: bottom;
     background-repeat: repeat-x;
+    transition: width 4s;
 }
 
 #content #bigmenu a:hover,
