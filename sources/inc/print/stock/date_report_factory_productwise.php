@@ -8,12 +8,18 @@ $tti_p = $tto_p = $tto_o = 0;
 $tti = $tto = $product_trac = 0;
 $si = 1;
 if ($n > 0) {
-    echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+    // echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
+        
         if ($product_trac != $i[1]) {
             if ($i[1] != $first_product) {
-                echo "<tr><th>-</th><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                echo "<tr>";
+                echo "<th>-</th>";
+                echo "<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>";
+                echo "<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>";
+                echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>";
+                echo "</tr>";
                 echo "</table><br/>";
                 $tti_p = $tto_p = 0;
                 $tti = $tto = 0;
