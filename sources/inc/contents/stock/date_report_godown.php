@@ -20,6 +20,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         $first_product = $info[0][1];
         $product_trac = 0;
         $unit_trac = 0;
+        $tti_p = 0;
         foreach ($info as $i) {
             if ($product_trac != $i[1]) {
                 if ($i[1] != $first_product) {
@@ -574,14 +575,14 @@ echo "</thead><tbody>";
             $ss = $i[2] * $i[4];
             if ($ss > 0) {
                 $tti += $ss;
-                if ($stock[5] == 0 || $stock[5] == 1)
+                if ($i[5] == 0 || $i[5] == 1)
                         echo "<td class='green'>" . money($ss) . "</td>";
                     else
                         echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 else {
                     $tto += $ss;
-                    if ($stock[5] == 0 || $stock[5] == 1){
+                    if ($i[5] == 0 || $i[5] == 1){
                         $ss = -$ss;
                         echo "<td class='red'>" . money($ss) . "</td>";
                     }
@@ -608,7 +609,7 @@ echo "</thead><tbody>";
         }
         echo "</tbody>";
         $total = $tti - $tto;
-        echo "<tr><th colspan='3'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th></tr>";
+        echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table>";
     } 
     else {

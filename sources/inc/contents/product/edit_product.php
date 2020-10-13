@@ -50,17 +50,17 @@ if (isset($_POST['p'])) {
         if (isset($_POST['n']))
             $inp->input_text('Name : ', 'n', $_POST['n']);
         else
-            $inp->input_text('Name : ', 'n', $info[0][0]);
+            $inp->input_text('Name : ', 'n', esc($info[0][0]));
 
         echo "<br/>";
 
         if (isset($_POST['prc']))
             $inp->input_text('Price per unite : ', 'prc', $_POST['prc']);
         else
-            $inp->input_text('Price per unite : ', 'prc', $info[0][4]);
+            $inp->input_text('Price per unite : ', 'prc', esc($info[0][4]));
 
         echo "<br/>Unit: ";
-        $qur->get_drop_down('mesurment_unite', 'unite', 'idunite', 'mt', $info[0][1]);
+        $qur->get_drop_down('mesurment_unite', 'unite', 'idunite', 'mt', esc($info[0][1]));
 
 
         echo "<br/><br/>Product Type :  ";
