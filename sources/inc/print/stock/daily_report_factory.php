@@ -8,7 +8,7 @@ $n = count($info);
 $tti = $tto = 0;
 $tto_o = $tti_p = 0;
 if ($n > 0) {
-    echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+    echo "<small>Report according to date " . $inp->date_convert($info[0][0]) . "</small><br/></br>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
 
@@ -126,7 +126,7 @@ if ($n > 0) {
     }
     echo "<tr><th colspan='4'>Total Incoming : " . $tti . " TK</th><th colspan='3'>Total Outgoing : " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
     echo "</table>";
-    echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
+    // echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
     echo "<br/><h2 class='blue'>No input or output in $date date</h2>";
 }
