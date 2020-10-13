@@ -9,10 +9,6 @@ $qur->get_drop_down('selles', 'idselles', 'idselles', 'id', $inp->value_pgd('id'
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
 echo "</form></div>";
 
-/*$query = sprintf("SELECT idselles FROM selles WHERE date BETWEEN '%s' AND '%s' ORDER BY idselles DESC", $date1, $date2);
-$idinfo = $qur->get_custom_select_query($query, 1);
-$grand_total = 0;
-*/
 $vou = $inp->value_pgd('id');
 $query_det = sprintf("SELECT name,date,discount FROM (SELECT * FROM selles s WHERE idselles = %d) as sell LEFT JOIN selles_discount USING (idselles) LEFT JOIN party USING (idparty);", $vou);
 $sell_det = $qur->get_custom_select_query($query_det, 3);
