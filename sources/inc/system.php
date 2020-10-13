@@ -40,7 +40,7 @@ function esc(&$variable)
         if (is_numeric($variable)) {
             if (is_integer($variable))
                 return intval($variable);
-            elseif (is_float($variable))
+            else
                 return floatval($variable);
         } else
             return htmlentities($variable);

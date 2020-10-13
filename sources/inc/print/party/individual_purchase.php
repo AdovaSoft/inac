@@ -30,7 +30,7 @@ if (count($pur) > 0) {
     echo "Discount";
     echo "</td>";
     echo "</tr>";
-    $i = 0;
+    $i = 1;
     foreach ($pur as $s) {
         echo "<tr>";
         echo "<td>" . $i++ . "</td>";
@@ -50,14 +50,15 @@ if (count($pur) > 0) {
     $g_total = $r_bill_t - $r_bill_d;
     echo "<tr>";
     echo "<td colspan='2' class='text-right' > Grand Total  </td>";
-    echo "<td colspan = '2'> <b>" .money($g_total) . "</b></td>";
+    echo "<td colspan = '2'> <b>" . money($g_total) . "</b></td>";
     echo "</tr>";
     echo "</table>";
     $total = $qur->party_adv_due($id);
     if ($total < 0) {
-        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . (-$total) . " taka</h2><br/>";
+        $total *=(-1);
+        echo "<h2 class='faintred'>Total Due of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
     } elseif ($total > 0) {
-        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . ($total) . " taka</h2><br/>";
+        echo "<h2 class='faintred'>Total Outstanding of " . $name[0][0] . " : " . money($total) . " taka</h2><br/>";
     } else {
         echo "<h2 class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</h2><br/>";
     }

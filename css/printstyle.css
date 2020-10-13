@@ -68,6 +68,10 @@ table.rb tr th,
 
 th {
     text-align: center;
+    font-weight: bold;
+}
+td:first-of-type {
+    font-weight: bold;
 }
 .text-right {
     text-align: right !important;
