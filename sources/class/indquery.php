@@ -115,17 +115,17 @@ class indquery extends query
         echo "<tr>";
         echo "<td><br> Driver Name : </td>";
         echo "<td colspan='3'>";
-        echo $inp->input_text("", 'driver', '', 'full-width', 'drivers');
+        echo $inp->input_text("", 'driver', $inp->value_pgd('driver'), 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
         echo "<td><br> Vehicle No : </td>";
         echo "<td colspan='3'>";
-        echo $inp->input_text("", 'vehicle', '', 'full-width', 'drivers');
+        echo $inp->input_text("", 'vehicle', $inp->value_pgd('vehicle'), 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
         echo "<td><br> Company : </td>";
         echo "<td colspan='3'>";
-        echo $inp->input_text("", 'company', '', 'full-width', 'drivers');
+        echo $inp->input_text("", 'company', $inp->value_pgd('company'), 'full-width', 'drivers');
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?page=sells&sub=new&e=" . $encptid . "'/>";
@@ -828,7 +828,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             echo "<br/>Was sold to : ";
             echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
             echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
-            echo "<b class='blue'>" . $sell_det[0][1] . "</b>";
+            echo "<b class='blue'>" . $inp->date_convert($sell_det[0][1]) . "</b>";
             echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voucher : ";
             echo "<b class='blue'>" . $vou . "</b><br/><br/>";
             echo "</td>";
@@ -856,11 +856,11 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
                 echo "<td>";
 
                 if (isset($_POST['pc_' . $i])) {
-                    $inp->input_number(null, 'pc_' . $i, $_POST['pc_' . $i]);
+                    $inp->input_number(null, 'pc_' . $i, esc($_POST['pc_' . $i]));
                     $inp->input_hidden('pr_pc_' . $i, $_POST['pr_pc_' . $i]);
 
                 } else {
-                    $inp->input_number(null, 'pc_' . $i, $sell_pro[$i][1]);
+                    $inp->input_number(null, 'pc_' . $i, esc($sell_pro[$i][1]));
                     $inp->input_hidden('pr_pc_' . $i, $sell_pro[$i][1]);
 
                 }
@@ -870,18 +870,18 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
                 echo "<td>";
                 if (isset($_POST['co_' . $i]))
-                    $inp->input_number(null, 'co_' . $i, $_POST['co_' . $i]);
+                    $inp->input_number(null, 'co_' . $i, esc($_POST['co_' . $i]));
                 else
-                    $inp->input_number(null, 'co_' . $i, $sell_pro[$i][2]);
+                    $inp->input_number(null, 'co_' . $i, esc($sell_pro[$i][2]));
                 echo "</td>";
                 echo "</tr>";
             }
             echo "<tr>";
             echo "<td colspan = '3'><br/>";
             if (isset($_POST['d']))
-                $inp->input_number('Discount', 'd', $_POST['d']);
+                $inp->input_number('Discount', 'd', esc($_POST['d']));
             else
-                $inp->input_number('Discount', 'd', $sell_det[0][2]);
+                $inp->input_number('Discount', 'd', esc($sell_det[0][2]));
             echo "</td>";
             echo "</tr>";
             echo "</table>";
