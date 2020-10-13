@@ -18,11 +18,11 @@ class indquery extends query
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE sell = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
         $products = $this->get_custom_select_query($query, 4);
-        echo "<script type='text/javascript' src='js/calculator.js'></script> ";
+
         echo "<br/>";
         echo "<form action='editor.php' method = 'POST' class='embossed'>";
         echo "<fieldset><legend>Selles Information</legend>";
-        echo "<table class='centeraligned'>";
+        echo "<table class='centeraligned' width='100%'>";
         echo "<thead>";
         echo "<tr>";
         echo "<td colspan='3'>";
@@ -60,7 +60,7 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), '', 'quantity_' . $i);
+            echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i);
             // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
             echo "</td>";
 
@@ -137,8 +137,8 @@ class indquery extends query
         echo "<div style='width: 100%;'>";
         $inp->input_submit('ab', 'Sell');
         echo "</div>";
-
         echo "</form>";
+        echo "<script type='text/javascript' src='./js/calculator.js'></script> ";
     }
 
     public function new_sells($party, $date, $sel_info, $dis, $t, $driver = NULL, $vehicle = NULL, $company = NULL)
