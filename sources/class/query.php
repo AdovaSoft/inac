@@ -242,6 +242,7 @@ class query
     {
         $result = array();
         $res = mysqli_query($this->dtb_con, $query);
+        
         if (mysqli_num_rows($res) > 0) {
             $i = 0;
             while ($row = mysqli_fetch_array($res)) {

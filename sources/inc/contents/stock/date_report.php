@@ -17,7 +17,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Product wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_productwise&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a></br>";
         $first_product = $info[0][1];
         $product_trac = null;
@@ -29,7 +29,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     echo "<tr>
                     <th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
                     <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-                    <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+                    <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti - $tto) . " TK</th>
                     </tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
@@ -187,15 +187,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . $ss . "</td>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='red'>" . (-$ss) . "</td>";
+                    if ($i[5] == 0 || $i[5] == 1) {
+                        $ss = -$ss;
+                        echo "<td class='red'>" . money($ss) . "</td>";
+                    }
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -221,9 +223,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         }
         echo "</tbody>";
         echo "<tfoot><tr>
-<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr></tfoot>";
+        $total = $tti - $tto;
+        $tto = -$tto;
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th></tr></tfoot>";
         echo "</table><br/>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . $inp->date_convert($date1) . " and " . $inp->date_convert($date2) . "</h2>";
@@ -243,7 +247,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . date('Y-m-d') . "' class='button' target='_blank'><b> Print </b></a></br>";
 
         $first_unit = $info[0][3];
@@ -259,7 +263,7 @@ $tto_o = 0;
 <tr>
 <th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
 <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti - $tto) . " TK</th>
 </tr>";
                     echo "</table><br/>";
                     $tti_p = $tto_p = 0;
@@ -417,15 +421,17 @@ $tto_o = 0;
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . $ss . "</td>";
+                        echo "<td class='green'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
-                    if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='red'>" . (-$ss) . "</td>";
+                    if ($i[5] == 0 || $i[5] == 1){
+                        $ss = -$ss;
+                        echo "<td class='red'>" . money($ss) . "</td>";
+                    }
                     else
-                        echo "<td class='blue'>" . $ss . "</td>";
+                        echo "<td class='blue'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
                 if ($i[5] == 0) {
@@ -449,9 +455,9 @@ $tto_o = 0;
             $unit_trac = $i[3];
         }
         echo "</tbody>";
-        echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+        $tto = -$tto;
+        $total = $tto + $tti;
+        echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table><br/>";
     } else {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date). " and " . convert_date($date) . "</h2>";
@@ -470,7 +476,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<h2>Grouped Date wise</h2><br/>";
-        echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<thead>";
@@ -593,7 +599,7 @@ echo "<tbody>";
         }
         echo "</tbody>";
         $tto = -$tto;
-        $total = $tti + $tto;
+        $total = $tti - $tto;
 
         echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th>
 <th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>
