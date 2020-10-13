@@ -24,7 +24,7 @@ if ($inp->value_pgd('s')) {
         $n = count($staf_sal);
         $amnt = 0;
         $samnt = NULL;
-        $j = 0;
+        $j = 1;
         for ($i = 0; $i < $n; $i++) {
             $samnt += $staf_sal[$i][4];
             echo "<tr>";

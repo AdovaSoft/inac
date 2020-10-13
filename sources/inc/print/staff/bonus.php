@@ -23,7 +23,7 @@ if ($inp->value_pgd('s')) {
 
         $bon_total = 0;
         $n = count($staf_bon);
-        $j = 0;
+        $j = 1;
         for ($i = 0; $i < $n; $i++) {
             echo "<tr>";
 
