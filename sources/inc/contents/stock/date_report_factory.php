@@ -214,7 +214,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
             $unit_trac = $i[3];
         }
         $tto = -$tto;
-        $total = $tti + $tto;
+        $total = $tti - $tto;
         echo "<tr><td colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</td><td colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</td><td colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</td></tr>";
         echo "</table><br/>";
     } 
@@ -437,7 +437,7 @@ elseif (isset($_GET['group']) == 2) {
             $unit_trac = $i[3];
         }
         $tto = -$tto;
-        $total = $tti + $tto;
+        $total = $tti - $tto;
         echo "<tr><td colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</td><td colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tto) . " TK</td><td colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</td></tr>";
         echo "</table><br/>";
     } 
@@ -585,7 +585,7 @@ else {
         echo "</tbody>";
         echo "<tfoot>";
         $tto = -$tto;
-        $total = $tti + $tto;
+        $total = $tti - $tto;
         echo "<tr><td colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . esc($unit_trac) . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</td><td colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tto) . " TK</td><td colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</td></tr>";
         echo "</tfoot>";
         echo "</table>";

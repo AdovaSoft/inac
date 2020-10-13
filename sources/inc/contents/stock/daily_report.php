@@ -261,7 +261,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
             if ($unit_trac != $i[3]) {
                 if ($i[3] != $first_unit) {
                     $tto = -$tto;
-                    $total = $tti + $tto;
+                    $total = $tti - $tto;
                     echo "</tbody><tr>
                     <th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
 <th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
@@ -353,7 +353,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1){
                         $ss = -$ss;
-                        echo "<td class='red'>" . ($ss) . "</td>";
+                        echo "<td class='red'>" . money($ss) . "</td>";
                     }
                     else
                         echo "<td class='blue'>" . money($ss) . "</td>";
@@ -457,7 +457,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         }
         echo "</tbody>";
         $tto = -$tto;
-        $total = $tto + $tti;
+        $total = $tti - $tto;
         echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tto) . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table><br/>";
     } else {
@@ -598,9 +598,11 @@ else {
             echo "</tr>";
         }
         echo "</tbody>";
+        $total = $tti - $tto;
+        $tto = - $tto; 
         echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th>
-<th colspan='3'>Total Outgoing : " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+<th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th></tr>";
         echo "</table>";
     } else {
         echo "<br/><h2 class='blue'>No input or output on " . convert_date($date) . "</h2>";
