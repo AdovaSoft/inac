@@ -21,9 +21,9 @@ for ($i = 0; $i < count($idinfo); $i++) {
 
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $i . ")'>";
-    echo "Voucher : " . $vou;
+    echo "Voucher : " . esc($vou);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Was sold to : ";
-    echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
+    echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
     echo "<b class='blue'>" . $inp->date_convert($sell_det[0][1]) . "</b>";
     echo "</a>";
@@ -48,12 +48,12 @@ for ($i = 0; $i < count($idinfo); $i++) {
     for ($j = 0; $j < $n; $j++) {
         echo "<tr>";
         echo "<td>";
-        echo $sell_pro[$j][3];
+        echo esc($sell_pro[$j][3]);
         echo "</td>";
         echo "<td>";
-        echo $sell_pro[$j][1];
+        echo esc($sell_pro[$j][1]);
         echo "  ";
-        echo $sell_pro[$j][4];
+        echo esc($sell_pro[$j][4]);
         echo "</td>";
         echo "<td>";
         echo money($sell_pro[$j][2]);

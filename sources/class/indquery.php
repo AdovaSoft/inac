@@ -205,7 +205,7 @@ class indquery extends query
         }
     }
 
-    public function printNewPurchase($encptid)
+    public function print_new_purchase($encptid)
     {
         $inp = new html();
         $query = sprintf("SELECT idparty,name FROM (SELECT * FROM party_type WHERE type = 0 OR type=2) as sel LEFT JOIN party USING(idparty) ORDER BY name");
@@ -249,11 +249,11 @@ class indquery extends query
         for ($i = 0; $i < $num; $i++) {
             echo "<tr>";
             echo "<td>";
-            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i));
+            $this->get_dropdown_array($products, 0, 1, 'pr_' . $i, $inp->value_pgd('pr_' . $i), 'full-width');
             echo "</td>";
 
             echo "<td>";
-            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i);
+            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i, '');
             echo "</td>";
 
 
