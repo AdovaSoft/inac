@@ -28,7 +28,9 @@ body {
     background-color: #FEAC5A;
     background-repeat: repeat-x;
 }
-
+#banner{
+    padding-bottom: 30px;
+}
 /*------------TIME-DATE-DAY-----------------*/
 
 #ttd {
