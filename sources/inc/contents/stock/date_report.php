@@ -17,7 +17,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Product wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report_productwise&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a></br>";
         $first_product = $info[0][1];
         $product_trac = null;
@@ -243,7 +243,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&group=1&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button'><b> Group Product wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . date('Y-m-d') . "' class='button' target='_blank'><b> Print </b></a></br>";
 
         $first_unit = $info[0][3];
@@ -470,7 +470,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<h2>Grouped Date wise</h2><br/>";
-        echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=date_report&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<thead>";
