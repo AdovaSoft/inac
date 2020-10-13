@@ -92,6 +92,9 @@ echo "</form></div>";
         echo "<td colspan='4'>";
         echo "<form method='POST'><input type='hidden' name='pur_id' value='" . $vou . "'/><input type='submit' name='delete' value='Delete'/></form> ";
         echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $vou . "'/><input type='submit' name='ab' value='Edit'/></form>";
+        echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=purchase&&sub=purchase' target='_blank'>
+                <input type='hidden' name='id' value='" . $vou . "'/>
+                <input type='submit' name='ab' value='Print'/></form>";
         echo "</td>";
         echo "</tr>";
     }

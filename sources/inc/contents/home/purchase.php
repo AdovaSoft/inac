@@ -1,6 +1,6 @@
 <form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=purchase" method="POST" class="embossed">
   <h2>Purchase Search</h2>
-  <br/>Enter Suppler  voucher number<br/>
+  <br/>Enter Suppler voucher number<br/>
   <br/>
   <input type="text" name="searchword" class="searchword"
          value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
@@ -17,8 +17,8 @@ if (isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Purchase Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = (isset($_POST['searchword']) != null) ? $_POST['searchword'] : $_GET['searchword'];
-    if ($s == null) {
+    $s = $_REQUEST['searchword'];
+    if (strlen($s) < 1) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
         $purchase_results = $qur->search_pur($s);
@@ -26,7 +26,6 @@ if (isset($_POST['searchword'])) {
         $n = count($purchase_results);
 
         if ($n > 0) {
-            echo "<h3>Purchase Results</h3><br/>";
             echo "<table  align='center' class='rb table'>";
             echo "<thead>";
             echo "<tr>";
@@ -42,7 +41,7 @@ if (isset($_POST['searchword'])) {
             echo "<th>";
             echo "Date";
             echo "</th>";
-            echo "<th width='300'>";
+            echo "<th width='360'>";
             echo "Action";
             echo "</th>";
             echo "</tr>";
@@ -76,8 +75,15 @@ if (isset($_POST['searchword'])) {
 
                 echo "<td>";
                 echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "' required/>
-                <input type='hidden' name='pur_id' value='" . $purchase_results[$i][1] . "'/><input type='submit' name='delete_purchase' value='Delete'/></form> ";
-                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'><input type='hidden' name='v' value='" . $purchase_results[$i][1] . "'/><input type='submit' name='ab' value='Edit'/></form>";
+                <input type='hidden' name='pur_id' value='" . $purchase_results[$i][1] . "'/>
+                <input type='submit' name='delete_purchase' value='Delete'/></form> ";
+                echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'>
+                <input type='hidden' name='v' value='" . $purchase_results[$i][1] . "'/>
+                <input type='submit' name='ab' value='Edit'/></form>";
+                echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=purchase&&sub=purchase' target='_blank'>
+                <input type='hidden' name='id' value='" . $purchase_results[$i][0] . "'/>
+                <input type='submit' name='ab' value='Print'/></form>";
+
                 echo "</td>";
                 echo "</tr>";
             }

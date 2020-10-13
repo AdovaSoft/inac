@@ -28,7 +28,7 @@ if ($n > 0) {
             echo "Product";
             echo "</td>";
             echo "<td>";
-            echo "Price (TK)";
+            echo "Price ";
             echo "</td>";
             echo "<td>";
             echo "Incoming";
@@ -40,7 +40,7 @@ if ($n > 0) {
             echo "Unit";
             echo "</td>";
             echo "<td>";
-            echo "Total Price (TK)";
+            echo "Total Price ";
             echo "</td>";
             echo "<td>";
             echo "Remark";

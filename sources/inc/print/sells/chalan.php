@@ -20,6 +20,9 @@ echo "<br><br>";
 echo "<table class='rb' align='center' width='100%'>";
 echo "<tr>";
 echo "<th>";
+echo "SI";
+echo "</th>";
+echo "<th>";
 echo "Product";
 echo "</th>";
 echo "<th width='200'>";
@@ -30,6 +33,7 @@ $charges_total = 0;
 $grand_total = 0;
 for ($j = 0; $j < $n; $j++) {
     echo "<tr>";
+    echo "<td style='width: 50px'>" . ($j+1) ."</td>";
     echo "<td style='text-align: left; padding-left: 20px'>";
     echo esc($sell_pro[$j][3]);
     echo "</td>";

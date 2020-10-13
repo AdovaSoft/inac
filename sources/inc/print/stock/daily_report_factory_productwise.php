@@ -10,7 +10,7 @@ $tti_p = $tto_p = 0;
 $tto_o = 0;
 if ($n > 0) {
     echo "<h2>Grouped Product wise</h2>";
-    echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
+    //echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
         if (isset($product_trac) && $product_trac != $i[1]) {
@@ -18,7 +18,7 @@ if ($n > 0) {
             if ($i[1] != $first_product) {
               $ttoal_io = $tti + $tto;
               $tto = $tto * (-1);
-                echo "<tr>
+                echo "<tr><td></td>
 <th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . money($unit_trac) . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
 <th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . money($unit_trac) . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
 <th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($ttoal_io) . " TK</th></tr>";
@@ -35,7 +35,7 @@ if ($n > 0) {
             echo "Product";
             echo "</td>";
             echo "<td>";
-            echo "Price (TK)";
+            echo "Price ";
             echo "</td>";
             echo "<td>";
             echo "Incoming";
@@ -47,7 +47,7 @@ if ($n > 0) {
             echo "Unit";
             echo "</td>";
             echo "<td>";
-            echo "Total Price (TK)";
+            echo "Total Price ";
             echo "</td>";
             echo "<td>";
             echo "Remark";
