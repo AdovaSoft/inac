@@ -12,9 +12,9 @@ defined('USER') || define('USER', 2);
 
 //App Constants
 defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
-defined('SENDER_EMAIL') || define('COMPANY', "Agro Fresh", true);
-defined('SENDER_NAME') || define('COMPANY', "Agro Fresh", true);
-defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
+defined('SENDER_EMAIL') || define('SENDER_EMAIL', "Agro Fresh", true);
+defined('SENDER_NAME') || define('SENDER_NAME', "Agro Fresh", true);
+//defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
 
 
 /** Debug Function
@@ -37,9 +37,13 @@ function d(...$var)
 function esc(&$variable)
 {
     if (isset($variable)) {
-        /*if (is_integer($variable)) return intval($variable);
-        elseif (is_numeric($variable)) return floatval($variable);
-        else*/ return htmlentities($variable);
+        if (is_numeric($variable)) {
+            if (is_integer($variable))
+                return intval($variable);
+            elseif (is_float($variable))
+                return floatval($variable);
+        } else
+            return htmlentities($variable);
     } else return '-';
 }
 
