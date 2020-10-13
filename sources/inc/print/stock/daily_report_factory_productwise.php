@@ -10,7 +10,7 @@ $tti_p = $tto_p = 0;
 $tto_o = 0;
 if ($n > 0) {
     echo "<h2>Grouped Product wise</h2>";
-    echo "<small>Report according to price of date " . $inp->date_convert($info[0][0]) . "</small><br/>";
+    echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_product = $info[0][1];
     foreach ($info as $i) {
         if (isset($product_trac) && $product_trac != $i[1]) {
