@@ -20,9 +20,10 @@ for ($i = 0; $i < count($idinfo); $i++) {
     $n = count($sell_pro);
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $i . ")'>";
-    echo "Voucher : " . $recept[0][0];
+    echo "Voucher : " . $vou;
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
-    echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
+    echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
     echo "<b class='blue'>" . $inp->date_convert($sell_det[0][1]) . "</b>";
     echo "</a>";
