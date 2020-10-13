@@ -24,4 +24,4 @@ if (isset($_GET['say'])) {
 }
 
 echo $custom_message;
-$qur->printNewPurchase($encptid);
+$qur->print_new_purchase($encptid);
