@@ -6,11 +6,11 @@ if (isset($_POST['delete'])) {
 }
 include("sources/inc/double_date.php");
 $query = sprintf("SELECT idpurchase FROM purchase WHERE date BETWEEN '%s' AND '%s' ORDER BY idpurchase DESC", $date1, $date2);
-$idinfo = $qur->get_custom_select_query($query, 1);
+$purchase_ids = $qur->get_custom_select_query($query, 1);
 $grand_total = 0;
 echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
-for ($i = 0; $i < count($idinfo); $i++) {
-    $vou = $idinfo[$i][0];
+foreach($purchase_ids as $index => $purchase_id) {
+    $vou = $purchase_id[0];
     $query_recept = sprintf("SELECT recipt FROM purchase_recipt WHERE idpurchase = '%s'", $vou);
     $recept = $qur->get_custom_select_query($query_recept, 1);
     $query_pro = sprintf("SELECT idproduct, p.unite, rate, name, mesurment_unite.unite FROM (SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM purchase_details WHERE idpurchase = %d) as purchase LEFT JOIN product USING (idproduct)) as p LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite);", $vou);
@@ -19,16 +19,16 @@ for ($i = 0; $i < count($idinfo); $i++) {
     $sell_det = $qur->get_custom_select_query($query_det, 3);
     $n = count($sell_pro);
     echo "<div>";
-    echo "<a class='button' onclick='showit(" . $i . ")'>";
+    echo "<a class='button' onclick='showit(" . $index . ")'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . $recept[0][0];
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
-    echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
+    echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
     echo "<b class='blue'>" . $inp->date_convert($sell_det[0][1]) . "</b>";
     echo "</a>";
     echo "<br/>";
-    echo "<div id='sud" . $i . "'>";
+    echo "<div id='sud" . $index . "'>";
     echo "<table class='rb' align='center'>";
     echo "<tr>";
     echo "<th>";
@@ -108,5 +108,5 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "</div><br/>";
 }
 echo "<h1>Grand Total : " . money($grand_total) . "</h1>";
-echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(" . $i . ")' class='rightflotingnoborder'>";
+echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(" . count($purchase_ids) . ")' class='rightflotingnoborder'>";
 echo "<a  class='button' id='showAll' onClick='showAll()'> Expand All </a> <a  class='button' id='hideAll' onClick='hideAll()'> Minimize All </a><br/>";
