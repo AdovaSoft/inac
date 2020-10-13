@@ -36,19 +36,19 @@ if ($n > 0) {
         echo $inp->date_convert($item[0]);
         echo "</td>";
         echo "<td>";
-        echo isset($item[1]) ? $item[1] : '-';
+        echo esc($item[1]);
         echo "</td>";
         echo "<td>";
-        echo isset($item[2]) ? $item[2] : '-';
+        echo esc($item[2]);
         echo "</td>";
         echo "<td>";
-        echo isset($item[3]) ? $item[3] : '-';
+        echo esc($item[3]);
         echo "</td>";
         echo "<td>";
-        echo isset($item[4]) ? $item[4] : '-';
+        echo esc($item[4]);
         echo "</td>";
         echo "<td>";
-        echo isset($item[5]) ? money($item[5]) : '-';
+        echo money($item[5]);
         echo "</td>";
         echo "<td>";
         if (isset($item[5]) && isset($item[3])) {

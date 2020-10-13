@@ -1031,8 +1031,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
                     $inp->input_hidden('pr_pc_' . $i, $_POST['pr_pc_' . $i]);
 
                 } else {
-                    $inp->input_number(null, 'pc_' . $i, $sell_pro[$i][1]);
-                    $inp->input_hidden('pr_pc_' . $i, $sell_pro[$i][1]);
+                    $inp->input_number(null, 'pc_' . $i, esc($sell_pro[$i][1]));
+                    $inp->input_hidden('pr_pc_' . $i, esc($sell_pro[$i][1]));
 
                 }
 
@@ -1043,7 +1043,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
                 if (isset($_POST['co_' . $i]))
                     $inp->input_number(null, 'co_' . $i, $_POST['co_' . $i]);
                 else
-                    $inp->input_number(null, 'co_' . $i, $sell_pro[$i][2]);
+                    $inp->input_number(null, 'co_' . $i, esc($sell_pro[$i][2]));
                 echo "</td>";
                 echo "</tr>";
             }
@@ -1052,7 +1052,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             if (isset($_POST['d']))
                 $inp->input_number('Discount', 'd', $_POST['d']);
             else
-                $inp->input_number('Discount', 'd', $sell_det[0][2]);
+                $inp->input_number('Discount', 'd', esc($sell_det[0][2]));
             echo "</td>";
             echo "</tr>";
             echo "<tr>";
