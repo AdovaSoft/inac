@@ -602,7 +602,7 @@ else {
         $tto = - $tto; 
         echo "<tr><th colspan='3'>Total Incoming : " . money($tti) . " TK</th>
 <th colspan='3'>Total Outgoing : " . money($tto) . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($total) . " TK</th></tr>";
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($total) . " TK</th></tr>";
         echo "</table>";
     } else {
         echo "<br/><h2 class='blue'>No input or output on " . convert_date($date) . "</h2>";
