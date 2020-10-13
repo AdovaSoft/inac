@@ -25,7 +25,7 @@ if ($inp->value_pgd('s')) {
         echo "<th>Duty<br/>Hours</th>";
         echo "<th>Earned Salary</th>";
         echo "</tr>";
-        $i = 0;
+        $i = 1;
         foreach ($staff_report as $s) {
             echo "<tr>";
 
