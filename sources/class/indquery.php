@@ -20,7 +20,7 @@ class indquery extends query
         $products = $this->get_custom_select_query($query, 4);
 
         echo "<br/>";
-        echo "<form action='editor.php' method = 'POST' class='embossed'>";
+        echo "<form action='editor.php?e=" . $encptid ."&' method = 'POST' class='embossed'>";
         echo "<fieldset><legend>Selles Information</legend>";
         echo "<table class='centeraligned' width='100%'>";
         echo "<thead>";
@@ -212,8 +212,8 @@ class indquery extends query
         $party = $this->get_custom_select_query($query, 2);
         $query = sprintf("SELECT idproduct, name, unite, stock FROM (SELECT idunite, idproduct FROM product_details WHERE purchase = 1) as PRO  JOIN product USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct);;");
         $products = $this->get_custom_select_query($query, 3);
-        echo "<script type='text/javascript' src='js/calculator.js'></script> ";
-        echo "<br/><form  action='editor.php' method = 'POST' class='embossed'>";
+        echo "<br/><form  action='editor.php?e=" . $encptid . "' method = 'POST' class='embossed'>";
+
         echo "<input type = 'hidden' name = 'num' value ='" . count($products) . "' />";
         echo "<table class='centeraligned'>";
         echo "<tr>";
@@ -298,11 +298,12 @@ class indquery extends query
         echo "<br/><input type='submit' name='ab' value='Purchase'/>";
         echo "<input type='hidden' name='editor' value='purchase/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
-        echo "<input type='hidden' name='returnlink' value='index.php?page=purchase&sub=new&e=" . $encptid . "'/>";
+        echo "<input type='hidden' name='returnlink' value='index.php?&e=" . $encptid . "&page=purchase&sub=new'/>";
         echo "</td>";
         echo "</tr>";
         echo "</table>";
         echo "</form>";
+        echo "<script type='text/javascript' src='js/calculator.js'></script> ";
     }
 
     public function newPurchase($party, $date, $sel_info, $dis, $voc, $t)
@@ -310,56 +311,68 @@ class indquery extends query
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $id = $this->get_last_id('purchase', 'idpurchase');
         $flag = $this->insert_query('purchase', array('idpurchase', 'idparty', 'date'), array($id, $party, $date), array('d', 'd', 's'));
-        if ($flag) {
-
-        }
-        foreach ($sel_info as $info) {
-            if ($flag) {
-                $flag = $this->insert_query('purchase_details', array('idpurchase', 'idproduct', 'unite', 'rate'), array($id, $info[0], $info[1], $info[2]), array('d', 'd', 'd', 'f'));
+        d("After Purchase Insert", $flag);
+        if ($flag == 1) {
+            foreach ($sel_info as $info) {
                 if ($flag) {
-                    $query = sprintf("UPDATE stock SET stock = stock + %d WHERE idproduct = %d", $info[1], $info[0]);
-                    $flag = mysqli_query($this->dtb_con, $query);
-                    if (!$flag) {
-                        echo "Failed to update stock ";
+                    $flag = $this->insert_query('purchase_details', array('idpurchase', 'idproduct', 'unite', 'rate'), array($id, $info[0], $info[1], $info[2]), array('d', 'd', 'd', 'f'));
+                    d("After Purchase Insert", $flag);
+                    if ($flag) {
+                        $query = sprintf("UPDATE stock SET stock = stock + %d WHERE idproduct = %d", $info[1], $info[0]);
+                        $flag = mysqli_query($this->dtb_con, $query);
+                        d("After Stock Update", $flag);
+
+                        if (!$flag) {
+                            echo "Failed to update stock ";
+                        }
+                    } else {
+                        break;
                     }
                 } else {
                     break;
                 }
-            } else {
-                break;
             }
         }
 
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('purchase_discount', array('idpurchase', 'discount'), array($id, $dis), array('d', 'd'));
+            d("After Discount Insert", $flag);
+
         }
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('purchase_recipt', array('idpurchase', 'recipt'), array($id, $voc), array('d', 's'));
+            d("After Receipt Insert", $flag);
+
         }
-        if ($flag) {
+        if ($flag = 1) {
             $flag = $this->insert_query('purchase_delivery', array('idpurchase', 'cost'), array($id, $t), array('d', 'd'));
+            d("After Delievery Insert", $flag);
+
         }
 
         $tid = $this->get_last_id('transaction', 'id');
         if ($flag) {
             $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
+            d("After Transaction Insert", $flag);
+
 
         }
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($tid, 'Transport cost'), array('d', 's'));
+            d("After Comment Insert", $flag);
 
         }
 
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query("party_payment", array("id", "idparty"), array($tid, $party), array("d", "d"));
+            d("After Payment Insert", $flag);
 
         }
 
 
-        if ($flag) {
+        if ($flag = 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return $id;
-
         } else {
             mysqli_query($this->dtb_con, 'ROLLBACK');
             return false;
