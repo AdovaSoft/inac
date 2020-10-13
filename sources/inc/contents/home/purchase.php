@@ -1,6 +1,6 @@
 <form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=purchase" method="POST" class="embossed">
   <h2>Purchase Search</h2>
-  <br/>Enter voucher number<br/>
+  <br/>Enter Suppler voucher number<br/>
   <br/>
   <input type="text" name="searchword" class="searchword"
          value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
@@ -34,6 +34,9 @@ if (isset($_POST['searchword'])) {
             echo "Voucher No";
             echo "</th>";
             echo "<th>";
+            echo "Suppler Voucher No";
+            echo "</th>";
+            echo "<th>";
             echo "Party";
             echo "</th>";
             echo "<th>";
@@ -48,6 +51,9 @@ if (isset($_POST['searchword'])) {
 
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
+                echo "<td>";
+                echo esc($purchase_results[$i][0]);
+                echo "</td>";
                 echo "<td>";
                 echo esc($purchase_results[$i][1]);
                 echo "</td>";

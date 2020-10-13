@@ -264,11 +264,11 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_drop_down($table, $column, $value, $name, $sel)
+    public function get_drop_down($table, $column, $value, $name, $sel, $class = null)
     {
         $row = $this->get_row($table, array($column, $value));
-        echo "<select name = '" . $name . "' >";
-        echo "<option> </option>";
+        echo "<select name = '" . $name . "' class='" . $class . "'>";
+        echo "<option> Select an option</option>";
         for ($i = 0; $i < count($row); $i++) {
             if ($sel == $row[$i][1]) {
                 echo "<option value = '" . $row[$i][1] . "' selected>" . $row[$i][0] . "</option>";
