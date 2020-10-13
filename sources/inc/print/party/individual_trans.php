@@ -5,7 +5,7 @@ if (isset($_GET['date1']) && isset($_GET['date2'])) {
 
     $query3 = sprintf("SELECT date, ammount, comment FROM (SELECT id FROM party_payment WHERE idparty = %d) as payment LEFT JOIN transaction USING (id) LEFT JOIN transaction_comment USING(id) WHERE date BETWEEN '%s' AND '%s';", $id, $date1, $date2);
 } else {
-    echo "<h3>All time report tst</h3>";
+    echo "<h3>All time report</h3>";
     $query3 = sprintf("SELECT date, ammount, comment FROM (SELECT id FROM party_payment WHERE idparty = %d) as payment LEFT JOIN transaction USING (id) LEFT JOIN transaction_comment USING(id);", $id);
 }
 $name = $qur->get_cond_row('party', array('name'), 'idparty', '=', $id);
@@ -38,7 +38,7 @@ if (count($tran) > 0) {
     echo "</tr>";
     $recived = 0;
     $paid = 0;
-    $i = 0;
+    $i = 1;
     foreach ($tran as $s) {
         echo "<tr>";
 
@@ -60,7 +60,7 @@ if (count($tran) > 0) {
             $paid += $s[1];
         }
 
-        echo "<td class='text-left'>";
+        echo "<td class='text-center'>";
         echo esc($s[2]);
         echo "</td>";
 
@@ -68,7 +68,7 @@ if (count($tran) > 0) {
     }
     $paid *= (-1);
     echo "<tr>";
-    echo "<th colspan='2'  class='text-right' >Total </th>";
+    echo "<th colspan='2'  class='text-right' >Sum </th>";
     echo "<td class='text-right'><b>" . money($paid) . "</b></td>";
     echo "<td class='text-right'><b>" . money($recived) . "</b  ></td>";
     echo "<td> - </td></tr>";

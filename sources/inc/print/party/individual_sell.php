@@ -32,7 +32,7 @@ if (count($sell) > 0) {
     echo "Discount";
     echo "</td>";
     echo "</tr>";
-    $i = 0;
+    $i = 1;
     foreach ($sell as $s) {
         echo "<tr>";
 
@@ -47,7 +47,7 @@ if (count($sell) > 0) {
     }
     echo "<tr>";
 
-    echo "<td colspan='2' class='text-right' >Sum </td>";
+    echo "<th colspan='2' class='text-right' >Sum </th>";
     echo "<td class='text-right' >" . money($bill_t) . "</td>";
     echo "<td class='text-right' >" . money($bill_d) . "</td>";
     echo "</tr>";
