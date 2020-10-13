@@ -2,11 +2,10 @@
 <br/>
 <?php
 
-echo "<a class='button' id='printBox' onclick='showit(3)' style='padding-top: 20px; padding-bottom: 20px;'>Select another party</a>";
 echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
-echo "<h4 class='blue'>Select Selles</h4><br/>";
+echo "<h4 class='blue'>Select another Selles</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-$qur->get_drop_down('selles', 'idselles', 'idselles', 'idselles', $inp->value_pgd('id'));
+$qur->get_drop_down('selles', 'idselles', 'idselles', 'id', $inp->value_pgd('id'), 'full-width');
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
 echo "</form></div>";
 
@@ -14,7 +13,7 @@ echo "</form></div>";
 $idinfo = $qur->get_custom_select_query($query, 1);
 $grand_total = 0;
 */
-$vou = '7262';
+$vou = $inp->value_pgd('id');
 $query_det = sprintf("SELECT name,date,discount FROM (SELECT * FROM selles s WHERE idselles = %d) as sell LEFT JOIN selles_discount USING (idselles) LEFT JOIN party USING (idparty);", $vou);
 $sell_det = $qur->get_custom_select_query($query_det, 3);
 $query_pro = sprintf("SELECT idproduct, s.unite,  rate, name,  mesurment_unite.unite   FROM (SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM selles_details WHERE idselles = %d) as selles LEFT JOIN product USING (idproduct)) as s LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite);", $vou);
