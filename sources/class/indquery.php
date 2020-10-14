@@ -467,9 +467,9 @@ class indquery extends query
 
         $balance = $this->get_custom_select_query($query, 2);
 
-        $cash = $balance[0][0];
+        $cash = $balance[0][0];  //positive type -> 0
 
-        $bank = $balance[1][0];
+        $bank = $balance[1][0]; //negative type -> 1
 
         if ($ttype == -1) {
 
@@ -837,8 +837,8 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query('SELECT * FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 1 OR party_type.type = 2', 2);
-            $this->get_dropdown_array($party, 0, 1, 'party', null);
+            $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name,(CASE party_type.type WHEN 1 THEN 'Client' ELSE 'Supplier & Client' END)  type_name FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 1 OR party_type.type = 2 "), 3);
+            $this->get_dropdown_array($party, 0, 1, 'party', null, 'full-width', false, 2);
         } else {
             
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
@@ -894,8 +894,8 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query('SELECT * FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 0 OR party_type.type = 2', 2);
-            $this->get_dropdown_array($party, 0, 1, 'party', null);
+            $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name,(CASE party_type.type WHEN 0 THEN 'Supplier' ELSE 'Supplier & Client' END)  type_name FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 0 OR party_type.type = 2 "), 3);
+            $this->get_dropdown_array($party, 0, 1, 'party', null, '', false, 2);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 2);
             d($party);

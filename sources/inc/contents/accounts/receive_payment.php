@@ -6,8 +6,7 @@ $flag = true;
 
 if (
     isset($_POST['party']) && isset($_POST['p_t'])
-    && isset($_POST['p_m']) && $_POST['amnt'] > 0
-) {
+    && isset($_POST['p_m']) && $_POST['amnt'] > 0 ) {
 
     //for check transaction
     if (isset($_POST['p_m']) && $_POST['p_m'] == 1) {
