@@ -35,7 +35,7 @@
       <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=product">Product Search</a></li>
         <?php if ($usertype == ADMIN) : ?>
           <li><a href='index.php?e=<?= $encptid ?>&page=product&sub=edit_product'>Edit Product</a></li>
-          <li><a href='index.php?e=<?= $encptid ?>&page=product&sub=add_product'>Add Product</a></li>"
+          <li><a href='index.php?e=<?= $encptid ?>&page=product&sub=add_product'>Add Product</a></li>
         <?php endif; ?>
     </ul>
   </li>

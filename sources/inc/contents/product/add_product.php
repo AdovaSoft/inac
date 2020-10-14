@@ -23,26 +23,25 @@ if (isset($_POST['ab']) ) {
 }
 
 echo "<br/><form method = 'POST' class='embossed'>";
-if (isset($_POST['n']))
-    $inp->input_text('Name : ', 'n', $_POST['n']);
-else
-    $inp->input_text('Name : ', 'n', null);
-
-echo "<br/>";
-if (isset($_POST['prc']))
-    $inp->input_text('Price per unite : ', 'prc', $_POST['prc']);
-else
-    $inp->input_number('Price per unite : ', 'prc', null);
-
-echo "<br/>Unit: ";
-$qur->get_drop_down('mesurment_unite', 'unite', 'idunite', 'mt', null);
-
-
-echo "<br/><br/>Product Type :  ";
+echo "<table>";
+echo "<tr><th class='text-left'>";
+echo "Name : </th><td>";
+$inp->input_text('', 'n', $inp->value_pgd('n'), 'full-width');
+echo "</td></tr>";
+echo "<tr><th class='text-left'>";
+echo "Price per unite : </th><td>";
+    $inp->input_text('', 'prc',  $inp->value_pgd('prc'), 'full-width');
+echo "</td></tr>";
+echo "<tr><th class='text-left'>";
+echo "Unit : </th><td>";
+$qur->get_drop_down('mesurment_unite', 'unite', 'idunite', 'mt', null, 'full-width');
+echo "</td></tr>";
+echo "<tr><th class='text-left'>";
+echo "Product Type : </th><td>";
 $inp->input_radio('Raw Material', 'pt', 0, 0);
 $inp->input_radio('Finished Product', 'pt', 1, 0);
-
-echo "<br/>";
+echo "</td></tr>";
+echo "</table>";
 $inp->input_submit('ab', 'Add');
 
 echo "</form>";
