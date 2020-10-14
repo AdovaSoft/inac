@@ -8,7 +8,7 @@ $n = count($info);
 $tti = $tto = 0;
 $tto_o = $tti_p = 0;
 if ($n > 0) {
-    echo "<small>Report according to date " . $inp->date_convert($info[0][0]) . "</small><br/></br>";
+    echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/></br>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
 

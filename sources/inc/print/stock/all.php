@@ -84,11 +84,12 @@ if (count($info) > 0) {
     }
 
     echo "<tr>";
-    echo "<th colspan = '6' >";
+
+    echo "<th colspan='7' >";
     echo "Grand Total : ";
     echo "</th>";
 
-    echo "<td colspan='2'>";
+    echo "<td>";
     echo money($cost);
     echo "</td>";
     echo "</tr>";
