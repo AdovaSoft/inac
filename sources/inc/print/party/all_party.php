@@ -58,22 +58,22 @@ foreach ($all_info as $a) {
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo $a[1];
+    echo esc($a[1]);
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo $a[2];
+    echo esc($a[2]) ;
     echo "</a>";
     echo "</td>";
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo $a[3];
+    echo esc($a[3]);
     if ($a[4]) {
         echo ", <br/>";
-        echo $a[4];
+        echo esc($a[4]);
     }
     echo "</a>";
     echo "</td>";
@@ -87,7 +87,7 @@ foreach ($all_info as $a) {
             echo money($due);
             echo "</a>";
         echo "</td>";
-        $due_total = $due_total + (-$a[5]);
+        $due_total = $due_total + $due;
     } else {
         echo "<td align = 'center' >";
             echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
@@ -111,7 +111,8 @@ foreach ($all_info as $a) {
 echo "<tr>";
 echo "<th colspan='4' class='text-right' >Total</th>";
 echo "<th class='text-right' >" . money($due_total) . "</th>";
-echo "<th  class='text-right' >" . money($advance_total) . "</th></tr>";
+echo "<th  class='text-right' >" . money($advance_total) . "</th>";
+echo "</tr>";
 echo "</table>";
 
 ?>
