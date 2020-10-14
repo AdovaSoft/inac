@@ -13,64 +13,90 @@ if ($n > 0) {
     $unit_trac = null;
     $price_trac = null;
     $tto_o = 0;
+
+    $j = 1;
     foreach ($info as $i) {
         if ($unit_trac != $i[3]) {
             if ($i[3] != $first_unit) {
-                echo "</tbody><tr>
-<th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+                echo "</tbody>";
+                echo "<tr>";
+                echo "<th colspan='4'>Total Incoming : <br/> " . esc($tti_p) . " " . esc($unit_trac) . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>";
+                $rtto = -$tto;
+                echo "<th colspan='3'>Total Outgoing : <br/>" . esc($tto_p) . " " . esc($unit_trac) . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($rtto) . " TK</th>";
+                $totalTT = $tti + $tto;
+                echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($totalTT) . " TK</th>";
+                echo "</tr>";
                 echo "</table><br/>";
                 $tti_p = $tto_p = 0;
                 $tti = $tto = 0;
+                $j = 1;
             }
             echo "<h3>" . $i[3] . "</h3>";
             echo "<br/><table align='center' class='rb table'>";
             echo "<thead>";
             echo "<tr>";
+
+            echo "<th>SI</th>";
+
             echo "<th>";
             echo "Date";
             echo "</th>";
+
             echo "<th>";
             echo "Product";
             echo "</th>";
+
             echo "<th>";
             echo "Price ";
             echo "</th>";
+
             echo "<th>";
             echo "Incoming";
             echo "</th>";
+
             echo "<th>";
             echo "Outgoing";
             echo "</th>";
+
             echo "<th>";
             echo "Unit";
             echo "</th>";
+
             echo "<th>";
             echo "Total Price ";
             echo "</th>";
+
             echo "<th>";
             echo "Remark";
             echo "</th>";
+
             echo "</tr>";
-            echo "</thead><tbody>";
+            echo "</thead>";
+
+            echo "<tbody>";
             echo "<tr>";
+
+            echo "<td>" . $j++ . "</td>";
+
             echo "<td>";
             echo $inp->date_convert($i[0]);
             echo "</td>";
+
             echo "<td>";
-            echo $i[1];
+            echo esc($i[1]);
             echo "</td>";
-            echo "<td>";
+
+            echo "<td class='text-right'>";
             echo money($i[4]);
             echo "</td>";
+
             if ($i[2] > 0) {
+
                 echo "<td>";
                 echo $i[2];
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
-
                 echo "</td>";
+                if ($i[5] == 0 || $i[5] == 1) $tti_p = $tti_p + $i[2];
+
                 echo "<td>";
                 if ($i[5] == 0 || $i[5] == 1) {
                     echo "-";
@@ -87,7 +113,7 @@ if ($n > 0) {
                 }
                 echo "</td>";
                 echo "<td>";
-                echo(-$i[2]);
+                echo (-$i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
                     $tto_p = $tto_o + (-$i[2]);
                 echo "</td>";
@@ -100,17 +126,16 @@ if ($n > 0) {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<td class='green'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
                 else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
-                if ($i[5] == 0 || $i[5] == 1){
+                if ($i[5] == 0 || $i[5] == 1) {
                     $ss = -$ss;
-                    echo "<td class='red'>" . ($ss) . "</td>";
-                }
-                else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . ($ss) . "</td>";
+                } else
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
             }
             echo "<td>";
 
@@ -131,22 +156,28 @@ if ($n > 0) {
             echo "</tr>";
         } else {
             echo "<tr>";
+
+            echo "<td>" . $j++ . "</td>";
+
             echo "<td>";
             echo $inp->date_convert($i[0]);
             echo "</td>";
+
             echo "<td>";
             echo $i[1];
             echo "</td>";
-            echo "<td>";
+
+            echo "<td class='text-right'>";
             echo money($i[4]);
             echo "</td>";
-            if ($i[2] > 0) {
-                echo "<td>";
-                echo $i[2];
-                if ($i[5] == 0 || $i[5] == 1)
-                    $tti_p = $tti_p + $i[2];
 
+            if ($i[2] > 0) {
+
+                echo "<td>";
+                echo esc($i[2]);
                 echo "</td>";
+                if ($i[5] == 0 || $i[5] == 1) $tti_p = $tti_p + $i[2];
+
                 echo "<td>";
                 if ($i[5] == 0 || $i[5] == 1) {
                     echo "-";
@@ -163,7 +194,7 @@ if ($n > 0) {
                 }
                 echo "</td>";
                 echo "<td>";
-                echo(-$i[2]);
+                echo (-$i[2]);
                 if ($i[5] == 0 || $i[5] == 1)
                     $tto_p = $tto_o + (-$i[2]);
                 echo "</td>";
@@ -176,17 +207,16 @@ if ($n > 0) {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<td class='green'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
                 else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
                 if ($i[5] == 0 || $i[5] == 1) {
                     $ss = -$ss;
-                    echo "<td class='red'>" . money($ss) . "</td>";
-                }
-                else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
+                } else
+                    echo "<td class='text-right'>" . money($ss) . "</td>";
             }
             echo "<td>";
             if ($i[5] == 0) {
@@ -210,7 +240,13 @@ if ($n > 0) {
         $unit_trac = $i[3];
     }
     echo "</tbody>";
-    echo "<tr><th colspan='3'>Total Incoming : <br/> " . money($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th><th colspan='3'>Total Outgoing : <br/>" . money($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    echo "<tr>";
+    echo "<th colspan='4'>Total Incoming : <br/> " . esc($tti_p) . " " . esc($unit_trac) . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>";
+    $rtto = -$tto;
+    echo "<th colspan='3'>Total Outgoing : <br/>" . esc($tto_p) . " " . esc($unit_trac) . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($rtto) . " TK</th>";
+    $totalTT = $tti + $tto;
+    echo "<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($totalTT) . " TK</th>";
+    echo "</tr>";
     echo "</table><br/>";
 } else {
     echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
