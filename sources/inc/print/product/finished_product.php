@@ -72,14 +72,9 @@ if ($n > 0) {
     }
     echo "<tr>";
     
-    echo "<th>-</th>";
-    echo "<th colspan = 3>";
+    echo "<th colspan='6'>";
     echo "Total ";
     echo "</th>";
-    echo "<th>";
-    echo esc($qun);
-    echo "</th>";
-    echo "<th> </th>";
     echo "<th>" . money($totalRate) . "</th>";
     
     echo "</tr>";
