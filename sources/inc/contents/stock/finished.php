@@ -71,12 +71,12 @@ if (count($info) > 0) {
         echo esc($finished[3]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='pr-50 text-right'>";
         echo money($finished[4]);
         echo "</td>";
 
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $finishedTotal = ($finished[1] + $finished[2]) * $finished[4];
         echo money($finishedTotal);
         $cost += $finishedTotal;
