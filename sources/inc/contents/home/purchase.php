@@ -41,7 +41,7 @@ if (isset($_POST['searchword'])) {
             echo "<th>";
             echo "Date";
             echo "</th>";
-            echo "<th width='360'>";
+            echo "<th>";
             echo "Action";
             echo "</th>";
             echo "</tr>";
@@ -61,11 +61,11 @@ if (isset($_POST['searchword'])) {
                 echo "</a>";
                 echo "</td>";
 
-                echo "<td>";
+                echo "<th width='45%'>";
                 echo "<a href='index.php?e=" . $encptid . "&page=purchase&sub=overview&id=" . $purchase_results[$i][0] . "'>";
                 echo esc($purchase_results[$i][2]);
                 echo "</a>";
-                echo "</td>";
+                echo "</th>";
 
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&page=purchase&sub=overview&id=" . $purchase_results[$i][0] . "'>";

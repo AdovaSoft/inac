@@ -63,8 +63,10 @@ include("./sources/inc/system.php");
 <script>
     $(document).ready(function () {
         $('body').find('.table').DataTable({
-            "dom": 'rt<"bottom"p>',
-            "lengthMenu": false,
+            "dom": 'lrft<"bottom"ip>',
+            "oLanguage": {
+                "sSearch": "Filter Records:"
+            },
             "ordering": false,
             "info": true
         });
