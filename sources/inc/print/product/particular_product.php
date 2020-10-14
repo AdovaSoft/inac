@@ -67,14 +67,12 @@ if ($n > 0) {
     }
     
     echo "<tr>";
-    echo "<th>-</th>";
-    echo "<th colspan ='2'>";
+    
+    echo "<th colspan ='4'>";
     echo "Total ";
     echo "</th>";
-    echo "<td ><b>";
-    echo $qun;
-    echo "</b></td>";
     echo "<td colspan='2'><b>" . money($cos) . "</b></td>";
+
     echo "</tr>";
     echo "</table>";
 }

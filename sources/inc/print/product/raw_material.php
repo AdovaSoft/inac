@@ -85,22 +85,13 @@ if ($n > 0) {
             echo "</td>";
         }
 
-            
-
-        
         echo "</tr>";
 
     }
     echo "<tr>";
-    echo "<th>-</th>";
-    echo "<th colspan ='3'>";
+    echo "<th colspan ='7'>";
     echo "Total ";
     echo "</th>";
-    echo "<th>";
-    echo esc($qun);
-    echo "</th>";
-    echo "<th></th>";
-    echo "<th></th>";
     echo "<th>" . money($cos) . "</th>";
     echo "</tr>";
     echo "</table>";
