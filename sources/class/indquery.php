@@ -94,8 +94,6 @@ class indquery extends query
         echo "<td colspan='2'><br><span id='netcharges'></span></td>";
         echo "</td>";
         echo "</tr>";
-        echo "<tr>";
-        echo "<tbody>";
         echo "</table>";
         echo "</fieldset>";
         echo "<br/><fieldset><legend>Delivery Information</legend>";
@@ -205,32 +203,31 @@ class indquery extends query
         echo "<input type = 'hidden' name = 'num' value ='" . count($products) . "' />";
         echo "<table class='centeraligned'>";
         echo "<tr>";
-        echo "<td colspan='3'>";
+        echo "<td colspan='2' class='text-left'>";
         echo "Date: ";
         $inp->input_date('sd', date('Y-m-d'));
-        echo "&nbsp;&nbsp;&nbsp;Party : ";
+        echo "</td><td colspan='2' class='text-right'>";
+        $inp->input_text('Voucher : ', 'res', $inp->value_pgd('res'));
+        echo "</td>";
+        echo "<tr><td colspan='4' class='text-left'>Party : ";
         $this->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'));
-        echo "&nbsp;&nbsp;&nbsp;";
-        echo "Voucher : <input type='text' name='res' value='" . $inp->value_pgd('res') . "'>";
-        echo "<br/>";
-        echo "<br/>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Product";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Quantity";
-        echo "</td>";
+        echo "</th>";
 
-        echo "<td>";
+        echo "<th>";
         echo "Rate";
-        echo "</td>";
-        echo "<td>";
+        echo "</th>";
+        echo "<th width='150'>";
         echo "Total";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
         $num = $inp->value_pgd('num', 5);
         echo "<input type = 'hidden' name = 'num' value='" . $num . "' />";
@@ -241,55 +238,44 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i, '');
+            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity full-width', 'quantity_' . $i, '');
             echo "</td>";
 
 
             echo "<td>";
-            $inp->input_number(null, 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i);
+            $inp->input_number(null, 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate full-width', 'rate_' . $i);
             echo "</td>";
 
 
-            echo "<td class='total_td' id='total_td_" . $i . "' style='text-align:right;'></td>";
+            echo "<td><span class='total_td' id='total_td_" . $i . "'></span></td>";
             echo "</tr>";
         }
         echo "<tr>";
-        echo "<th colspan='3'>";
-        echo "Total :";
-        echo "</th>";
-        echo "<td id='grand_total' style='text-align:right;'>0</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<tr>";
-        echo "<td colspan='4'>";
+        echo "<td class='text-center'>";
         echo "<br/><input type='submit' name='more_input' value='Add More'>";
-        echo "<br/><br/>";
-        echo "Transport Cost : <input type='number' name='t' value='" . $inp->value_pgd('t', '0') . "'>";
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-        echo "Discount : <input type='number' step='any' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "'>";
+        echo "</td>";
+        echo "<th class='text-right'><br/>Total :</th>";
+        echo "<td colspan='2'><br/><span id='grand_total' style='text-align:right;'></span></td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<th colspan='2' class='text-right'><br>Transport Cost : </th>";
+        echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 100%'></td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<th colspan='2' class='text-right'>Discount : </th>";
+        echo "<td colspan='2'><input type='number' step='0.01' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "' style='margin-left: 0px; width: 100%'></td>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<td colspan='4'>";
-        echo "<br/>";
+        echo "<th colspan='2' class='text-right'><br>Net Charges : </br></th>";
+        echo "<td colspan='2'><br><span id='netcharges'></span></td>";
         echo "</td>";
         echo "</tr>";
-        echo "<tr>";
-        echo "<th colspan='3'>";
-        echo "<big>Net Charges : </big>";
-        echo "</th>";
-        echo "<td colspan='1' id='netcharges' style='text-align:right;'>";
-        echo "</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td colspan = '3'>";
+        echo "</table>";
         echo "<br/><input type='submit' name='ab' value='Purchase'/>";
         echo "<input type='hidden' name='editor' value='purchase/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
         echo "<input type='hidden' name='returnlink' value='index.php?&e=" . $encptid . "&page=purchase&sub=new'/>";
-        echo "</td>";
-        echo "</tr>";
-        echo "</table>";
         echo "</form>";
         echo "<script type='text/javascript' src='js/calculator.js'></script> ";
     }
