@@ -391,11 +391,13 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '', $is_product = false)
+    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '', $is_product = false, $party_location = null)
     {
         /**
          *  Product Query
-         *  [ 0  -> ID,  1 -> Name, 2 -> Unit Name, 3 -> Quantity
+         *  [ 0  -> ID,  1 -> Name, 2 -> Unit Name, 3 -> Quantity]
+         * Party Query
+         * [0-> ID, 1-> Party Name, 2  -> type]
          */
         echo "<select name = '" . $name . "' class='" . $class . "' >";
         echo "<option> Select an option</option>";
@@ -409,6 +411,10 @@ class query
 
             if ($is_product == true)
                 echo "> " . $item[$ind_val] . " ( " . $item[3] . " " . $item[2] . " )";
+
+            elseif(!is_null($party_location))
+                echo "> " . $item[$ind_val] . " ( " . $item[$party_location] . ")";
+
             else
                 echo "> " . $item[$ind_val];
 

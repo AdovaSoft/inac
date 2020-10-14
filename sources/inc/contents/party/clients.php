@@ -66,7 +66,7 @@ foreach ($all_info as $a) {
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $a[0] . "'>";
-    echo money($a[3]);
+    echo $a[3];
     if ($a[4]) {
         echo ", <br/>";
         echo $a[4];
