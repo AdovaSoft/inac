@@ -65,6 +65,7 @@ if ($n > 0) {
         echo "</td>";
         echo "</tr>";
     }
+    
     echo "<tr>";
     echo "<th>-</th>";
     echo "<th colspan ='2'>";

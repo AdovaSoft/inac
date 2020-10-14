@@ -8,7 +8,7 @@ $n = count($info);
 $tti = $tto = 0;
 $tto_p = $tto_o = 0;
 if ($n > 0) {
-    //echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+    echo "<small>Report according to date " . date("d M Y (D)") . "</small><br/><br/>";
     echo "<table align='center' class='rb'>";
     echo "<tr>";
 
@@ -69,8 +69,8 @@ if ($n > 0) {
         $tti_p = 0;
         if ($i[2] > 0) {
 
-            echo "<td class='text-right'>";
-            echo money($i[2]);
+            echo "<td>";
+            echo esc($i[2]);
             echo "</td>";
             if ($i[5] == 0 || $i[5] == 1) $tti_p = $tti_p + $i[2];
 
@@ -79,8 +79,8 @@ if ($n > 0) {
                 echo "-";
                 echo "</td>";
             } else {
-                echo "<td class='text-right'>";
-                echo money($i[2]);
+                echo "<td>";
+                echo esc($i[2]);
                 echo "</td>";
             }
         } else {
@@ -90,14 +90,14 @@ if ($n > 0) {
                 echo "-";
                 echo "</td>";
             } else {
-                echo "<td class='text-right'>";
-                echo money($i[2]);
+                echo "<td>";
+                echo esc($i[2]);
                 echo "</td>";
             }
             
             $i[2] = -$i[2];
-            echo "<td class='text-right' >";
-            echo money($i[2]);
+            echo "<td>";
+            echo esc($i[2]);
             echo "</td>";
             if ($i[5] == 0 || $i[5] == 1) $tto_p = $tto_o  + $i[2];
         }
