@@ -65,7 +65,7 @@ include("./sources/inc/system.php");
         $('body').find('.table').DataTable({
             "dom": 'lrft<"bottom"ip>',
             "oLanguage": {
-                "sSearch": "Filter Records:"
+                "sSearch": "Filter:"
             },
             "ordering": false,
             "info": true
