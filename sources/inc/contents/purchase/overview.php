@@ -2,7 +2,7 @@
 <br/>
 <?php
 echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
-echo "<h4 class='blue'>Select Purchase Suppler Voucher</h4><br/>";
+echo "<h4 class='blue'>Select Purchase Supplier Voucher</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 $qur->get_drop_down('purchase_recipt', 'recipt','idpurchase', 'id', $inp->value_pgd('id'), 'full-width');
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
@@ -18,7 +18,7 @@ echo "</form></div>";
     $n = count($sell_pro);
     echo "<a class='button'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . $recept[0][0];
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : " . $recept[0][0];
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";

@@ -21,7 +21,7 @@ foreach($purchase_ids as $index => $purchase_id) {
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $index . ")'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";

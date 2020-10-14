@@ -21,7 +21,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $i . ")'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
