@@ -8,30 +8,44 @@ if ($n > 0) {
     $cos = 0;
     echo "<table align='center' class='rb'>";
     echo "<tr>";
-    echo "<td>";
+
+    echo "<th>SI</th>";
+   
+    echo "<th>";
     echo "Date";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Party";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Product";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Number";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Unit";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Rate";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Total";
-    echo "</td>";
+    echo "</th>";
+    
     echo "</tr>";
+
+    $j = 1;
     foreach ($info as $item) {
         echo "<tr>";
+
+        echo "<td>" . $j++ . "</td>";
         echo "<td>";
         echo $inp->date_convert($item[0]);
         echo "</td>";
@@ -63,14 +77,15 @@ if ($n > 0) {
 
     }
     echo "<tr>";
-    echo "<td colspan ='3'>";
+    echo "<th>-</th>";
+    echo "<th colspan ='3'>";
     echo "Total ";
-    echo "</td>";
-    echo "<td><b>";
+    echo "</th>";
+    echo "<th>";
     echo $qun;
-    echo "</b></td>";
-    echo "<td></td>";
-    echo "<td></td>";
+    echo "</th>";
+    echo "<th></th>";
+    echo "<th></th>";
     echo "<th>" . money($cos) . "</th>";
     echo "</tr>";
     echo "</table>";
