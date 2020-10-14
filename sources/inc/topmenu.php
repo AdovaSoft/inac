@@ -84,7 +84,7 @@
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&&page=accounts">Accounts</a>
     <ul>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment'>Payments</a></li>" ?>
+        <?php //if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment'>Payments</a></li>" ?>
         <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=purchase_expense'>Purchase Expense</a></li>" ?>
         <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=receive_payment'>Add payment</a></li>" ?>
         <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=invest_draw'>Invest/Draw</a></li>" ?>
