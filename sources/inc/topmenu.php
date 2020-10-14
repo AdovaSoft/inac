@@ -68,8 +68,8 @@
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_finished">Godown Finished</a></li>
       <?php if ($usertype == ADMIN) : ?>
-        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
-        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>
+        <li><a href='index.php?e=<?= $encptid ?>&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>
+        <li><a href='index.php?e=<?= $encptid ?>&&page=stock&&sub=update'>Update Godown Stock</a></li>
       <?php endif; ?>
     </ul>
   </li>
@@ -83,8 +83,8 @@
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_finished">Factory Finished</a></li>
       <?php if ($usertype == ADMIN) : ?>
-        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
-        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>
+        <li><a href='index.php?e=<?= $encptid ?>&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>
+        <li><a href='index.php?e=<?= $encptid ?>&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>
       <?php endif; ?>
     </ul>
   </li>
