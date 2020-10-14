@@ -46,33 +46,48 @@ if ($n > 0) {
         echo "<tr>";
 
         echo "<td>" . $j++ . "</td>";
+        
         echo "<td>";
         echo $inp->date_convert($item[0]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[1]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[2]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[3]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[4]);
         echo "</td>";
-        echo "<td>";
+        
+        echo "<td class='text-right'>";
         echo money($item[5]);
         echo "</td>";
-        echo "<td>";
-        if (isset($item[5]) && isset($item[3])) {
-            $temp = $item[5] * $item[3];
-            $cos += $temp;
-            echo money($temp);
-        } else
-            echo '-';
 
-        echo "</td>";
+        if (isset($item[5]) && isset($item[3])) {
+           
+            $temp = $item[5] * $item[3];
+            echo "<td class='text-right'>";
+            echo money($temp);
+            echo "</td>";
+            $cos += $temp;
+
+        } else {
+            echo "<td>";
+            echo '-';
+            echo "</td>";
+        }
+
+            
+
+        
         echo "</tr>";
 
     }
@@ -82,7 +97,7 @@ if ($n > 0) {
     echo "Total ";
     echo "</th>";
     echo "<th>";
-    echo $qun;
+    echo esc($qun);
     echo "</th>";
     echo "<th></th>";
     echo "<th></th>";

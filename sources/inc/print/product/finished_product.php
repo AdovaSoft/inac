@@ -8,27 +8,40 @@ if ($n > 0) {
     $totalRate = 0;
     echo "<table align='center' class='rb'>";
     echo "<tr>";
+
+    echo "<th>SI</th>";
+
     echo "<th>";
     echo "Date";
     echo "</th>";
+    
     echo "<th>";
     echo "Party";
     echo "</th>";
+    
     echo "<th>";
     echo "Product";
     echo "</th>";
+    
     echo "<th>";
     echo "Number";
     echo "</th>";
+    
     echo "<th>";
     echo "Unit";
     echo "</th>";
+    
     echo "<th>";
     echo "Rate";
     echo "</th>";
+    
     echo "</tr>";
+
+    $j = 1;
     foreach ($info as $i) {
         echo "<tr>";
+
+        echo "<td>" . $j++ . "</td>";
         echo "<td>";
         echo $inp->date_convert($i[0]);
         echo "</td>";
@@ -40,29 +53,35 @@ if ($n > 0) {
         echo "<td>";
         echo esc($i[2]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($i[3]);
-        $qun += $i[3];
         echo "</td>";
+        $qun += $i[3];
+
         echo "<td>";
         echo esc($i[4]);
         echo "</td>";
-        echo "<td>";
+        
+        echo "<td class='text-right'>";
         echo money($i[5]);
-        $totalRate += $i[5];
         echo "</td>";
+        $totalRate += $i[5];
 
         echo "</tr>";
     }
     echo "<tr>";
-    echo "<td colspan = 3>";
+    
+    echo "<th>-</th>";
+    echo "<th colspan = 3>";
     echo "Total ";
-    echo "</td>";
-    echo "<td ><b>";
-    echo $qun;
-    echo "</b></td>";
-    echo "<td> </td>";
-    echo "<td><b>" . money($totalRate) . "</b></td>";
+    echo "</th>";
+    echo "<th>";
+    echo esc($qun);
+    echo "</th>";
+    echo "<th> </th>";
+    echo "<th>" . money($totalRate) . "</th>";
+    
     echo "</tr>";
     echo "</table>";
 }
