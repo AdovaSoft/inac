@@ -8,69 +8,90 @@ if ($n > 0) {
     $cos = 0;
     echo "<table align='center' class='rb'>";
     echo "<tr>";
-    echo "<td>";
+
+    echo "<th>SI</th>";
+   
+    echo "<th>";
     echo "Date";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Party";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Product";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Number";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Unit";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Rate";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    
+    echo "<th>";
     echo "Total";
-    echo "</td>";
+    echo "</th>";
+    
     echo "</tr>";
+
+    $j = 1;
     foreach ($info as $item) {
         echo "<tr>";
+
+        echo "<td>" . $j++ . "</td>";
+        
         echo "<td>";
         echo $inp->date_convert($item[0]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[1]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[2]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[3]);
         echo "</td>";
+        
         echo "<td>";
         echo esc($item[4]);
         echo "</td>";
-        echo "<td>";
+        
+        echo "<td class='text-right'>";
         echo money($item[5]);
         echo "</td>";
-        echo "<td>";
-        if (isset($item[5]) && isset($item[3])) {
-            $temp = $item[5] * $item[3];
-            $cos += $temp;
-            echo money($temp);
-        } else
-            echo '-';
 
-        echo "</td>";
+        if (isset($item[5]) && isset($item[3])) {
+           
+            $temp = $item[5] * $item[3];
+            echo "<td class='text-right'>";
+            echo money($temp);
+            echo "</td>";
+            $cos += $temp;
+
+        } else {
+            echo "<td>";
+            echo '-';
+            echo "</td>";
+        }
+
         echo "</tr>";
 
     }
     echo "<tr>";
-    echo "<td colspan ='3'>";
+    echo "<th colspan ='7'>";
     echo "Total ";
-    echo "</td>";
-    echo "<td><b>";
-    echo $qun;
-    echo "</b></td>";
-    echo "<td></td>";
-    echo "<td></td>";
+    echo "</th>";
     echo "<th>" . money($cos) . "</th>";
     echo "</tr>";
     echo "</table>";

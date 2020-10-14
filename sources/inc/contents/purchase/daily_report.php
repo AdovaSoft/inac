@@ -21,7 +21,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $i . ")'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
@@ -55,10 +55,10 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo " ";
         echo esc($sell_pro[$j][4]);
         echo "</td>";
-        echo "<td>";
-        echo esc($sell_pro[$j][2]);
+        echo "<td class='text-right pr-50'>";
+        echo money($sell_pro[$j][2]);
         echo "</td>";
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $mull = $sell_pro[$j][1] * $sell_pro[$j][2];
         echo money($mull);
         $charges_total = $charges_total + $mull;
@@ -69,7 +69,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Total Charges:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     echo money($charges_total);
     echo "</th>";
     echo "</tr>";
@@ -77,7 +77,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Discount:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     echo money($sell_det[0][2]);
     echo "</th>";
     echo "</tr>";
@@ -85,7 +85,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Net charges:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     $net = $charges_total - $sell_det[0][2];
     echo money($net);
     $grand_total = $grand_total + $net;

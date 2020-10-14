@@ -64,11 +64,11 @@ if (count($info) > 0) {
         echo esc($tol);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         echo esc($rawmaterial[3]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         echo money($rawmaterial[4]);
         echo "</td>";
 

@@ -21,7 +21,7 @@ foreach($purchase_ids as $index => $purchase_id) {
     echo "<div>";
     echo "<a class='button' onclick='showit(" . $index . ")'>";
     echo "Voucher : " . $vou;
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppler Voucher : " . esc($recept[0][0]);
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : " . esc($recept[0][0]);
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
     echo "<b class='blue'>" . esc($sell_det[0][0]) . "</b>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
@@ -55,10 +55,10 @@ foreach($purchase_ids as $index => $purchase_id) {
         echo " ";
         echo esc($sell_pro[$j][4]);
         echo "</td>";
-        echo "<td>";
-        echo esc($sell_pro[$j][2]);
+        echo "<td class='text-right pr-50'>";
+        echo money($sell_pro[$j][2]);
         echo "</td>";
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $mul = $sell_pro[$j][1] * $sell_pro[$j][2];
         echo money($mul);
         $charges_total = $charges_total + $mul;
@@ -69,7 +69,7 @@ foreach($purchase_ids as $index => $purchase_id) {
     echo "<td colspan='3'>";
     echo "Total Charges:";
     echo "</td>";
-    echo "<td class='blue'>";
+    echo "<td class='blue text-right pr-50'>";
     echo money($charges_total);
     echo "</td>";
     echo "</tr>";
@@ -77,7 +77,7 @@ foreach($purchase_ids as $index => $purchase_id) {
     echo "<td colspan='3'>";
     echo "Discount:";
     echo "</td>";
-    echo "<td class='blue'>";
+    echo "<td class='blue text-right pr-50'>";
     echo money($sell_det[0][2]);
     echo "</td>";
     echo "</tr>";
@@ -85,7 +85,7 @@ foreach($purchase_ids as $index => $purchase_id) {
     echo "<td colspan='3'>";
     echo "Net charges:";
     echo "</td>";
-    echo "<td class='blue'>";
+    echo "<td class='blue text-right pr-50'>";
     $net = $charges_total - $sell_det[0][2];
     echo money($net);
     $grand_total = $grand_total + $net;

@@ -29,21 +29,21 @@ if (isset($id)) {
         echo "<br/><table align='center' class='rb table'>";
         echo "<thead>";
         echo "<tr>";
-        echo "<td>";
+        echo "<th>";
         echo "Date";
-        echo "</td>";
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Party";
-        echo "</td>";
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Quantity";
-        echo "</td>";
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Price";
-        echo "</td>";
-        echo "<td>";
+        echo "</th>";
+        echo "<th>";
         echo "Total";
-        echo "</td>";
+        echo "</th>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -53,21 +53,21 @@ if (isset($id)) {
             echo $inp->date_convert($i[0]);
             echo "</td>";
 
-            echo "<td>";
+            echo "<th>";
             echo esc($i[1]);
-            echo "</td>";
+            echo "</th>";
 
             echo "<td>";
             echo esc($i[2]);
             $qun += esc_num($i[2]);
             echo "</td>";
 
-            echo "<td>";
+            echo "<td class='text-right pr-50'>";
             echo money($i[3]);
 
             echo "</td>";
 
-            echo "<td>";
+            echo "<td class=' text-right pr-50'>";
             $mul = $i[2] * $i[3];
             echo money($mul);
             $cos += $mul;

@@ -34,10 +34,10 @@ function d(...$var)
  * @param $variable
  * @return string
  */
-function esc(&$variable)
+function esc(&$variable, $force_string = false)
 {
     if (isset($variable)) {
-        if (is_numeric($variable)) {
+        if (is_numeric($variable) && $force_string == false) {
             if (is_integer($variable))
                 return intval($variable);
             else

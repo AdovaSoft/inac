@@ -48,17 +48,17 @@ if (count($info) > 0) {
         echo "<tr>";
         echo "<th>";
         echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $product[5] . "'>";
-        echo $product[0];
+        echo esc($product[0]);
         echo "</a>";
         echo "</th>";
 
         echo "<td>";
-        echo $product[1];
+        echo esc($product[1]);
         echo "</td>";
 
 
         echo "<td>";
-        echo $product[2];
+        echo esc($product[2]);
         echo "</td>";
 
         echo "<td>";
@@ -66,15 +66,15 @@ if (count($info) > 0) {
         echo "</td>";
 
         echo "<td>";
-        echo $product[3];
+        echo esc($product[3]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         echo money($product[4]);
         echo "</td>";
 
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $total = (($product[1] + $product[2]) * $product[4]);
         echo money($total);
         $cost += ($product[1] + $product[2]) * $product[4];

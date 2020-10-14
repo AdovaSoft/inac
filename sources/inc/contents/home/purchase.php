@@ -1,6 +1,6 @@
 <form action="index.php?e=<?php echo $encptid ?>&&page=home&&sub=purchase" method="POST" class="embossed">
   <h2>Purchase Search</h2>
-  <br/>Enter Suppler voucher number<br/>
+  <br/>Enter Supplier voucher number<br/>
   <br/>
   <input type="text" name="searchword" class="searchword"
          value="<?php if (isset($_POST['searchword'])) echo $_POST['searchword']; ?>" required/>
@@ -33,7 +33,7 @@ if (isset($_POST['searchword'])) {
             echo "Voucher No";
             echo "</th>";
             echo "<th>";
-            echo "Suppler Voucher No";
+            echo "Supplier Voucher No";
             echo "</th>";
             echo "<th>";
             echo "Party";
@@ -41,7 +41,7 @@ if (isset($_POST['searchword'])) {
             echo "<th>";
             echo "Date";
             echo "</th>";
-            echo "<th width='360'>";
+            echo "<th>";
             echo "Action";
             echo "</th>";
             echo "</tr>";
@@ -61,11 +61,11 @@ if (isset($_POST['searchword'])) {
                 echo "</a>";
                 echo "</td>";
 
-                echo "<td>";
+                echo "<th width='45%'>";
                 echo "<a href='index.php?e=" . $encptid . "&page=purchase&sub=overview&id=" . $purchase_results[$i][0] . "'>";
                 echo esc($purchase_results[$i][2]);
                 echo "</a>";
-                echo "</td>";
+                echo "</th>";
 
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&page=purchase&sub=overview&id=" . $purchase_results[$i][0] . "'>";

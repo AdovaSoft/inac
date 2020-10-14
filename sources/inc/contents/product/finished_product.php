@@ -11,24 +11,24 @@ if ($n > 0) {
     echo "<table align='center' class='rb table'>";
     echo "<thead>";
     echo "<tr>";
-    echo "<td>";
+    echo "<th>";
     echo "Date";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Party";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Product";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Number";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Unit";
-    echo "</td>";
-    echo "<td>";
+    echo "</th>";
+    echo "<th>";
     echo "Rate";
-    echo "</td>";
+    echo "</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
@@ -38,9 +38,9 @@ if ($n > 0) {
         echo $inp->date_convert($finished[0]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<th>";
         echo esc($finished[1]);
-        echo "</td>";
+        echo "</th>";
 
         echo "<td>";
         echo esc($finished[2]);
@@ -49,10 +49,10 @@ if ($n > 0) {
         echo esc($finished[3]);
         echo "</td>";
         echo "<td>";
-        echo isset($finished[4]) ? $finished[4] : '-';
+        echo esc($finished[4]);
         echo "</td>";
-        echo "<td>";
-        echo isset($finished[5]) ? money($finished[5]) : '-';
+        echo "<td class='text-right pr-50'>";
+        echo money($finished[5]);
         echo "</td>";
 
         echo "</tr>";
