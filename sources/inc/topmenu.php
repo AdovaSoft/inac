@@ -31,8 +31,10 @@
       <li><a href="index.php?e=<?= $encptid ?>&page=product&sub=raw_material">Raw Material</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&page=product&sub=finished_product">Finished Product</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&page=home&sub=product">Product Search</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=product&sub=edit_product'>Edit Product</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&page=product&sub=add_product'>Add Product</a></li>" ?>
+      <?php if ($usertype == ADMIN) : ?>
+      <li><a href='index.php?e=" . $encptid . "&page=product&sub=edit_product'>Edit Product</a></li>
+      <li><a href='index.php?e=" . $encptid . "&page=product&sub=add_product'>Add Product</a></li>"
+      <?php endif; ?>
     </ul>
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&page=stock">Stock</a>
@@ -65,8 +67,10 @@
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_all">Godown All Products</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_raw">Godown Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=godown_finished">Godown Finished</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) : ?>
+      <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_stock'>Transfer to Godown</a></li>" ?>
+        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update'>Update Godown Stock</a></li>
+      <?php endif; ?>
     </ul>
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&&page=factory">Factory</a>
@@ -78,14 +82,20 @@
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_all">Factory All Products</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_raw">Factory Raw Materials</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=stock&&sub=factory_finished">Factory Finished</a></li>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>" ?>
+        <?php if ($usertype == ADMIN) : ?>
+        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=transfer_to_factory'>Transfer to Factory</a></li>" ?>
+        <li><a href='index.php?e=" . $encptid . "&&page=stock&&sub=update_fac'>Update Factory Stock</a></li>
+      <?php endif; ?>
     </ul>
   </li>
   <li><a href="index.php?e=<?= $encptid ?>&&page=accounts">Accounts</a>
     <ul>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment'>Payments</a></li>" ?>
-        <?php if ($usertype == ADMIN) echo "<li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=invest_draw'>Invest/Draw</a></li>" ?>
+        <?php if ($usertype == ADMIN) : ?>
+        <li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=payment'>Payments</a></li>
+        <li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=purchase_expense'>Purchase Expense</a></li>
+        <li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=receive_payment'>Add payment</a></li>
+        <li><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=invest_draw'>Invest/Draw</a></li>"
+      <?php endif; ?>
       <li><a href="index.php?e=<?= $encptid ?>&&page=accounts&&sub=report">Accounts Report</a></li>
       <li><a href="index.php?e=<?= $encptid ?>&&page=accounts&&sub=daily_report">Daily Accounts</a></li>
     </ul>
