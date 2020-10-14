@@ -20,7 +20,7 @@ if ($n > 0) {
     echo "</td>";
 
     echo "<td>";
-    echo "Price (TK)";
+    echo "Price ";
     echo "</td>";
 
 

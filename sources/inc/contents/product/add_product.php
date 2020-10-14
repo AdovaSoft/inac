@@ -32,7 +32,7 @@ echo "<br/>";
 if (isset($_POST['prc']))
     $inp->input_text('Price per unite : ', 'prc', $_POST['prc']);
 else
-    $inp->input_text('Price per unite : ', 'prc', null);
+    $inp->input_number('Price per unite : ', 'prc', null);
 
 echo "<br/>Unit: ";
 $qur->get_drop_down('mesurment_unite', 'unite', 'idunite', 'mt', null);

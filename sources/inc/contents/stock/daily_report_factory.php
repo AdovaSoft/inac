@@ -52,7 +52,7 @@ if (isset($_GET['group']) == 1) {
                 echo "</th>";
 
                 echo "<th>";
-                echo "Price (TK)";
+                echo "Price  ";
                 echo "</th>";
 
                 echo "<th>";
@@ -68,7 +68,7 @@ if (isset($_GET['group']) == 1) {
                 echo "</th>";
 
                 echo "<th>";
-                echo "Total Price (TK)";
+                echo "Total Price  ";
                 echo "</th>";
 
                 echo "<th>";
@@ -272,7 +272,7 @@ if (isset($_GET['group']) == 1) {
                 echo "Product";
                 echo "</td>";
                 echo "<td>";
-                echo "Price (TK)";
+                echo "Price  ";
                 echo "</td>";
                 echo "<td>";
                 echo "Incoming";
@@ -284,7 +284,7 @@ if (isset($_GET['group']) == 1) {
                 echo "Unit";
                 echo "</td>";
                 echo "<td>";
-                echo "Total Price (TK)";
+                echo "Total Price  ";
                 echo "</td>";
                 echo "<td>";
                 echo "Remark";
@@ -474,7 +474,7 @@ if (isset($_GET['group']) == 1) {
         echo "</th>";
 
         echo "<th>";
-        echo "Price (TK)";
+        echo "Price  ";
         echo "</th>";
 
 
@@ -491,7 +491,7 @@ if (isset($_GET['group']) == 1) {
         echo "</th>";
 
         echo "<th>";
-        echo "Total Price (TK)";
+        echo "Total Price  ";
         echo "</th>";
 
         echo "<th>";

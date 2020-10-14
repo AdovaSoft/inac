@@ -42,7 +42,7 @@ if (count($info) > 0) {
 
     echo "</tr>";
 
-    $i = 0;
+    $i = 1;
     foreach ($info as $ar) {
         echo "<tr>";
 

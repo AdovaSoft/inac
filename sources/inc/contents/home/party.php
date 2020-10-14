@@ -12,8 +12,8 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<h3>Party Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = ($_POST['searchword'] != null) ? $_POST['searchword'] : $_GET['searchword'];
-    if ($s == null) {
+    $s = $_REQUEST['searchword'];
+    if (strlen($s) < 1) {
         echo "You cant search on empty string";
     } else {
         $con = new indquery();

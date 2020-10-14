@@ -16,7 +16,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Product wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown_productwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a></br>";
         $first_product = $info[0][1];
         $product_trac = 0;
@@ -43,7 +43,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "Product";
                 echo "</th>";
                 echo "<th>";
-                echo "Price (TK)";
+                echo "Price  ";
                 echo "</th>";
                 echo "<th>";
                 echo "Incoming";
@@ -55,7 +55,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "Unit";
                 echo "</th>";
                 echo "<th>";
-                echo "Total Price (TK)";
+                echo "Total Price  ";
                 echo "</th>";
                 echo "<th>";
                 echo "Remark";
@@ -232,7 +232,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report&&group=1&&date=" . $date . "' class='button'><b> Group Product wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<br/><h2>Grouped Unit wise</h2><br/>";
-        echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_unitwise&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a><br/>";
         $first_unit = $info[0][3];
 
@@ -261,7 +261,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "Product";
                 echo "</td>";
                 echo "<td>";
-                echo "Price (TK)";
+                echo "Price  ";
                 echo "</td>";
                 echo "<td>";
                 echo "Incoming";
@@ -273,7 +273,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "Unit";
                 echo "</td>";
                 echo "<td>";
-                echo "Total Price (TK)";
+                echo "Total Price  ";
                 echo "</td>";
                 echo "<td>";
                 echo "Remark";
@@ -448,7 +448,7 @@ else {
         echo "<a href='index.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "&&group=2' class='button'><b> Group Unit wise </b></a>";
         echo "<div class='embossed table-wrap'>";
         echo "<h2> Grouped Date Wise</h2>";
-        echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
+        //echo "<br/><small>Report according to date " . date("d M Y (D)") . "</small><br/>";
         echo "<br/><a id='printBox'  href='print.php?e=" . $encptid . "&page=stock&&sub=daily_report_godown&&date=" . $date . "' class='button' target='_blank'><b> Print </b></a>";
         echo "<br/><table align='center' class='rb table'>";
         echo "<thead>";
@@ -462,7 +462,7 @@ else {
         echo "</th>";
 
         echo "<th>";
-        echo "Price (TK)";
+        echo "Price  ";
         echo "</th>";
 
 
@@ -479,7 +479,7 @@ else {
         echo "</th>";
 
         echo "<th>";
-        echo "Total Price (TK)";
+        echo "Total Price  ";
         echo "</th>";
 
         echo "<th>";

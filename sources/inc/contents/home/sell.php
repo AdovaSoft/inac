@@ -16,8 +16,8 @@ if (isset($_POST['searchword'])) {
     $searchword = $_POST['searchword'];
     echo "<br/><h3>Sell Search Result for <b class='green'>" . $searchword . "</b></h3><br/>";
     $s = null;
-    $s = (isset($_POST['searchword']) != null) ? $_POST['searchword'] : $_GET['searchword'];
-    if ($s == null) {
+    $s = $_REQUEST['searchword'];
+    if (strlen($s) < 1) {
         echo "<h3 class='red'>Please enter a key word then click search</h3><br/>";
     } else {
         $sell_results = $qur->search_sell($s);

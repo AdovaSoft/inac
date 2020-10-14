@@ -8,7 +8,7 @@ $tti_p = $tto_p = 0;
 $tti = $tto = 0;
 if ($n > 0) {
     echo "<h2>Grouped Unitwise</h2>";
-    echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
+    //echo "<small>Report according to price of date " . date("d M Y (D)") . "</small><br/>";
     $first_unit = $info[0][3];
     $unit_trac = 0;
     $tto_o = 0;
@@ -30,7 +30,7 @@ if ($n > 0) {
             echo "Product";
             echo "</td>";
             echo "<td>";
-            echo "Price (TK)";
+            echo "Price ";
             echo "</td>";
             echo "<td>";
             echo "Incoming";
@@ -42,7 +42,7 @@ if ($n > 0) {
             echo "Unit";
             echo "</td>";
             echo "<td>";
-            echo "Total Price (TK)";
+            echo "Total Price ";
             echo "</td>";
             echo "<td>";
             echo "Remark";

@@ -89,7 +89,7 @@ class indquery extends query
         echo "<tr>";
         echo "<td colspan='4'>";
         echo "<br/>";
-        echo "Transport cost : <input type='text' name='t' value='" . $inp->value_pgd('t', '0') . "'>";
+        echo "Transport cost : <input type='number' name='t' value='" . $inp->value_pgd('t', '0') . "'>";
         echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         echo "Discount : <input type='number' step='any' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "'>";
         echo "</td>";
@@ -276,7 +276,7 @@ class indquery extends query
         echo "<td colspan='4'>";
         echo "<br/><input type='submit' name='more_input' value='Add More'>";
         echo "<br/><br/>";
-        echo "Transport : <input type='number' name='t' value='" . $inp->value_pgd('t', '0') . "'>";
+        echo "Transport Cost : <input type='number' name='t' value='" . $inp->value_pgd('t', '0') . "'>";
         echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
         echo "Discount : <input type='number' step='any' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "'>";
         echo "</td>";
@@ -973,8 +973,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return $flag;
     }
 
-    public function printReturnPur($vou)
-    {
+    public function printReturnPur($vou){
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM purchase_details WHERE idpurchase = %d) as purchase LEFT JOIN product USING (idproduct);", $vou);

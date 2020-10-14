@@ -71,7 +71,7 @@ if ($n > 0) {
     echo "</b></td>";
     echo "<td></td>";
     echo "<td></td>";
-    echo "<td><b>" . money($cos) . "</b></td>";
+    echo "<th>" . money($cos) . "</th>";
     echo "</tr>";
     echo "</table>";
 }

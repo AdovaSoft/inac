@@ -16,10 +16,12 @@ if ($n > 0) {
         if (isset($product_trac) && $product_trac != $i[1]) {
 
             if ($i[1] != $first_product) {
-                echo "<tr>
-<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th>
-<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
-<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+              $ttoal_io = $tti + $tto;
+              $tto = $tto * (-1);
+                echo "<tr><td></td>
+<th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . money($unit_trac) . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . money($unit_trac) . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . money($tto) . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($ttoal_io) . " TK</th></tr>";
                 echo "</table><br/>";
 
             }
@@ -33,7 +35,7 @@ if ($n > 0) {
             echo "Product";
             echo "</td>";
             echo "<td>";
-            echo "Price (TK)";
+            echo "Price ";
             echo "</td>";
             echo "<td>";
             echo "Incoming";
@@ -45,7 +47,7 @@ if ($n > 0) {
             echo "Unit";
             echo "</td>";
             echo "<td>";
-            echo "Total Price (TK)";
+            echo "Total Price ";
             echo "</td>";
             echo "<td>";
             echo "Remark";
@@ -190,7 +192,11 @@ if ($n > 0) {
         $price_trac = $i[4];
         $unit_trac = $i[3];
     }
-    echo "<tr><th colspan='3'>Total Incoming : <br/> " . $tti_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . $tti . " TK</th><th colspan='3'>Total Outgoing : <br/>" . $tto_p . " " . $unit_trac . "<b class='blue'> X </b>" . $price_trac . " TK <b class='blue'>=</b> " . -$tto . " TK</th><th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . ($tti + $tto) . " TK</th></tr>";
+    $ttoal_io = ($tti + $tto);
+    echo "<tr>
+<th colspan='3'>Total Incoming : <br/> " . esc($tti_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . money($tti) . " TK</th>
+<th colspan='3'>Total Outgoing : <br/>" . esc($tto_p) . " " . $unit_trac . "<b class='blue'> X </b>" . money($price_trac) . " TK <b class='blue'>=</b> " . -$tto . " TK</th>
+<th colspan='2'>Total (Incoming  -  Outgoing) : <br/>" . money($ttoal_io) . " TK</th></tr>";
     echo "</table><br/>";
     // echo "<br/><small>Report according to price of date " . date("d M Y (D)") . "</small>";
 } else {
