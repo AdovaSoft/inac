@@ -64,7 +64,6 @@ a img {
 #topmenu ul li a {
     display: inline-block;
     float: left;
-    height: 18px;
     width: 60px;
     padding: 9px 15px 9px 15px;
     text-decoration: none;
@@ -83,12 +82,12 @@ a img {
 
 #topmenu ul li ul li a {
     width: 150px;
-    margin-left: 30px;
+    margin-left: 15px;
     border-width: 2px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 #topmenu ul li:hover ul {
@@ -194,6 +193,7 @@ a img {
 
 #content table.centeraligned tr td {
     text-align: center;
+    padding: 3px;
 }
 
 #content table.leftaligned tr td {
@@ -379,8 +379,8 @@ table.dataTable tbody tr {
 .green , .red, .blue {
     font-weight: bold;
 }
-.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate,
-.dataTables_wrapper .dataTables_filter {
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_filter {
     margin-bottom: 16px;
     font-size: 20px;
     font-weight: bold;
@@ -394,7 +394,7 @@ table.dataTable tbody tr {
     padding:5px 10px;
     color: white;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .text-left {
@@ -416,3 +416,22 @@ table.dataTable tbody tr {
     padding-right: 50px !important;
 }
 
+form.embossed {
+    text-align: left;
+}
+
+.total_td, #grand_total, #netcharges {
+    display: block;
+    padding: 3px;
+    text-align: right;
+    background: white;
+    border: 2px solid #979797;
+    color: black;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: Arial;
+}
+.dt-center .pagination {
+    justify-content: center !important;
+}

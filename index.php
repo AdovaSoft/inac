@@ -7,6 +7,8 @@ include("./sources/inc/system.php");
 <html lang="en-US">
 <head>
   <title><?= COMPANY ?></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
 
@@ -63,12 +65,13 @@ include("./sources/inc/system.php");
 <script>
     $(document).ready(function () {
         $('body').find('.table').DataTable({
-            "dom": 'lrft<"bottom"ip>',
+            "dom": 'lrft<"dt-center"p>',
             "oLanguage": {
                 "sSearch": "Filter:"
             },
             "ordering": false,
-            "info": true
+            "info": true,
+            "pagingType": "full_numbers"
         });
     });
 </script>

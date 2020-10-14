@@ -1,8 +1,15 @@
 body {
-    background-color: #000000;
-    background-image: url('/8/contentbg.jpg');
-    background-repeat: repeat-x;
+    min-height: 100vh;
+    overflow: hidden;
+    background-image: url(8/contentbg.jpg) !important;
+    background-color: #000000 !important;
+    background-repeat: repeat;
     color: #ffffff;
+}
+
+h1, h2, h3 {
+    margin: 15px 0px !important;
+    display: block!important;
 }
 
 a {
@@ -17,7 +24,7 @@ a:hover {
 #loginform {
     padding: 20px;
     margin: auto;
-    width: 500px;
+    max-width: 400px;
     text-align: center;
     border-style: outset;
     border-width: 3px;
@@ -42,4 +49,14 @@ a:hover {
 
 .blue {
     color: #4488ee;
+}
+
+.footer {
+    width:100%;
+    font-weight: bold;
+    font-size: 1rem;
+    bottom: 0px;
+    display: block;
+    position: fixed;
+    text-align: center;
 }

@@ -1,8 +1,8 @@
 <?php $loginmessage = isset($loginmessage) ? $loginmessage : ''; ?>
-  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link rel="stylesheet" type="text/css" href="./css/login.css">
   </head>
   <body>
-  <center style="height: 100vh; overflow-y: hidden;">
+  <center>
     <br/>
     <h1><?= COMPANY ?></h1>
     <br/>
@@ -10,7 +10,7 @@
         <?php echo $loginmessage; ?>
       <table border="0">
         <tr>
-          <th width="40%">User Name :</th>
+          <th width="25%">User Name :</th>
           <td>
             <input type="text" placeholder="Enter Username"
                      size="255" class="full-width" minlength="3" maxlength="255"
@@ -32,8 +32,8 @@
         </tr>
       </table>
     </form>
-    <br/><p style="font-weight: bold; bottom: 0px; display: inline-block">Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></p>
   </center>
+  <br/><p class="footer">Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></p>
   </body>
 <?php
 //don't render more html

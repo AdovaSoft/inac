@@ -19,7 +19,7 @@ function netCharge() {
 $(document).ready(function () {
     $(".rate").each(function () {
         var rate = $(this).attr("id");
-        $("#total_td" + rate.slice(4)).html($("#quantity" + rate.slice(4)).val() * $(this).val());
+        $("#total_td" + rate.slice(4)).html(parseFloat($("#quantity" + rate.slice(4)).val() * $(this).val()).toFixed(2));
         process_grand_total(0);
         netCharge();
     });
