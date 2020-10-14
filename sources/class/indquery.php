@@ -785,7 +785,7 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query('SELECT * FROM party', 2);
+            $party = $this->get_custom_select_query('SELECT * FROM party WHERE ', 2);
             $this->get_dropdown_array($party, 0, 1, 'party', null);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
@@ -814,9 +814,122 @@ class indquery extends query
         $inp->input_submit('ab', 'Save');
         echo "</form>";
     }
-
-    public function print_edit_sells($vou)
+    /**
+     * @param $id
+     * @param $type
+     * @param $cost
+     */
+    public function recivePayment($id = NULL, $type = NULL, $cost = 0.0)
     {
+        $comment = null;
+        $inp = new html();
+        echo "<br/><form method = 'POST' class='embossed'>";
+        echo "<br/>Date : ";
+        $inp->input_date('d', date('Y-m-d'));
+
+        echo "<br/>";
+        echo "<br/>";
+        if ($type == null) {
+
+                echo "Receiving from : <input type='hidden' name='p_t' value='1'>";
+                $comment = " ";
+            
+        }
+
+        if ($id == null) {
+            $party = $this->get_custom_select_query('SELECT * FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 1 OR party_type.type = 2', 2);
+            $this->get_dropdown_array($party, 0, 1, 'party', null);
+        } else {
+            
+            $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
+            echo "<b class='blue'>" . $party[0][0] . "</b>";
+            echo "<input type = 'hidden' name = 'party' value = '" . $id . "' />";
+            $comment .= $party[0][0];
+        }
+        echo "<br/>";
+        echo "<br/> In ";
+        echo "<input type = 'radio' name = 'p_m' value = '0'  onClick='hideallhidden();'checked/> Cash &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        echo "<input type = 'radio' name = 'p_m' value = '1'  onClick='showallhidden();'/> Check";
+        echo " Of";
+        echo "<br/>";
+        echo "<br/>";
+        echo "<div  id='hidden'>";
+        $inp->input_text("Bank : ", 'c_bn', null);
+        echo "<br/>";
+        $inp->input_text("Branch : ", 'c_br', null);
+        echo "<br/>";
+        $inp->input_text("A/C  : ", 'c_ac', null);
+        echo "<br/>";
+        echo "Date : ";
+        $inp->input_date('c_d', date('Y-m-d'));
+        echo "<br/>";
+        echo "</div>";
+        echo "<br/>";
+        $inp->input_text("Taka : ", 'amnt', $cost);
+        echo "<br/>";
+        $inp->input_text("Comment : ", 'cmnt', $comment);
+        $inp->input_submit('ab', 'Save');
+        echo "</form>";
+    }
+
+    /**
+     * @param $id
+     * @param $type
+     * @param $cost
+     */
+    public function purchaseExpense($id = NULL, $type = NULL, $cost = 0.0){
+
+        $comment = null;
+        $inp = new html();
+        echo "<br/><form method = 'POST' class='embossed'>";
+        echo "<br/>Date : ";
+        $inp->input_date('d', date('Y-m-d'));
+
+        echo "<br/>";
+        echo "<br/>";
+        if ($type == null) {
+            //$inp->input_radio('Suppliers : ', 'p_t', -1, 0);
+            echo "Suppliers : <input type='hidden' name='p_t' value='-1' >";
+            $comment = "";
+        }
+
+        if ($id == null) {
+            $party = $this->get_custom_select_query('SELECT * FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 0 OR party_type.type = 2', 2);
+            $this->get_dropdown_array($party, 0, 1, 'party', null);
+        } else {
+            $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 2);
+            d($party);
+            echo "<b class='blue'>" . $party[0][0] . "</b>";
+            echo "<input type = 'hidden' name = 'party' value = '" . $id . "' />";
+            $comment .= $party[0][0];
+        }
+        echo "<br/>";
+        echo "<br/> In ";
+        echo "<input type = 'radio' name = 'p_m' value = '0'  onClick='hideallhidden();'checked/> Cash &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        echo "<input type = 'radio' name = 'p_m' value = '1'  onClick='showallhidden();'/> Check ";
+        echo " Of";
+        echo "<br/>";
+        echo "<br/>";
+        echo "<div  id='hidden'>";
+        $inp->input_text("Bank : ", 'c_bn', null);
+        echo "<br/>";
+        $inp->input_text("Branch : ", 'c_br', null);
+        echo "<br/>";
+        $inp->input_text("A/C : ", 'c_ac', null);
+        echo "<br/>";
+        echo "Date : ";
+        $inp->input_date('c_d', date('Y-m-d'));
+        echo "<br/>";
+        echo "</div>";
+        echo "<br/>";
+        $inp->input_text("Taka : ", 'amnt', $cost);
+        echo "<br/>";
+        $inp->input_text("Comment : ", 'cmnt', $comment);
+        $inp->input_submit('ab', 'Save');
+        echo "</form>";
+    }
+
+    public function print_edit_sells($vou){
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM selles_details WHERE idselles = %d) as selles LEFT JOIN product USING (idproduct);", $vou);
