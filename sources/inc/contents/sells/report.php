@@ -54,10 +54,10 @@ for ($i = 0; $i < count($idinfo); $i++) {
         echo "  ";
         echo esc($sell_pro[$j][4]);
         echo "</td>";
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         echo money($sell_pro[$j][2]);
         echo "</td>";
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $mul = $sell_pro[$j][1] * $sell_pro[$j][2];
         echo money($mul);
         $charges_total = $charges_total + $mul;
@@ -68,7 +68,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Total Charges:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     echo money($charges_total);
     echo "</th>";
     echo "</tr>";
@@ -76,7 +76,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Discount:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     echo money($sell_det[0][2]);
     echo "</th>";
     echo "</tr>";
@@ -84,7 +84,7 @@ for ($i = 0; $i < count($idinfo); $i++) {
     echo "<th colspan='3'>";
     echo "Net Charges:";
     echo "</th>";
-    echo "<th class='blue'>";
+    echo "<th class='blue text-right pr-50'>";
     $net = $charges_total - $sell_det[0][2];
     echo money($net);
     $grand_total = $grand_total + $net;

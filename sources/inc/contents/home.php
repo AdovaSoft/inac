@@ -42,7 +42,7 @@
     </td>
     <td>
       <h2>Purchase Search</h2>
-      <br/>Enter voucher number<br/>
+      <br/>Enter Supplier voucher number<br/>
       <form action="index.php?e=<?= $encptid ?>&page=home&sub=purchase" method="POST">
         <input type="text" name="searchword" class="searchword" required/>
         <br/>

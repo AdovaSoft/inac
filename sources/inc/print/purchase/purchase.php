@@ -8,7 +8,7 @@ $sell_pro = $qur->get_custom_select_query($query_pro, 5);
 $query_det = sprintf("SELECT name,date,discount FROM (SELECT * FROM purchase s WHERE idpurchase = %d) as purchase LEFT JOIN purchase_discount USING (idpurchase) LEFT JOIN party USING (idparty);", $vou);
 $sell_det = $qur->get_custom_select_query($query_det, 3);
 $n = count($sell_pro);
-echo "Suppler Voucher : <b>" . $recept[0][0] . "</b>";
+echo "Supplier Voucher : <b>" . $recept[0][0] . "</b>";
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Purchased From : ";
 echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";

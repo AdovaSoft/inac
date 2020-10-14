@@ -41,11 +41,11 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
-                echo "<td>";
+                echo "<th>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
                 echo $res[$i][1];
                 echo "</a>";
-                echo "</td>";
+                echo "</th>";
 
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
@@ -53,12 +53,11 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
                 echo "</a>";
                 echo "</td>";
 
-                echo "<td>";
+                echo "<td class='text-right pr-50'>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
                 echo money($res[$i][3]);
                 echo "</a>";
                 echo "</td>";
-
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&&page=staff&&sub=report&&s=" . $res[$i][0] . "'>";
                 if ($res[$i][4]) {

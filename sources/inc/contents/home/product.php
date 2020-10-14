@@ -24,7 +24,7 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<table align='center' class='rb table'>";
             echo "<thead>";
             echo "<tr>";
-            echo "<th>";
+            echo "<th class='text-center'>";
             echo "Product";
             echo "</th>";
             echo "<th>";
@@ -38,15 +38,15 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
-                echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
+                echo "<th><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
                 echo $res[$i][1];
-                echo "</a></td>";
+                echo "</a></th>";
 
                 echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
                 echo $res[$i][2];
                 echo "</a></td>";
 
-                echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "' >";
+                echo "<td class='text-center'><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "' >";
                 echo $res[$i][3];
                 echo "</a></td>";
 

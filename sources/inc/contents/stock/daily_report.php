@@ -79,11 +79,11 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "<td>";
                 echo $i[1];
                 echo "</td>";
-                echo "<td>";
+                echo "<td class='text-right pr-50'>";
                 echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     echo money($i[2]);
                     if ($i[5] == 0 || $i[5] == 1)
                         $tti_p = $tti_p + $i[2];
@@ -97,7 +97,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     }
                     echo "</td>";
                 } else {
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
@@ -118,16 +118,16 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . money($ss) . "</td>";
+                        echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1) {
                         $ss = -$ss;
-                        echo "<td class='red'>" . money($ss) . "</td>";
+                        echo "<td class='red text-right pr-50'>" . money($ss) . "</td>";
                     } else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -153,17 +153,17 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 echo "<td>";
                 echo $i[1];
                 echo "</td>";
-                echo "<td>";
+                echo "<td class='text-right pr-50'>";
                 echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     echo money($i[2]);
                     if ($i[5] == 0 || $i[5] == 1)
                         $tti_p = $tti_p + $i[2];
 
                     echo "</td>";
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
@@ -171,14 +171,14 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                     }
                     echo "</td>";
                 } else {
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     if ($i[5] == 0 || $i[5] == 1) {
                         echo "-";
                     } else {
                         echo money($i[2]);
                     }
                     echo "</td>";
-                    echo "<td>";
+                    echo "<td class='text-right pr-50'>";
                     $mmm = (-$i[2]);
                     echo money($mmm);
                     if ($i[5] == 0 || $i[5] == 1)
@@ -193,16 +193,16 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . money($ss) . "</td>";
+                        echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1) {
                         $neg = -$ss;
-                        echo "<td class='red'>" . money($neg) . "</td>";
+                        echo "<td class='red text-right pr-50'>" . money($neg) . "</td>";
                     } else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -307,7 +307,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "<td>";
                 echo $i[1];
                 echo "</td>";
-                echo "<td>";
+                echo "<td class='text-right pr-50'>";
                 echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
@@ -346,16 +346,16 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . money($ss) . "</td>";
+                        echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1) {
                         $ss = -$ss;
-                        echo "<td class='red'>" . money($ss) . "</td>";
+                        echo "<td class='red text-right pr-50'>" . money($ss) . "</td>";
                     } else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
 
@@ -382,7 +382,7 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "<td>";
                 echo $i[1];
                 echo "</td>";
-                echo "<td>";
+                echo "<td  class='text-right pr-50'>";
                 echo money($i[4]);
                 echo "</td>";
                 if ($i[2] > 0) {
@@ -421,16 +421,16 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<td class='green'>" . money($ss) . "</td>";
+                        echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                     else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 } else {
                     $tto += $ss;
                     if ($i[5] == 0 || $i[5] == 1) {
                         $ss = -$ss;
-                        echo "<td class='red'>" . money($ss) . "</td>";
+                        echo "<td class='red text-right pr-50'>" . money($ss) . "</td>";
                     } else
-                        echo "<td class='blue'>" . money($ss) . "</td>";
+                        echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
                 }
                 echo "<td>";
                 if ($i[5] == 0) {
@@ -528,7 +528,7 @@ else {
             echo esc($i[1]);
             echo "</td>";
 
-            echo "<td>";
+            echo "<td class='text-right pr-50'>";
             echo money($i[4]);
             echo "</td>";
 
@@ -568,16 +568,16 @@ else {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<td class='green'>" . money($ss) . "</td>";
+                    echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                 else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
                 if ($i[5] == 0 || $i[5] == 1) {
                     $ss = -$ss;
-                    echo "<td class='red'>" . money($ss) . "</td>";
+                    echo "<td class='red text-right pr-50'>" . money($ss) . "</td>";
                 } else
-                    echo "<td class='blue'>" . money($ss) . "</td>";
+                    echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
             }
             echo "<td>";
 
