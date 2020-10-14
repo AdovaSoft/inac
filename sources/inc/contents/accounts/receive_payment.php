@@ -1,11 +1,13 @@
 <h2>Add Payment</h2>
-<br/>
+<br />
 <?php
 include "./sources/inc/usercheck.php";
 $flag = true;
 
-if (isset($_POST['party']) && isset($_POST['p_t'])
-    && isset($_POST['p_m']) && $_POST['amnt'] > 0) {
+if (
+    isset($_POST['party']) && isset($_POST['p_t'])
+    && isset($_POST['p_m']) && $_POST['amnt'] > 0
+) {
 
     //for check transaction
     if (isset($_POST['p_m']) && $_POST['p_m'] == 1) {
@@ -43,9 +45,7 @@ if (isset($_POST['party']) && isset($_POST['p_t'])
             $qur->recivePayment($payment_id, $payment_type, $payment_amount);
         }
     }
-}
-
-else {
+} else {
     $payment_id = (isset($_GET['pt'])) ? $_GET['pt'] : NULL;
     $payment_type = (isset($_GET['pay_type'])) ? $_GET['pay_type'] : NULL;
     $payment_amount = (isset($_GET['cost'])) ? $_GET['cost'] : 0;
