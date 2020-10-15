@@ -390,7 +390,8 @@ table.dataTable tbody tr {
 .dataTables_wrapper .dataTables_length select,
 .dataTables_wrapper .dataTables_filter input {
     max-width: 250px !important;
-    border: 5px solid black;
+    border-width: 3px;
+    border-style: solid;
     padding:5px 10px;
     color: white;
     border-radius: 10px;

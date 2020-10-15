@@ -395,6 +395,7 @@ class indquery extends query
 
         $bank = $balance[1][0];
 
+        //Drawing  Error Validation
         if ($ttype == -1) {
 
             if ($tmedium == false) {
@@ -410,6 +411,7 @@ class indquery extends query
                 }
             }
         }
+
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
