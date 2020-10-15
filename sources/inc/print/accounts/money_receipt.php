@@ -1,15 +1,23 @@
 <?php
-$serial = '1232456789';
-$date = strtotime('+30days');
+
+$transaction_id = $inp->value_pgd('transaction');
+$party_id = $inp->value_pgd('party');
+
+$money_receipt = $qur->print_money_receipt($transaction_id, $party_id);
+extract($money_receipt);
+//d($money_receipt);
+$date = strtotime($date);
+/*$serial = '1232456789';
+
 $client = 'Mohammad Hafijul Islam';
 $address = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 $amount = '2000000.56';
 $is_cash = false;
-$chaque = 123456789;
+$cheque = 123456789;
 $chaque_date = strtotime("+15days");
-$bank_name = "Dutch Bangla Bank Ltd.";
+$bank = "Dutch Bangla Bank Ltd.";
 $branch = "Mohammadpur";
-$ac_no = "123456789";
+$ac_no = "123456789";*/
 ?>
 <style>
   td:first-of-type {
@@ -18,26 +26,23 @@ $ac_no = "123456789";
 </style>
 <h1>Money Receipt</h1>
 <table>
-  <thead>
   <tr>
     <th width="150" class="text-left">Serial No:</th>
-    <td><?= $serial ?></td>
+    <td><?= esc($serial) ?></td>
     <td class="text-right" colspan="2"><b>Date: </b> <?= date('d F, Y (D)', $date) ?></td>
   </tr>
   <tr>
-    <th class="text-left"><br/>Name:</th>
+    <th class="text-left"><br/>Client  Name:</th>
     <td colspan="3"><br/><span
-          style="display:block; width:100%; border-bottom: 2px dotted black;"><?= $client ?></span></td>
+          style="display:block; width:100%; border-bottom: 2px dotted black;"><?= esc($client) ?></span></td>
   </tr>
   <tr>
     <th class="text-left" style="vertical-align: top;"><br/>Address:</th>
     <td colspan="3"><br/><span style="display:block; width:100%; border-bottom: 2px dotted black;">
-                <?= $address ?>
+                <?= esc($address) ?>
             </span>
     </td>
   </tr>
-  </thead>
-  <tbody>
   <tr>
     <th colspan="4">
       <div style="margin: auto; font-size: 2rem; padding: 30px">
@@ -75,26 +80,25 @@ $ac_no = "123456789";
         In Cash/ Cheque/ Pay order/ Draft No:
       </th>
       <td style="border-bottom: 2px dotted black; text-align: center"><br/>
-          <?= ($is_cash == false) ? $chaque : null; ?>
+          <?= ($is_cash == 0) ? esc($cheque) : null; ?>
       </td>
       <th class="text-center"><br/>
         Dated:
       </th>
       <td style="font-weight: normal;  border-bottom: 2px dotted black; text-align: center"><br/>
-          <?= ($is_cash == false) ? date('d/m/Y', $chaque_date) : null; ?>
+          <?= ($is_cash == 0) ? date('d/m/Y', $cheque_date) : null; ?>
       </td>
       </tr>
       <tr>
         <th class="text-left" width="125"><br>Bank Name:</th>
-        <td colspan="5" style="border-bottom: 2px dotted black; text-align: center"><br><?= $bank_name ?></td>
+        <td colspan="5" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($bank) ?></td>
       </tr>
+      <tr>
         <th class="text-left"><br>Branch:</th>
-        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= $branch ?></td>
+        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($branch) ?></td>
         <th class="text-center"><br>A/C No: </th>
-        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= $ac_no ?></td>
+        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($ac_no, true) ?></td>
       </tr>
     </table>
   </tr>
-  </tbody>
-
 </table>

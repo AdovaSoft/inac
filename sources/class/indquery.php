@@ -20,7 +20,7 @@ class indquery extends query
         $products = $this->get_custom_select_query($query, 4);
 
         echo "<br/>";
-        echo "<form action='editor.php?e=" . $encptid ."&' method = 'POST' class='embossed'>";
+        echo "<form action='editor.php?e=" . $encptid . "&' method = 'POST' class='embossed'>";
         echo "<fieldset><legend>Selles Information</legend>";
         echo "<table class='centeraligned' width='100%'>";
         echo "<thead>";
@@ -353,7 +353,7 @@ class indquery extends query
         }
     }
 
-    public function addParty($name = '', $p1 = '', $p2 = '', $address = 'N/A', $type = 1)
+    public function addParty($name = '', $p1 = '', $p2 = '', $address = 'N/A', $email = '', $type = 1)
     {
         $id = $this->get_last_id("party", "idparty");
         mysqli_query($this->dtb_con, 'START TRANSACTION');
@@ -368,6 +368,9 @@ class indquery extends query
             if ($p2 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p2), array('d', 's'));
             }
+        }
+        if ($flag == 1) {
+            $flag = $this->insert_query('party_email', array('idparty', 'email'), array($id, $email), array('d', 's'));
         }
         if ($flag == 1) {
             $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
@@ -432,12 +435,12 @@ class indquery extends query
 
     }
 
-    public function addTran($rel_id, $date, $am, $ttype, $tmedium, $c, $cat, $bank_info)
+    public function addTran($party_id, $date, $am, $ttype, $tmedium, $c, $cat, $bank_info)
     {
         // rel_id
         //cat = 1 party tran
 
-        $id = $this->get_last_id('transaction', 'id');
+        $new_transaction_id = $this->get_last_id('transaction', 'id');
 
         $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY type ORDER BY type;");
 
@@ -450,7 +453,6 @@ class indquery extends query
         if ($ttype == -1) {
 
             if ($tmedium == false) {
-
                 if ($cash < $am) {
                     echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
                     return false;
@@ -466,24 +468,25 @@ class indquery extends query
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($id, $date, $tmedium, $am), array('d', 's', 'd', 'd'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'd'));
+
         if ($flag && $c != "") {
-            $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $c), array('d', 's'));
+            $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($new_transaction_id, $c), array('d', 's'));
         }
 
         if ($flag) {
-            $flag = $this->insert_query("party_payment", array("id", "idparty"), array($id, $rel_id), array("d", "d"));
+            $flag = $this->insert_query("party_payment", array("id", "idparty"), array($new_transaction_id, $party_id), array("d", "d"));
         }
         if ($tmedium == true && $flag) {
-            $bank_info[0] = $id;
+            $bank_info[0] = $new_transaction_id;
             $flag = $this->insert_query("cheque", array('id', 'bank', 'branch', 'date', 'ac'), $bank_info, array('d', 's', 's', 's', 's'));
         }
         if ($flag) {
             mysqli_query($this->dtb_con, 'COMMIT');
-            return true;
+            return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => true];
         } else {
             mysqli_query($this->dtb_con, 'ROLLBACK');
-            return false;
+            return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => false];
         }
     }
 
@@ -790,6 +793,7 @@ class indquery extends query
         $inp->input_submit('ab', 'Save');
         echo "</form>";
     }
+
     /**
      * @param $id
      * @param $type
@@ -807,16 +811,16 @@ class indquery extends query
         echo "<br/>";
         if ($type == null) {
 
-                echo "Receiving from : <input type='hidden' name='p_t' value='1'>";
-                $comment = " ";
-            
+            echo "Receiving from : <input type='hidden' name='p_t' value='1'>";
+            $comment = " ";
+
         }
 
         if ($id == null) {
             $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name,(CASE party_type.type WHEN 1 THEN 'Client' ELSE 'Supplier & Client' END)  type_name FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 1 OR party_type.type = 2 "), 3);
             $this->get_dropdown_array($party, 0, 1, 'party', null, 'full-width', false, 2);
         } else {
-            
+
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
             echo "<b class='blue'>" . $party[0][0] . "</b>";
             echo "<input type = 'hidden' name = 'party' value = '" . $id . "' />";
@@ -853,7 +857,8 @@ class indquery extends query
      * @param $type
      * @param $cost
      */
-    public function purchaseExpense($id = NULL, $type = NULL, $cost = 0.0){
+    public function purchaseExpense($id = NULL, $type = NULL, $cost = 0.0)
+    {
 
         $comment = null;
         $inp = new html();
@@ -905,7 +910,8 @@ class indquery extends query
         echo "</form>";
     }
 
-    public function print_edit_sells($vou){
+    public function print_edit_sells($vou)
+    {
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM selles_details WHERE idselles = %d) as selles LEFT JOIN product USING (idproduct);", $vou);
@@ -1062,7 +1068,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return $flag;
     }
 
-    public function printReturnPur($vou){
+    public function printReturnPur($vou)
+    {
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM purchase_details WHERE idpurchase = %d) as purchase LEFT JOIN product USING (idproduct);", $vou);
@@ -1776,6 +1783,10 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return ($t1 + $t2);
     }
 
+    /**
+     * @param $id
+     * @return int
+     */
     public function deleteTransaction($id)
     {
         $q = mysqli_query($this->dtb_con, "DELETE FROM transaction WHERE id='$id'");
@@ -1785,6 +1796,10 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return 0;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function current_stock($id)
     {
         $query = sprintf("SELECT stock FROM stock WHERE idproduct = %d", $id);
@@ -1792,12 +1807,25 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return $res[0][0];
     }
 
+    /**
+     * @param $id
+     * @param $mon
+     * @param $yr
+     * @return bool|mysqli_result
+     */
     public function delete_attendense($id, $mon, $yr)
     {
         $query = sprintf("DELETE FROM staff_report WHERE idstaff = %d AND rep_month = %d AND rep_year = %d", $id, $mon, $yr);
         return mysqli_query($this->dtb_con, $query);
     }
 
+    /**
+     * @param $product
+     * @param $num
+     * @param $type
+     * @param $date
+     * @return bool
+     */
     public function transfarProduct($product, $num, $type, $date)
     {
 
@@ -1819,6 +1847,26 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         mysqli_query($this->dtb_con, 'ROLLBACK');
         echo "<h2 class='green'>Failed to Transfer Stock</h2><br/>";
         return false;
+    }
+
+    public function print_money_receipt($transaction_id, $party_id)
+    {
+        $sql = sprintf("SELECT party.name client, adress address, party_payment.id serial, transaction.date date, ammount amount,
+transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no FROM party INNER JOIN party_payment USING (idparty)
+ LEFT JOIN party_adress USING(idparty) LEFT JOIN transaction USING(id) LEFT JOIN cheque USING(id) 
+ WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
+
+        $money_receipt = $this->get_custom_select_query($sql, 0, true);
+        if(count($money_receipt) > 0)
+            return $money_receipt[0];
+        else
+            return [];
+        /**
+         *  else {
+         * //INSERT INTO `money_receipt`(`serial`, `id`, `idparty`) VALUES ([value-1],[value-2],[value-3])
+         * $this->insert_query('money_receipt', array('id', 'idparty'), array($tra))
+         * }
+         */
     }
 }
 

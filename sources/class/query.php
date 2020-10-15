@@ -238,22 +238,27 @@ class query
      * @param $n
      * @return array
      */
-    public function get_custom_select_query($query, $n)
+    public function get_custom_select_query($query = '', $n = 0, $need_assoc = false)
     {
         $result = array();
         $res = mysqli_query($this->dtb_con, $query);
-        
+
         if (mysqli_num_rows($res) > 0) {
-            $i = 0;
-            while ($row = mysqli_fetch_array($res)) {
-                for ($j = 0; $j < $n; $j++) {
-                    if (isset($row[$j]))
-                        $result[$i][$j] = $row[$j];
+            if ($need_assoc == true) {
+                while ($row = mysqli_fetch_assoc($res)) {
+                    array_push($result, $row);
                 }
-                $i++;
+            } else {
+                $i = 0;
+                while ($row = mysqli_fetch_array($res)) {
+                    for ($j = 0; $j < $n; $j++) {
+                        if (isset($row[$j]))
+                            $result[$i][$j] = $row[$j];
+                    }
+                    $i++;
+                }
             }
         }
-
         return $result;
     }
 
@@ -403,7 +408,7 @@ class query
         echo "<option> Select an option</option>";
         $n = count($ar);
         foreach ($ar as $item) {
-           // d($item);
+            // d($item);
             echo "<option value = '" . $item[$ind_sho] . "'";
 
             if ($sel == $item[$ind_sho])
@@ -412,7 +417,7 @@ class query
             if ($is_product == true)
                 echo "> " . $item[$ind_val] . " ( " . $item[3] . " " . $item[2] . " )";
 
-            elseif(!is_null($party_location))
+            elseif (!is_null($party_location))
                 echo "> " . $item[$ind_val] . " ( " . $item[$party_location] . ")";
 
             else

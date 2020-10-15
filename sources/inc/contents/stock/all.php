@@ -5,7 +5,7 @@ $query = sprintf("SELECT name, stock, factory_stock,unite, price, idproduct FROM
 
 $info = $qur->get_custom_select_query($query, 6);
 $cost = 0;
-echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&&sub=all' class='button' target='_blank'><b> Print </b></a>";
+echo "<a id='printBox' href='print.php?e=" . $encptid . "&page=stock&sub=all' class='button' target='_blank'><b> Print </b></a>";
 echo "<br/>Click on the names to view Particular Sales or Purchase Report of last month.<br/><br/>";
 if (count($info) > 0) {
     echo "<br/><table class='rb table'>";
@@ -47,7 +47,7 @@ if (count($info) > 0) {
     foreach ($info as $product) {
         echo "<tr>";
         echo "<th>";
-        echo "<a href='index.php?e=" . $encptid . "&&page=product&&sub=particular_product&&id=" . $product[5] . "'>";
+        echo "<a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $product[5] . "'>";
         echo esc($product[0]);
         echo "</a>";
         echo "</th>";

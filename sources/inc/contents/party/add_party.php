@@ -6,7 +6,7 @@ include("sources/inc/usercheck.php");
 if (isset($_POST['ab'])) {
     $flag = ($inp->check('name', 'n') && ($inp->check(null, 'p1') || $inp->check('phone number', 'p2')) && $inp->check('Address', 'a'));
     if ($flag) {
-        $flag = $qur->addParty($_POST['n'], $_POST['p1'], $_POST['p2'], $_POST['a'], $_POST['t']);
+        $flag = $qur->addParty($_POST['n'], $_POST['p1'], $_POST['p2'], $_POST['a'], $_POST['em'],  $_POST['t']);
         if ($flag) {
             echo "<h3 class='green'>Party Added successfully</h3>";
         } else {
@@ -18,33 +18,38 @@ if (isset($_POST['ab'])) {
     }
 }
 echo "<br/><form method = 'POST'  class='embossed'>";
-if (isset($_POST['n']))
-    $inp->input_text('Name : ', 'n', $_POST['n']);
-else
-    $inp->input_text('Name : ', 'n', null);
-echo "<br/>";
-echo "Type : ";
-echo "<select name='t'>";
+echo "<table>";
+echo "<tr><th>Name : </th>";
+echo "<td>";
+echo $inp->input_text('', 'n', $inp->value_pgd('n'), 'full-width') ;
+echo "</td></tr>";
+echo "<tr><th>Type : </th>";
+echo "<td>";
+echo "<select name='t' class='full-width'>";
 echo "<option value='0'>Only Supplier</option>";
 echo "<option value='1'>Only Client</option>";
 echo "<option value='2'>Supplier and Client Both</option>";
 echo "<option value='3'>Business Partner</option>";
 echo "</select>";
-echo "<br/>";
-echo "<br/>";
-if (isset($_POST['p1']))
-    $inp->input_text('Phone 1 : ', 'p1', $_POST['p1']);
-else
-    $inp->input_text('Phone 1 : ', 'p1', null);
-echo "<br/>";
-if (isset($_POST['p2']))
-    $inp->input_text('Phone 2 : ', 'p2', $_POST['p2']);
-else
-    $inp->input_text('Phone 2 : ', 'p2', null);
-echo "<br/>";
-if (isset($_POST['a']))
-    $inp->input_text('Address : ', 'a', $_POST['a']);
-else
-    $inp->input_text('Address : ', 'a', null);
-$inp->input_submit('ab', 'Add');
+echo "</td></tr>";
+echo "<tr><th>Phone 1 : </th>";
+echo "<td>";
+echo  $inp->input_text('', 'p1', $inp->value_pgd('p1'), 'full-width');
+echo "</td></tr>";
+echo "<tr><th>Phone 2 : </th>";
+echo "<td>";
+echo  $inp->input_text('', 'p2',$inp->value_pgd('p2'), 'full-width');
+echo  "</td></tr>";
+echo "<tr><th>Address : </th>";
+echo "<td>" ;
+echo  $inp->input_text('', 'a', $inp->value_pgd('a'), 'full-width') ;
+echo  "</td></tr>";
+echo "<tr><th>Email : </th>";
+echo "<td>" ;
+echo  $inp->input_text('', 'em', $inp->value_pgd('em'), 'full-width') ;
+echo  "</td></tr>";
+echo "<td colspan='2'>" ;
+echo  $inp->input_submit('ab', 'Add');
+echo  "</td></tr>";
+echo "</table>";
 ?>

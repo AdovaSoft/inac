@@ -1,12 +1,12 @@
 <h2>Add Payment</h2>
-<br />
+<br/>
 <?php
 include "./sources/inc/usercheck.php";
 $flag = true;
 
 if (
     isset($_POST['party']) && isset($_POST['p_t'])
-    && isset($_POST['p_m']) && $_POST['amnt'] > 0 ) {
+    && isset($_POST['p_m']) && $_POST['amnt'] > 0) {
 
     //for check transaction
     if (isset($_POST['p_m']) && $_POST['p_m'] == 1) {
@@ -27,11 +27,15 @@ if (
     else {
         $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
 
-        $flag = $qur->addTran($_POST['party'], $date, $_POST['amnt'], $_POST['p_t'], $_POST['p_m'], $_POST['cmnt'], 1, null);
+        $response = $qur->addTran($_POST['party'], $date, $_POST['amnt'], $_POST['p_t'], $_POST['p_m'], $_POST['cmnt'], 1, null);
 
-        if ($flag == true) {
+        if ($response['status'] == true) {
+            extract($response);
+            //'trans_id' => $new_transaction_id, 'party_id' => $party_id,
             echo "<h2 class='green'>Transaction successful</h2>
-							  <br/><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=receive_payment'class='bigbutton'>OK</a></li>";
+							  <a  href='index.php?e=$encptid&page=accounts&sub=receive_payment'class='bigbutton'>OK</a>
+							  </br>
+							  <a href='print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$trans_id&party=$party_id' class='bigbutton'>Create Money Receipt</a>";
         } else if (isset($_GET['pt']) && isset($_GET['pay_type']) && isset($_GET['cost'])) {
             echo "<h3 class='red'>Transaction failed</h3>";
             $qur->recivePayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);

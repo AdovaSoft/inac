@@ -7,7 +7,7 @@ $n = count($products);
 if ($n > 0) {
     $qun = 0;
     $cos = 0;
-    echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&&sub=finished_product&&date1=" . $date1 . "&&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br/>";
+    echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=product&sub=finished_product&date1=" . $date1 . "&date2=" . $date2 . "' class='button' target='_blank'><b> Print </b></a><br/>";
     echo "<table align='center' class='rb table'>";
     echo "<thead>";
     echo "<tr>";

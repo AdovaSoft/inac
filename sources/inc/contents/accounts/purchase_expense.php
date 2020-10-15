@@ -30,7 +30,7 @@ if (isset($_POST['party']) && isset($_POST['p_t'])
 
         if ($flag == true) {
             echo "<h2 class='green'>Transaction successful</h2>
-            <br/><a href='index.php?e=" . $encptid . "&&page=accounts&&sub=purchase_expense'class='bigbutton'>OK</a></li>";
+            <br/><a href='index.php?e=" . $encptid . "&page=accounts&sub=purchase_expense'class='bigbutton'>OK</a></li>";
         } else if (isset($_GET['pt']) && isset($_GET['pay_type']) && isset($_GET['cost'])) {
             echo "<h3 class='red'>Transaction failed</h3>";
             $qur->purchaseExpense($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
