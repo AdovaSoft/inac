@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2020 at 10:28 AM
+-- Generation Time: Oct 15, 2020 at 04:03 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.22
 
@@ -73,6 +73,18 @@ INSERT INTO `mesurment_unite` (`idunite`, `unite`) VALUES
 (4, 'FEET'),
 (1, 'KG'),
 (3, 'PICS');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `money_receipt`
+--
+
+CREATE TABLE `money_receipt` (
+  `serial` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `idparty` smallint(5) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -354,7 +366,8 @@ INSERT INTO `party` (`idparty`, `name`) VALUES
 (262, 'Imran'),
 (263, 'HAfiz'),
 (264, 'HAfiz'),
-(265, 'HAfiz');
+(265, 'HAfiz'),
+(266, 'Yenegh');
 
 -- --------------------------------------------------------
 
@@ -636,7 +649,8 @@ INSERT INTO `party_adress` (`idparty`, `adress`) VALUES
 (262, 'Savar'),
 (263, 'jattra bari'),
 (264, 'jattra bari'),
-(265, 'jattra bari');
+(265, 'jattra bari'),
+(266, 'Gb iantamo');
 
 -- --------------------------------------------------------
 
@@ -918,7 +932,8 @@ INSERT INTO `party_email` (`idparty`, `email`) VALUES
 (262, 'bishawjit29@gmail.com'),
 (263, 'hafijul233@gmail.com'),
 (264, 'sajibadhikery@gmail.com'),
-(265, 'msmrobin518@gmail.com');
+(265, 'msmrobin518@gmail.com'),
+(266, 'hafijul233@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -1163,6 +1178,8 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (16404, 1),
 (16405, 1),
 (16420, 1),
+(16453, 1),
+(16456, 1),
 (13, 2),
 (62, 2),
 (83, 2),
@@ -4473,6 +4490,7 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (3608, 30),
 (44, 31),
 (14870, 31),
+(16454, 31),
 (45, 32),
 (917, 32),
 (1079, 32),
@@ -6056,11 +6074,11 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (14251, 56),
 (14294, 56),
 (14666, 56),
-(14773, 56),
+(14773, 56);
+INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (14983, 56),
 (15064, 56),
-(15149, 56);
-INSERT INTO `party_payment` (`id`, `idparty`) VALUES
+(15149, 56),
 (15157, 56),
 (15170, 56),
 (15171, 56),
@@ -9802,6 +9820,7 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (8986, 117),
 (389, 118),
 (1744, 118),
+(16446, 118),
 (396, 119),
 (430, 119),
 (505, 119),
@@ -10750,12 +10769,12 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (12082, 123),
 (12086, 123),
 (12087, 123),
-(12088, 123),
+(12088, 123);
+INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (12089, 123),
 (12090, 123),
 (12091, 123),
-(12092, 123);
-INSERT INTO `party_payment` (`id`, `idparty`) VALUES
+(12092, 123),
 (12093, 123),
 (12094, 123),
 (12095, 123),
@@ -11222,8 +11241,10 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (15646, 133),
 (16225, 133),
 (16226, 133),
+(16449, 133),
 (5390, 134),
 (16015, 134),
+(16450, 134),
 (1172, 135),
 (1370, 135),
 (2268, 135),
@@ -12372,6 +12393,7 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (3526, 167),
 (4010, 167),
 (4011, 167),
+(16448, 167),
 (2843, 168),
 (2859, 168),
 (2873, 168),
@@ -13549,6 +13571,7 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (9762, 208),
 (9875, 208),
 (14524, 208),
+(16447, 208),
 (8533, 209),
 (9717, 209),
 (9741, 209),
@@ -14041,6 +14064,7 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (15313, 243),
 (15322, 243),
 (15387, 243),
+(16455, 243),
 (14612, 244),
 (15123, 245),
 (15151, 245),
@@ -14126,7 +14150,9 @@ INSERT INTO `party_payment` (`id`, `idparty`) VALUES
 (16406, 257),
 (16407, 257),
 (16408, 257),
-(16409, 257);
+(16409, 257),
+(16451, 258),
+(16452, 258);
 
 -- --------------------------------------------------------
 
@@ -14487,7 +14513,9 @@ INSERT INTO `party_phone` (`idparty`, `phone`) VALUES
 (264, '123456789'),
 (264, '1234567890'),
 (265, '12345678'),
-(265, '1234567890');
+(265, '1234567890'),
+(266, 'ADakul'),
+(266, 'Hp');
 
 -- --------------------------------------------------------
 
@@ -14768,7 +14796,8 @@ INSERT INTO `party_type` (`idparty`, `type`) VALUES
 (261, 3),
 (262, 0),
 (264, 0),
-(265, 0);
+(265, 0),
+(266, 0);
 
 -- --------------------------------------------------------
 
@@ -14786,7 +14815,7 @@ CREATE TABLE `price` (
 --
 
 INSERT INTO `price` (`idproduct`, `price`) VALUES
-(1, 90.000),
+(1, 90.150),
 (2, 140.000),
 (3, 210.000),
 (4, 320.000),
@@ -14834,7 +14863,8 @@ INSERT INTO `price` (`idproduct`, `price`) VALUES
 (46, 20.000),
 (47, 100.000),
 (48, 23.000),
-(49, 52.000);
+(49, 52.000),
+(50, 1200.000);
 
 -- --------------------------------------------------------
 
@@ -14896,6 +14926,7 @@ INSERT INTO `product` (`idproduct`, `name`) VALUES
 (37, 'Spring'),
 (25, 'Suta 1500m'),
 (26, 'Suta 2000M'),
+(50, 'test'),
 (30, 'Westage'),
 (22, 'White Master'),
 (9, 'White pp'),
@@ -14968,7 +14999,8 @@ INSERT INTO `product_details` (`idproduct`, `idunite`, `sell`, `purchase`) VALUE
 (46, 3, 0, 1),
 (47, 4, 0, 1),
 (48, 2, 0, 1),
-(49, 2, 0, 1);
+(49, 2, 0, 1),
+(50, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -20426,7 +20458,11 @@ INSERT INTO `product_input` (`idupdate`, `date`, `idproduct`, `stock`, `type`) V
 (5555, '2020-10-07', 1, -9, 0),
 (5556, '2020-01-07', 2, 1, 2),
 (5557, '2020-10-07', 1, 14, 3),
-(5558, '2020-10-07', 1, 12, 1);
+(5558, '2020-10-07', 1, 12, 1),
+(5559, '2020-10-11', 1, 56, 3),
+(5560, '2020-10-11', 19, 21312, 1),
+(5561, '2020-10-11', 7, 213123, 0),
+(5562, '2020-10-13', 1, 200, 0);
 
 -- --------------------------------------------------------
 
@@ -22632,7 +22668,10 @@ INSERT INTO `purchase` (`idpurchase`, `idparty`, `date`) VALUES
 (2212, 255, '2015-08-12'),
 (2213, 255, '2015-08-01'),
 (2214, 257, '2020-10-06'),
-(2215, 83, '2020-10-07');
+(2215, 83, '2020-10-07'),
+(2216, 167, '2020-10-13'),
+(2217, 133, '2010-10-13'),
+(2218, 134, '2020-10-10');
 
 -- --------------------------------------------------------
 
@@ -24779,7 +24818,10 @@ INSERT INTO `purchase_delivery` (`idpurchase`, `cost`) VALUES
 (2212, 0.000),
 (2213, 0.000),
 (2214, 10.000),
-(2215, 100.000);
+(2215, 100.000),
+(2216, 400.000),
+(2217, 400.000),
+(2218, 100.000);
 
 -- --------------------------------------------------------
 
@@ -27265,7 +27307,20 @@ INSERT INTO `purchase_details` (`idpurchase`, `idproduct`, `unite`, `rate`) VALU
 (2215, 17, 398.000, 317.990),
 (2215, 18, 345.000, 414.990),
 (2215, 46, 230.000, 147.990),
-(2215, 48, 188.000, 494.980);
+(2215, 48, 188.000, 494.980),
+(2216, 9, 458.000, 453.560),
+(2216, 13, 499.000, 253.500),
+(2216, 14, 379.000, 283.500),
+(2216, 15, 98.000, 427.500),
+(2217, 9, 458.000, 453.560),
+(2217, 13, 499.000, 253.500),
+(2217, 14, 379.000, 283.500),
+(2217, 15, 98.000, 427.500),
+(2218, 17, 487.000, 228.010),
+(2218, 25, 298.000, 258.010),
+(2218, 27, 81.000, 116.010),
+(2218, 35, 336.000, 410.000),
+(2218, 43, 111.000, 102.010);
 
 -- --------------------------------------------------------
 
@@ -27956,7 +28011,7 @@ INSERT INTO `purchase_discount` (`idpurchase`, `discount`) VALUES
 (695, 0.000),
 (696, 0.000),
 (697, 0.000),
-(698, 0.000),
+(698, 100.000),
 (699, 0.000),
 (700, 0.000),
 (701, 0.000),
@@ -29469,7 +29524,8 @@ INSERT INTO `purchase_discount` (`idpurchase`, `discount`) VALUES
 (2212, 0.000),
 (2213, 0.000),
 (2214, 5.000),
-(2215, 20.000);
+(2215, 20.000),
+(2218, 100.000);
 
 -- --------------------------------------------------------
 
@@ -31673,7 +31729,8 @@ INSERT INTO `purchase_recipt` (`idpurchase`, `recipt`) VALUES
 (2212, '2131e'),
 (2213, '321321'),
 (2214, '2'),
-(2215, 'Faub');
+(2215, 'Faub'),
+(2218, 'L avo');
 
 -- --------------------------------------------------------
 
@@ -32920,7 +32977,6 @@ INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
 (1235, 5, '2012-04-17'),
 (1236, 8, '2012-04-17'),
 (1237, 58, '2012-04-17'),
-(1238, 9, '2012-04-17'),
 (1239, 9, '2012-04-17'),
 (1240, 34, '2012-04-17'),
 (1241, 164, '2012-04-17'),
@@ -33826,9 +33882,9 @@ INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
 (2142, 1, '2012-07-06'),
 (2143, 41, '2012-07-07'),
 (2144, 168, '2012-07-07'),
-(2145, 71, '2012-07-07');
+(2145, 71, '2012-07-07'),
+(2146, 171, '2012-07-07');
 INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
-(2146, 171, '2012-07-07'),
 (2147, 5, '2012-07-07'),
 (2148, 78, '2012-07-06'),
 (2149, 91, '2012-07-07'),
@@ -35909,9 +35965,9 @@ INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
 (4229, 58, '2013-01-03'),
 (4230, 175, '2013-01-03'),
 (4231, 1, '2013-01-03'),
-(4232, 29, '2013-01-03');
+(4232, 29, '2013-01-03'),
+(4233, 51, '2013-01-03');
 INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
-(4233, 51, '2013-01-03'),
 (4234, 58, '2013-01-03'),
 (4235, 38, '2013-01-03'),
 (4236, 212, '2013-01-03'),
@@ -37984,9 +38040,9 @@ INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
 (6303, 212, '2013-07-29'),
 (6304, 58, '2013-07-29'),
 (6305, 41, '2013-07-29'),
-(6306, 2, '2013-07-26');
+(6306, 2, '2013-07-26'),
+(6307, 58, '2013-07-27');
 INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
-(6307, 58, '2013-07-27'),
 (6308, 58, '2013-07-26'),
 (6309, 58, '2013-07-27'),
 (6310, 51, '2013-07-27'),
@@ -38940,7 +38996,10 @@ INSERT INTO `selles` (`idselles`, `idparty`, `date`) VALUES
 (7259, 64, '2020-10-10'),
 (7260, 95, '2020-10-10'),
 (7261, 47, '2020-10-10'),
-(7262, 169, '2020-10-10');
+(7262, 169, '2020-10-10'),
+(7263, 118, '2020-10-13'),
+(7264, 208, '2020-10-13'),
+(7265, 243, '2020-10-15');
 
 -- --------------------------------------------------------
 
@@ -38966,7 +39025,10 @@ INSERT INTO `selles_chalan` (`idselles`, `driver`, `vehicle`, `company`) VALUES
 (7260, 'Driver2', 'Vehicle4', 'Company6'),
 (7260, 'Driver2', 'Vehicle4', 'Company6'),
 (7261, 'Dui Number Driver', 'China Gari', 'Batpar Company'),
-(7262, 'Testing Driver', 'Test', 'bug');
+(7262, 'Testing Driver', 'Test', 'bug'),
+(7263, 'Msttmmt', 'Ivllkvtuktsmga', 'Aim p vnyp'),
+(7264, 'testing testing', 'test ', 'test ve2'),
+(7265, 'Testing Driver', 'DHA-KHA-1234', 'UNKHOWN COMPANY');
 
 -- --------------------------------------------------------
 
@@ -39996,7 +40058,6 @@ INSERT INTO `selles_delivery` (`idselles`, `cost`) VALUES
 (1235, 500.000),
 (1236, 500.000),
 (1237, 0.000),
-(1238, 250.000),
 (1239, 0.000),
 (1240, 250.000),
 (1241, 0.000),
@@ -42695,9 +42756,9 @@ INSERT INTO `selles_delivery` (`idselles`, `cost`) VALUES
 (3940, 0.000),
 (3941, 0.000),
 (3942, 0.000),
-(3943, 0.000);
+(3943, 0.000),
+(3944, 0.000);
 INSERT INTO `selles_delivery` (`idselles`, `cost`) VALUES
-(3944, 0.000),
 (3945, 0.000),
 (3946, 0.000),
 (3947, 700.000),
@@ -46014,7 +46075,10 @@ INSERT INTO `selles_delivery` (`idselles`, `cost`) VALUES
 (7259, 45.000),
 (7260, 45.000),
 (7261, 40.000),
-(7262, 40.000);
+(7262, 40.000),
+(7263, 100.000),
+(7264, 100.000),
+(7265, 5000.000);
 
 -- --------------------------------------------------------
 
@@ -48847,7 +48911,6 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (1236, 3, 60.000, 200.000),
 (1236, 4, 50.000, 300.000),
 (1237, 3, 10.000, 210.000),
-(1238, 4, 40.000, 300.000),
 (1239, 1, 40.000, 85.000),
 (1240, 3, 10.000, 210.000),
 (1240, 4, 40.000, 310.000),
@@ -49988,9 +50051,9 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (1686, 2, 10.000, 140.000),
 (1687, 4, 15.000, 320.000),
 (1687, 3, 20.000, 210.000),
-(1687, 2, 10.000, 140.000);
+(1687, 2, 10.000, 140.000),
+(1687, 1, 50.000, 90.000);
 INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
-(1687, 1, 50.000, 90.000),
 (1688, 4, 10.000, 320.000),
 (1688, 3, 20.000, 210.000),
 (1688, 2, 10.000, 145.000),
@@ -51923,9 +51986,9 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (2496, 4, 15.000, 320.000),
 (2496, 3, 30.000, 210.000),
 (2496, 1, 40.000, 90.000),
-(2497, 4, 20.000, 320.000);
+(2497, 4, 20.000, 320.000),
+(2497, 3, 20.000, 210.000);
 INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
-(2497, 3, 20.000, 210.000),
 (2497, 1, 40.000, 90.000),
 (2498, 6, 332.000, 37.000),
 (2498, 3, 60.000, 205.000),
@@ -53855,9 +53918,9 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (3376, 4, 35.000, 320.000),
 (3376, 3, 120.000, 210.000),
 (3376, 1, 60.000, 90.000),
-(3377, 4, 50.000, 320.000);
+(3377, 4, 50.000, 320.000),
+(3378, 3, 50.000, 210.000);
 INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
-(3378, 3, 50.000, 210.000),
 (3378, 1, 20.000, 90.000),
 (3379, 3, 60.000, 210.000),
 (3379, 4, 50.000, 320.000),
@@ -55787,9 +55850,9 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (4168, 4, 20.000, 320.000),
 (4168, 3, 70.000, 210.000),
 (4168, 2, 10.000, 140.000),
-(4168, 1, 50.000, 90.000);
+(4168, 1, 50.000, 90.000),
+(4169, 1, 50.000, 90.000);
 INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
-(4169, 1, 50.000, 90.000),
 (4169, 2, 20.000, 140.000),
 (4169, 3, 40.000, 210.000),
 (4169, 4, 40.000, 320.000),
@@ -62666,7 +62729,22 @@ INSERT INTO `selles_details` (`idselles`, `idproduct`, `unite`, `rate`) VALUES
 (7262, 6, 462.000, 126.020),
 (7262, 2, 365.000, 242.010),
 (7262, 6, 433.000, 98.010),
-(7262, 1, 66.000, 159.010);
+(7262, 1, 66.000, 159.010),
+(7263, 2, 305.000, 340.000),
+(7263, 40, 98.000, 70.000),
+(7263, 6, 54.000, 494.000),
+(7263, 1, 415.000, 477.000),
+(7263, 7, 413.000, 11.000),
+(7264, 3, 294.000, 393.010),
+(7264, 7, 454.000, 87.010),
+(7264, 10, 3.000, 489.010),
+(7264, 3, 46.000, 382.010),
+(7264, 6, 327.000, 413.010),
+(7265, 2, 395.000, 497.010),
+(7265, 8, 2.000, 406.010),
+(7265, 6, 310.000, 423.010),
+(7265, 1, 485.000, 465.010),
+(7265, 7, 137.000, 133.010);
 
 -- --------------------------------------------------------
 
@@ -63912,7 +63990,6 @@ INSERT INTO `selles_discount` (`idselles`, `discount`) VALUES
 (1235, 0.000),
 (1236, 500.000),
 (1237, 0.000),
-(1238, 0.000),
 (1239, 0.000),
 (1240, 0.000),
 (1241, 0.000),
@@ -66566,9 +66643,9 @@ INSERT INTO `selles_discount` (`idselles`, `discount`) VALUES
 (3895, 0.000),
 (3896, 0.000),
 (3897, 0.000),
-(3898, 0.000);
+(3898, 0.000),
+(3899, 0.000);
 INSERT INTO `selles_discount` (`idselles`, `discount`) VALUES
-(3899, 0.000),
 (3900, 0.000),
 (3901, 0.000),
 (3902, 0.000),
@@ -69930,7 +70007,10 @@ INSERT INTO `selles_discount` (`idselles`, `discount`) VALUES
 (7259, 10.000),
 (7260, 78.000),
 (7261, 50.000),
-(7262, 9.000);
+(7262, 9.000),
+(7263, 2000.000),
+(7264, 200.000),
+(7265, 2000.000);
 
 -- --------------------------------------------------------
 
@@ -70662,55 +70742,56 @@ CREATE TABLE `stock` (
 --
 
 INSERT INTO `stock` (`idproduct`, `stock`, `factory_stock`) VALUES
-(1, 8886, 12526),
-(2, 8139, 10573),
-(3, 462, 240),
-(4, 591, 2710),
+(1, 8130, 12582),
+(2, 7439, 10573),
+(3, 122, 240),
+(4, 631, 2710),
 (5, 0, 0),
-(6, 6139, 0),
-(7, 8, 0),
-(8, 3, 0),
-(9, 12302, 0),
-(10, 34, 66),
+(6, 5448, 0),
+(7, 212127, 0),
+(8, 1, 0),
+(9, 13218, 0),
+(10, 31, 66),
 (11, 862, 0),
 (12, 19994, 0),
-(13, 838, 0),
-(14, 1617, 0),
-(15, 774, 0),
+(13, 1836, 0),
+(14, 2375, 0),
+(15, 970, 0),
 (16, 358, 0),
-(17, 413, 0),
+(17, 900, 0),
 (18, 359, 0),
-(19, 93, 4),
+(19, 93, 21316),
 (20, 117, 0),
 (21, 2148, 0),
 (22, 311, 0),
 (23, 97, 0),
 (24, 47225, 0),
-(25, 71003, 0),
+(25, 71301, 0),
 (26, 194131, 0),
-(27, 28, 0),
+(27, 109, 0),
 (28, 22, 0),
 (29, 8854, 0),
 (30, 0, 0),
 (31, 0, 0),
-(32, 18198, 0),
+(32, 18256, 0),
 (33, 35, 0),
 (34, 46, 0),
-(35, 19, 0),
+(35, 355, 0),
 (36, 21, 0),
 (37, 11, 0),
 (38, 30894, 0),
 (39, 65, 50),
-(40, 123123137, 0),
-(41, 4, 0),
+(40, 123123039, 0),
+(41, 300, 0),
 (42, 1, 0),
-(43, 969, 0),
+(43, 1080, 0),
 (44, 0, 0),
 (45, 0, 21),
-(46, 230, 0),
+(46, 627, 0),
 (47, 0, 0),
 (48, 188, 0),
-(49, 0, 0);
+(49, 256, 0),
+(50, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -86449,7 +86530,18 @@ INSERT INTO `transaction` (`id`, `date`, `type`, `ammount`) VALUES
 (16442, '2020-10-10', 1, -45.000),
 (16443, '2020-10-10', 0, 665251.000),
 (16444, '2020-10-10', 1, -40.000),
-(16445, '2020-10-10', 1, -40.000);
+(16445, '2020-10-10', 1, -40.000),
+(16446, '2020-10-13', 1, -100.000),
+(16447, '2020-10-13', 1, -100.000),
+(16448, '2020-10-13', 1, -400.000),
+(16449, '2010-10-13', 1, -400.000),
+(16450, '2020-10-10', 1, -100.000),
+(16451, '2020-10-13', 1, -400.000),
+(16452, '2020-10-13', 0, -312047.000),
+(16453, '2020-10-13', 0, 100.000),
+(16454, '2020-10-13', 0, -400.000),
+(16455, '2020-10-15', 1, -5000.000),
+(16456, '2020-10-15', 0, 5000.000);
 
 -- --------------------------------------------------------
 
@@ -102168,7 +102260,18 @@ INSERT INTO `transaction_comment` (`id`, `comment`) VALUES
 (16442, 'Transport cost'),
 (16443, 'Receiving from ASLAM SIDDIQI'),
 (16444, 'Transport cost'),
-(16445, 'Transport cost');
+(16445, 'Transport cost'),
+(16446, 'Transport cost'),
+(16447, 'Transport cost'),
+(16448, 'Transport cost'),
+(16449, 'Transport cost'),
+(16450, 'Transport cost'),
+(16451, 'Transport cost'),
+(16452, 'Giving to Hafijul Islam'),
+(16453, 'test'),
+(16454, 'Arfruh'),
+(16455, 'Transport cost'),
+(16456, ' test');
 
 -- --------------------------------------------------------
 
@@ -102190,7 +102293,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`idstaff`, `pass`, `type`, `css`) VALUES
 (2, '72b302bf297a228a75730123efef7c41', 1, 11),
 (5, '72b302bf297a228a75730123efef7c41', 0, 13),
-(7, 'db763be15e695777689418be7364e0a3', 3, 3),
+(7, '72b302bf297a228a75730123efef7c41', 3, 11),
 (13, 'e10adc3949ba59abbe56e057f20f883e', 0, 8),
 (69, '25d55ad283aa400af464c76d713c07ad', 0, 5),
 (94, '21232f297a57a5a743894a0e4a801fc3', 0, 8),
@@ -102213,6 +102316,14 @@ ALTER TABLE `cheque`
 ALTER TABLE `mesurment_unite`
   ADD PRIMARY KEY (`idunite`) USING BTREE,
   ADD UNIQUE KEY `Index_2` (`unite`);
+
+--
+-- Indexes for table `money_receipt`
+--
+ALTER TABLE `money_receipt`
+  ADD PRIMARY KEY (`serial`),
+  ADD UNIQUE KEY `tranaction_id` (`id`) USING BTREE,
+  ADD KEY `party_id` (`idparty`) USING BTREE;
 
 --
 -- Indexes for table `party`
@@ -102419,82 +102530,88 @@ ALTER TABLE `mesurment_unite`
   MODIFY `idunite` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `money_receipt`
+--
+ALTER TABLE `money_receipt`
+  MODIFY `serial` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
-  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `party_adress`
 --
 ALTER TABLE `party_adress`
-  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `party_payment`
 --
 ALTER TABLE `party_payment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16446;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16457;
 
 --
 -- AUTO_INCREMENT for table `party_type`
 --
 ALTER TABLE `party_type`
-  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `idparty` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `idproduct` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `product_input`
 --
 ALTER TABLE `product_input`
-  MODIFY `idupdate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5559;
+  MODIFY `idupdate` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5563;
 
 --
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2217;
+  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2220;
 
 --
 -- AUTO_INCREMENT for table `purchase_discount`
 --
 ALTER TABLE `purchase_discount`
-  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2217;
+  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2219;
 
 --
 -- AUTO_INCREMENT for table `purchase_recipt`
 --
 ALTER TABLE `purchase_recipt`
-  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2217;
+  MODIFY `idpurchase` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2219;
 
 --
 -- AUTO_INCREMENT for table `selles`
 --
 ALTER TABLE `selles`
-  MODIFY `idselles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7264;
+  MODIFY `idselles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7266;
 
 --
 -- AUTO_INCREMENT for table `selles_discount`
 --
 ALTER TABLE `selles_discount`
-  MODIFY `idselles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7263;
+  MODIFY `idselles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7266;
 
 --
 -- AUTO_INCREMENT for table `staff`
@@ -102512,13 +102629,13 @@ ALTER TABLE `staff_bonus`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16446;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16457;
 
 --
 -- AUTO_INCREMENT for table `transaction_comment`
 --
 ALTER TABLE `transaction_comment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16446;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16457;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -102535,6 +102652,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `cheque`
   ADD CONSTRAINT `FK_cheque_1` FOREIGN KEY (`id`) REFERENCES `transaction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `money_receipt`
+--
+ALTER TABLE `money_receipt`
+  ADD CONSTRAINT `fk_trans` FOREIGN KEY (`id`) REFERENCES `transaction` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `party` FOREIGN KEY (`idparty`) REFERENCES `party` (`idparty`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `party_adress`
