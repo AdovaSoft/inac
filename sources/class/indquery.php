@@ -164,7 +164,7 @@ class indquery extends query
         if ($t > 0) {
             $tid = $this->get_last_id('transaction', 'id');
             if ($flag) {
-                $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
+                $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
 
             }
             if ($flag) {
@@ -324,7 +324,7 @@ class indquery extends query
 
         $tid = $this->get_last_id('transaction', 'id');
         if ($flag) {
-            $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
+            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
             d("After Transaction Insert", $flag);
 
 
@@ -416,7 +416,7 @@ class indquery extends query
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($id, $date, $tmedium, $am), array('d', 's', 'd', 'd'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, $tmedium, $am), array('d', 's', 'd', 'd'));
         if ($flag) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $c), array('d', 's'));
         }
@@ -466,7 +466,7 @@ class indquery extends query
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'f'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'f'));
 
         if ($flag && $c != "") {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($new_transaction_id, $c), array('d', 's'));
@@ -762,7 +762,7 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query('SELECT * FROM party WHERE ', 2);
+            $party = $this->get_custom_select_query('SELECT * FROM party WHERE idparty = ', 2);
             $this->get_dropdown_array($party, 0, 1, 'party', null);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
@@ -837,6 +837,8 @@ class indquery extends query
         $inp->input_text("Branch : ", 'c_br', null);
         echo "<br/>";
         $inp->input_text("A/C  : ", 'c_ac', null);
+        echo "<br/>";
+        $inp->input_text("Cheque/Draft No  : ", 'c_no', null);
         echo "<br/>";
         echo "Date : ";
         $inp->input_date('c_d', date('Y-m-d'));
@@ -1629,7 +1631,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         }
         $am = -$sal;
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
         if ($flag) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
         }
@@ -1671,7 +1673,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         $am = -$bon;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
         if ($flag) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
         }

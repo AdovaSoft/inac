@@ -65,7 +65,7 @@ include("./sources/inc/system.php");
 <script>
     $(document).ready(function () {
         $('body').find('.table').DataTable({
-            "dom": 'lrft<"dt-center"p>',
+            "dom": 'lrft<"dt-center"ip>',
             "oLanguage": {
                 "sSearch": "Filter:"
             },

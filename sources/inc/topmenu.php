@@ -98,7 +98,9 @@
           <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=receive_payment'>Receive Revenue</a></li>
           <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=invest_draw'>Invest/Draw</a></li>
         <?php endif; ?>
-      <li><a href="index.php?e=<?= $encptid ?>&page=accounts&sub=report">Accounts Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=accounts&sub=invest_draw_report">Invest/Drawing Report</a></li>
+      <li><a href="index.php?e=<?= $encptid ?>&page=accounts&sub=purchase_expense_report">Revenue/Expense Report</a></li>
+
       <li><a href="index.php?e=<?= $encptid ?>&page=accounts&sub=daily_report">Daily Accounts</a></li>
     </ul>
   </li>
