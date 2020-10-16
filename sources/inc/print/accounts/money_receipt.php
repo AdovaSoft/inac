@@ -4,9 +4,12 @@ $transaction_id = $inp->value_pgd('transaction');
 $party_id = $inp->value_pgd('party');
 
 $money_receipt = $qur->print_money_receipt($transaction_id, $party_id);
-extract($money_receipt);
+if(count($money_receipt) > 2) {
+    extract($money_receipt);
+} else {
+  header("Location: print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$transaction_id&party=$party_id");
+}
 //d($money_receipt);
-$date = strtotime($date);
 /*$serial = '1232456789';
 
 $client = 'Mohammad Hafijul Islam';
@@ -29,10 +32,10 @@ $ac_no = "123456789";*/
   <tr>
     <th width="150" class="text-left">Serial No:</th>
     <td><?= esc($serial) ?></td>
-    <td class="text-right" colspan="2"><b>Date: </b> <?= date('d F, Y (D)', $date) ?></td>
+    <td class="text-right" colspan="2"><b>Date: </b> <?= date('d F, Y (D)', strtotime($date)) ?></td>
   </tr>
   <tr>
-    <th class="text-left"><br/>Client  Name:</th>
+    <th class="text-left"><br/>Client Name:</th>
     <td colspan="3"><br/><span
           style="display:block; width:100%; border-bottom: 2px dotted black;"><?= esc($client) ?></span></td>
   </tr>
@@ -49,7 +52,7 @@ $ac_no = "123456789";*/
         Amount:
         <span style="border: 2px solid black; padding: 15px;"><?php
             $fmt = numfmt_create('en_IN', NumberFormatter::CURRENCY);
-            echo numfmt_format_currency($fmt, $amount, "BDT") . "\n";
+            echo numfmt_format_currency($fmt, abs($amount), "BDT") . "\n";
             ?></span>
       </div>
     </th>
@@ -60,6 +63,7 @@ $ac_no = "123456789";*/
     </th>
     <td>
         <?php
+        $amount = abs($amount);
         $taka = (int)$amount;
         $paisa = round((($amount - $taka) * 100), 0);
         $fmt = numfmt_create('en_IN', NumberFormatter::SPELLOUT);
@@ -76,28 +80,32 @@ $ac_no = "123456789";*/
   <tr>
     <table>
       <tr>
-      <th colspan="3" class="text-left"><br/>
+      <th width="230" colspan="3" class="text-left"><br/>
         In Cash/ Cheque/ Pay order/ Draft No:
       </th>
       <td style="border-bottom: 2px dotted black; text-align: center"><br/>
-          <?= ($is_cash == 0) ? esc($cheque) : null; ?>
+          <?= ($is_cash == 1) ? esc($cheque) : null; ?>
       </td>
       <th class="text-center"><br/>
         Dated:
       </th>
-      <td style="font-weight: normal;  border-bottom: 2px dotted black; text-align: center"><br/>
-          <?= ($is_cash == 0) ? date('d/m/Y', $cheque_date) : null; ?>
+      <td width="150" style="font-weight: normal;  border-bottom: 2px dotted black; text-align: center"><br/>
+          <?= ($is_cash == 1) ? date('d/m/Y', strtotime($cheque_date)) : null; ?>
       </td>
       </tr>
       <tr>
         <th class="text-left" width="125"><br>Bank Name:</th>
-        <td colspan="5" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($bank) ?></td>
+        <td colspan="5" style="border-bottom: 2px dotted black; text-align: center"><br>
+            <?= ($is_cash == 1) ? esc($bank) : null; ?>
+        </td>
       </tr>
       <tr>
         <th class="text-left"><br>Branch:</th>
-        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($branch) ?></td>
+        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br>
+            <?= ($is_cash == 1) ? esc($branch) : null; ?></td>
         <th class="text-center"><br>A/C No: </th>
-        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br><?= esc($ac_no, true) ?></td>
+        <td colspan="2" style="border-bottom: 2px dotted black; text-align: center"><br>
+            <?= ($is_cash == 1) ? esc($ac_no, true) : null; ?></td>
       </tr>
     </table>
   </tr>

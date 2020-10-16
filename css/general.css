@@ -247,7 +247,6 @@ a img {
     width: 350px;
     height: 35px;
     padding: 10px;
-    margin: 30px;
     border-style: outset;
     border-width: 1px 0px;
     border-radius: 10px;
@@ -429,7 +428,7 @@ form.embossed {
     border: 2px solid #979797;
     color: black;
     border-radius: 5px;
-    width: 100%;
+    width: 95% !important;
     font-size: 1.2rem;
     font-family: Arial;
 }

@@ -21,7 +21,7 @@ class indquery extends query
 
         echo "<br/>";
         echo "<form action='editor.php?e=" . $encptid . "&' method = 'POST' class='embossed'>";
-        echo "<fieldset><legend>Selles Information</legend>";
+        echo "<style>#content table.centeraligned tr td { padding: 1px;}</style>";
         echo "<table class='centeraligned' width='100%'>";
         echo "<thead>";
         echo "<tr>";
@@ -48,6 +48,7 @@ class indquery extends query
         echo "<th width='150'>";
         echo "<br/>Total";
         echo "</th>";
+
         echo "</tr>";
         echo "</thead>";
         $num = $inp->value_pgd('num', 5);
@@ -60,12 +61,10 @@ class indquery extends query
 
             echo "<td>";
             echo $inp->input_number('', 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i);
-            // echo "<input type='number' step='any' name= value='" .  . "' class='quantity' id=/>";
             echo "</td>";
 
             echo "<td>";
             echo $inp->input_number('', 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i);
-            //echo "<input type='number' step='any' name='co_" . $i . "' value='" . $inp->value_pgd('co_' . $i) . "' class='rate'
             echo "</td>";
 
             echo "<td><span class='total_td' id='total_td_" . $i . "'></span></td>";
@@ -81,12 +80,12 @@ class indquery extends query
         echo "</tr>";
         echo "<tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'><br>Transport Cost : </th>";
-        echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 100%'></td>";
+        echo "<th colspan='2' class='text-right'><br>Transport Cost (+): </th>";
+        echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'>Discount : </th>";
-        echo "<td colspan='2'><input type='number' step='0.01' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "' style='margin-left: 0px; width: 100%'></td>";
+        echo "<th colspan='2' class='text-right'>Discount (-): </th>";
+        echo "<td colspan='2'><input type='number' step='0.01' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
@@ -95,22 +94,20 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "</table>";
-        echo "</fieldset>";
-        echo "<br/><fieldset><legend>Delivery Information</legend>";
         echo "<table width='100%'>";
         echo "<tr>";
         echo "<td><br> Driver Name : </td>";
-        echo "<td colspan='3'>";
+        echo "<td colspan='3'><br>";
         echo $inp->input_text("", 'driver', $inp->value_pgd('driver'), 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
         echo "<td><br> Vehicle No : </td>";
-        echo "<td colspan='3'>";
+        echo "<td colspan='3'><br>";
         echo $inp->input_text("", 'vehicle', $inp->value_pgd('vehicle'), 'full-width', 'drivers');
         echo "</td>";
         echo "</tr>";
         echo "<td><br> Company : </td>";
-        echo "<td colspan='3'>";
+        echo "<td colspan='3'><br>";
         echo $inp->input_text("", 'company', $inp->value_pgd('company'), 'full-width', 'drivers');
         echo "<input type='hidden' name='editor' value='sells/new'/>";
         echo "<input type='hidden' name='e' value='" . $encptid . "'/>";
@@ -119,7 +116,6 @@ class indquery extends query
         echo "</td>";
         echo "</tr>";
         echo "</table>";
-        echo "</fieldset>";
         echo "<div style='width: 100%;'>";
         $inp->input_submit('ab', 'Sell');
         echo "</div>";
@@ -201,32 +197,34 @@ class indquery extends query
         echo "<br/><form  action='editor.php?e=" . $encptid . "' method = 'POST' class='embossed'>";
 
         echo "<input type = 'hidden' name = 'num' value ='" . count($products) . "' />";
+        echo "<style>#content table.centeraligned tr td { padding: 1px;}</style>";
         echo "<table class='centeraligned'>";
         echo "<tr>";
-        echo "<td colspan='2' class='text-left'>";
+        echo "<th colspan='2' class='text-left'>";
         echo "Date: ";
         $inp->input_date('sd', date('Y-m-d'));
-        echo "</td><td colspan='2' class='text-right'>";
+        echo "</th><td colspan='2' class='text-right'>";
         $inp->input_text('Voucher : ', 'res', $inp->value_pgd('res'));
         echo "</td>";
-        echo "<tr><td colspan='4' class='text-left'>Party : ";
-        $this->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'));
+        echo "<tr><th class='text-center'><br/>Party : </th>";
+        echo "<td colspan='3'><br/>";
+        $this->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'), 'full-width');
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
         echo "<th>";
-        echo "Product";
+        echo "<br/>Product";
         echo "</th>";
 
         echo "<th>";
-        echo "Quantity";
+        echo "<br/>Quantity";
         echo "</th>";
 
         echo "<th>";
-        echo "Rate";
+        echo "<br/>Rate";
         echo "</th>";
         echo "<th width='150'>";
-        echo "Total";
+        echo "<br/>Total";
         echo "</th>";
         echo "</tr>";
         $num = $inp->value_pgd('num', 5);
@@ -238,12 +236,12 @@ class indquery extends query
             echo "</td>";
 
             echo "<td>";
-            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity full-width', 'quantity_' . $i, '');
+            $inp->input_number(null, 'pc_' . $i, $inp->value_pgd('pc_' . $i), 'quantity', 'quantity_' . $i, '');
             echo "</td>";
 
 
             echo "<td>";
-            $inp->input_number(null, 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate full-width', 'rate_' . $i);
+            $inp->input_number(null, 'co_' . $i, $inp->value_pgd('co_' . $i), 'rate', 'rate_' . $i);
             echo "</td>";
 
 
@@ -258,12 +256,12 @@ class indquery extends query
         echo "<td colspan='2'><br/><span id='grand_total' style='text-align:right;'></span></td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'><br>Transport Cost : </th>";
-        echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 100%'></td>";
+        echo "<th colspan='2' class='text-right'><br>Transport Cost (+): </th>";
+        echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'>Discount : </th>";
-        echo "<td colspan='2'><input type='number' step='0.01' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "' style='margin-left: 0px; width: 100%'></td>";
+        echo "<th colspan='2' class='text-right'>Discount (-): </th>";
+        echo "<td colspan='2'><input type='number' step='0.01' id='discount' name='d' value='" . $inp->value_pgd('d', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
@@ -1851,16 +1849,22 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
     public function print_money_receipt($transaction_id, $party_id)
     {
-        $sql = sprintf("SELECT party.name client, adress address, party_payment.id serial, transaction.date date, ammount amount,
-transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no FROM party INNER JOIN party_payment USING (idparty)
- LEFT JOIN party_adress USING(idparty) LEFT JOIN transaction USING(id) LEFT JOIN cheque USING(id) 
- WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
+        $sql = sprintf("SELECT party.name client, adress address, serial, transaction.date date,
+       ammount amount, transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no 
+FROM party INNER JOIN transaction_receipt USING(idparty) LEFT JOIN transaction USING(id)
+LEFT JOIN party_adress USING(idparty) LEFT JOIN cheque USING(id)
+WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
 
         $money_receipt = $this->get_custom_select_query($sql, 0, true);
-        if(count($money_receipt) > 0)
+        /*d($money_receipt);
+        die();*/
+        if (count($money_receipt) > 0)
             return $money_receipt[0];
-        else
+        else {
+            $flag = $this->insert_query('transaction_receipt', array('id', 'idparty'), array($transaction_id, $party_id), array('d', 'd'));
             return [];
+        }
+
         /**
          *  else {
          * //INSERT INTO `money_receipt`(`serial`, `id`, `idparty`) VALUES ([value-1],[value-2],[value-3])
@@ -1868,5 +1872,6 @@ transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no FROM pa
          * }
          */
     }
+
 }
 

@@ -219,7 +219,9 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "<br/><h2 class='blue'>No input or output between " . convert_date($date) . " and " . convert_date($date) . "</h2>";
     }
     echo "</div>";
-} //Unit Wise
+}
+
+//Unit Wise
 elseif (isset($_GET['group']) && $_GET['group'] == 2) {
     $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date);
@@ -280,15 +282,19 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 echo "</td>";
                 echo "</tr>";
                 echo "<tr>";
+
                 echo "<td>";
                 echo $inp->date_convert($i[0]);
                 echo "</td>";
+
                 echo "<td>";
                 echo $i[1];
                 echo "</td>";
-                echo "<td>";
-                echo $i[4];
+
+                echo "<td class='text-right pr-50'>";
+                echo money($i[4]);
                 echo "</td>";
+
                 if ($i[2] > 0) {
                     echo "<td>";
                     echo $i[2];
@@ -325,15 +331,16 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green text-right pr-50'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue text-right pr-50'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
+                    $ss = -$ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                        echo "<th class='red text-right pr-50'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue text-right pr-50'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
 
@@ -399,15 +406,16 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
                 if ($ss > 0) {
                     $tti += $ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='green'>" . $ss . "</th>";
+                        echo "<th class='green text-right pr-50'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue text-right pr-50'>" . money($ss) . "</th>";
                 } else {
                     $tto += $ss;
+                    $ss = -$ss;
                     if ($i[5] == 0 || $i[5] == 1)
-                        echo "<th class='red'>" . (-$ss) . "</th>";
+                        echo "<th class='red text-right pr-50'>" . money($ss) . "</th>";
                     else
-                        echo "<th class='blue'>" . $ss . "</th>";
+                        echo "<th class='blue text-right pr-50'>" . money($ss) . "</th>";
                 }
                 echo "<td>";
                 if ($i[5] == 0) {
@@ -436,7 +444,9 @@ elseif (isset($_GET['group']) && $_GET['group'] == 2) {
         echo "<br/><h2 class='blue'>No input or output on  " . convert_date($date) . "</h2>";
     }
     echo "</div>";
-} //Date Wise
+}
+
+//Date Wise
 else {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date = '%s'  AND (type='0' OR type='2')) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date);
     $info = $qur->get_custom_select_query($query, 6);
@@ -498,8 +508,8 @@ else {
             echo $i[1];
             echo "</td>";
 
-            echo "<td>";
-            echo $i[4];
+            echo "<td class='text-right pr-50'>";
+            echo money($i[4]);
             echo "</td>";
 
             if ($i[2] > 0) {
@@ -538,15 +548,16 @@ else {
             if ($ss > 0) {
                 $tti += $ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<td class='green'>" . $ss . "</td>";
+                    echo "<td class='green text-right pr-50'>" . money($ss) . "</td>";
                 else
-                    echo "<td class='blue'>" . $ss . "</td>";
+                    echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
             } else {
                 $tto += $ss;
+                $ss = -$ss;
                 if ($i[5] == 0 || $i[5] == 1)
-                    echo "<td class='red'>" . (-$ss) . "</td>";
+                    echo "<td class='red text-right pr-50'>" . money($ss) . "</td>";
                 else
-                    echo "<td class='blue'>" . $ss . "</td>";
+                    echo "<td class='blue text-right pr-50'>" . money($ss) . "</td>";
             }
             echo "<td>";
 

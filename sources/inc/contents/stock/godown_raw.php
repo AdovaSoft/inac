@@ -51,12 +51,12 @@ if (count($info) > 0) {
         echo esc($ar[2]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         echo money($ar[3]);
         echo "</td>";
 
 
-        echo "<td>";
+        echo "<td class='text-right pr-50'>";
         $total = $ar[3] * $ar[1];
         echo money($total);
         $cost += $total;
