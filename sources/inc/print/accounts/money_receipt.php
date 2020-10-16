@@ -63,9 +63,9 @@ $ac_no = "123456789";*/
     </th>
     <td>
         <?php
-        $amount = abs($amount);
-        $taka = (int)$amount;
-        $paisa = round((($amount - $taka) * 100), 0);
+        $amount = explode('.', $amount);
+        $taka = abs($amount[0]);
+        $paisa = abs($amount[1]);
         $fmt = numfmt_create('en_IN', NumberFormatter::SPELLOUT);
         $taka_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $taka)));
         $paisa_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $paisa)));

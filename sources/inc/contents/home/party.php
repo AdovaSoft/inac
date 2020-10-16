@@ -33,6 +33,9 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<th>";
             echo "Phone";
             echo "</th>";
+            echo "<th>";
+            echo "Email";
+            echo "</th>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
@@ -53,6 +56,12 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
                 echo "<td>";
                 echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $part_results[$i][0] . "'>";
                 echo esc($part_results[$i][3], true);
+                echo "</a>";
+                echo "</td>";
+
+                echo "<td>";
+                echo "<a href='index.php?e=" . $encptid . "&page=party&sub=view_particular&id=" . $part_results[$i][0] . "'>";
+                echo esc($part_results[$i][4]);
                 echo "</a>";
                 echo "</td>";
                 echo "</tr>";

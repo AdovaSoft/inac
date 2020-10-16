@@ -94,8 +94,8 @@
     <ul>
         <?php if ($usertype == ADMIN) : ?>
           <!--li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=payment'>Payments</a></li-->
-          <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=purchase_expense'>Purchase Expense</a></li>
-          <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=receive_payment'>Add payment</a></li>
+          <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=purchase_expense'>Purchase Payment</a></li>
+          <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=receive_payment'>Receive Revenue</a></li>
           <li><a href='index.php?e=<?= $encptid ?>&page=accounts&sub=invest_draw'>Invest/Draw</a></li>
         <?php endif; ?>
       <li><a href="index.php?e=<?= $encptid ?>&page=accounts&sub=report">Accounts Report</a></li>

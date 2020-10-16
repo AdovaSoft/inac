@@ -28,9 +28,7 @@ body {
     background-color: #343434;
     background-repeat: repeat-x;
 }
-#banner{
-    padding-bottom: 30px;
-}
+
 /*------------TIME-DATE-DAY-----------------*/
 
 #ttd {
@@ -144,4 +142,12 @@ body {
 
 .faintgreen {
     color: #77ff66;
+}
+
+/*---------------------data tabel style --------------*/
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border-color: #111111;
+    background-color: #626262;
+
 }

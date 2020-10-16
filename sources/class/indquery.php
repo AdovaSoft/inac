@@ -466,7 +466,7 @@ class indquery extends query
         $am = $am * $ttype;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'd'));
+        $flag = $this->insert_query('transaction', array('id', 'date', 'type', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'f'));
 
         if ($flag && $c != "") {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($new_transaction_id, $c), array('d', 's'));
@@ -477,7 +477,7 @@ class indquery extends query
         }
         if ($tmedium == true && $flag) {
             $bank_info[0] = $new_transaction_id;
-            $flag = $this->insert_query("cheque", array('id', 'bank', 'branch', 'date', 'ac'), $bank_info, array('d', 's', 's', 's', 's'));
+            $flag = $this->insert_query("cheque", array('id', 'bank', 'branch', 'date', 'ac', 'cheque_no'), $bank_info, array('d', 's', 's', 's', 's', 's'));
         }
         if ($flag) {
             mysqli_query($this->dtb_con, 'COMMIT');
@@ -896,6 +896,8 @@ class indquery extends query
         echo "<br/>";
         $inp->input_text("A/C : ", 'c_ac', null);
         echo "<br/>";
+        $inp->input_text("Cheque/Draft No : ", 'c_no', null);
+        echo "<br/>";
         echo "Date : ";
         $inp->input_date('c_d', date('Y-m-d'));
         echo "<br/>";
@@ -1214,7 +1216,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
     public function search_party($s)
     {
-        $query = "SELECT * FROM party LEFT JOIN party_adress USING (idparty) LEFT JOIN party_phone USING (idparty)  WHERE name LIKE '%$s%' OR adress LIKE '%$s%' OR phone LIKE '%$s%' ORDER BY name;";
+        $query = "SELECT * FROM party LEFT JOIN party_adress USING (idparty) LEFT JOIN party_phone USING (idparty) LEFT JOIN party_email USING (idparty)  WHERE name LIKE '%$s%' OR adress LIKE '%$s%' OR phone LIKE '%$s%' ORDER BY name;";
         return $this->get_custom_select_query($query, 5);
     }
 
@@ -1850,7 +1852,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
     public function print_money_receipt($transaction_id, $party_id)
     {
         $sql = sprintf("SELECT party.name client, adress address, serial, transaction.date date,
-       ammount amount, transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no 
+       ammount amount, transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no, cheque_no cheque 
 FROM party INNER JOIN transaction_receipt USING(idparty) LEFT JOIN transaction USING(id)
 LEFT JOIN party_adress USING(idparty) LEFT JOIN cheque USING(id)
 WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);

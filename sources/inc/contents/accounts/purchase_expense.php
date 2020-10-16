@@ -16,6 +16,7 @@ if (isset($_POST['party']) && isset($_POST['p_t'])
             $bank[2] = $_POST['c_br'];
             $bank[3] = $_POST['c_d_y'] . '-' . $_POST['c_d_m'] . '-' . $_POST['c_d_d'];
             $bank[4] = $_POST['c_ac'];
+            $bank[5] = $_POST['c_no'];
             $response = $qur->addTran($_POST['party'], $date, $_POST['amnt'], $_POST['p_t'], $_POST['p_m'], $_POST['cmnt'], 1, $bank);
 
             if ($response['status'] == true) {
@@ -25,13 +26,9 @@ if (isset($_POST['party']) && isset($_POST['p_t'])
 							  <a href='index.php?e=$encptid&page=accounts&sub=purchase_expense' class='bigbutton'>OK</a>
 							  </br>
 							  <a href='print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$trans_id&party=$party_id' class='bigbutton'>Create Money Receipt</a>";
-
-
-
             } else {
                 echo "<h3 class='red'>Transaction failed</h3>";
             }
-            $qur->purchaseExpense($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
 
         } else {
             echo "<h3 class='red'>Ensure data about cheque</h3>";

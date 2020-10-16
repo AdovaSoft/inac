@@ -253,6 +253,7 @@ a img {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     font-size: 28px;
+    margin-top: 15px;
 }
 
 #content a.button {

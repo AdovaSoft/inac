@@ -28,9 +28,7 @@ body {
     background-color: #343434;
     background-repeat: repeat-x;
 }
-#banner{
-    padding-bottom: 30px;
-}
+
 /*------------TIME-DATE-DAY-----------------*/
 
 #ttd {
@@ -148,4 +146,12 @@ body {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
 color: #ffffff !important;
+}
+
+/*---------------------data tabel style --------------*/
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input {
+    border-color: #737373;
+    background-color: #707070;
+
 }
