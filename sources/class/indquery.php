@@ -879,7 +879,6 @@ class indquery extends query
             $this->get_dropdown_array($party, 0, 1, 'party', null, '', false, 2);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 2);
-            d($party);
             echo "<b class='blue'>" . $party[0][0] . "</b>";
             echo "<input type = 'hidden' name = 'party' value = '" . $id . "' />";
             $comment .= $party[0][0];
@@ -1075,16 +1074,13 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM purchase_details WHERE idpurchase = %d) as purchase LEFT JOIN product USING (idproduct);", $vou);
-        $query_det = sprintf("SELECT name,date,discount FROM (SELECT * FROM purchase s WHERE idpurchase = %d) as purchase LEFT JOIN purchase_discount USING (idpurchase) LEFT JOIN party USING (idparty);", $vou);
-
+        $query_det = sprintf("SELECT name,date,discount, recipt FROM (SELECT * FROM purchase s WHERE idpurchase = %d) as purchase LEFT JOIN purchase_discount USING (idpurchase) LEFT JOIN party USING (idparty) Left join purchase_recipt Using(idpurchase);", $vou);
         $inp = new html();
 
         $inp->input_hidden('v', $vou);
 
-        $sell_det = $this->get_custom_select_query($query_det, 3);
+        $sell_det = $this->get_custom_select_query($query_det, 4);
         $sell_pro = $this->get_custom_select_query($query_pro, 4);
-        //$party = $this->get_custom_select_query('SELECT * FROM party', 2);
-        //$products = $this->get_custom_select_query('SELECT * FROM product', 2);
 
         if (count($sell_det) > 0 && count($sell_pro) > 0) {
             $n = count($sell_pro);
@@ -1097,8 +1093,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             echo "<b class='blue'>" . $sell_det[0][0] . "</b>";
             echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On date : ";
             echo "<b class='blue'>" . convert_date($sell_det[0][1]) . "</b>";
-            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Voucher : ";
-            echo "<b class='blue'>" . $vou . "</b><br/><br/>";
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier Voucher : ";
+            echo "<b class='blue'>" . $sell_det[0][3] . "</b><br/><br/>";
             echo "</td>";
             echo "</tr>";
             echo "<tr>";
@@ -1659,7 +1655,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
         $id = $this->get_last_id('transaction', 'id');
 
-        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY type ORDER BY type;");
+        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY medium ORDER BY medium;");
 
         $balance = $this->get_custom_select_query($query, 1);
 
