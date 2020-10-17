@@ -1,7 +1,11 @@
 <h2>All Party</h2>
 <?php
-$query = sprintf("SELECT idparty,name,adress,phone FROM party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
-$party = $qur->get_custom_select_query($query, 4);
+$query = sprintf("SELECT idparty,name,adress,phone,email FROM party
+    LEFT JOIN party_phone USING(idparty)
+    LEFT JOIN party_email USING(idparty) 
+    LEFT JOIN party_adress USING (idparty) ORDER BY name;"
+);
+$party = $qur->get_custom_select_query($query, 5);
 $all_info = null;
 $due_total = 0;
 $advance_total = 0;
@@ -15,6 +19,7 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][3] = $party[$i][3];
         $all_info[$i][4] = $party[$i + 1][3];
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
+        $all_info[$i][6] = $party[$i][4];
         $i++;
     } else {
         $all_info[$i][0] = $party[$i][0];
@@ -23,6 +28,7 @@ for ($i = 0; $i < $n; $i++) {
         $all_info[$i][3] = $party[$i][3];
         $all_info[$i][4] = null;
         $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
+        $all_info[$i][6] = $party[$i][4];
     }
 }
 echo "<table align='center' class='rb'>";
@@ -40,6 +46,10 @@ echo "</th>";
 
 echo "<th>";
 echo "Phone";
+echo "</th>";
+
+echo "<th>";
+echo "Email";
 echo "</th>";
 
 echo "<th>";
@@ -75,6 +85,12 @@ foreach ($all_info as $a) {
         echo ", <br/>";
         echo esc($a[4]);
     }
+    echo "</a>";
+    echo "</td>";
+
+    echo "<td>";
+    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+    echo esc($a[6]);
     echo "</a>";
     echo "</td>";
 
