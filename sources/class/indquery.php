@@ -433,8 +433,10 @@
             
         }
         
-        public function addTran($party_id, $date, $am, $ttype, $tmedium, $c, $cat, $bank_info)
+        public function addTran($party_id, $date, $amount, $ttype = 1, $tmedium, $c, $cat, $bank_info)
         {
+            
+            /* d($party_id, $date, $amount, $ttype, $tmedium, $c, $cat, $cat, $bank_info); */
             // rel_id
             //cat = 1 party tran
             
@@ -449,44 +451,44 @@
             $bank = $balance[1][0]; //negative type -> 1
             
             if ($ttype == -1) {
-            
-            if ($tmedium == false) {
-                if ($cash < $am) {
-                    echo "You dont have enough money (" . $am . ") in cash. You have " . $cash . "<br/>";
-                    return false;
-                }
-            } else if ($tmedium == true) {
-                if ($bank < $am) {
-                    echo "You dont have enough money (" . $am . ") in bank. You have " . $bank . "<br/>";
-                    return false;
+                
+                if ($tmedium == false) {
+                    if ($cash < $amount) {
+                        echo "You dont have enough money (" . $amount . ") in cash. You have " . $cash . "<br/>";
+                        return false;
+                    }
+                } else if ($tmedium == true) {
+                    if ($bank < $amount) {
+                        echo "You dont have enough money (" . $amount . ") in bank. You have " . $bank . "<br/>";
+                        return false;
+                    }
                 }
             }
+            
+            $amount = $amount * $ttype;
+            
+            mysqli_query($this->dtb_con, "START TRANSACTION");
+            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($new_transaction_id, $date, $tmedium, $amount), array('d', 's', 'd', 'f'));
+            
+            if ($flag && $c != "") {
+                $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($new_transaction_id, $c), array('d', 's'));
+            }
+            
+            if ($flag) {
+                $flag = $this->insert_query("party_payment", array("id", "idparty"), array($new_transaction_id, $party_id), array("d", "d"));
+            }
+            if ($tmedium == true && $flag) {
+                $bank_info[0] = $new_transaction_id;
+                $flag = $this->insert_query("cheque", array('id', 'bank', 'branch', 'date', 'ac', 'cheque_no'), $bank_info, array('d', 's', 's', 's', 's', 's'));
+            }
+            if ($flag) {
+                mysqli_query($this->dtb_con, 'COMMIT');
+                return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => true];
+            } else {
+                mysqli_query($this->dtb_con, 'ROLLBACK');
+                return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => false];
+            }
         }
-
-        $am = $am * $ttype;
-
-        mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($new_transaction_id, $date, $tmedium, $am), array('d', 's', 'd', 'f'));
-
-        if ($flag && $c != "") {
-            $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($new_transaction_id, $c), array('d', 's'));
-        }
-
-        if ($flag) {
-            $flag = $this->insert_query("party_payment", array("id", "idparty"), array($new_transaction_id, $party_id), array("d", "d"));
-        }
-        if ($tmedium == true && $flag) {
-            $bank_info[0] = $new_transaction_id;
-            $flag = $this->insert_query("cheque", array('id', 'bank', 'branch', 'date', 'ac', 'cheque_no'), $bank_info, array('d', 's', 's', 's', 's', 's'));
-        }
-        if ($flag) {
-            mysqli_query($this->dtb_con, 'COMMIT');
-            return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => true];
-        } else {
-            mysqli_query($this->dtb_con, 'ROLLBACK');
-            return ['trans_id' => $new_transaction_id, 'party_id' => $party_id, 'status' => false];
-        }
-    }
         
         public function print_attendance()
         {
@@ -804,21 +806,19 @@
             echo "<br/><form method = 'POST' class='embossed'>";
             echo "<br/>Date : ";
             $inp->input_date('d', date('Y-m-d'));
-            
             echo "<br/>";
             echo "<br/>";
-            if ($type == null) {
-                
-                echo "Receiving from : <input type='hidden' name='p_t' value='1'>";
+            if ($type == null)
+                echo "Receiving from : <input type='hidden' name='pay_type' value='1'>";
+            else {
                 $comment = " ";
-                echo "<input type = 'hidden' name = 'p_t' value = '" . $id . "' />";
+                echo "<input type = 'hidden' name = 'pay_type' value = '" . $type . "' />";
             }
             
             if ($id == null) {
                 $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name,(CASE party_type.type WHEN 1 THEN 'Client' ELSE 'Supplier & Client' END)  type_name FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 1 OR party_type.type = 2 "), 3);
                 $this->get_dropdown_array($party, 0, 1, 'party', null, 'full-width', false, 2);
             } else {
-                
                 $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
                 echo "<b class='blue'>" . $party[0][0] . "</b>";
                 echo "<input type = 'hidden' name = 'party' value = '" . $id . "' />";
@@ -857,7 +857,8 @@
          * @param $type
          * @param $cost
          */
-        public function purchaseExpense($id = NULL, $type = NULL, $cost = 0.0)
+        public
+        function purchaseExpense($id = NULL, $type = NULL, $cost = 0.0)
         {
             
             $comment = null;
@@ -910,7 +911,8 @@
             echo "</form>";
         }
         
-        public function print_edit_sells($vou)
+        public
+        function print_edit_sells($vou)
         {
             
             echo "<br/><form method = 'POST' class='embossed'>";
@@ -1024,7 +1026,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             }
         }
         
-        public function sells_return($id, $products, $d, $cost, $driver = null, $vehicle = null, $company = null)
+        public
+        function sells_return($id, $products, $d, $cost, $driver = null, $vehicle = null, $company = null)
         {
             if ($cost <= $d) {
                 echo "<br/>Discount cant be equal to cost";
@@ -1068,7 +1071,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function printReturnPur($vou)
+        public
+        function printReturnPur($vou)
         {
             
             echo "<br/><form method = 'POST' class='embossed'>";
@@ -1159,7 +1163,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             }
         }
         
-        public function purchaseReturn($id, $products, $d, $cost)
+        public
+        function purchaseReturn($id, $products, $d, $cost)
         {
             if ($cost <= $d) {
                 echo "<p class='red'>Note: Discount cant be equal to cost</p>";
@@ -1205,25 +1210,29 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function search_staff($s)
+        public
+        function search_staff($s)
         {
             $query = "SELECT * FROM staff WHERE name LIKE '%$s%' ORDER BY name;";
             return $this->get_custom_select_query($query, 5);
         }
         
-        public function search_party($s)
+        public
+        function search_party($s)
         {
             $query = "SELECT * FROM party LEFT JOIN party_adress USING (idparty) LEFT JOIN party_phone USING (idparty) LEFT JOIN party_email USING (idparty)  WHERE name LIKE '%$s%' OR adress LIKE '%$s%' OR phone LIKE '%$s%' ORDER BY name;";
             return $this->get_custom_select_query($query, 5);
         }
         
-        public function search_product($s)
+        public
+        function search_product($s)
         {
             $query = "SELECT idproduct,name,stock,unite FROM product LEFT JOIN product_details USING (idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct)  WHERE name LIKE '%$s%' ORDER BY name;";
             return $this->get_custom_select_query($query, 4);
         }
         
-        public function search_sell($s)
+        public
+        function search_sell($s)
         {
             $query1 = "SELECT idselles,name,date FROM (SELECT * FROM selles s WHERE idselles LIKE '%$s%') as s LEFT JOIN party USING (idparty);";
             return $res1 = $this->get_custom_select_query($query1, 3);
@@ -1231,14 +1240,16 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             
         }
         
-        public function search_pur($s)
+        public
+        function search_pur($s)
         {
             $query2 = "SELECT idpurchase,recipt,name,date FROM (SELECT * FROM purchase_recipt WHERE recipt LIKE '%$s%') as p LEFT JOIN purchase USING (idpurchase) LEFT JOIN party USING(idparty);";
             return $res1 = $this->get_custom_select_query($query2, 4);
             
         }
         
-        public function changecss($idstaff, $newcss)
+        public
+        function changecss($idstaff, $newcss)
         {
             $q = mysqli_query($this->dtb_con, "UPDATE  user SET css='$newcss' WHERE idstaff='$idstaff'");
             if ($q)
@@ -1247,7 +1258,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
                 return 0;
         }
         
-        public function changepass($idstaff, $newpass)
+        public
+        function changepass($idstaff, $newpass)
         {
             $q = mysqli_query($this->dtb_con, "UPDATE  user SET pass='$newpass' WHERE idstaff='$idstaff'");
             if ($q)
@@ -1256,7 +1268,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
                 return 0;
         }
         
-        public function get_particular_product_overview($id, $date1, $date2)
+        public
+        function get_particular_product_overview($id, $date1, $date2)
         {
             
             $query = sprintf("SELECT name,sell, purchase FROM (SELECT * FROM product WHERE idproduct = %d) AS pro LEFT JOIN product_details USING(idproduct);", $id);
@@ -1276,7 +1289,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $this->get_custom_select_query($query, 4);
         }
         
-        public function get_finished_product_overview($date1, $date2)
+        public
+        function get_finished_product_overview($date1, $date2)
         {
             
             $query = sprintf("SELECT date,pt.name,pr.name,sd.unite,mu.unite,sd.rate FROM (SELECT * FROM selles WHERE date BETWEEN '$date1' AND '$date2') as s LEFT JOIN party as pt USING (idparty) LEFT JOIN selles_details as sd USING(idselles) LEFT JOIN product as pr USING(idproduct) LEFT JOIN product_details as pd USING(idproduct) LEFT JOIN mesurment_unite as mu USING(idunite) ORDER BY date DESC,pt.name,pr.name ;");
@@ -1284,7 +1298,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $info = $this->get_custom_select_query($query, 6);
         }
         
-        public function get_raw_product_overview($date1, $date2)
+        public
+        function get_raw_product_overview($date1, $date2)
         {
             
             $query = sprintf("SELECT date,pt.name,pr.name,sd.unite,mu.unite,sd.rate FROM (SELECT * FROM purchase WHERE date BETWEEN '$date1' AND '$date2') as s LEFT JOIN party as pt USING (idparty) LEFT JOIN purchase_details as sd USING(idpurchase) LEFT JOIN product as pr USING(idproduct) LEFT JOIN product_details as pd USING(idproduct) LEFT JOIN mesurment_unite as mu USING(idunite) ORDER BY date DESC,pt.name,pr.name ;");
@@ -1292,7 +1307,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $info = $this->get_custom_select_query($query, 6);
         }
         
-        public function update_stock($id, $date, $st, $cur)
+        public
+        function update_stock($id, $date, $st, $cur)
         {
             mysqli_query($this->dtb_con, 'START TRANSACTION');
             $flag = $this->insert_query('product_input', array('date', 'idproduct', 'stock'), array($date, $id, $st), array('s', 'd', 'd'));
@@ -1308,7 +1324,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function update_fac_stock($id, $date, $st, $cur)
+        public
+        function update_fac_stock($id, $date, $st, $cur)
         {
             mysqli_query($this->dtb_con, 'START TRANSACTION');
             $flag = $this->insert_query('product_input', array('date', 'idproduct', 'stock', 'type'), array($date, $id, $st, 1), array('s', 'd', 'd', 'd'));
@@ -1324,7 +1341,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function delete_product_input($p, $s)
+        public
+        function delete_product_input($p, $s)
         {
             
             $id = $this->get_custom_select_query("SELECT idproduct FROM product_input WHERE idupdate = $p", 1);
@@ -1361,7 +1379,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function print_party_overview($id, $encptid, $name, $date1 = null, $date2 = null)
+        public
+        function print_party_overview($id, $encptid, $name, $date1 = null, $date2 = null)
         {
             $inp = new html();
             if ($date1 && $date2) {
@@ -1556,7 +1575,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             echo "<br/><img src='images/blank1by1.gif'  alt='Blank' onload='hideAllButZero(4);' class='rightflotingnoborder'>";
         }
         
-        public function party_adv_due($id)
+        public
+        function party_adv_due($id)
         {
             
             $query1 = sprintf("SELECT sum(ammount) FROM (SELECT * FROM party_payment WHERE idparty = %d) as pp LEFT JOIN transaction USING(id);", $id);
@@ -1576,7 +1596,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $total_transaction + $total_purchase - $total_sell;
         }
         
-        public function update_party($id, $name, $p1, $p2, $adrs, $type)
+        public
+        function update_party($id, $name, $p1, $p2, $adrs, $type)
         {
             $flag = $this->update_column('party', array('name'), array($name), array('s'), 'idparty', '=', $id);
             if ($flag) {
@@ -1607,7 +1628,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return $flag;
         }
         
-        public function add_salary_pay($date, $emp, $m, $y, $sal, $cmnt = 'Sallary')
+        public
+        function add_salary_pay($date, $emp, $m, $y, $sal, $cmnt = 'Sallary')
         {
             $id = $this->get_last_id('transaction', 'id');
             
@@ -1620,12 +1642,12 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             
             
             if ($cash < $sal) {
-                echo "You dont have enough money (" . money($am) . ") in cash. You have " . $cash . "<br/>";
+                echo "You dont have enough money (" . money($amount) . ") in cash. You have " . $cash . "<br/>";
                 return false;
             }
-            $am = -$sal;
+            $amount = -$sal;
             mysqli_query($this->dtb_con, "START TRANSACTION");
-            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
+            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $amount), array('d', 's', 'd', 'd'));
             if ($flag) {
                 $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
             }
@@ -1644,7 +1666,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             }
         }
         
-        public function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
+        public
+        function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
         {
             
             $cols = array('id', 'idstaff', 'month', 'year');
@@ -1661,13 +1684,13 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             
             
             if ($cash < $bon) {
-                echo "You dont have enough money (" . money($am) . ") in cash. You have " . money($cash) . "<br/>";
+                echo "You dont have enough money (" . money($amount) . ") in cash. You have " . money($cash) . "<br/>";
                 return false;
             }
-            $am = -$bon;
+            $amount -= $bon;
             
             mysqli_query($this->dtb_con, "START TRANSACTION");
-            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $am), array('d', 's', 'd', 'd'));
+            $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $amount), array('d', 's', 'd', 'd'));
             if ($flag) {
                 $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
             }
@@ -1688,7 +1711,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             
         }
         
-        public function purchase_delete($purchase_id)
+        public
+        function purchase_delete($purchase_id)
         {
             $query = sprintf("SELECT idproduct,stock-unite FROM (SELECT idproduct, unite FROM purchase_details p WHERE idpurchase = %d) as pur LEFT JOIN stock USING(idproduct);", $purchase_id);
             $info = $this->get_custom_select_query($query, 2);
@@ -1710,7 +1734,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return false;
         }
         
-        public function selles_delete($sel_id)
+        public
+        function selles_delete($sel_id)
         {
             $query = sprintf("SELECT idproduct,stock+unite FROM (SELECT idproduct, unite FROM selles_details p WHERE idselles = %d) as sel LEFT JOIN stock USING(idproduct);", $sel_id);
             $info = $this->get_custom_select_query($query, 2);
@@ -1732,7 +1757,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return false;
         }
         
-        public function editProduct($id, $name, $mt, $pt, $price)
+        public
+        function editProduct($id, $name, $mt, $pt, $price)
         {
             
             mysqli_query($this->dtb_con, 'START TRANSACTION');
@@ -1763,7 +1789,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             
         }
         
-        public function getPrevBalance($date)
+        public
+        function getPrevBalance($date)
         {
             $query = sprintf("SELECT ammount FROM transaction WHERE date < '%s';", $date);
             $bl = $this->get_custom_select_query($query, 1);
@@ -1783,7 +1810,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
          * @param $id
          * @return int
          */
-        public function deleteTransaction($id)
+        public
+        function deleteTransaction($id)
         {
             $q = mysqli_query($this->dtb_con, "DELETE FROM transaction WHERE id='$id'");
             if ($q)
@@ -1796,7 +1824,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
          * @param $id
          * @return mixed
          */
-        public function current_stock($id)
+        public
+        function current_stock($id)
         {
             $query = sprintf("SELECT stock FROM stock WHERE idproduct = %d", $id);
             $res = $this->get_custom_select_query($query, 1);
@@ -1809,7 +1838,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
          * @param $yr
          * @return bool|mysqli_result
          */
-        public function delete_attendense($id, $mon, $yr)
+        public
+        function delete_attendense($id, $mon, $yr)
         {
             $query = sprintf("DELETE FROM staff_report WHERE idstaff = %d AND rep_month = %d AND rep_year = %d", $id, $mon, $yr);
             return mysqli_query($this->dtb_con, $query);
@@ -1822,7 +1852,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
          * @param $date
          * @return bool
          */
-        public function transfarProduct($product, $num, $type, $date)
+        public
+        function transfarProduct($product, $num, $type, $date)
         {
             
             
@@ -1845,7 +1876,8 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             return false;
         }
         
-        public function print_money_receipt($transaction_id, $party_id)
+        public
+        function print_money_receipt($transaction_id, $party_id)
         {
             $sql = sprintf("SELECT party.name client, adress address, serial, transaction.date date,
        ammount amount, transaction.medium is_cash, bank,branch, cheque.date cheque_date, ac ac_no, cheque_no cheque
@@ -1864,7 +1896,8 @@ WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
             }
         }
         
-        public function update_party_balance($party_id = 0, $transaction_type = 0, $medium = 0, $amount = 0)
+        public
+        function update_party_balance($party_id = 0, $transaction_type = 0, $medium = 0, $amount = 0)
         {
             /**
              *  Transaction Type = 0   then minus from party and add to company
@@ -1874,11 +1907,25 @@ WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
             
             $company_current_balance = $this->get_custom_select_query(sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE, $medium), 1);
             
-            d($party_current_balance, $company_current_balance);
-            die();
-            /* if ($transaction_type == 1) {
-     
-             }*/
+            $party_current_balance = $party_current_balance[0][0];
+            $company_current_balance = $company_current_balance[0][0];
+            
+            if ($transaction_type == 1) {
+                $party_current_balance += $amount;
+                $company_current_balance -= $amount;
+            } elseif ($transaction_type == 0) {
+                $party_current_balance -= $amount;
+                $company_current_balance += $amount;
+            } else {
+            
+            }
+            //update account
+            if ($this->update_column('ac_balance', array('balance'), array($party_current_balance), array('f'), "idparty","=", $party_id, " AND medium = $medium") == 1) {
+                if ($this->update_column('ac_balance', array('balance'), array($company_current_balance), array('f'), "idparty", " = ",  BALANCE ,  " AND medium = $medium") == 1) {
+                    return TRUE;
+                }
+                return FALSE;
+            }
         }
     }
 
