@@ -111,9 +111,6 @@ foreach ($all_info as $a) {
             echo "</a>";
         echo "</td>";
     }
-   
-
-
 
     if ($a[5] > 0) {
         echo "<td class='text-right' >" . money($a[5]) . "</td>";
@@ -125,7 +122,7 @@ foreach ($all_info as $a) {
     echo "</tr>";
 }
 echo "<tr>";
-echo "<th colspan='4' class='text-right' >Total</th>";
+echo "<th colspan='5' class='text-center' >Total</th>";
 echo "<th class='text-right' >" . money($due_total) . "</th>";
 echo "<th  class='text-right' >" . money($advance_total) . "</th>";
 echo "</tr>";
