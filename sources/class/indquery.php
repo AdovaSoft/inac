@@ -917,7 +917,7 @@ class indquery extends query
         echo "<br/><form method = 'POST' class='embossed'>";
         $query_pro = sprintf("SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM selles_details WHERE idselles = %d) as selles LEFT JOIN product USING (idproduct);", $vou);
         $query_det = sprintf("SELECT name,date,discount, driver,vehicle, company FROM (SELECT * FROM selles s WHERE idselles = %d) as sell 
-LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idselles) LEFT JOIN party USING (idparty);", $vou);
+        LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idselles) LEFT JOIN party USING (idparty);", $vou);
 
         $inp = new html();
 
@@ -1171,17 +1171,17 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         $flag = $this->update_column('purchase_discount', array('discount'), array($d), array('d'), 'idpurchase', '=', $id);
 
         if (count($products) > 0) {
-
-
+            
             foreach ($products as $p) {
                 if ($flag) {
+
                     if (0 == $p[2] || $p[2] == null) {
                         $query = sprintf("DELETE FROM purchase_details WHERE idpurchase = %d and idproduct = %d;", $id, $p[0]);
                         $flag = mysqli_query($this->dtb_con, $query);
                         if ($flag) {
                             $flag = $this->update_column('stock', array('stock'), array('stock + ' . $p[1]), array('d'), 'idproduct', '=', $p[0]);
                         }
-                    } else if ($p[1] > $p[2]) {
+                    } elseif ($p[1] > $p[2]) {
                         $flag = $this->update_column('stock', array('stock'), array('stock - ' . ($p[1] - $p[2])), array('d'), 'idproduct', '=', $p[0]);
                         if ($flag) {
                             $query = sprintf("UPDATE purchase_details SET unite = %d, rate = %f WHERE idpurchase = %d AND idproduct = %d", $p[2], $p[3], $id, $p[0]);
