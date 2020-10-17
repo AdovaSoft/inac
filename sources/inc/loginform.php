@@ -38,5 +38,5 @@
   </body>
 <?php
 //don't render more html
-    exit(0);
+exit(0);
 ?>

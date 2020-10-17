@@ -1,26 +1,26 @@
 <?php
-    
-    $transaction_id = $inp->value_pgd('transaction');
-    $party_id = $inp->value_pgd('party');
-    
-    $money_receipt = $qur->print_money_receipt($transaction_id, $party_id);
-    if (count($money_receipt) > 2) {
-        extract($money_receipt);
-    } else {
-        header("Location: print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$transaction_id&party=$party_id");
-    }
-    //d($money_receipt);
-    /*$serial = '1232456789';
-    
-    $client = 'Mohammad Hafijul Islam';
-    $address = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
-    $amount = '2000000.56';
-    $is_cash = false;
-    $cheque = 123456789;
-    $chaque_date = strtotime("+15days");
-    $bank = "Dutch Bangla Bank Ltd.";
-    $branch = "Mohammadpur";
-    $ac_no = "123456789";*/
+
+$transaction_id = $inp->value_pgd('transaction');
+$party_id = $inp->value_pgd('party');
+
+$money_receipt = $qur->print_money_receipt($transaction_id, $party_id);
+if (count($money_receipt) > 2) {
+    extract($money_receipt);
+} else {
+    header("Location: print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$transaction_id&party=$party_id");
+}
+//d($money_receipt);
+/*$serial = '1232456789';
+
+$client = 'Mohammad Hafijul Islam';
+$address = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+$amount = '2000000.56';
+$is_cash = false;
+$cheque = 123456789;
+$chaque_date = strtotime("+15days");
+$bank = "Dutch Bangla Bank Ltd.";
+$branch = "Mohammadpur";
+$ac_no = "123456789";*/
 ?>
 <style>
   td:first-of-type {
@@ -51,8 +51,8 @@
       <div style="margin: auto; font-size: 2rem; padding: 30px">
         Amount:
         <span style="border: 2px solid black; padding: 15px;"><?php
-                $fmt = numfmt_create('en_IN', NumberFormatter::CURRENCY);
-                echo numfmt_format_currency($fmt, abs($amount), "BDT") . "\n";
+            $fmt = numfmt_create('en_IN', NumberFormatter::CURRENCY);
+            echo numfmt_format_currency($fmt, abs($amount), "BDT") . "\n";
             ?></span>
       </div>
     </th>
@@ -63,17 +63,17 @@
     </th>
     <td colspan="3">
         <?php
-            $amount = explode('.', $amount);
-            $taka = abs($amount[0]);
-            $paisa = abs($amount[1]);
-            $fmt = numfmt_create('en_IN', NumberFormatter::SPELLOUT);
-            $taka_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $taka)));
-            $paisa_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $paisa)));
-            
-            if ($paisa != 0)
-                printf("%s Taka And %s Poysha Only", $taka_spell, $paisa_spell);
-            else
-                printf("%s Taka Only", $taka_spell);
+        $amount = explode('.', $amount);
+        $taka = abs($amount[0]);
+        $paisa = abs($amount[1]);
+        $fmt = numfmt_create('en_IN', NumberFormatter::SPELLOUT);
+        $taka_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $taka)));
+        $paisa_spell = ucwords(str_replace('-', ' ', numfmt_format($fmt, $paisa)));
+
+        if ($paisa != 0)
+            printf("%s Taka And %s Poysha Only", $taka_spell, $paisa_spell);
+        else
+            printf("%s Taka Only", $taka_spell);
         ?>
     </td>
   </tr>
