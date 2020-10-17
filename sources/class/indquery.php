@@ -1864,14 +1864,11 @@ WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
             $flag = $this->insert_query('transaction_receipt', array('id', 'idparty'), array($transaction_id, $party_id), array('d', 'd'));
             return [];
         }
-
-        /**
-         *  else {
-         * //INSERT INTO `money_receipt`(`serial`, `id`, `idparty`) VALUES ([value-1],[value-2],[value-3])
-         * $this->insert_query('money_receipt', array('id', 'idparty'), array($tra))
-         * }
-         */
     }
 
+    public function update_party_balance($party_id, $transaction_type, $medium, $amount)
+    {
+        
+    }
 }
 
