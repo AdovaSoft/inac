@@ -49,7 +49,7 @@ if (isset($_POST['searchword'])) {
                 echo "</a>";
                 echo "</td>";
 
-                echo "<td width='50%'>";
+                echo "<td width='50%' class='text-left'>";
                 echo "<a href='index.php?e=" . $encptid . "&page=sells&sub=overview&id=" . $sell_results[$i][0] . "'>";
                 echo esc($sell_results[$i][1], true);
                 echo "</a>";
