@@ -1,19 +1,19 @@
 <?php
-if (isset($_GET['say'])) {
-    if ($_GET['say'] == 1) {
-        $custom_message = "<h3 class='green'>Theme Changed successfully.</h3>";
-    } elseif ($_GET['say'] == 2) {
-        $custom_message = "<h3 class='red'>Could not change theme.</h3>";
-    } elseif ($_GET['say'] == 3) {
-        $custom_message = "<h3 class='faintred'>Wrong Password.</h3>";
-    } elseif ($_GET['say'] == 4) {
-        $custom_message = "<h3 class='faintgreen'>Retyped password Mismatch.</h3>";
-    } elseif ($_GET['say'] == 5) {
-        $custom_message = "<h3 class='faintred'>Please fill all the fields.</h3>";
+    if (isset($_GET['say'])) {
+        if ($_GET['say'] == 1) {
+            $custom_message = "<h3 class='green'>Theme Changed successfully.</h3>";
+        } elseif ($_GET['say'] == 2) {
+            $custom_message = "<h3 class='red'>Could not change theme.</h3>";
+        } elseif ($_GET['say'] == 3) {
+            $custom_message = "<h3 class='faintred'>Wrong Password.</h3>";
+        } elseif ($_GET['say'] == 4) {
+            $custom_message = "<h3 class='faintgreen'>Retyped password Mismatch.</h3>";
+        } elseif ($_GET['say'] == 5) {
+            $custom_message = "<h3 class='faintred'>Please fill all the fields.</h3>";
+        }
+    } else {
+        $custom_message = "<h3 class='blue'>Please fill the fields.</h3>";
     }
-} else {
-    $custom_message = "<h3 class='blue'>Please fill the fields.</h3>";
-}
 ?>
 <h2>Change Password</h2>
 <br/>

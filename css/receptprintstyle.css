@@ -27,7 +27,7 @@ table.table {
     border: 1px solid black;
 }
 
-tr , td, th {
+tr, td, th {
     border: 1px solid black;
     padding: 5px;
     vertical-align: middle;
@@ -36,6 +36,7 @@ tr , td, th {
 th {
     text-align: center;
 }
+
 .text-right {
     text-align: right !important;
 }
@@ -47,6 +48,7 @@ th {
 .text-center {
     text-align: center !important;
 }
+
 td:first-of-type {
     padding-left: 8px;
     padding-right: 8px;

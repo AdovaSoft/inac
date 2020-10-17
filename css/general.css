@@ -224,6 +224,7 @@ a img {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
+
 .table-wrap {
     display: inline-block;
     padding: 15px;
@@ -352,15 +353,17 @@ table.dataTable tbody tr {
 .table {
     width: 100% !important;
 }
+
 .table th:first-of-type {
     text-align: left !important;
     padding-left: 50px !important;
 }
+
 /*.table td:last-of-type {
     text-align: right !important;
     padding-right: 50px !important;
 }*/
-.table thead>tr th  thead>tr td {
+.table thead > tr th thead > tr td {
     text-align: center !important;
     font-weight: bold !important;
 }
@@ -376,9 +379,11 @@ table.dataTable tbody tr {
     top: 0;
     width: 100% !important;
 }
-.green , .red, .blue {
+
+.green, .red, .blue {
     font-weight: bold;
 }
+
 .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info,
 .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_filter {
     margin-bottom: 16px;
@@ -392,7 +397,7 @@ table.dataTable tbody tr {
     max-width: 250px !important;
     border-width: 3px;
     border-style: solid;
-    padding:5px 10px;
+    padding: 5px 10px;
     color: white;
     border-radius: 10px;
     font-size: 20px;
@@ -405,9 +410,10 @@ table.dataTable tbody tr {
 .text-center {
     text-align: center !important;
 }
+
 .text-right {
-     text-align: right !important;
- }
+    text-align: right !important;
+}
 
 .pl-50 {
     padding-left: 50px !important;
@@ -433,6 +439,7 @@ form.embossed {
     font-size: 1.2rem;
     font-family: Arial;
 }
+
 .dt-center .pagination {
     justify-content: center !important;
 }

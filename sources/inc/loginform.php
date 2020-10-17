@@ -13,8 +13,8 @@
           <th width="25%">User Name :</th>
           <td>
             <input type="text" placeholder="Enter Username"
-                     size="255" class="full-width" minlength="3" maxlength="255"
-            name="username">
+                   size="255" class="full-width" minlength="3" maxlength="255"
+                   name="username">
           </td>
         </tr>
         <tr style="padding-top: 20px;">
@@ -33,9 +33,10 @@
       </table>
     </form>
   </center>
-  <br/><p class="footer">Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></p>
+  <br/>
+  <p class="footer">Developed by <a href="http://adovasoft.com/" target="_blank">Adova Soft</a></p>
   </body>
 <?php
 //don't render more html
-exit(0);
+    exit(0);
 ?>

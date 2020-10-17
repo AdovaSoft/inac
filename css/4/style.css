@@ -143,11 +143,12 @@ body {
 .faintgreen {
     color: #116622;
 }
+
 /*---------------------data tabel style --------------*/
 .dataTables_wrapper .dataTables_length select,
 .dataTables_wrapper .dataTables_filter input {
     border-color: #737373;
     background-color: #FFFFFF;
-	color:#000000;
+    color: #000000;
 
 }

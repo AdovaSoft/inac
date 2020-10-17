@@ -1,6 +1,6 @@
 <?php
-//initialize system file
-include("./sources/inc/system.php");
+    //initialize system file
+    include("./sources/inc/system.php");
 
 ?>
 <!DOCTYPE html>
@@ -11,11 +11,11 @@ include("./sources/inc/system.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="./css/general.css">
-
+    
     <?php if (!is_null($_SESSION['theme'])) : ?>
       <link rel="stylesheet" type="text/css" href="./css/<?= $_SESSION['theme'] ?>/style.css">
     <?php endif; ?>
-
+  
   <!-- JavaScript -->
   <script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
   <script src='./js/hidecheck.js'></script>
@@ -24,14 +24,14 @@ include("./sources/inc/system.php");
   <!-- dataTables -->
   <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
     <?php
-    //lunch security or login form
-    include("./sources/inc/security.php");
+        //lunch security or login form
+        include("./sources/inc/security.php");
     ?>
 </head>
 <body onLoad="startTime();">
 <div id="topmenu">
     <?php
-    include("sources/inc/topmenu.php");
+        include("sources/inc/topmenu.php");
     ?>
 </div>
 <div id="ttd">
@@ -47,10 +47,10 @@ include("./sources/inc/system.php");
     <br/>
     <h1 id="banner"><?= COMPANY ?></h1><br/>
       <?php
-      $page = isset($_GET['page']) ? $_GET['page'] : NULL;
-      $sub = isset($_GET['sub']) ? $_GET['sub'] : NULL;
-      $section = "contents";
-      include("sources/inc/content.php");
+          $page = isset($_GET['page']) ? $_GET['page'] : NULL;
+          $sub = isset($_GET['sub']) ? $_GET['sub'] : NULL;
+          $section = "contents";
+          include("sources/inc/content.php");
       ?>
     <br/>
   </div>
@@ -58,7 +58,7 @@ include("./sources/inc/system.php");
 <center>
   <div id="ending">
       <?php
-      include("sources/inc/ending.php");
+          include("sources/inc/ending.php");
       ?>
   </div>
 </center>

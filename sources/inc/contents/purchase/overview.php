@@ -1,15 +1,15 @@
 <h2>Purchase Overview</h2>
 <br/>
 <?php
-echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
-echo "<h4 class='blue'>Select Purchase Supplier Voucher</h4><br/>";
-echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-$qur->get_drop_down('purchase_recipt', 'recipt','idpurchase', 'id', $inp->value_pgd('id'), 'full-width');
-echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
-echo "</form></div>";
-
+    echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
+    echo "<h4 class='blue'>Select Purchase Supplier Voucher</h4><br/>";
+    echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
+    $qur->get_drop_down('purchase_recipt', 'recipt', 'idpurchase', 'id', $inp->value_pgd('id'), 'full-width');
+    echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
+    echo "</form></div>";
+    
     $vou = $inp->value_pgd('id');;
-   $query_recept = sprintf("SELECT recipt FROM purchase_recipt WHERE idpurchase = '%s'", $vou);
+    $query_recept = sprintf("SELECT recipt FROM purchase_recipt WHERE idpurchase = '%s'", $vou);
     $recept = $qur->get_custom_select_query($query_recept, 1);
     $query_pro = sprintf("SELECT idproduct, p.unite, rate, name, mesurment_unite.unite FROM (SELECT idproduct, unite, rate, name FROM (SELECT idproduct,unite,rate FROM purchase_details WHERE idpurchase = %d) as purchase LEFT JOIN product USING (idproduct)) as p LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite);", $vou);
     $sell_pro = $qur->get_custom_select_query($query_pro, 5);

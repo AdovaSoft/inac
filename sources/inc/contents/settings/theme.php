@@ -1,16 +1,16 @@
 <?php
-$custom_message = '';
-if (isset($_GET['say'])) {
-    if ($_GET['say'] == 1) {
-        $custom_message = "<h3 class='green'>Theme Changed successfully.</h3>";
-    } elseif ($_GET['say'] == 2) {
-        $custom_message = "<h3 class='red'>Could not change theme.</h3>";
-    } elseif ($_GET['say'] == 3) {
-        $custom_message = "<h3 class='faintred'>Please Select a theme then click change.</h3>";
+    $custom_message = '';
+    if (isset($_GET['say'])) {
+        if ($_GET['say'] == 1) {
+            $custom_message = "<h3 class='green'>Theme Changed successfully.</h3>";
+        } elseif ($_GET['say'] == 2) {
+            $custom_message = "<h3 class='red'>Could not change theme.</h3>";
+        } elseif ($_GET['say'] == 3) {
+            $custom_message = "<h3 class='faintred'>Please Select a theme then click change.</h3>";
+        }
+    } else {
+        $custom_message = "<h3 class='blue'>Please Select a theme.</h3>";
     }
-} else {
-    $custom_message = "<h3 class='blue'>Please Select a theme.</h3>";
-}
 ?>
 <h2>Theme Settings</h2>
 <br/>
@@ -18,11 +18,11 @@ if (isset($_GET['say'])) {
   <img src="images/blank1by1.gif" class="customwidth" alt="" width="350px"/>
   <br/>
     <?php
-    echo $custom_message;
-    if (isset($_GET['say']) && $_GET['say'] == 1) {
-        //echo '<br/><input type="button"  onclick="location.reload();" name="something" value="Refresh Page" />';
-    } ?>
-
+        echo $custom_message;
+        if (isset($_GET['say']) && $_GET['say'] == 1) {
+            //echo '<br/><input type="button"  onclick="location.reload();" name="something" value="Refresh Page" />';
+        } ?>
+  
   <br/><select name="newcss" class="full-width">
     <option value="<?= $_SESSION['theme'] ?>">Current theme</option>
     <option value="1">Blue Sky</option>

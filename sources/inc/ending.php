@@ -6,6 +6,6 @@
 <a href="index.php?e=<?= $encptid ?>&&page=staff">Staff</a>
 <a href="index.php?e=<?= $encptid ?>&&page=party">Party</a>
 <?php
-echo "<a href='logout.php?e=" . $encptid . "'>Logout</a>";
+    echo "<a href='logout.php?e=" . $encptid . "'>Logout</a>";
 ?>
 <br/><small>Developed by <a href="http://adovasoft.com/" target="_blank">AdovaSoft</a></small>

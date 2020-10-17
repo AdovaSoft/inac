@@ -5,9 +5,9 @@ function calculate(multiplier, multiplicand, sliced) {
 }
 
 function process_grand_total(sum) {
-        $(".total_td").each(function () {
-            sum += parseFloat($(this).html());
-        });
+    $(".total_td").each(function () {
+        sum += parseFloat($(this).html());
+    });
     $("#grand_total").html(sum.toFixed(2));
     netCharge();
 }

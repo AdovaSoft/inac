@@ -1,5 +1,5 @@
 function printpage() {
-   /* window.print();
-    window.close();
-    */
+    /* window.print();
+     window.close();
+     */
 }
