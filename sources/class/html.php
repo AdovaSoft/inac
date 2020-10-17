@@ -198,13 +198,13 @@ class html
      */
     public function check($label, $a)
     {
-        if (isset($_POST['a']) && $_POST[$a] != null) {
+        if (isset($_POST[$a]) && !empty($_POST[$a])) {
             return true;
+        } else {
+            $title = (empty($label)) ? ucwords($a) : $label;
+            echo "$title is missing <br/>";
+            return false;
         }
-
-        if (isset($label))
-            echo $label . " is missing <br/>";
-        return false;
     }
 
     /**

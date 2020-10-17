@@ -283,16 +283,16 @@ class indquery extends query
         mysqli_query($this->dtb_con, 'START TRANSACTION');
         $id = $this->get_last_id('purchase', 'idpurchase');
         $flag = $this->insert_query('purchase', array('idpurchase', 'idparty', 'date'), array($id, $party, $date), array('d', 'd', 's'));
-        d("After Purchase Insert", $flag);
+        //d("After Purchase Insert", $flag);
         if ($flag == 1) {
             foreach ($sel_info as $info) {
                 if ($flag) {
                     $flag = $this->insert_query('purchase_details', array('idpurchase', 'idproduct', 'unite', 'rate'), array($id, $info[0], $info[1], $info[2]), array('d', 'd', 'd', 'f'));
-                    d("After Purchase Insert", $flag);
+                    //d("After Purchase Insert", $flag);
                     if ($flag) {
                         $query = sprintf("UPDATE stock SET stock = stock + %d WHERE idproduct = %d", $info[1], $info[0]);
                         $flag = mysqli_query($this->dtb_con, $query);
-                        d("After Stock Update", $flag);
+                        //d("After Stock Update", $flag);
 
                         if (!$flag) {
                             echo "Failed to update stock ";
@@ -308,36 +308,36 @@ class indquery extends query
 
         if ($flag == 1) {
             $flag = $this->insert_query('purchase_discount', array('idpurchase', 'discount'), array($id, $dis), array('d', 'd'));
-            d("After Discount Insert", $flag);
+            //d("After Discount Insert", $flag);
 
         }
         if ($flag == 1) {
             $flag = $this->insert_query('purchase_recipt', array('idpurchase', 'recipt'), array($id, $voc), array('d', 's'));
-            d("After Receipt Insert", $flag);
+            //d("After Receipt Insert", $flag);
 
         }
         if ($flag = 1) {
             $flag = $this->insert_query('purchase_delivery', array('idpurchase', 'cost'), array($id, $t), array('d', 'd'));
-            d("After Delievery Insert", $flag);
+            //d("After Delievery Insert", $flag);
 
         }
 
         $tid = $this->get_last_id('transaction', 'id');
         if ($flag) {
             $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($tid, $date, 1, -$t), array('d', 's', 'd', 'f'));
-            d("After Transaction Insert", $flag);
+            //d("After Transaction Insert", $flag);
 
 
         }
         if ($flag == 1) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($tid, 'Transport cost'), array('d', 's'));
-            d("After Comment Insert", $flag);
+            //d("After Comment Insert", $flag);
 
         }
 
         if ($flag == 1) {
             $flag = $this->insert_query("party_payment", array("id", "idparty"), array($tid, $party), array("d", "d"));
-            d("After Payment Insert", $flag);
+            //d("After Payment Insert", $flag);
 
         }
 
@@ -353,12 +353,20 @@ class indquery extends query
 
     public function addParty($name = '', $p1 = '', $p2 = '', $address = 'N/A', $email = '', $type = 1)
     {
+
         $id = $this->get_last_id("party", "idparty");
+        //d("NEW PARTY ID: ", $id);
         mysqli_query($this->dtb_con, 'START TRANSACTION');
+
         $flag = $this->insert_query('party', array('idparty', 'name'), array($id, $name), array('d', 's'));
+        //d("AFTER PARTY INSERT: ", $flag);
+
         if ($flag == 1) {
             $flag = $this->insert_query('party_adress', array('idparty', 'adress'), array($id, $address), array('d', 's'));
         }
+        //d("AFTER PARTY ADDRESS INSERT: ", $flag);
+
+
         if ($flag == 1) {
             if ($p1 != "") {
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p1), array('d', 's'));
@@ -367,20 +375,34 @@ class indquery extends query
                 $flag = $this->insert_query('party_phone', array('idparty', 'phone'), array($id, $p2), array('d', 's'));
             }
         }
+
+        //d("AFTER PHONE ENTRY: ", $flag);
+
         if ($flag == 1) {
             $flag = $this->insert_query('party_email', array('idparty', 'email'), array($id, $email), array('d', 's'));
         }
+        //d("AFTER EMAIL INSERT: ", $flag);
+
         if ($flag == 1) {
             $flag = $this->insert_query('party_type', array('idparty', 'type'), array($id, $type), array('d', 's'));
         }
+        //d("AFTER PARTY TYPE INSERT: ", $flag);
+
+        if ($flag == 1) {
+            $flag = $this->insert_query('ac_balance', array('idparty', 'title', 'medium', 'balance'), array($id, mysqli_real_escape_string($this->dtb_con, "$name 's Cash Balance"), 0, 0.000), array('d', 's', 'd', 'f'));
+            $flag = $this->insert_query('ac_balance', array('idparty', 'title', 'medium', 'balance'), array($id, mysqli_real_escape_string($this->dtb_con, "$name's Bank Balance"), 1, 0.000), array('d', 's', 'd', 'f'));
+        }
+        //d("AFTER PARTY BALANCE INSERT: ", $flag);
+
         if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
+            //d("AFTER FINAL COMMIT: ", $flag);
             return true;
         } else {
             mysqli_query($this->dtb_con, 'ROLLBACK');
+            //d("AFTER ROLLBACK: ", $flag);
             return false;
         }
-
     }
 
     public function addNewTran($date, $am, $ttype, $tmedium, $c)
@@ -597,7 +619,7 @@ class indquery extends query
         echo "<td>Sallary</td>";
         echo "<td>Last Paid</td>";
         echo "<td>Current</td>";
-        echo "<td>ammount</td>";
+        echo "<td>Amount</td>";
         echo "</tr>";
         $i = 0;
         foreach ($info as $staff) {
@@ -764,7 +786,7 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query('SELECT * FROM party WHERE idparty = ', 2);
+            $party = $this->get_custom_select_query('SELECT * FROM party', 2);
             $this->get_dropdown_array($party, 0, 1, 'party', null);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 1);
@@ -1948,4 +1970,3 @@ WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);
         }
     }
 }
-

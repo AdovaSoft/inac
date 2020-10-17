@@ -4,13 +4,14 @@
 
 include("sources/inc/usercheck.php");
 if (isset($_POST['ab'])) {
-    $flag = ($inp->check('name', 'n') && ($inp->check(null, 'p1') || $inp->check('phone number', 'p2')) && $inp->check('Address', 'a'));
-    if ($flag) {
+    $flag = ($inp->check('Fullname', 'n') && ($inp->check("Phone Number 1", 'p1')
+            || $inp->check('Phone Number 2', 'p2')) && $inp->check('Address', 'a'));
+    if ($flag == true) {
         $flag = $qur->addParty($_POST['n'], $_POST['p1'], $_POST['p2'], $_POST['a'], $_POST['em'], $_POST['t']);
         if ($flag) {
             echo "<h3 class='green'>Party Added successfully</h3>";
         } else {
-            echo "<h3 class='red'>failed</h3>";
+            echo "<h3 class='red'>Failed</h3>";
             unset($_POST['ab']);
         }
     } else {
