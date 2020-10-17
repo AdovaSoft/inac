@@ -440,7 +440,7 @@ class indquery extends query
 
         $new_transaction_id = $this->get_last_id('transaction', 'id');
 
-        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY type ORDER BY type;");
+        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY medium ORDER BY medium;");
 
         $balance = $this->get_custom_select_query($query, 2);
 
@@ -1163,7 +1163,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
     public function purchaseReturn($id, $products, $d, $cost)
     {
         if ($cost <= $d) {
-            echo "Discount cant be equal to cost";
+            echo "<p class='red'>Note: Discount cant be equal to cost</p>";
             return false;
         }
         mysqli_query($this->dtb_con, 'START TRANSACTION');
