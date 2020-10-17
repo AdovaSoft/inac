@@ -100,7 +100,7 @@ for ($i = 0; $i < count($res); $i++) {
 
     echo "<td>";
     if (isset($res[$i][5]))
-        echo date('d F, Y h:i:s A', strtotime($res[$i][5]));
+        echo date('h:i:s A', strtotime($res[$i][5]));
     else
         echo "-";
     echo "</td>";

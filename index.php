@@ -70,8 +70,7 @@ include("./sources/inc/system.php");
                 "sSearch": "Filter:"
             },
             "ordering": false,
-            "info": true,
-            "pagingType": "full_numbers"
+            "info": true
         });
     });
 </script>

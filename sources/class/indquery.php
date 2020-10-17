@@ -80,7 +80,7 @@ class indquery extends query
         echo "</tr>";
         echo "<tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'><br>Transport Cost (+): </th>";
+        echo "<th colspan='2' class='text-right'><br>Transport Cost: </th>";
         echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</tr>";
         echo "<tr>";
@@ -256,7 +256,7 @@ class indquery extends query
         echo "<td colspan='2'><br/><span id='grand_total' style='text-align:right;'></span></td>";
         echo "</tr>";
         echo "<tr>";
-        echo "<th colspan='2' class='text-right'><br>Transport Cost (+): </th>";
+        echo "<th colspan='2' class='text-right'><br>Transport Cost: </th>";
         echo "<td colspan='2'><br><input type='number'  name='t' value='" . $inp->value_pgd('t', '0') . "' style='margin-left: 0px; width: 95%'></td>";
         echo "</tr>";
         echo "<tr>";
