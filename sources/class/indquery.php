@@ -1617,11 +1617,11 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
     {
         $id = $this->get_last_id('transaction', 'id');
 
-        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY type ORDER BY type;");
+        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY medium ORDER BY medium;");
         $cols = array('id', 'idstaff', 'sal_month', 'sal_year');
 
         $balance = $this->get_custom_select_query($query, 1);
-
+        
         $cash = $balance[0][0];
 
 
