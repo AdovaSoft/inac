@@ -75,10 +75,10 @@ if (isset($_POST['searchword'])) {
 
                 echo "<td>";
                 echo "<br/><form method='POST'><input type='hidden' name='searchword' value='" . $_POST['searchword'] . "' required/>
-                <input type='hidden' name='pur_id' value='" . $purchase_results[$i][1] . "'/>
+                <input type='hidden' name='pur_id' value='" . $purchase_results[$i][0] . "'/>
                 <input type='submit' name='delete_purchase' value='Delete'/></form> ";
                 echo "<form method='POST' action='index.php?e=" . $encptid . "&&page=purchase&&sub=return'>
-                <input type='hidden' name='v' value='" . $purchase_results[$i][1] . "'/>
+                <input type='hidden' name='v' value='" . $purchase_results[$i][0] . "'/>
                 <input type='submit' name='ab' value='Edit'/></form>";
                 echo "<form method='POST' action='print.php?e=" . $encptid . "&&page=purchase&&sub=purchase' target='_blank'>
                 <input type='hidden' name='id' value='" . $purchase_results[$i][0] . "'/>

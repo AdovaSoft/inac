@@ -3,7 +3,7 @@
 <?php
 include("sources/inc/usercheck.php");
 echo "<form method = 'POST' class='embossed'>";
-echo "Voucher no : <input type='text' name='v' value='" . $inp->value_pgd('v') . "'>";
+echo "System Voucher no : <input type='text' name='v' value='" . $inp->value_pgd('v') . "'>";
 echo "&nbsp;&nbsp;&nbsp;<input type='submit' name='ab' value='Edit'>";
 echo "</form>";
 

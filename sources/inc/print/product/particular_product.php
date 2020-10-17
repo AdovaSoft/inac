@@ -45,7 +45,7 @@ if ($n > 0) {
         echo $inp->date_convert($i[0]);
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='text-left'>";
         echo esc($i[1]);
         echo "</td>";
 
