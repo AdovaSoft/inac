@@ -11,7 +11,10 @@ if (isset($_GET['e'])) {
     $checkingdata = login_check_session($username, $pass);
 
     if ($checkingdata != 0) {
-        $_SESSION['theme'] = $checkingdata[0];
+        $_SESSION['theme'] = $checkingdata['css'];
+        $_SESSION['name'] = $checkingdata['name'];
+        $_SESSION['post'] = $checkingdata['post'];
+
         $idstaff = $_SESSION["user" . $encptid . "idstaff"];
         $usertype = $_SESSION["user" . $encptid . "usertype"];
         include("sources/db/_db_func.php");
@@ -21,16 +24,19 @@ if (isset($_GET['e'])) {
         $loginmessage = "<h2 class='blue'>Please Login.</h2>";
         include("sources/inc/loginform.php");
     }
-} elseif (isset($username) & isset($userpass) & isset($_POST['submit'])) {
+}
+elseif (isset($username) & isset($userpass) & isset($_POST['submit'])) {
     include("sources/db/login_db_fn.php");
     $checkingdata = login_check($username, $_POST['userpass']);
     if ($checkingdata != 0) {
-        $idstaff = $checkingdata[0];
-        $pass = $checkingdata[1];
 
-        $usertype = $checkingdata[2];
-        $_SESSION['theme'] = $checkingdata[3];
+        $idstaff = $checkingdata['idstaff'];
+        $pass = $checkingdata['pass'];
 
+        $usertype = $checkingdata['type'];
+        $_SESSION['theme'] = $checkingdata['css'];
+        $_SESSION['name'] = $checkingdata['name'];
+        $_SESSION['post'] = $checkingdata['post'];
         $username = $_POST['username'];
 
         $encptid = md5($idstaff);
@@ -49,13 +55,16 @@ if (isset($_GET['e'])) {
         $loginmessage = "<h2 class='red'>Wrong ID or Password.</h2>";
         include("sources/inc/loginform.php");
     }
-} elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
+}
+elseif ((!isset($username) || !isset($userpass)) && isset($_POST['submit'])) {
     $loginmessage = "<h2 class='red'>Please fill all fields.</h2>";
     include("sources/inc/loginform.php");
 } elseif (isset($_GET['logout'])) {
+    session_reset();
     $loginmessage = "<h2 class='green'>Logged out successfully.</h2>";
     include("sources/inc/loginform.php");
 } else {
+    session_reset();
     $loginmessage = "<h2 class='blue'>Please login.</h2>";
     include("sources/inc/loginform.php");
 }

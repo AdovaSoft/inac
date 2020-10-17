@@ -8,5 +8,5 @@ ServerSignature Off
 SetEnv HOST localhost
 SetEnv USER root
 SetEnv PASS
-SetEnv DBASE websqflt_nas
+SetEnv DBASE agro_fresh
 </IfModule>

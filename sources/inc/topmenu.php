@@ -136,7 +136,14 @@
 </ul>
 
 <ul class="isolated">
-  <li><a href="index.php?e=<?= $encptid ?>&page=userinfo">User</a>
+  <li><a href="index.php?e=<?= $encptid ?>&page=userinfo">
+      <?php
+      if (!empty($_SESSION['name']))
+        echo ucwords($_SESSION['name']);
+      else
+        echo "User";
+      ?>
+    </a>
     <ul>
         <?php if ($usertype == ADMIN) : ?>
           <li><a href='index.php?e=<?= $encptid ?>&page=add_user'>Add User</a></li>

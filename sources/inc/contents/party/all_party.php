@@ -9,7 +9,7 @@ FROM party
 
 $party = $qur->get_custom_select_query($query, 5);
 // d($party);
-$all_info = null;
+$all_info = [];
 $due_total = 0;
 $advance_total = 0;
 $n = count($party);
@@ -64,58 +64,60 @@ echo "</th>";
 echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
-foreach ($all_info as $a) {
-    // d($a);
-    echo "<tr>";
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo esc($a[1]);
-    echo "</a>";
-    echo "</td>";
+if (count($all_info) > 0) {
+    foreach ($all_info as $a) {
+        // d($a);
+        echo "<tr>";
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        echo esc($a[1]);
+        echo "</a>";
+        echo "</td>";
 
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo esc($a[2]);
-    echo "</a>";
-    echo "</td>";
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        echo esc($a[2]);
+        echo "</a>";
+        echo "</td>";
 
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo esc($a[3], true);
-    if (isset($a[4])) {
-        echo ", ";
-        echo esc($a[4], true);
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        echo esc($a[3], true);
+        if (isset($a[4])) {
+            echo ", ";
+            echo esc($a[4], true);
+        }
+        echo "</a>";
+        echo "</td>";
+
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        echo esc($a[6]);
+        echo "</a>";
+        echo "</td>";
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        if ($a[5] < 0) {
+            echo money($a[5]);
+            $due_total += (-$a[5]);
+        } else {
+            echo "-";
+        }
+        echo "</a>";
+        echo "</td>";
+
+        echo "<td>";
+        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
+        if ($a[5] > 0) {
+            echo money($a[5]);
+            $advance_total = $advance_total + $a[5];
+        } else {
+            echo "-";
+        }
+        echo "</a>";
+        echo "</td>";
+        echo "</tr>";
     }
-    echo "</a>";
-    echo "</td>";
-
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    echo esc($a[6]);
-    echo "</a>";
-    echo "</td>";
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    if ($a[5] < 0) {
-        echo money($a[5]);
-        $due_total += (-$a[5]);
-    } else {
-        echo "-";
-    }
-    echo "</a>";
-    echo "</td>";
-
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
-    if ($a[5] > 0) {
-        echo money($a[5]);
-        $advance_total = $advance_total + $a[5];
-    } else {
-        echo "-";
-    }
-    echo "</a>";
-    echo "</td>";
-    echo "</tr>";
 }
 echo "</tbody>";
 echo "<tfoot>";

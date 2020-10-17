@@ -39,9 +39,9 @@ echo "<br/><form method = 'POST' class='embossed'>";
 echo "<h4 class='blue'>Select Party</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 if (isset($_POST['pt']))
-    $qur->get_dropdown_array($party, 0, 1, 'pt', $_POST['pt']);
+    $qur->get_dropdown_array($party, 0, 1, 'pt', $_POST['pt'], 'full-width', '', '', true);
 else
-    $qur->get_dropdown_array($party, 0, 1, 'pt', null);
+    $qur->get_dropdown_array($party, 0, 1, 'pt', null, 'full-width', false, '', true);
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Edit' />";
 echo "</form>";
 
@@ -54,7 +54,7 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         if (isset($_POST['n']))
             $inp->input_text('Name : ', 'n', $_POST['n']);
         else
-            $inp->input_text('Name : ', 'n', $party[0][1]);
+            $inp->input_text('Name : ', 'n', esc($party[0][1]));
         echo "<br/>";
         echo "Type : ";
         echo "<select name='t'>";

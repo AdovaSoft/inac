@@ -397,7 +397,7 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '', $is_product = false, $party_location = null)
+    public function get_dropdown_array($ar, $ind_sho, $ind_val, $name, $sel, $class = '', $is_product = false, $party_location = null, $is_required = false)
     {
         /**
          *  Product Query
@@ -405,11 +405,11 @@ class query
          * Party Query
          * [0-> ID, 1-> Party Name, 2  -> type]
          */
-        echo "<select name = '" . $name . "' class='" . $class . "' >";
-        echo "<option> Select an option</option>";
-        $n = count($ar);
+        echo "<select name='" . $name . "' class='" . $class . "'";
+        echo ($is_required == true) ? "required >" : ">";
+        echo "<option value=''> Select an option</option>";
+
         foreach ($ar as $item) {
-            // d($item);
             echo "<option value = '" . $item[$ind_sho] . "'";
 
             if ($sel == $item[$ind_sho])
