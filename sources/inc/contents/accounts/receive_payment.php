@@ -50,7 +50,7 @@
                 
             } else {
                 echo "<h3 class='red'>Ensure data about cheque</h3>";
-                $qur->recivePayment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
+                $qur->receive_payment($_GET['pt'], $_GET['pay_type'], $_GET['cost']);
             }
         } //for cash transaction
         
@@ -68,12 +68,12 @@
 							  <a href='print.php?e=$encptid&page=accounts&sub=money_receipt&transaction=$trans_id&party=$party_id' class='bigbutton'>Create Money Receipt</a>";
             } else if (isset($_GET['pt']) && isset($_GET['pay_type']) && isset($_GET['cost'])) {
                 echo "<h3 class='red'>Transaction Failed</h3>";
-                $qur->recivePayment($party_id, $payment_type, $payment_amount);
+                $qur->receive_payment($party_id, $payment_type, $payment_amount);
             } else {
                 echo "<h3 class='red'>Ensure data validity</h3>";
-                $qur->recivePayment($party_id, $payment_type, $payment_amount);
+                $qur->receive_payment($party_id, $payment_type, $payment_amount);
             }
         }
     } else {
-        $qur->recivePayment($party_id, $payment_type, $payment_amount);
+        $qur->receive_payment($party_id, $payment_type, $payment_amount);
     }

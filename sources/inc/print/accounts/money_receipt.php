@@ -61,7 +61,7 @@
     <th class="text-left">
       In Words:
     </th>
-    <td>
+    <td colspan="3">
         <?php
             $amount = explode('.', $amount);
             $taka = abs($amount[0]);

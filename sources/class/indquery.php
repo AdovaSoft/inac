@@ -448,7 +448,7 @@
             
             $bank = $balance[1][0]; //negative type -> 1
             
-            if ($ttype == -1) 1{
+            if ($ttype == -1) {
             
             if ($tmedium == false) {
                 if ($cash < $am) {
@@ -797,7 +797,7 @@
          * @param $type
          * @param $cost
          */
-        public function recivePayment($id = NULL, $type = NULL, $cost = 0.0)
+        public function receive_payment($id = NULL, $type = NULL, $cost = 0.0)
         {
             $comment = null;
             $inp = new html();
@@ -869,7 +869,6 @@
             echo "<br/>";
             echo "<br/>";
             if ($type == null) {
-                //$inp->input_radio('Suppliers : ', 'p_t', -1, 0);
                 echo "Suppliers : <input type='hidden' name='p_t' value='-1' >";
                 $comment = "";
             }
@@ -904,7 +903,7 @@
             echo "<br/>";
             echo "</div>";
             echo "<br/>";
-            $inp->input_text("Taka : ", 'amnt', $cost);
+            $inp->input_text("Taka : ", 'cost', $cost);
             echo "<br/>";
             $inp->input_text("Comment : ", 'cmnt', $comment);
             $inp->input_submit('ab', 'Save');
@@ -1324,7 +1323,6 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
             }
             return $flag;
         }
-        
         
         public function delete_product_input($p, $s)
         {
@@ -1850,7 +1848,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         public function print_money_receipt($transaction_id, $party_id)
         {
             $sql = sprintf("SELECT party.name client, adress address, serial, transaction.date date,
-       ammount amount, transaction.type is_cash, bank,branch, cheque.date cheque_date, ac ac_no, cheque_no cheque 
+       ammount amount, transaction.medium is_cash, bank,branch, cheque.date cheque_date, ac ac_no, cheque_no cheque
 FROM party INNER JOIN transaction_receipt USING(idparty) LEFT JOIN transaction USING(id)
 LEFT JOIN party_adress USING(idparty) LEFT JOIN cheque USING(id)
 WHERE party.idparty = %d AND transaction.id = %d", $party_id, $transaction_id);

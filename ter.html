@@ -1,26 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
+  <title>Agro Fresh</title>
   <meta charset="UTF-8">
-  <title><!DOCTYPE html>
-    <html lang="en-US">
-    <head>
-      <title>Agro Fresh</title>
-      <meta charset="UTF-8">
-      <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-      <link href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
-      <link href="./css/general.css" rel="stylesheet" type="text/css">
-      
-      <link href="./css/11/style.css" rel="stylesheet" type="text/css">
-      
-      <!-- JavaScript -->
-      <script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
-      <script src='./js/hidecheck.js'></script>
-      <script src='./js/timedateday.js'></script>
-      <script src='./js/slideupdown.js'></script>
-      <!-- dataTables -->
-      <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
-    </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="./vendors/DataTables-1.10.22/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="./css/general.css">
+  
+  <link rel="stylesheet" type="text/css" href="./css/11/style.css">
+  
+  <!-- JavaScript -->
+  <script src="./vendors/jQuery-1.12.4/jquery-1.12.4.js"></script>
+  <script src='./js/hidecheck.js'></script>
+  <script src='./js/timedateday.js'></script>
+  <script src='./js/slideupdown.js'></script>
+  <!-- dataTables -->
+  <script src="./vendors/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+</head>
 <body onLoad="startTime();">
 <div id="topmenu">
   <ul>
@@ -130,7 +126,8 @@
         <li><a href="index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=accounts&sub=invest_draw_report">Invest/Drawing
           Report</a></li>
         <li><a href="index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=accounts&sub=purchase_expense_report">Revenue/Expense
-          Report</a></li>
+          Report</a>
+        </li>
         
         <li><a href="index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=accounts&sub=daily_report">Daily Accounts</a>
         </li>
@@ -170,11 +167,11 @@
         <li><a href='index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=add_user'>Add User</a></li>
         <li><a href='index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=delete_user'>Delete User</a></li>
         <li><a href="index.php?e=c81e728d9d4c2f636f067f89cc14862c&page=settings">
-          Settings <img align="middle" alt="*" src="images/gear.gif"/></a>
+          Settings <img src="images/gear.gif" align="middle" alt="*"/></a>
         </li>
         <li>
           <a href="logout.php?e=c81e728d9d4c2f636f067f89cc14862c">
-            Logout <img align="middle" alt="X" src="images/cross.gif"/></a>
+            Logout <img src="images/cross.gif" align="middle" alt="X"/></a>
         </li>
       </ul>
     </li>
@@ -188,14 +185,15 @@
 </div>
 <center>
   <div id="content">
-    <img alt="" class="leftpillar" src="images/blank1by1.gif"/>
-    <img alt="" class="rightpillar" src="images/blank1by1.gif"/>
+    <img src="images/blank1by1.gif" class="leftpillar" alt=""/>
+    <img src="images/blank1by1.gif" class="rightpillar" alt=""/>
     <br/>
     <h1 id="banner">Agro Fresh</h1><br/>
-    <h2>Receive Payment</h2>
+    <h2>Purchase Expense</h2>
     <br/>
     <br/>
-    <form class='embossed' method='POST'><br/>Date :
+    <form method='POST' class='embossed'>
+      <br/>Date :
       <select name='d_d'>
         <option value='1'>1</option>
         <option value='2'>2</option>
@@ -213,7 +211,7 @@
         <option value='14'>14</option>
         <option value='15'>15</option>
         <option value='16'>16</option>
-        <option selected value='17'>17</option>
+        <option value='17' selected>17</option>
         <option value='18'>18</option>
         <option value='19'>19</option>
         <option value='20'>20</option>
@@ -230,60 +228,54 @@
         <option value='31'>31</option>
       </select>
       <select name='d_m'>
-        <option value='1'>January</option>
-        <option value='2'>February</option>
-        <option value='3'>March</option>
-        <option value='4'>April</option>
-        <option value='5'>May</option>
-        <option value='6'>June</option>
-        <option value='7'>July</option>
-        <option value='8'>August</option>
-        <option value='9'>September</option>
-        <option selected value='10'>October</option>
-        <option value='11'>November</option>
-        <option value='12'>December</option>
-      </select>
+      <option value='1'>January</option>
+      <option value='2'>February</option>
+      <option value='3'>March</option>
+      <option value='4'>April</option>
+      <option value='5'>May</option>
+      <option value='6'>June</option>
+      <option value='7'>July</option>
+      <option value='8'>August</option>
+      <option value='9'>September</option>
+      <option value='10' selected>October</option>
+      <option value='11'>November</option>
+      <option value='12'>December</option>
+    </select>
       <select name='d_y'>
-        <option value='2010'>2010</option>
-        <option value='2011'>2011</option>
-        <option value='2012'>2012</option>
-        <option value='2013'>2013</option>
-        <option value='2014'>2014</option>
-        <option value='2015'>2015</option>
-        <option value='2016'>2016</option>
-        <option value='2017'>2017</option>
-        <option value='2018'>2018</option>
-        <option value='2019'>2019</option>
-        <option selected value='2020'>2020</option>
-        <option value='2021'>2021</option>
-        <option value='2022'>2022</option>
-        <option value='2023'>2023</option>
-        <option value='2024'>2024</option>
-        <option value='2025'>2025</option>
-        <option value='2026'>2026</option>
-        <option value='2027'>2027</option>
-        <option value='2028'>2028</option>
-        <option value='2029'>2029</option>
-        <option value='2030'>2030</option>
-      </select>
+      <option value='2010'>2010</option>
+      <option value='2011'>2011</option>
+      <option value='2012'>2012</option>
+      <option value='2013'>2013</option>
+      <option value='2014'>2014</option>
+      <option value='2015'>2015</option>
+      <option value='2016'>2016</option>
+      <option value='2017'>2017</option>
+      <option value='2018'>2018</option>
+      <option value='2019'>2019</option>
+      <option value='2020' selected>2020</option>
+      <option value='2021'>2021</option>
+      <option value='2022'>2022</option>
+      <option value='2023'>2023</option>
+      <option value='2024'>2024</option>
+      <option value='2025'>2025</option>
+      <option value='2026'>2026</option>
+      <option value='2027'>2027</option>
+      <option value='2028'>2028</option>
+      <option value='2029'>2029</option>
+      <option value='2030'>2030</option>
+    </select>
       <br/><br/>
-      <b class='blue'>ARUN DATTA</b>
-      <input name='party' type='hidden' value='130'/>
-      <br/><br/> In
-      <input checked name='p_m' onClick='hideallhidden();' type='radio' value='0'/>
-      Cash &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input name='p_m' onClick='showallhidden();' type='radio' value='1'/>
-      Check Of<br/><br/>
-      <div id='hidden'>
-        Bank : <input class='' id='' name='c_bn' type='text' value=''/> <br/><br/>
-        Branch :
-        <input
-            class='' id='' name='c_br' type='text' value=''/> <br/><br/>A/C :
-        <input class='' id='' name='c_ac'
-               type='text' value=''/> <br/><br/>
-        Cheque/Draft No : <input class='' id='' name='c_no' type='text' value=''/> <br/><br/>
-        Date :
-        <select name='c_d_d'>
+      <b class='blue'>Samia plastic</b>
+      <input type='hidden' name='party' value='81'/><br/><br/> In
+      <input type='radio' name='p_m' value='0' onClick='hideallhidden();' checked/> Cash
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type='radio' name='p_m' value='1' onClick='showallhidden();'/> Check
+      Of<br/><br/>
+      <div id='hidden'>Bank : <input type='text' name='c_bn' value='' class='' id=''/> <br/><br/>
+        Branch : <input type='text' name='c_br' value='' class='' id=''/> <br/><br/>
+        A/C : <input type='text' name='c_ac' value='' class='' id=''/> <br/><br/>Cheque/Draft
+        No : <input type='text' name='c_no' value='' class='' id=''/> <br/><br/>
+        Date : <select name='c_d_d'>
           <option value='1'>1</option>
           <option value='2'>2</option>
           <option value='3'>3</option>
@@ -300,7 +292,7 @@
           <option value='14'>14</option>
           <option value='15'>15</option>
           <option value='16'>16</option>
-          <option selected value='17'>17</option>
+          <option value='17' selected>17</option>
           <option value='18'>18</option>
           <option value='19'>19</option>
           <option value='20'>20</option>
@@ -326,7 +318,7 @@
           <option value='7'>July</option>
           <option value='8'>August</option>
           <option value='9'>September</option>
-          <option selected value='10'>October</option>
+          <option value='10' selected>October</option>
           <option value='11'>November</option>
           <option value='12'>December</option>
         </select>
@@ -341,7 +333,7 @@
           <option value='2017'>2017</option>
           <option value='2018'>2018</option>
           <option value='2019'>2019</option>
-          <option selected value='2020'>2020</option>
+          <option value='2020' selected>2020</option>
           <option value='2021'>2021</option>
           <option value='2022'>2022</option>
           <option value='2023'>2023</option>
@@ -352,13 +344,12 @@
           <option value='2028'>2028</option>
           <option value='2029'>2029</option>
           <option value='2030'>2030</option>
-        </select><br/></div>
-      <br/>Taka :
-      <input class='' id='' name='cost' type='text' value='134281'/>
-      <br/><br/>Comment : <input class=''
-                                 id='' name='cmnt' type='text'
-                                 value='ARUN DATTA'/>
-      <br/><br/> <input name='ab' type='submit' value='Save'/> <br/></form>
+        </select>
+        <br/></div>
+      <br/>Taka : <input type='text' name='amnt' value='441567.62' class='' id=''/> <br/><br/>
+      Comment : <input
+        type='text' name='cmnt' value='Samia plastic' class='' id=''/> <br/><br/>
+      <input type='submit' name='ab'  value='Save'/> <br/></form>
     <br/>
   </div>
 </center>
