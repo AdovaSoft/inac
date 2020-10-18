@@ -19,7 +19,7 @@ if (isset($id)) {
     echo "<div id='sud3'><form method = 'POST'  class='embossed'>";
     echo "<h4 class='blue'>Select Party</h4><br/>";
     echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-    $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'));
+    $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'), 'full-width');
     echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
     echo "</form></div>";
     if (isset($_POST['all_show'])) {
@@ -44,12 +44,13 @@ if (isset($id)) {
     } else {
         echo "<h2 class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</h2><br/>";
     } */
-} else {
+}
+else {
     echo "<h1>Individual Party Overview</h1><br/>";
     echo "<form method = 'POST'  class='embossed'>";
     echo "<h4 class='blue'>Select Party</h4><br/>";
     echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-    $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'));
+    $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'), 'full-width', true);
     echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
     echo "</form>";
 }

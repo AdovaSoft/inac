@@ -2,7 +2,7 @@
 <?php
 $query = sprintf("SELECT idparty,name,adress,phone FROM (SELECT party.idparty,name FROM party JOIN party_type USING(idparty) WHERE type = 0 or type=2) as party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
 $party = $qur->get_custom_select_query($query, 4);
-$all_info = null;
+$all_info = [];
 $due_total = 0;
 $advance_total = 0;
 
@@ -27,6 +27,7 @@ for ($i = 0; $i < $n; $i++) {
 }
 echo "<table align='center' class='rb'>";
 echo "<tr>";
+echo "<th>SI</th>";
 echo "<th>";
 echo "Name";
 echo "</th>";
@@ -47,8 +48,11 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+if($n > 0) {
+  $i = 1;
 foreach ($all_info as $a) {
     echo "<tr>";
+    echo "<td>" . $i++ . "</td>";
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
     echo $a[1];
@@ -97,7 +101,10 @@ foreach ($all_info as $a) {
     echo "</td>";
     echo "</tr>";
 }
-echo "<tr><th colspan='3'>Total</th><th>" . money($due_total) . "</th><th>" . money($advance_total) . "</th></tr>";
+} else {
+    echo "<tr><td class='text-center' colspan='6'> No data available in Table</td></tr>";
+}
+echo "<tr><th colspan='4'>Total</th><th>" . money($due_total) . "</th><th>" . money($advance_total) . "</th></tr>";
 echo "</table>";
 
 ?>

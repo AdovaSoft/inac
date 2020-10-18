@@ -2,7 +2,7 @@
 <?php
 $query = sprintf("SELECT idparty,name,adress,phone FROM (SELECT party.idparty,name FROM party JOIN party_type USING(idparty) WHERE type =1 OR type=2) as party LEFT JOIN party_phone USING(idparty) LEFT JOIN party_adress USING (idparty) ORDER BY name;");
 $party = $qur->get_custom_select_query($query, 4);
-$all_info = null;
+$all_info = [];
 $due_total = 0;
 $advance_total = 0;
 
@@ -49,6 +49,7 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
+if($n > 0) {
 $i = 1;
 foreach ($all_info as $a) {
     echo "<tr>";
@@ -112,6 +113,9 @@ foreach ($all_info as $a) {
     }
 
     echo "</tr>";
+}
+} else {
+    echo "<tr><td class='text-center' colspan='6'> No data available in Table</td></tr>";
 }
 echo "<tr><th colspan='4' class='text-right'>Total</th>";
 echo "<th class='text-right'>" . money($advance_total) . "</th>";

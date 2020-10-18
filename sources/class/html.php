@@ -40,12 +40,12 @@ class html
      */
     public function input_text($label, $name, $value, $class = null, $id = null)
     {
-        echo $label . " <input type='text' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /> <br/>";
+        echo "<label>$label</label>" . " <input type='text' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' />";
     }
 
     public function input_number($label, $name, $value, $class = null, $id = null)
     {
-        echo $label . " <input type='number' step='0.01' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /> <br/>";
+        echo "<label>$label</label>" . " <input type='number' step='0.01' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' />";
     }
 
     /**

@@ -33,15 +33,15 @@ if (isset($_POST['ab1'])) {
     }
 }
 
-$query = sprintf("SELECT * FROM party ORDER BY name");
-$party = $qur->get_custom_select_query($query, 2);
+$query = sprintf("SELECT party.*, ac_types.title FROM party INNER JOIN party_type USING(idparty) INNER JOIN ac_types USING(type) ORDER BY name");
+$party = $qur->get_custom_select_query($query, 3);
 echo "<br/><form method = 'POST' class='embossed'>";
 echo "<h4 class='blue'>Select Party</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 if (isset($_POST['pt']))
-    $qur->get_dropdown_array($party, 0, 1, 'pt', $_POST['pt'], 'full-width', '', '', true);
+    $qur->get_dropdown_array($party, 0, 1, 'pt', $_POST['pt'], 'full-width', false, 2, true);
 else
-    $qur->get_dropdown_array($party, 0, 1, 'pt', null, 'full-width', false, '', true);
+    $qur->get_dropdown_array($party, 0, 1, 'pt', null, 'full-width', false, 2, true);
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Edit' />";
 echo "</form>";
 
@@ -72,21 +72,12 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         echo "<option value='3'>Business Partner</option>";
         echo "</select>";
         echo "<br/>";
-        echo "<br/>";
-        if (isset($_POST['p1']))
-            $inp->input_text('Phone 1 : ', 'p1', esc($_POST['p1']));
-        else
-            $inp->input_text('Phone 1 : ', 'p1', esc($party[0][2]));
-        echo "<br/>";
-        if (isset($_POST['p2']))
-            $inp->input_text('Phone 2 : ', 'p2', esc($_POST['p2']));
-        else
-            $inp->input_text('Phone 2 : ', 'p2', esc($party[1][2]));
-        echo "<br/>";
-        if (isset($_POST['a']))
-            $inp->input_text('Address : ', 'a', esc($_POST['a']));
-        else
-            $inp->input_text('Address : ', 'a', esc($party[0][3]));
+            $inp->input_text('Phone 1 : ', 'p1', $inp->value_pgd('p1', $party[0][2]));
+
+        $inp->input_text('Phone 2 : ', 'p2', $inp->value_pgd('p2', $party[1][2]));
+
+        $inp->input_text('Address : ', 'a', $inp->value_pgd('a', $party[0][3]));
+        echo "<br>";
         $inp->input_submit('ab1', 'Change');
         echo "</form>";
     }

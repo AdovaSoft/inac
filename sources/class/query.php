@@ -269,11 +269,14 @@ class query
      * @param $name
      * @param $sel
      */
-    public function get_drop_down($table, $column, $value, $name, $sel, $class = null)
+    public function get_drop_down($table, $column, $value, $name, $sel, $class = null, $is_required = false)
     {
         $row = $this->get_row($table, array($column, $value));
-        echo "<select name = '" . $name . "' class='" . $class . "'>";
-        echo "<option> Select an option</option>";
+        echo "<select name = '" . $name . "' class='" . $class . "'";
+
+        echo ($is_required == true) ? "required />" : ">";
+
+        echo "<option value=''> Select an option</option>";
         for ($i = 0; $i < count($row); $i++) {
             if ($sel == $row[$i][1]) {
                 echo "<option value = '" . $row[$i][1] . "' selected>" . $row[$i][0] . "</option>";
@@ -295,7 +298,7 @@ class query
 
         $query = $this->gen_query($table, $col, 0);
         $i = 0;
-        $value = null;
+        $value = [];
         $res = mysqli_query($this->dtb_con, $query);
 
         while ($row = mysqli_fetch_array($res)) {

@@ -136,7 +136,7 @@
 </ul>
 
 <ul class="isolated">
-  <li><a href="index.php?e=<?= $encptid ?>&page=userinfo">
+  <li><a style="width: auto !important;" href="index.php?e=<?= $encptid ?>&page=userinfo">
       <?php
       if (!empty($_SESSION['name']))
         echo ucwords($_SESSION['name']);

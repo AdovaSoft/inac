@@ -443,3 +443,17 @@ form.embossed {
 .dt-center .pagination {
     justify-content: center !important;
 }
+/*
+label {
+    padding: 5px;
+    display: block;
+    margin: 5px;
+    float: left;
+}
+
+input[type=text], input[type=number] {
+    width: 91%;
+    display: block;
+    padding: 5px;
+    margin: 10px;
+}*/

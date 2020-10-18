@@ -37,25 +37,10 @@ $date = $inp->get_post_date('jd');
 if (!$date)
     $date = date("Y-d-m");
 $inp->input_date('jd', $date, true);
-echo "<br/><br/>";
-if (isset($_POST['n']))
-    $inp->input_text('Name : ', 'n', $_POST['n']);
-else {
-    $inp->input_text('Name : ', 'n', null);
-}
 echo "<br/>";
-if (isset($_POST['p']))
-    $inp->input_text('Post : ', 'p', $_POST['p']);
-else {
-    $inp->input_text('Post : ', 'p', null);
-}
-echo "<br/>";
-if (isset($_POST['s']))
-    $inp->input_text('Salary : ', 's', $_POST['s']);
-else {
-    $inp->input_text('Salary : ', 's', null);
-}
-echo "<br/>";
+$inp->input_text('Name : ', 'n', $inp->value_pgd('n'));
+$inp->input_text('Post : ', 'p', $inp->value_pgd('p'));;
+$inp->input_number('Salary : ', 's', $inp->value_pgd('s'));
 echo "Duty Hours : ";
 if (isset($_POST['dh']))
     $inp->select_digit('dh', 1, 12, $_POST['dh'], 1);
