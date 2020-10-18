@@ -50,7 +50,10 @@ else {
     echo "<form method = 'POST'  class='embossed'>";
     echo "<h4 class='blue'>Select Party</h4><br/>";
     echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-    $qur->get_drop_down('party', 'name', 'idparty', 'id', $inp->value_pgd('id'), 'full-width', true);
+    $query = sprintf("SELECT party.*, ac_types.title FROM party INNER JOIN party_type USING(idparty) INNER JOIN ac_types USING(type) ORDER BY name");
+    $party = $qur->get_custom_select_query($query, 3);
+    $qur->get_dropdown_array($party, 0, 1, 'id', $inp->value_pgd('id'), 'full-width', false, 2, true);
+
     echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Show' />";
     echo "</form>";
 }

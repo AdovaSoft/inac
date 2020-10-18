@@ -38,10 +38,7 @@ $party = $qur->get_custom_select_query($query, 3);
 echo "<br/><form method = 'POST' class='embossed'>";
 echo "<h4 class='blue'>Select Party</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-if (isset($_POST['pt']))
-    $qur->get_dropdown_array($party, 0, 1, 'pt', $_POST['pt'], 'full-width', false, 2, true);
-else
-    $qur->get_dropdown_array($party, 0, 1, 'pt', null, 'full-width', false, 2, true);
+    $qur->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'), 'full-width', false, 2, true);
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Edit' />";
 echo "</form>";
 
