@@ -25,8 +25,8 @@ $res = $qur->get_cond_row('staff', array('idstaff', 'name', 'post'), 'status', '
 echo "<form method = 'POST' class='embossed'>";
 echo "<h3 class='blue'>Select  staff</h3><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-echo "<select name = 'st' >";
-echo "<option></option>";
+echo "<select name = 'st' class='full-width' required>";
+echo "<option value=''> Select an option</option>";
 if ($inp->value_pgd('st')) {
     foreach ($res as $r) {
         if ($r[0] == $inp->value_pgd('st'))

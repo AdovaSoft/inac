@@ -1021,8 +1021,10 @@ class indquery extends query
         }
 
         if ($id == null) {
-            $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name,(CASE party_type.type WHEN 0 THEN 'Supplier' ELSE 'Supplier & Client' END)  type_name FROM party INNER JOIN party_type ON party.idparty = party_type.idparty WHERE party_type.type = 0 OR party_type.type = 2 "), 3);
-            $this->get_dropdown_array($party, 0, 1, 'party', null, '', false, 2);
+            $party = $this->get_custom_select_query(sprintf("SELECT party.idparty, party.name, title FROM party 
+    INNER JOIN party_type USING(idparty)INNER JOIN ac_types USING(type)
+WHERE party_type.type = 0 OR party_type.type = 2 "), 3);
+            $this->get_dropdown_array($party, 0, 1, 'party', null, 'full-width', false, 2);
         } else {
             $party = $this->get_custom_select_query("SELECT name FROM party WHERE idparty=" . $id, 2);
             echo "<b class='blue'>" . $party[0][0] . "</b>";
@@ -1401,8 +1403,12 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
      */
     public function search_product($s)
     {
-        $query = "SELECT idproduct,name,stock,unite FROM product LEFT JOIN product_details USING (idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN stock USING(idproduct)  WHERE name LIKE '%$s%' ORDER BY name;";
-        return $this->get_custom_select_query($query, 4);
+        $query = "SELECT idproduct,name,stock,unite,price FROM product
+    LEFT JOIN product_details USING (idproduct) 
+        LEFT JOIN price USING (idproduct) 
+    LEFT JOIN mesurment_unite USING(idunite)
+    LEFT JOIN stock USING(idproduct)  WHERE name LIKE '%$s%' ORDER BY name;";
+        return $this->get_custom_select_query($query, 5);
     }
 
     /**
@@ -1889,55 +1895,49 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
     /**
      * @param $date
-     * @param $emp
+     * @param $employee_id
      * @param $m
      * @param $y
      * @param $bon
      * @param string $cmnt
      * @return bool
      */
-    public function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
+    public function add_bonus_payment($date, $employee_id, $m, $y, $bon, $cmnt = 'Bonus')
     {
-
-        $cols = array('id', 'idstaff', 'month', 'year');
-
         $flag = true;
-
+        $amount = 0;
         $id = $this->get_last_id('transaction', 'id');
-
-        $query = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE,CASH);
-
+        $query = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE, CASH);
         $balance = $this->get_custom_select_query($query, 1);
-
         $cash = $balance[0][0];
 
-
         if ($cash < $bon) {
-            echo "You dont have enough money in cash. You have " . money($cash) . "<br/>";
+            echo "<p>You dont have enough money in cash. You have " . money($cash) . "</p>";
             return false;
         }
         $amount -= $bon;
 
         mysqli_query($this->dtb_con, "START TRANSACTION");
-        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $amount), array('d', 's', 'd', 'd'));
-        if ($flag) {
+        $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, CASH, $amount), array('d', 's', 'd', 'f'));
+        if ($flag == 1) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
         }
 
-
-        if ($flag) {
-            $flag = $this->insert_query('staff_bonus', $cols, array($id, $emp, $m, $y), array('d', 'd', 'd', 'd'));
+        if ($flag == 1) {
+            $flag = $this->insert_query('staff_bonus', array('id', 'idstaff', 'month', 'year'), array($id, $employee_id, $m, $y), array('d', 'd', 'd', 'd'));
         }
 
-        if ($flag) {
+        if ($flag == 1) {
+            $flag = $this->update_party_balance($employee_id, EXPENSE, CASH, $bon);
+        }
+        if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
-            echo 'something is wrong check your given data or contact with <a> unique wavers </a>';
+            echo '<p>something is wrong check your given data or contact with <a> unique wavers </a></p>';
             mysqli_query($this->dtb_con, 'ROLLBACK');
             return false;
         }
-
     }
 
     /**

@@ -27,29 +27,38 @@ if (isset($_POST['submit']) && isset($_POST['searchword'])) {
             echo "<th class='text-center'>";
             echo "Product";
             echo "</th>";
+
             echo "<th>";
             echo "Stock";
             echo "</th>";
+
+            echo "<th>";
+            echo "Price/Unit";
+            echo "</th>";
+
             echo "<th>";
             echo "Unit";
             echo "</th>";
+
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
             for ($i = 0; $i < $n; $i++) {
                 echo "<tr>";
                 echo "<th><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
-                echo $res[$i][1];
+                echo esc($res[$i][1]);
                 echo "</a></th>";
 
                 echo "<td><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "'>";
-                echo $res[$i][2];
+                echo esc($res[$i][2]);
                 echo "</a></td>";
 
                 echo "<td class='text-center'><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "' >";
-                echo $res[$i][3];
+                echo money($res[$i][4]);
                 echo "</a></td>";
-
+                echo "<td class='text-center'><a href='index.php?e=" . $encptid . "&page=product&sub=particular_product&id=" . $res[$i][0] . "' >";
+                echo esc($res[$i][3]);
+                echo "</a></td>";
                 echo "</tr>";
             }
 
