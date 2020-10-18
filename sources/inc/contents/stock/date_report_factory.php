@@ -231,11 +231,12 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "</tfoot>";
         echo "</table><br/>";
     } else {
-        echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
+        echo "<br/><h2 class='blue'>No input or output between ". convert_date($date1) ." and " . convert_date($date2) . "</h2>";
     }
     echo "</div>";
 
-} elseif (isset($_GET['group']) == 2) {
+}
+elseif (isset($_GET['group']) == 2) {
     $group = $_GET['group'];
     $query = sprintf("SELECT date,name,stock,unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY unite, date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
@@ -453,7 +454,8 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
     }
     echo "</div>";
 
-} else {
+}
+else {
     $query = sprintf("SELECT date,name,stock, unite,price,type FROM (SELECT * FROM product_input WHERE date BETWEEN '%s' AND '%s' AND (type='1' OR type='3')  ) as pro LEFT JOIN product USING(idproduct)LEFT JOIN product_details USING(idproduct) LEFT JOIN mesurment_unite USING(idunite) LEFT JOIN price USING(idproduct) ORDER BY date DESC;", $date1, $date2);
     $info = $qur->get_custom_select_query($query, 6);
     $n = count($info);
@@ -595,7 +597,7 @@ if (isset($_GET['group']) && $_GET['group'] == 1) {
         echo "</tfoot>";
         echo "</table>";
     } else {
-        echo "<br/><h2 class='blue'>No input or output between $date1 and $date2</h2>";
+        echo "<br/><h2 class='blue'>No input or output between ". convert_date($date1) ." and " . convert_date($date2) . "</h2>";
     }
     echo "</div>";
 }

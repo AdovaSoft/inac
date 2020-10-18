@@ -419,13 +419,13 @@ class query
                 echo " selected";
 
             if ($is_product == true)
-                echo "> " . $item[$ind_val] . " ( " . $item[3] . " " . $item[2] . " )";
+                echo "> " . $item[$ind_val] . " ( " . esc($item[3]) . " " . esc($item[2]) . " )";
 
             elseif (!is_null($party_location))
-                echo "> " . $item[$ind_val] . " ( " . $item[$party_location] . ")";
+                echo "> " . $item[$ind_val] . " ( " . esc($item[$party_location]) . ")";
 
             else
-                echo "> " . $item[$ind_val];
+                echo "> " . esc($item[$ind_val]);
 
             echo "</option>\n";
         }

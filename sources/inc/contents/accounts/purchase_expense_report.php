@@ -13,16 +13,13 @@ $query = sprintf("SELECT `transaction`.*, party.name FROM transaction
     LEFT JOIN party USING(idparty) 
 WHERE `transaction`.date >= '%s' AND `transaction`.date <= '%s' AND party.name IS NOT NULL ORDER BY DATE DESC;", $date1, $date2);
 $res = $con->get_custom_select_query($query, 7);
-echo "<a id='printBox'  href='print.php?e=$encptid&page=accounts&&sub=report&&date1=$date1&&date2=$date2' class='button' target='_blank'><b> Print </b></a>";
+echo "<a id='printBox'  href='print.php?e=$encptid&page=accounts&&sub=purchase_expense_report&&date1=$date1&&date2=$date2' class='button' target='_blank'><b> Print </b></a>";
 
 $in_total = 0;
 $out_total = 0;
 echo "<br/><table align='center' class='rb table'>";
 echo "<thead>";
 echo "<tr>";
-echo "<th>";
-echo "Trans. ID";
-echo "</th>";
 
 echo "<th>";
 echo "Date";
@@ -61,10 +58,6 @@ echo "<tbody>";
 if (count($res) > 0) {
     for ($i = 0; $i < count($res); $i++) {
         echo "<tr>";
-
-        echo "<td>";
-        echo esc($res[$i][0]);
-        echo "</td>";
         echo "<td>";
         echo $inp->date_convert($res[$i][1]);
         echo "</td>";
@@ -114,7 +107,7 @@ if (count($res) > 0) {
     }
 }
 echo "</tbody>";
-echo "<tfoot><tr><th colspan='3'>Total</th><th>" . money($in_total) . "</th>
+echo "<tfoot><tr><th colspan='2'>Total</th><th>" . money($in_total) . "</th>
 <th>" . money($out_total) . "</th>
 <td class='blue' colspan='2'>";
 $in_total -= $out_total;

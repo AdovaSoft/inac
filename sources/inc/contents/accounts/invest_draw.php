@@ -1,4 +1,5 @@
 <h1>Investment / Drawing Panel</h1>
+<br>
 <?php
 include("sources/inc/usercheck.php");
 $inp = new html();

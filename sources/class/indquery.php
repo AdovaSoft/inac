@@ -485,10 +485,10 @@ class indquery extends query
         }
         if ($flag == 1) {
             $transaction_type = ($ttype == 1) ? INVESTMENT : DRAWING;
-            $flag = $this->update_party_balance(BALANCE, $transaction_type, $am);
+            $flag = $this->update_party_balance(null, $transaction_type, $tmedium, $am);
         }
 
-        if ($flag) {
+        if ($flag == true) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {
@@ -497,7 +497,7 @@ class indquery extends query
         }
     }
 
-    public function update_party_balance($party_id = 0, $transaction_type = 'entry', $medium = 0, $amount = 0)
+    public function update_party_balance($party_id = null, $transaction_type = 'entry', $medium = 0, $amount = 0)
     {
         /**
          *  Transaction Type = entry   then minus from party and add to company
@@ -506,16 +506,22 @@ class indquery extends query
         //convert amount to positive
 
         $amount = abs($amount);
+        $party_current_balance = $company_current_balance = 0;
 
-        $party_sql = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", $party_id, $medium);
-        $party_current_balance = $this->get_custom_select_query($party_sql, 1, true);
+        //update client / party account if needed
+        if ($transaction_type == 'entry' || $transaction_type == 'return') {
+            $party_sql = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", $party_id, $medium);
+            $party_current_balance = $this->get_custom_select_query($party_sql, 1, true);
+        }
 
         $company_sql = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE, $medium);
         $company_current_balance = $this->get_custom_select_query($company_sql, 1, true);
 
-        $party_current_balance = $party_current_balance[0]['balance'];
+        if ($transaction_type == 'entry' || $transaction_type == 'return') {
+            $party_current_balance = $party_current_balance[0]['balance'];
+        }
+
         $company_current_balance = $company_current_balance[0]['balance'];
-        //d($party_current_balance, $company_current_balance);
 
         switch ($transaction_type) {
             case 'entry' :
@@ -1881,8 +1887,16 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         }
     }
 
-    public
-    function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
+    /**
+     * @param $date
+     * @param $emp
+     * @param $m
+     * @param $y
+     * @param $bon
+     * @param string $cmnt
+     * @return bool
+     */
+    public function add_bonus_payment($date, $emp, $m, $y, $bon, $cmnt = 'Bonus')
     {
 
         $cols = array('id', 'idstaff', 'month', 'year');
@@ -1891,7 +1905,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
         $id = $this->get_last_id('transaction', 'id');
 
-        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY medium ORDER BY medium;");
+        $query = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE,CASH);
 
         $balance = $this->get_custom_select_query($query, 1);
 
@@ -1899,7 +1913,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
 
         if ($cash < $bon) {
-            echo "You dont have enough money (" . money($amount) . ") in cash. You have " . money($cash) . "<br/>";
+            echo "You dont have enough money in cash. You have " . money($cash) . "<br/>";
             return false;
         }
         $amount -= $bon;
@@ -1926,6 +1940,10 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
     }
 
+    /**
+     * @param $purchase_id
+     * @return bool
+     */
     public function purchase_delete($purchase_id)
     {
         $query = sprintf("SELECT idproduct,stock-unite FROM (SELECT idproduct, unite FROM purchase_details p WHERE idpurchase = %d) as pur LEFT JOIN stock USING(idproduct);", $purchase_id);
@@ -1948,6 +1966,10 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return false;
     }
 
+    /**
+     * @param $sel_id
+     * @return bool
+     */
     public function selles_delete($sel_id)
     {
         $query = sprintf("SELECT idproduct,stock+unite FROM (SELECT idproduct, unite FROM selles_details p WHERE idselles = %d) as sel LEFT JOIN stock USING(idproduct);", $sel_id);
@@ -1970,6 +1992,14 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return false;
     }
 
+    /**
+     * @param $id
+     * @param $name
+     * @param $mt
+     * @param $pt
+     * @param $price
+     * @return bool
+     */
     public function editProduct($id, $name, $mt, $pt, $price)
     {
 
@@ -2001,6 +2031,10 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
 
     }
 
+    /**
+     * @param $date
+     * @return int|mixed
+     */
     public function getPrevBalance($date)
     {
         $query = sprintf("SELECT ammount FROM transaction WHERE date < '%s';", $date);
@@ -2021,8 +2055,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
      * @param $id
      * @return int
      */
-    public
-    function deleteTransaction($id)
+    public function deleteTransaction($id)
     {
         $q = mysqli_query($this->dtb_con, "DELETE FROM transaction WHERE id='$id'");
         if ($q)
@@ -2035,8 +2068,7 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
      * @param $id
      * @return mixed
      */
-    public
-    function current_stock($id)
+    public function current_stock($id)
     {
         $query = sprintf("SELECT stock FROM stock WHERE idproduct = %d", $id);
         $res = $this->get_custom_select_query($query, 1);
@@ -2085,6 +2117,11 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return false;
     }
 
+    /**
+     * @param $transaction_id
+     * @param $party_id
+     * @return array|mixed
+     */
     public function print_money_receipt($transaction_id, $party_id)
     {
         $sql = sprintf("SELECT party.name client, adress address, serial, transaction.date date,

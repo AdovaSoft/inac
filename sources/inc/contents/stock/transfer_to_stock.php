@@ -24,14 +24,16 @@ $inp->input_date('d', date('Y-m-d'));
 
 echo "<br/><br/>Product : ";
 echo "<select name = 'p'>";
-echo "<option></option>";
-$query = sprintf("SELECT * FROM product ;");
-$info = $qur->get_custom_select_query($query, 2);
+echo "<option value=''>Select an option</option>";
+$info = $qur->get_custom_select_query('SELECT product.*, unite, factory_stock FROM product 
+LEFT JOIN stock USING(idproduct) 
+LEFT JOIN product_details USING(idproduct)
+LEFT JOIN mesurment_unite USING(idunite);', 4);
 foreach ($info as $i) {
-    echo "<option value ='" . $i[0] . "'>" . $i[1] . "</option>";
+    echo "<option value ='$i[0]'>$i[1] (" .esc($i[3]) . " $i[2])</option>";
 }
 echo "</select>";
-echo "<br/><br/>Product Quantity : <input type = 'text' name = 'n' value = ''/> ";
+echo "<br/><br/>Product Quantity : <input type = 'number' step='0.001' name = 'n' value = ''/> ";
 
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfer' />";
 echo "</form>";

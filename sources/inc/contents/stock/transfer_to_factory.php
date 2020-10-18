@@ -25,15 +25,15 @@ echo "<br/>Date : ";
 $inp->input_date('d', date('Y-m-d'));
 
 echo "<br/><br/>Product : ";
-echo "<select name = 'p'>";
-echo "<option></option>";
+echo "<select name = 'p' required>";
+echo "<option value=''> Select an option</option>";
 $query = sprintf("SELECT * FROM product ;");
 $info = $qur->get_custom_select_query($query, 2);
 foreach ($info as $i) {
     echo "<option value ='" . $i[0] . "'>" . $i[1] . "</option>";
 }
 echo "</select>";
-echo "<br/><br/>Product Quantity : <input type = 'text' name = 'n' value = ''/> ";
+echo "<br/><br/>Product Quantity : <input type = 'number' step='0.001' name = 'n' value = '' required/> ";
 
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Transfer' />";
 echo "</form>";

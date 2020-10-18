@@ -22,11 +22,14 @@ echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
 echo "<br/>Date : ";
 $inp->input_date('d', date('Y-m-d'));
 echo "<br/><br/>Product : ";
-$array = $qur->get_custom_select_query('SELECT * FROM product LEFT JOIN stock USING(idproduct);', 3);
-$qur->get_dropdown_array($array, 0, 1, 'p', null);
+$array = $qur->get_custom_select_query('SELECT product.*, unite, stock FROM product 
+LEFT JOIN stock USING(idproduct) 
+LEFT JOIN product_details USING(idproduct)
+LEFT JOIN mesurment_unite USING(idunite);', 4);
+$qur->get_dropdown_array($array, 0, 1, 'p', null, '', true);
 echo "<br/><br/>";
 
-$inp->input_text('Quentity : ', 's', $inp->value_pgd('s'));
+$inp->input_text('Quantity : ', 's', $inp->value_pgd('s'));
 
 echo "<br/>";
 $inp->input_radio('Add', 'pr', 1, 0);
