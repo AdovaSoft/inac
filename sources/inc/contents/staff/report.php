@@ -5,18 +5,18 @@ $res = $qur->get_cond_row('staff', array('idstaff', 'name', 'post'), 'status', '
 echo "<form method = 'POST' class='embossed'>";
 echo "<h3 class='blue'>Select  staff</h3><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-echo "<select name = 's' >";
-echo "<option></option>";
+echo "<select name = 's' class='full-width' required>";
+echo "<option value=''>Select an option</option>";
 if ($inp->value_pgd('s')) {
     foreach ($res as $r) {
         if ($r[0] == $inp->value_pgd('s'))
-            echo "<option value = '" . $r[0] . "' selected > $r[1] ($r[2]) </option>";
+            echo "<option value = '$r[0]' selected > $r[1] ($r[2]) </option>";
         else
-            echo "<option value = '" . $r[0] . "' > $r[1] ($r[2]) </option>";
+            echo "<option value = '$r[0]' > $r[1] ($r[2]) </option>";
     }
 } else {
     foreach ($res as $r) {
-        echo "<option value = '" . $r[0] . "' > $r[1] ($r[2]) </option>";
+        echo "<option value = '$r[0]' > $r[1] ($r[2]) </option>";
     }
 }
 echo "</select>";
@@ -115,7 +115,7 @@ if ($inp->value_pgd('s') != null) {
             echo "<tr>";
 
             echo "<td>";
-            echo $inp->print_month($s[0]) . " " . $s[1];
+            echo $inp->print_month($s[0]) . ", " . $s[1];
             echo "</td>";
 
             echo "<td>";

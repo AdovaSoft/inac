@@ -83,10 +83,10 @@ if(count($all_info) > 0) {
 
         echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-        echo esc($a[3]);
+        echo esc($a[3], true);
         if ($a[4]) {
-            echo ", <br/>";
-            echo esc($a[4]);
+            echo ",";
+            echo esc($a[4], true);
         }
         echo "</a>";
         echo "</td>";

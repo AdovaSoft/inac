@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="websqflt_nas@localhost" uuid="c1ed7707-521d-472b-ad5b-939bf599492c">
+    <data-source source="LOCAL" name="agro_fresh@localhost" uuid="ba3feaed-4e9a-4e1c-97c7-ce8d736c2b8a">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/websqflt_nas</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:3306/agro_fresh</jdbc-url>
     </data-source>
   </component>
 </project>

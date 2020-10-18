@@ -14,9 +14,11 @@ defined('USER') || define('USER', 2);
 defined('COMPANY') || define('COMPANY', "Agro Fresh", true);
 defined('SENDER_EMAIL') || define('SENDER_EMAIL', "Agro Fresh", true);
 defined('SENDER_NAME') || define('SENDER_NAME', "Agro Fresh", true);
-defined('BALANCE') || define('BALANCE', "0", true);
-defined('ENTRY') || define('ENTRY', "entry", true);
-defined('EXPENSE') || define('EXPENSE', "return", true);
+defined('BALANCE') || define('BALANCE', "0");
+defined('CASH') || define('CASH', "0");
+defined('BANK') || define('BANK', "1");
+defined('ENTRY') || define('ENTRY', "entry");
+defined('EXPENSE') || define('EXPENSE', "return");
 
 
 /** Debug Function

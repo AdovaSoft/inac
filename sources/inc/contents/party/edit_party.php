@@ -69,9 +69,9 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         echo "<option value='3'>Business Partner</option>";
         echo "</select>";
         echo "<br/>";
-            $inp->input_text('Phone 1 : ', 'p1', $inp->value_pgd('p1', $party[0][2]));
+            $inp->input_text('Phone 1 : ', 'p1', $inp->value_pgd('p1', esc($party[0][2], true)));
 
-        $inp->input_text('Phone 2 : ', 'p2', $inp->value_pgd('p2', $party[1][2]));
+        $inp->input_text('Phone 2 : ', 'p2', $inp->value_pgd('p2', esc($party[1][2], true)));
 
         $inp->input_text('Address : ', 'a', $inp->value_pgd('a', $party[0][3]));
         echo "<br>";

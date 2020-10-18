@@ -1652,35 +1652,34 @@ LEFT JOIN selles_discount USING (idselles) LEFT JOIN selles_chalan USING (idsell
         return $flag;
     }
 
-    public
-    function add_salary_pay($date, $emp, $m, $y, $sal, $cmnt = 'Sallary')
+    public function add_salary_pay($date, $emp, $m, $y, $sal, $cmnt = 'Sallary')
     {
         $id = $this->get_last_id('transaction', 'id');
 
-        $query = sprintf("SELECT  SUM(ammount) FROM transaction GROUP BY medium ORDER BY medium;");
+        $query = sprintf("SELECT balance FROM ac_balance WHERE idparty = %d AND medium = %d", BALANCE, CASH);
         $cols = array('id', 'idstaff', 'sal_month', 'sal_year');
 
         $balance = $this->get_custom_select_query($query, 1);
 
-        $cash = $balance[0][0];
+        $cash = floatval($balance[0][0]);
 
 
         if ($cash < $sal) {
-            echo "You dont have enough money (" . money($amount) . ") in cash. You have " . $cash . "<br/>";
+            echo "You dont have enough money in cash. You have " . money($cash) . "<br/>";
             return false;
         }
         $amount = -$sal;
         mysqli_query($this->dtb_con, "START TRANSACTION");
         $flag = $this->insert_query('transaction', array('id', 'date', 'medium', 'ammount'), array($id, $date, 0, $amount), array('d', 's', 'd', 'd'));
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('transaction_comment', array('id', 'comment'), array($id, $cmnt), array('d', 's'));
         }
 
-        if ($flag) {
+        if ($flag == 1) {
             $flag = $this->insert_query('staff_sallary', $cols, array($id, $emp, $m, $y), array('d', 'd', 'd', 'd',));
         }
 
-        if ($flag) {
+        if ($flag == 1) {
             mysqli_query($this->dtb_con, 'COMMIT');
             return true;
         } else {

@@ -56,13 +56,11 @@ foreach ($all_info as $a) {
 
     echo "<td>" . $i++ . "</td>";
 
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
+    echo "<td class='text-left'>";
     echo esc($a[1]);
-    echo "</a>";
     echo "</td>";
 
-    echo "<td>";
+    echo "<td class='text-left'>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
     echo esc($a[2]);
     echo "</a>";
@@ -70,10 +68,10 @@ foreach ($all_info as $a) {
 
     echo "<td>";
     echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo esc($a[3]);
+    echo esc($a[3], true);
     if ($a[4]) {
         echo ", <br/>";
-        echo esc($a[4]);
+        echo esc($a[4], true);
     }
     echo "</a>";
     echo "</td>";
@@ -81,10 +79,8 @@ foreach ($all_info as $a) {
 
     if ($a[5] < 0) {
         echo "<td class='text-right' >";
-        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         $due = -$a[5];
         echo money($due);
-        echo "</a>";
         echo "</td>";
         $due_total = $due_total + $due;
     } else {
@@ -105,7 +101,7 @@ foreach ($all_info as $a) {
 
         $advance_total = $advance_total + $a[5];
     } else {
-        echo "<td align = 'center' >";
+        echo "<td class='text-center'>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
         echo "-";
         echo "</a>";

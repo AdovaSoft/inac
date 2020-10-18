@@ -57,13 +57,13 @@ echo "<tbody>";
 if(count($all_info) > 0) {
     foreach ($all_info as $a) {
         echo "<tr>";
-        echo "<td>";
+        echo "<td class='text-left pl-50'>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
         echo $a[1];
         echo "</a>";
         echo "</td>";
 
-        echo "<td>";
+        echo "<td class='pl-50 text-left'>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
         echo $a[2];
         echo "</a>";
@@ -73,7 +73,7 @@ if(count($all_info) > 0) {
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&id=" . $a[0] . "'>";
         echo $a[3];
         if ($a[4]) {
-            echo ", <br/>";
+            echo ", ";
             echo $a[4];
         }
         echo "</a>";

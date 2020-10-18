@@ -40,12 +40,12 @@ class html
      */
     public function input_text($label, $name, $value, $class = null, $id = null)
     {
-        echo "<label>$label</label>" . " <input type='text' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' />";
+        echo "<label>$label</label>" . " <input type='text' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /><br>";
     }
 
     public function input_number($label, $name, $value, $class = null, $id = null)
     {
-        echo "<label>$label</label>" . " <input type='number' step='0.01' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' />";
+        echo "<label>$label</label>" . " <input type='number' step='0.01' name = '" . $name . "' value = '" . $value . "' class = '" . $class . "' id = '" . $id . "' /><br>";
     }
 
     /**
@@ -97,16 +97,8 @@ class html
      */
     public function print_month_days($m, $y)
     {
-        if (($m == 4) || ($m == 6) || ($m == 9) || ($m == 11)) {
-            return 30;
-        } elseif (($m == 1) || ($m == 3) || ($m == 5) || ($m == 7) || ($m == 8) || ($m == 10) || ($m == 12)) {
-            return 31;
-        } elseif ($m == 2) {
-            if (($y % 4) == 0) {
-                return 29;
-            } else {
-                return 28;
-            }
+        if (($m > 0 && $m < 13) && ($y > 1970 && $y < 2200)) {
+            return cal_days_in_month(CAL_GREGORIAN, $m, $y);
         } else {
             return null;
         }
