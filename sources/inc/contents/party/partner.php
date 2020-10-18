@@ -8,7 +8,7 @@ $due_total = 0;
 $advance_total = 0;
 
 $n = count($party);
-if($n>0) {
+if ($n > 0) {
     for ($i = 0; $i < $n; $i++) {
         if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
             $all_info[$i][0] = $party[$i][0];
@@ -54,7 +54,7 @@ echo "</tr>";
 
 echo "</thead>";
 echo "<tbody>";
-if(count($all_info) > 0) {
+if (count($all_info) > 0) {
     foreach ($all_info as $a) {
         echo "<tr>";
         echo "<td class='text-left pl-50'>";

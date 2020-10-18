@@ -25,7 +25,7 @@ if (isset($_POST['party']) && isset($_POST['pay_type'])
             $bank[3] = $_POST['c_d_y'] . '-' . $_POST['c_d_m'] . '-' . $_POST['c_d_d'];
             $bank[4] = $_POST['c_ac'];
             $bank[5] = $_POST['c_no'];
-            $response = $qur->addTran($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, $bank);
+            $response = $qur->add_party_transaction($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, $bank);
 
             if ($response['status'] == true) {
                 extract($response);
@@ -42,13 +42,13 @@ if (isset($_POST['party']) && isset($_POST['pay_type'])
 
         } else {
             echo "<h3 class='red'>Ensure data about cheque</h3>";
-            $qur->purchaseExpense($party_id, $payment_type, $payment_amount);
+            $qur->purchase_expense($party_id, $payment_type, $payment_amount);
         }
     } //for cash transaction
     else {
         $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
 
-        $response = $qur->addTran($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, null);
+        $response = $qur->add_party_transaction($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, null);
 
         if ($response['status'] == true) {
             extract($response);
@@ -62,13 +62,13 @@ if (isset($_POST['party']) && isset($_POST['pay_type'])
 
         } else if (isset($_GET['party']) && isset($_GET['pay_type']) && isset($_GET['cost'])) {
             echo "<h3 class='red'>Transaction failed</h3>";
-            $qur->purchaseExpense($party_id, $payment_type, $payment_amount);
+            $qur->purchase_expense($party_id, $payment_type, $payment_amount);
         } else {
             echo "<h3 class='red'>Ensure data validity</h3>";
-            $qur->purchaseExpense($party_id, $payment_type, $payment_amount);
+            $qur->purchase_expense($party_id, $payment_type, $payment_amount);
         }
     }
 } else {
-    $qur->purchaseExpense($party_id, $payment_type, $payment_amount);
+    $qur->purchase_expense($party_id, $payment_type, $payment_amount);
 }
 

@@ -44,8 +44,7 @@ if (isset($id)) {
     } else {
         echo "<h2 class='green'>You neither have Outstanding nor due with " . $name[0][0] . "</h2><br/>";
     } */
-}
-else {
+} else {
     echo "<h1>Individual Party Overview</h1><br/>";
     echo "<form method = 'POST'  class='embossed'>";
     echo "<h4 class='blue'>Select Party</h4><br/>";

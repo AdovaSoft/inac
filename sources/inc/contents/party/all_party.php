@@ -97,7 +97,7 @@ if (count($all_info) > 0) {
         echo esc($a[6]);
         echo "</a>";
         echo "</td>";
-        echo "<td>" . esc($a[7])."</td>";
+        echo "<td>" . esc($a[7]) . "</td>";
         echo "<td>";
         if ($a[5] < 0) {
             echo money($a[5]);

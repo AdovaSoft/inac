@@ -1,4 +1,4 @@
-<h1>Investment / Drawing Panel</h1><br/>
+<h1>Investment / Drawing Panel</h1>
 <?php
 include("sources/inc/usercheck.php");
 $inp = new html();
@@ -9,15 +9,15 @@ if (isset($_POST['ab'])) {
         $query = new indquery();
         $date = $inp->get_post_date('date');
 
-        $flag = $query->addNewTran($date, $_POST['a'], $_POST['tt'], $_POST['tf'], $_POST['c']);
+        $flag = $query->add_new_transaction($date, $_POST['a'], $_POST['tt'], $_POST['tf'], $_POST['c']);
 
         if ($flag) {
-            echo "<h3 class='green'>Transaction successfully</h3>";
+            echo "<br><h3 class='green'>Transaction successfully</h3>";
         } else {
-            echo "<h3 class='red'>Transaction failed</h3>";
+            echo "<br><h3 class='red'>Transaction failed</h3>";
         }
     } else {
-        echo "<h3 class='blue'>Amounts, Transaction type and medium</h3>";
+        echo "<br><h3 class='red'>Amounts, Transaction type or Medium is Missing</h3>";
     }
 }
 echo "<br/><form method = 'POST' class='embossed'>";
@@ -35,7 +35,7 @@ $inp->input_radio('Cash', 'tf', 0, 0);
 $inp->input_radio('Bank', 'tf', 1, 0);
 
 echo "<br/><br/>";
-$inp->input_text('Comments (optional)', 'c', null);
+$inp->input_text('Comments', 'c', null);
 $inp->input_submit('ab', 'Apply');
 
 echo "</form><br/>";

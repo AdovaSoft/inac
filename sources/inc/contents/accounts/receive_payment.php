@@ -25,7 +25,7 @@ if (isset($_POST['party']) && isset($_POST['p_m'])
             $bank[4] = $_POST['c_ac'];
             $bank[5] = $_POST['c_no'];
 
-            $response = $qur->addTran($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, $bank);
+            $response = $qur->add_party_transaction($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, $bank);
 
             if ($response['status'] == true) {
                 extract($response);
@@ -44,7 +44,7 @@ if (isset($_POST['party']) && isset($_POST['p_m'])
     else {
         $date = $_POST['d_y'] . '-' . $_POST['d_m'] . '-' . $_POST['d_d'];
 
-        $response = $qur->addTran($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, null);
+        $response = $qur->add_party_transaction($party_id, $date, $payment_amount, $payment_type, $payment_medium, $payment_comment, 1, null);
 
         if ($response['status'] == true) {
             extract($response);

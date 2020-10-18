@@ -19,7 +19,8 @@ defined('CASH') || define('CASH', "0");
 defined('BANK') || define('BANK', "1");
 defined('ENTRY') || define('ENTRY', "entry");
 defined('EXPENSE') || define('EXPENSE', "return");
-
+defined('INVESTMENT') || define('INVESTMENT', "invest");
+defined('DRAWING') || define('DRAWING', "draw");
 
 /** Debug Function
  * @param mixed ...$var

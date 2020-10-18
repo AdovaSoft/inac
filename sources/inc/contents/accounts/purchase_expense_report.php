@@ -13,7 +13,6 @@ $query = sprintf("SELECT `transaction`.*, party.name FROM transaction
     LEFT JOIN party USING(idparty) 
 WHERE `transaction`.date >= '%s' AND `transaction`.date <= '%s' AND party.name IS NOT NULL ORDER BY DATE DESC;", $date1, $date2);
 $res = $con->get_custom_select_query($query, 7);
-d($res[0]);
 echo "<a id='printBox'  href='print.php?e=$encptid&page=accounts&&sub=report&&date1=$date1&&date2=$date2' class='button' target='_blank'><b> Print </b></a>";
 
 $in_total = 0;
@@ -51,7 +50,7 @@ echo "</th>";
 
 if ($usertype == ADMIN) {
     echo "<th width='100px'>";
-    echo "Delete Buttons";
+    echo "Action";
     echo "</th>";
 }
 echo "</tr>";
@@ -59,58 +58,60 @@ echo "</thead>";
 $p = 0;
 $r = 0;
 echo "<tbody>";
-for ($i = 0; $i < count($res); $i++) {
-    echo "<tr>";
+if (count($res) > 0) {
+    for ($i = 0; $i < count($res); $i++) {
+        echo "<tr>";
 
-    echo "<td>";
-    echo esc($res[$i][0]);
-    echo "</td>";
-    echo "<td>";
-    echo $inp->date_convert($res[$i][1]);
-    echo "</td>";
-
-    echo "<td class='text-left'>" . esc($res[$i][6]) . "</td>";
-
-    if ($res[$i][4] > 0) {
-        echo "<td class='text-right pr-50'>";
-        echo money($res[$i][4]);
-        $in_total += $res[$i][4];
+        echo "<td>";
+        echo esc($res[$i][0]);
         echo "</td>";
         echo "<td>";
-        echo "-";
+        echo $inp->date_convert($res[$i][1]);
         echo "</td>";
 
-    } else {
+        echo "<td class='text-left'>" . esc($res[$i][6]) . "</td>";
+
+        if ($res[$i][4] > 0) {
+            echo "<td class='text-right pr-50'>";
+            echo money($res[$i][4]);
+            $in_total += $res[$i][4];
+            echo "</td>";
+            echo "<td>";
+            echo "-";
+            echo "</td>";
+
+        } else {
+            echo "<td>";
+            echo "-";
+            echo "</td>";
+            echo "<td class='text-right pr-50'>";
+            $res[$i][4] *= (-1);
+            echo money($res[$i][4]);
+            $out_total += ($res[$i][4] * (-1));
+            echo "</td>";
+
+        }
+
         echo "<td>";
-        echo "-";
-        echo "</td>";
-        echo "<td class='text-right pr-50'>";
-        $res[$i][4] *= (-1);
-        echo money($res[$i][4]);
-        $out_total += ($res[$i][4] * (-1));
+        echo ($res[$i][2] == 0) ? "CASH" : "BANK";
         echo "</td>";
 
-    }
-
-    echo "<td>";
-    echo ($res[$i][2] == 0) ? "CASH" : "BANK";
-    echo "</td>";
-
-    echo "<td>";
-    if (isset($res[$i][5]))
-        echo date('h:i:s A', strtotime($res[$i][5]));
-    else
-        echo "-";
-    echo "</td>";
-
-    if ($usertype == ADMIN) {
         echo "<td>";
-        echo "<form method='POST'><br/>
+        if (isset($res[$i][5]))
+            echo date('h:i:s A', strtotime($res[$i][5]));
+        else
+            echo "-";
+        echo "</td>";
+
+        if ($usertype == ADMIN) {
+            echo "<td>";
+            echo "<form method='POST'><br/>
 <input type='hidden' name='tid' value='" . $res[$i][0] . "'>
 <input type='submit' name='delete' value='Delete'></form>";
-        echo "</td>";
+            echo "</td>";
+        }
+        echo "</tr>";
     }
-    echo "</tr>";
 }
 echo "</tbody>";
 echo "<tfoot><tr><th colspan='3'>Total</th><th>" . money($in_total) . "</th>

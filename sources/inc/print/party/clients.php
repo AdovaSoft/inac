@@ -49,67 +49,67 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
-if($n > 0) {
-$i = 1;
-foreach ($all_info as $a) {
-    echo "<tr>";
+if ($n > 0) {
+    $i = 1;
+    foreach ($all_info as $a) {
+        echo "<tr>";
 
-    echo "<td>" . $i++ . "</td>";
+        echo "<td>" . $i++ . "</td>";
 
-    echo "<td class='text-left'>";
-    echo esc($a[1]);
-    echo "</td>";
-
-    echo "<td class='text-left'>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo esc($a[2]);
-    echo "</a>";
-    echo "</td>";
-
-    echo "<td>";
-    echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-    echo esc($a[3], true);
-    if ($a[4]) {
-        echo ", <br/>";
-        echo esc($a[4], true);
-    }
-    echo "</a>";
-    echo "</td>";
-
-
-    if ($a[5] < 0) {
-        echo "<td class='text-right' >";
-        $due = -$a[5];
-        echo money($due);
+        echo "<td class='text-left'>";
+        echo esc($a[1]);
         echo "</td>";
-        $due_total = $due_total + $due;
-    } else {
-        echo "<td align = 'center' >";
-        echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-        echo "-";
-        echo "</a>";
-        echo "</td>";
-    }
 
-
-    if ($a[5] > 0) {
-        echo "<td class='text-right' >";
+        echo "<td class='text-left'>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-        echo money($a[5]);
+        echo esc($a[2]);
         echo "</a>";
         echo "</td>";
 
-        $advance_total = $advance_total + $a[5];
-    } else {
-        echo "<td class='text-center'>";
+        echo "<td>";
         echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
-        echo "-";
+        echo esc($a[3], true);
+        if ($a[4]) {
+            echo ", <br/>";
+            echo esc($a[4], true);
+        }
         echo "</a>";
         echo "</td>";
-    }
 
-    echo "</tr>";
-}
+
+        if ($a[5] < 0) {
+            echo "<td class='text-right' >";
+            $due = -$a[5];
+            echo money($due);
+            echo "</td>";
+            $due_total = $due_total + $due;
+        } else {
+            echo "<td align = 'center' >";
+            echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
+            echo "-";
+            echo "</a>";
+            echo "</td>";
+        }
+
+
+        if ($a[5] > 0) {
+            echo "<td class='text-right' >";
+            echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
+            echo money($a[5]);
+            echo "</a>";
+            echo "</td>";
+
+            $advance_total = $advance_total + $a[5];
+        } else {
+            echo "<td class='text-center'>";
+            echo "<a href='index.php?e=" . $encptid . "&&page=party&&sub=view_particular&&p=" . $a[0] . "'>";
+            echo "-";
+            echo "</a>";
+            echo "</td>";
+        }
+
+        echo "</tr>";
+    }
 } else {
     echo "<tr><td class='text-center' colspan='6'> No data available in Table</td></tr>";
 }

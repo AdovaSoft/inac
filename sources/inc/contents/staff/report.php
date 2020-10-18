@@ -92,19 +92,19 @@ if ($inp->value_pgd('s') != null) {
         echo "<br/><h3 class='blue'>No attendance record stored yet</h3>";
     } //Attendance and Earned Salary report
     else {
-        echo "<br/><h3 class='blue'>Attendance and Earned Salary report</h3>";
-        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Attendance and Earned Salary Report</b></a><br/>";
+        echo "<br/><h3 class='blue'>Attendance Report</h3>";
+        echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=attendance&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Report</b></a><br/>";
         echo "<table align='center' class='rb table'>";
         echo "<thead>";
         echo "<tr>";
         echo "<th>Month</th>
-<th>Attended</th>
-<th>Leave</th>
-<th>Absent</th>
-<th>Overtime</th>
-<th>Salary</th
-><th>Duty<br/>Hours</th>
-<th>Earned Salary</th>";
+              <th>Attended</th>
+              <th>Leave</th>
+              <th>Absent</th>
+              <th>Overtime</th>
+              <th>Salary</th>
+              <th>Duty<br/>Hours</th>
+              <th>Earned Salary</th>";
         if ($usertype == ADMIN) {
             echo "<th>Action</th>";
         }
@@ -148,8 +148,8 @@ if ($inp->value_pgd('s') != null) {
             echo "</td>";
 
             if ($usertype == ADMIN) {
-                echo "<td>";
-                echo "<br/><form method='POST'>";
+                echo "<td width='115'>";
+                echo "<br/><form method='POST' style='margin: 0px'>";
                 echo "<input type='hidden' name='m' value='" . $s[0] . "'/>";
                 echo "<input type='hidden' name='y' value='" . $s[1] . "'/>";
                 echo "<input type='hidden' name='s' value='" . $inp->value_pgd('s') . "'/>";
@@ -217,10 +217,7 @@ if ($inp->value_pgd('s') != null) {
         echo "</form>";
     }
 
-    if (count($staf_sal) <= 0) {
-        echo "<br/><h3 class='blue'>No sallary record stored yet</h3>";
-    } //Salary report
-    else {
+    if (count($staf_sal) > 0) {
         echo "<br/><br/><h3 class='blue'>Salary report</h3>";
         echo "<br/><a id='printBox' href='print.php?e=" . $encptid . "&page=staff&&sub=salary&&s=" . $inp->value_pgd('s') . "' class='button' target='_blank'><b> Print Salary Report</b></a><br/>";
         echo "<table align='center' class='rb table'>";
@@ -252,6 +249,8 @@ if ($inp->value_pgd('s') != null) {
         echo "<tr><td colspan = 3>Total : " . money($salary_amount) . "</td></tr>";
         echo "</tfoot>";
         echo "</table>";
+    } else {
+        echo "<br/><h3 class='blue'>No sallary record stored yet</h3>";
     }
 
     if (count($staf_bon) <= 0) {

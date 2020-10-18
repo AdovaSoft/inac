@@ -38,7 +38,7 @@ $party = $qur->get_custom_select_query($query, 3);
 echo "<br/><form method = 'POST' class='embossed'>";
 echo "<h4 class='blue'>Select Party</h4><br/>";
 echo "<img src='images/blank1by1.gif' width='300px' height='1px'/><br/>";
-    $qur->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'), 'full-width', false, 2, true);
+$qur->get_dropdown_array($party, 0, 1, 'pt', $inp->value_pgd('pt'), 'full-width', false, 2, true);
 echo "<br/><br/><input type = 'submit' name = 'ab' value = 'Edit' />";
 echo "</form>";
 
@@ -69,7 +69,7 @@ if (isset($_POST['ab']) || isset($_POST['ab1'])) {
         echo "<option value='3'>Business Partner</option>";
         echo "</select>";
         echo "<br/>";
-            $inp->input_text('Phone 1 : ', 'p1', $inp->value_pgd('p1', esc($party[0][2], true)));
+        $inp->input_text('Phone 1 : ', 'p1', $inp->value_pgd('p1', esc($party[0][2], true)));
 
         $inp->input_text('Phone 2 : ', 'p2', $inp->value_pgd('p2', esc($party[1][2], true)));
 

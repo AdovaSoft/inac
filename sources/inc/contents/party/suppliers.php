@@ -8,25 +8,25 @@ $due_total = 0;
 $advance_total = 0;
 
 $n = count($party);
-if($n > 0) {
-for ($i = 0; $i < $n; $i++) {
-    if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
-        $all_info[$i][0] = $party[$i][0];
-        $all_info[$i][1] = $party[$i][1];
-        $all_info[$i][2] = $party[$i][2];
-        $all_info[$i][3] = $party[$i][3];
-        $all_info[$i][4] = $party[$i + 1][3];
-        $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
-        $i++;
-    } else {
-        $all_info[$i][0] = $party[$i][0];
-        $all_info[$i][1] = $party[$i][1];
-        $all_info[$i][2] = $party[$i][2];
-        $all_info[$i][3] = $party[$i][3];
-        $all_info[$i][4] = null;
-        $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
+if ($n > 0) {
+    for ($i = 0; $i < $n; $i++) {
+        if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
+            $all_info[$i][0] = $party[$i][0];
+            $all_info[$i][1] = $party[$i][1];
+            $all_info[$i][2] = $party[$i][2];
+            $all_info[$i][3] = $party[$i][3];
+            $all_info[$i][4] = $party[$i + 1][3];
+            $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
+            $i++;
+        } else {
+            $all_info[$i][0] = $party[$i][0];
+            $all_info[$i][1] = $party[$i][1];
+            $all_info[$i][2] = $party[$i][2];
+            $all_info[$i][3] = $party[$i][3];
+            $all_info[$i][4] = null;
+            $all_info[$i][5] = $qur->party_adv_due($party[$i][0]);
+        }
     }
-}
 }
 echo "<table align='center' class='rb table'>";
 echo "<thead>";

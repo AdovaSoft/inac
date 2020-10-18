@@ -11,7 +11,7 @@ $due_total = 0;
 $advance_total = 0;
 
 $n = count($party);
-if($n > 0) {
+if ($n > 0) {
     for ($i = 0; $i < $n; $i++) {
         if ($i != $n - 1 && $party[$i][0] == $party[$i + 1][0]) {
             $all_info[$i][0] = $party[$i][0];
@@ -62,7 +62,7 @@ echo "<th>";
 echo "Paid Advance";
 echo "</th>";
 echo "</tr>";
-if(count($all_info) > 0) {
+if (count($all_info) > 0) {
     $i = 1;
     foreach ($all_info as $a) {
         echo "<tr>";
@@ -125,7 +125,7 @@ if(count($all_info) > 0) {
         echo "</tr>";
     }
 } else {
-  echo "<tr><td class='text-center' colspan='7'> No data available in Table</td></tr>";
+    echo "<tr><td class='text-center' colspan='7'> No data available in Table</td></tr>";
 }
 echo "<tr>";
 echo "<th colspan='5' class='text-center' >Total</th>";

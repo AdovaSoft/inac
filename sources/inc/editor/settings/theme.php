@@ -4,7 +4,7 @@ $extra_string = null;
 if (isset($_POST['change'])) {
     if ($_POST['newcss'] > 0) {
         $qur = new indquery();
-        $change = $qur->changecss($idstaff, $_POST['newcss']);
+        $change = $qur->change_theme_style($idstaff, $_POST['newcss']);
         if ($change) {
             $_SESSION['theme'] = $_POST['newcss'];
             $extra_string = "&say=1";
